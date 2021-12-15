@@ -109,9 +109,9 @@ Criação de testes da sua aplicação.
 test: ensure that increment
 
 ```
-Para saber mais sobre os commits semânticos, [acesse este artigo](https://blog.geekhunter.com.br/o-que-e-commit-e-como-usar-commits-semanticos/)
+Para saber mais sobre os commits semânticos, [acesse este artigo](https://blog.geekhunter.com.br/o-que-e-commit-e-como-usar-commits-semanticos/).
 
-# Tecnologias 🖱️
+## Mapa de Tecnologias 🖱️
 
 A Lib/Framework principal utilizada será ReactJS.
 
@@ -121,4 +121,6 @@ A Lib/Framework principal utilizada será ReactJS.
 * [Axios](https://www.npmjs.com/package/axios)
 * [Jest](https://jestjs.io/pt-BR/docs/getting-started)
 
+## Versionamento 🌲
 
+Será utilizado Git com Github.
