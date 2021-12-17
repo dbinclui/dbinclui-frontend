@@ -5,7 +5,7 @@ import Home from '../src/pages/home';
 import App from './App';
 import AcessibilityGuide from './pages/acessibility-guide';
 import DeafCultureGuide from './pages/deaf-culture-guide';
-import Error from './pages/error';
+import Error from './pages/error/404';
 
 
 ReactDOM.render(
