@@ -1,0 +1,17 @@
+.card {
+    background-color: darkgrey;
+    border-radius: 0.8rem;
+    cursor: pointer;
+    display: flex;
+    height: 10rem;
+    width: 15rem;
+    justify-content: center;
+    margin-bottom: 1.5rem;
+    margin-right: 1.5rem;
+    padding-left: 2.8rem;
+    padding-right: 2rem;
+}
+
+.card-title {
+    color: black;
+}
