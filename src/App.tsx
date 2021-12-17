@@ -6,8 +6,6 @@ function App() {
     <div className="App">
       <VLibras />
       <h1>Teste</h1>
-      
-     
     </div>
   );
 }
