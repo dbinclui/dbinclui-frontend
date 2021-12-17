@@ -1,17 +1,16 @@
 .card {
-    background-color: darkgrey;
-    border-radius: 0.8rem;
-    cursor: pointer;
-    display: flex;
-    height: 10rem;
-    width: 15rem;
-    justify-content: center;
-    margin-bottom: 1.5rem;
-    margin-right: 1.5rem;
-    padding-left: 2.8rem;
-    padding-right: 2rem;
+  overflow: hidden;
+  box-shadow: 7px 7px 13px 0px rgba(50, 50, 50, 0.22);
+  border-radius: 5px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  cursor: pointer;
+  transition: transform 200ms ease-in;
+  padding: 30px;
 }
 
 .card-title {
-    color: black;
+  text-align: center;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
 }

@@ -1,7 +1,11 @@
 .conteiner_cards {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    margin-left: auto;
-    margin-right: auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(12rem, 16rem));
+    row-gap: 3rem;
+    column-gap: 20rem;
+    justify-content: center;
 }
+ h1 {
+    text-align: center;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+ }
