@@ -1,8 +1,8 @@
 import "./styles.css";
 
-type CardProps = {
+interface CardProps {
   title: string;
-};
+}
 
 export default function Card({ title }: CardProps) {
   return (
