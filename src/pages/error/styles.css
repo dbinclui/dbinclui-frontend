@@ -1,4 +1,12 @@
 body {
   font-family: Verdana, Geneva, Tahoma, sans-serif;
-  background-image: url(../../images/404.svg) no-repeat center;
+  background: url("../../images/404.svg") no-repeat center;
+  background-size: 40%;
+  margin-top: 40%;
+}
+
+p {
+  margin: 0 auto;
+  text-align: center;
+  font-size: 24px;
 }
