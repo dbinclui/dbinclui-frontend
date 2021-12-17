@@ -1,14 +1,13 @@
 import React from "react";
 import VLibras from "@djpfs/react-vlibras";
-import GuiaAcessibilidade from "./pages/GuiaAcessibilidade";
+import AcessibilityGuide from "./pages/acessibility-guide";
 
 
 function App() {
   return (
     <div className="App">
-      {/* <VLibras />
-      <h1>Teste</h1> */}
-      <GuiaAcessibilidade />
+      <VLibras />
+      <h1>Teste</h1>
     </div>
   );
 }

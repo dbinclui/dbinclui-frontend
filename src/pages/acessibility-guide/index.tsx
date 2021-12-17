@@ -11,7 +11,7 @@ const CARDS = [
   "Glossário",
 ];
 
-export default function GuiaAcessibilidade() {
+export default function AcessibilityGuide() {
   return (
     <div>
       <h1 style={{ textAlign: "center" }}>Guia de Acessibilidade</h1>
