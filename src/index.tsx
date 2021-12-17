@@ -1,11 +1,11 @@
-import React from "react";
-import ReactDOM from "react-dom";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Home from "../src/pages/home";
-import App from "./App";
-import AcessibilityGuide from "./pages/acessibility-guide";
-import DeafCultureGuide from "./pages/deaf-culture-guide";
-import Error from "./pages/error/404";
+import React from 'react';
+import ReactDOM from 'react-dom';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import Home from '../src/pages/home';
+import App from './App';
+import AcessibilityGuide from './pages/acessibility-guide';
+import DeafCultureGuide from './pages/deaf-culture-guide';
+import Error from './pages/error/404';
 
 ReactDOM.render(
   <React.StrictMode>
@@ -19,5 +19,5 @@ ReactDOM.render(
       </Routes>
     </BrowserRouter>
   </React.StrictMode>,
-  document.getElementById("root"),
+  document.getElementById('root'),
 );
