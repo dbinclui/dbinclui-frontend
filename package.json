@@ -4,7 +4,7 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test",
+    "test": "npx jest --config=jest.config.json",
     "eject": "react-scripts eject",
     "lint": "npx eslint -c .eslintrc.json ./src/**/*.tsx",
     "prettier:check": "npx prettier -c ./src/**/*.tsx",
