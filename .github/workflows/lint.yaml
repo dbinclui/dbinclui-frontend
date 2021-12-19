@@ -1,6 +1,6 @@
 name: Running Lint
 on:
-  pull-request:
+  pull_request:
     branches:
       - main
       - develop
@@ -12,8 +12,9 @@ jobs:
       - name: Install Node.js
         uses: actions/setup-node@v1
         with:
-          node_version: 16.13.1
+          node-version: 16.13.1
       - run: npm install
-      - run: npx eslint ./src/**/*.tsx
+      - run: npm run lint
+      - run: npm run prettier:check
     env:
       CI: true
