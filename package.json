@@ -5,7 +5,8 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "lint": "npx eslint -c .eslintrc.json ./src/**/*.tsx"
   },
   "dependencies": {
     "@djpfs/react-vlibras": "^2.0.0",
