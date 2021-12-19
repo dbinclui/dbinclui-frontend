@@ -15,6 +15,6 @@ jobs:
           node-version: 16.13.1
       - run: npm install
       - run: npm run lint
-      - run: prettier:check
+      - run: npm run prettier:check
     env:
       CI: true
