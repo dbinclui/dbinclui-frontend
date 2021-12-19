@@ -11,14 +11,13 @@ ReactDOM.render(
   <React.StrictMode>
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<App/>}/>
-          <Route index element={<Home/>}/>
-            <Route path="guia-acessibilidade" element={<AcessibilityGuide/>}/>
-            <Route path="guia-cultura-surda" element={<DeafCultureGuide/>}/>
-          <Route path="*" element={<Error/>}/>
-
+        <Route path="/" element={<App />} />
+        <Route index element={<Home />} />
+        <Route path="guia-acessibilidade" element={<AcessibilityGuide />} />
+        <Route path="guia-cultura-surda" element={<DeafCultureGuide />} />
+        <Route path="*" element={<Error />} />
       </Routes>
     </BrowserRouter>
   </React.StrictMode>,
-  document.getElementById('root')
+  document.getElementById('root'),
 );
