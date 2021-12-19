@@ -1,5 +1,5 @@
-name: Running Lint 
-on: 
+name: Running Lint
+on:
   pull-request:
     branches:
       - main
@@ -10,10 +10,10 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - name: Install Node.js
-        - uses: actions/setup-node@v1
-          with:
-            node_version: 16.13.1
+        uses: actions/setup-node@v1
+        with:
+          node_version: 16.13.1
       - run: npm install
       - run: npx eslint ./src/**/*.tsx
-      env:
-        CI: true
+    env:
+      CI: true
