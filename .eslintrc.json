@@ -14,11 +14,12 @@
           "jsx": true
         },
         "ecmaVersion": 12,
-        "sourceType": "module"
+        "sourceType": "module",
+        "warnOnUnsupportedTypeScriptVersion": false
     },
     "plugins": [
         "react",
-        "@typescript-eslint"
+        "eslint-plugin-prettier"
     ],
     "rules": {
     }
