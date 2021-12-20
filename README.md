@@ -10,7 +10,7 @@ Web app que dissemina a cultura de inclusão dentro da DBServer, com foco na cul
 ### Clone o repositório
 
 ```
-$ git clone https://github.com/dbinclui/dbinclui-backend.git
+$ git clone https://github.com/dbinclui-org/dbinclui-frontend.git
 ```
 
 ### Crie uma branch a partir de develop com sua feature ou correção de bugs
@@ -111,7 +111,7 @@ $ git push --set-upstream origin feature/DBI-61
 ### Clonando o projeto
 
 ```
-$ git clone https://github.com/dbinclui/dbinclui-backend.git
+$ git clone https://github.com/dbinclui/dbinclui-frontend.git
 ```
 
 ### Instalando os módulos
@@ -120,10 +120,10 @@ $ git clone https://github.com/dbinclui/dbinclui-backend.git
 $ npm install
 ```
 
-### Iniciando o Backend com Nodemon
+### Iniciando o Frontend
 
 ```
-$ npm run dev
+$ npm start
 ```
 
 ## Commit Semântico ⚡
