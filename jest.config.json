@@ -5,6 +5,8 @@
     "./src/**/*.{ts,tsx,js,jsx}",
     "!**/node_modules/**"
   ],
+  "collectCoverage": true,
+  "coverageDirectory": "coverage",
   "modulePaths": [
     "<rootDir>/**/*.{spec,test}.{tsx,ts}"
   ]
