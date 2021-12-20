@@ -5,20 +5,17 @@ import { Outlet } from 'react-router-dom';
 function App() {
   return (
     <>
-    <VLibras />
-      
+      <VLibras />
+
       <header>
-      <h1>Teste</h1>
+        <h1>Teste</h1>
       </header>
 
       <main>
-        <Outlet/>
-        
+        <Outlet />
       </main>
 
-      <footer>
-        
-      </footer>
+      <footer></footer>
     </>
   );
 }

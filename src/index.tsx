@@ -13,9 +13,9 @@ ReactDOM.render(
       <Routes>
         <Route path="/" element={<App />}>
           <Route index element={<Home />} />
-        <Route path="guia-acessibilidade" element={<AcessibilityGuide />} />
-        <Route path="guia-cultura-surda" element={<DeafCultureGuide />} />
-        <Route path="*" element={<Error />} />
+          <Route path="guia-acessibilidade" element={<AcessibilityGuide />} />
+          <Route path="guia-cultura-surda" element={<DeafCultureGuide />} />
+          <Route path="*" element={<Error />} />
         </Route>
       </Routes>
     </BrowserRouter>
