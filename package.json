@@ -6,7 +6,8 @@
     "build": "react-scripts build",
     "test": "npx jest --config=jest.config.ts",
     "eject": "react-scripts eject",
-    "lint": "npx eslint -c .eslintrc.json ./src/**/*.tsx",
+    "lint:check": "npx eslint -c .eslintrc.json ./src/**/*.tsx",
+    "lint:fix": "npx eslint -c .eslintrc.json --fix ./src/**/*.tsx",
     "prettier:check": "npx prettier -c ./src/**/*.tsx",
     "prettier:write": "npx prettier -w ./src/**/*.tsx"
   },
@@ -33,15 +34,26 @@
     "@testing-library/react": "^11.2.7",
     "@types/jest": "^27.0.3",
     "@types/react": "^17.0.37",
-    "babel-jest": "^27.4.5",
-    "eslint": "^8.5.0",
+    "eslint": "^7.11.0",
+    "babel-jest": "^26.6.0",
     "eslint-config-prettier": "^8.3.0",
     "eslint-config-react-app": "^7.0.0",
     "eslint-plugin-prettier": "^4.0.0",
-    "jest": "^27.0.0",
     "prettier": "^2.5.1",
     "react-test-renderer": "^17.0.2",
     "ts-jest": "^27.1.2",
     "ts-node": "^10.4.0"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
   }
 }
