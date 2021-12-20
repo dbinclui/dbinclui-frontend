@@ -1,3 +1,4 @@
+
 # DBInclui 💭
 
 ## Descrição do Projeto
@@ -9,7 +10,7 @@ Web app que dissemina a cultura de inclusão dentro da DBServer, com foco na cul
 ### Clone o repositório
 
 ```
-$ git clone https://github.com/LizSantana/app-vlibras-frontend.git
+$ git clone https://github.com/dbinclui/dbinclui-backend.git
 ```
 
 ### Crie uma branch a partir de develop com sua feature ou correção de bugs
@@ -48,12 +49,63 @@ $ git checkout develop
 $ git merge minha-branch
 ```
 
+## Fluxo do Git Flow
+
+### Iniciar o uso do Git Flow no projeto
+```
+$ git flow init
+```
+
+### Certifique-se de que a branch para "production releases" é a main
+```
+Which branch should be used for bringing forth production releases?
+   - main
+Branch name for production releases: [main] 
+```
+
+### Certifique-se de que a branch para "next release" é a develop
+```
+Branch name for "next release" development: [develop] 
+```
+
+### Aperte "ENTER" em cada input para usar as nomenclaturas padrões das features
+```
+How to name your supporting branch prefixes?
+Feature branches? [feature/] 
+Release branches? [release/] 
+Hotfix branches? [hotfix/] 
+Support branches? [support/] 
+Version tag prefix? []
+```
+
+### Crie a branch baseada no número do seu card no Trello
+```
+$ git flow feature start DBI-01 <-- número do card do Trello
+```
+
+### Adicione e faça o commit das mudanças da branch
+```
+$ git add -A
+$ git commit -m "Update README"
+```
+
+### Publique as modificações realizadas
+```
+$ git push --set-upstream origin feature/DBI-01
+```
+
+### Para realizar o *pull request* é necessário mudar o base repository para o repositório que possui o "dbinclui-org"
+<img src="https://i.imgur.com/5qI0aa7.png"/>
+
+### Confirme se a *develop* está marcada no *base* e se a sua *feature* está no *compare*, após isso já é possível clicar no botão para criar o *pull request*
+<img src="https://i.imgur.com/gN9oIXq.png"/>
+
 ## Executando o Projeto 💻
 
 ### Clonando o projeto
 
 ```
-$ git clone https://github.com/dbinclui/dbinclui-frontend.git
+$ git clone https://github.com/dbinclui/dbinclui-backend.git
 ```
 
 ### Instalando os módulos
@@ -62,10 +114,10 @@ $ git clone https://github.com/dbinclui/dbinclui-frontend.git
 $ npm install
 ```
 
-### Iniciando o Frontend
+### Iniciando o Backend com Nodemon
 
 ```
-$ npm start
+$ npm run dev
 ```
 
 ## Commit Semântico ⚡
@@ -132,11 +184,13 @@ Para saber mais sobre os commits semânticos, [acesse este artigo](https://blog.
 
 A Lib/Framework principal utilizada será ReactJS.
 
-- [React Bootstrap](https://react-bootstrap.github.io/getting-started/introduction)
 - [Typescript](https://www.typescriptlang.org/download)
-- [React](https://pt-br.reactjs.org/docs/getting-started.html)
+- [Node JS](https://nodejs.org/en/)
 - [Axios](https://www.npmjs.com/package/axios)
-- [Jest](https://jestjs.io/pt-BR/docs/getting-started)
+- [Express](https://expressjs.com/pt-br/)
+- [Mongoose](https://mongoosejs.com/)
+- [Express Validator](https://www.npmjs.com/package/express-validator)
+- [JWT](https://jwt.io/)
 
 ## Versionamento 🌲
 
