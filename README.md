@@ -49,7 +49,7 @@ $ git checkout develop
 $ git merge minha-branch
 ```
 
-## Fluxo do Git Flow
+## Fluxo do Git Flow 👨‍💻
 
 ### Iniciar o uso do Git Flow no projeto
 ```
@@ -80,7 +80,7 @@ Version tag prefix? []
 
 ### Crie a branch baseada no número do seu card no Trello
 ```
-$ git flow feature start DBI-01 <-- número do card do Trello
+$ git flow feature start DBI-61 <-- número do card do Trello
 ```
 
 ### Adicione e faça o commit das mudanças da branch
@@ -91,14 +91,20 @@ $ git commit -m "Update README"
 
 ### Publique as modificações realizadas
 ```
-$ git push --set-upstream origin feature/DBI-01
+$ git push --set-upstream origin feature/DBI-61
 ```
 
 ### Para realizar o *pull request* é necessário mudar o base repository para o repositório que possui o "dbinclui-org"
-<img src="https://i.imgur.com/5qI0aa7.png"/>
+<img src="https://i.imgur.com/2D3kkjl.png"/>
 
-### Confirme se a *develop* está marcada no *base* e se a sua *feature* está no *compare*, após isso já é possível clicar no botão para criar o *pull request*
-<img src="https://i.imgur.com/gN9oIXq.png"/>
+### Confirme se a *develop* está marcada na *base* e se a sua *feature* está no *compare*, após isso já é possível clicar no botão para criar o *pull request*
+<img src="https://i.imgur.com/kRLdwkc.png"/>
+
+### Mude o título do *pull request* para o nome da feature + o título do card do Trello, como mostrado abaixo, após isso já é possível clicar no botão para criar o *pull request*
+<img src="https://i.imgur.com/AZywbED.png"/>
+
+### Após as mudanças serem aprovadas por duas pessoas e serem passadas no teste, será possível realizar o *merge request*
+<img src="https://i.imgur.com/V76w9Bh.png"/>
 
 ## Executando o Projeto 💻
 
