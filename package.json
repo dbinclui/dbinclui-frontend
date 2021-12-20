@@ -1,15 +1,21 @@
 {
   "name": "dbinclui-frontend",
   "version": "0.1.0",
-  "private": true,
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "npx jest --config=jest.config.ts",
+    "eject": "react-scripts eject",
+    "lint:check": "npx eslint -c .eslintrc.json ./src/**/*.tsx",
+    "lint:fix": "npx eslint -c .eslintrc.json --fix ./src/**/*.tsx",
+    "prettier:check": "npx prettier -c ./src/**/*.tsx",
+    "prettier:write": "npx prettier -w ./src/**/*.tsx"
+  },
   "dependencies": {
     "@djpfs/react-vlibras": "^2.0.0",
     "@djpfs/react-vlibras-typescript": "^1.0.2",
-    "@testing-library/jest-dom": "^5.16.1",
     "@testing-library/user-event": "^12.8.3",
-    "@types/jest": "^26.0.24",
     "@types/node": "^12.20.37",
-    "@types/react": "^17.0.37",
     "@types/react-dom": "^17.0.11",
     "@types/react-router-dom": "^5.3.2",
     "axios": "^0.24.0",
@@ -23,17 +29,22 @@
     "typescript": "^4.5.3",
     "web-vitals": "^1.1.2"
   },
-  "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
-  },
-  "eslintConfig": {
-    "extends": [
-      "react-app",
-      "react-app/jest"
-    ]
+  "devDependencies": {
+    "@babel/preset-env": "^7.16.5",
+    "@babel/preset-react": "^7.16.5",
+    "@testing-library/jest-dom": "^5.16.1",
+    "@testing-library/react": "^11.2.7",
+    "@types/jest": "^27.0.3",
+    "@types/react": "^17.0.37",
+    "eslint": "^7.11.0",
+    "babel-jest": "^26.6.0",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-config-react-app": "^7.0.0",
+    "eslint-plugin-prettier": "^4.0.0",
+    "prettier": "^2.5.1",
+    "react-test-renderer": "^17.0.2",
+    "ts-jest": "^27.1.2",
+    "ts-node": "^10.4.0"
   },
   "browserslist": {
     "production": [
@@ -46,9 +57,5 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-  },
-  "devDependencies": {
-    "@testing-library/react": "^11.2.7",
-    "jest": "^26.6.0"
   }
 }

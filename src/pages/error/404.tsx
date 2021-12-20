@@ -4,9 +4,8 @@ import "./styles.css";
 export default function Error() {
   return (
     <>
-      <div>
-        <p>Desculpe, a página não foi encontrada!</p>
-      </div>
+      <h1>404</h1>
+      <p>Página não encontrada</p>
     </>
   );
 }
