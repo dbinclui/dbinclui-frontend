@@ -1,5 +1,7 @@
-import React from 'react';
-import VLibras from '@djpfs/react-vlibras';
+import React from "react";
+import VLibras from "@djpfs/react-vlibras";
+import AcessibilityGuide from "./pages/acessibility-guide";
+
 
 function App() {
   return (
