@@ -1,12 +1,22 @@
 import React from 'react';
 import VLibras from '@djpfs/react-vlibras';
+import { Outlet } from 'react-router-dom';
 
 function App() {
   return (
-    <div className="App">
+    <>
       <VLibras />
-      <h1>Teste</h1>
-    </div>
+
+      <header>
+        <h1>Teste</h1>
+      </header>
+
+      <main>
+        <Outlet />
+      </main>
+
+      <footer></footer>
+    </>
   );
 }
 
