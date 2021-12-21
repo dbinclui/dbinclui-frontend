@@ -1,25 +1,48 @@
 import React from 'react';
 import Card from '../../components/Card';
 import './styles.css';
+import { useEffect, useState } from 'react';
+import axios, { AxiosResponse } from 'axios';
+import api from '../../services/api';
 
-const CARDS = [
-  'O que é acessibilidade?',
-  'Tipos de acessibilidade',
-  'Boas práticas para inclusão',
-  'Acessibilidade em eventos',
-  'Acessibilidade em matéria',
-  'Glossário',
-];
+interface Card {
+  id: number;
+  title: string;
+  contents: string;
+}
 
 export default function AcessibilityGuide() {
+  const [cards, setCards] = useState<Card[]>([]);
+
+  useEffect(() => {
+    alert(`${api}`);
+    async function getCards() {
+      let response: AxiosResponse<Card[]>;
+      try {
+        response = await axios.get<Card[]>(`http://localhost:3000/topics/`);
+        return response;
+      } catch (err) {
+        alert('erro');
+      }
+    }
+
+    setTimeout(() => {
+      getCards().then((cards) => {
+        if (cards) {
+          setCards(cards.data);
+        }
+      });
+    }, 3000);
+  }, []);
+
   return (
     <div>
       <h1 className="page-title" style={{ textAlign: 'center' }}>
         Guia de Acessibilidade
       </h1>
       <div className="conteiner_cards">
-        {CARDS.map((item, key) => (
-          <Card key={key} title={item} />
+        {cards.map((item, key) => (
+          <Card key={key} title={item.title} />
         ))}
       </div>
     </div>
