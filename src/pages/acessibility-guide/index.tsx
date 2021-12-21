@@ -2,37 +2,20 @@ import React from 'react';
 import Card from '../../components/Card';
 import './styles.css';
 import { useEffect, useState } from 'react';
-import axios, { AxiosResponse } from 'axios';
-import api from '../../services/api';
-
-interface Card {
-  id: number;
-  title: string;
-  contents: string;
-}
+import { CardGuidesResponse, getGuides } from '../../services/guides';
 
 export default function AcessibilityGuide() {
-  const [cards, setCards] = useState<Card[]>([]);
+  const [cards, setCards] = useState<CardGuidesResponse[]>([]);
+
+  const getCards = async () => {
+    const cards = await getGuides();
+    if (cards) {
+      setCards(cards.data);
+    }
+  };
 
   useEffect(() => {
-    alert(`${api}`);
-    async function getCards() {
-      let response: AxiosResponse<Card[]>;
-      try {
-        response = await axios.get<Card[]>(`http://localhost:3000/topics/`);
-        return response;
-      } catch (err) {
-        alert('erro');
-      }
-    }
-
-    setTimeout(() => {
-      getCards().then((cards) => {
-        if (cards) {
-          setCards(cards.data);
-        }
-      });
-    }, 3000);
+    getCards();
   }, []);
 
   return (

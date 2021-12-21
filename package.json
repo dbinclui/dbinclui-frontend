@@ -9,7 +9,8 @@
     "lint:check": "npx eslint -c .eslintrc.json ./src/**/*.tsx",
     "lint:fix": "npx eslint -c .eslintrc.json --fix ./src/**/*.tsx",
     "prettier:check": "npx prettier -c ./src/**/*.tsx",
-    "prettier:write": "npx prettier -w ./src/**/*.tsx"
+    "prettier:write": "npx prettier -w ./src/**/*.tsx",
+    "mockserver": "npx json-server --watch -p 3300 ./mockserver/db.json"
   },
   "dependencies": {
     "@djpfs/react-vlibras": "^2.0.0",
