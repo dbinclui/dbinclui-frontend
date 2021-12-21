@@ -5,51 +5,39 @@
 
 Web app que dissemina a cultura de inclusão dentro da DBServer, com foco na cultura surda. O web app é destinado para todas as pessoas que desejam aprender LIBRAS e enteder um pouco mais sobre inclusão de PCD`s na sociedade. O web app aproveita o guia de acessibilidade e a apostila de Libras como fonte de informação de inclusão, assim como utiliza a API Libras para as funcionalidades específicas.
 
-## Como Contribuir 🤔
+## Mapa de Tecnologias 🖱️
+
+A Lib/Framework principal utilizada será ReactJS.
+
+|       Nome      |                           Documentação                          |               Links dos pacotes               |
+|:---------------:|:---------------------------------------------------------------:|:---------------------------------------------:|
+| Typescript      | https://www.typescriptlang.org/docs/                            | https://www.npmjs.com/package/typescript      |
+| React           | https://reactjs.org/docs/getting-started.html                   | https://www.npmjs.com/package/react           |
+| React Bootstrap | https://react-bootstrap.github.io/getting-started/introduction  | https://www.npmjs.com/package/react-bootstrap |
+| Axios           | https://axios-http.com/docs/intro                               | https://www.npmjs.com/package/axios           |
+| Jest            | https://jestjs.io/docs/getting-started                          | https://www.npmjs.com/package/jest            |
+
+## Executando o Projeto 💻
+
+### Instalando os módulos
+
+```
+$ npm install
+```
+
+### Iniciando o Frontend
+
+```
+$ npm start
+```
+
+## Fluxo de versionamento 👨‍💻
 
 ### Clone o repositório
 
 ```
 $ git clone https://github.com/dbinclui-org/dbinclui-frontend.git
 ```
-
-### Crie uma branch a partir de develop com sua feature ou correção de bugs
-
-```
-$ git checkout develop // Move para a branch develop
-```
-
-```
-$ git checkout -b minha-branch // Cria e move para a brach "minha-branch"
-```
-
-### Faça o commit das suas alterações (use commits semânticos)
-
-```
-$ git add .
-```
-
-```
-$ git commit -m 'feat: minhas alterações'
-```
-
-### Faça o push para a sua branch
-
-```
-$ git push origin minha-branch
-```
-
-### Mude para develop e coloque sua branch lá
-
-```
-$ git checkout develop
-```
-
-```
-$ git merge minha-branch
-```
-
-## Fluxo do Git Flow 👨‍💻
 
 ### Iniciar o uso do Git Flow no projeto
 ```
@@ -106,27 +94,8 @@ $ git push --set-upstream origin feature/DBI-61
 ### Após as mudanças serem aprovadas por duas pessoas e serem passadas no teste, será possível realizar o *merge request*
 <img src="https://i.imgur.com/V76w9Bh.png"/>
 
-## Executando o Projeto 💻
 
-### Clonando o projeto
-
-```
-$ git clone https://github.com/dbinclui/dbinclui-frontend.git
-```
-
-### Instalando os módulos
-
-```
-$ npm install
-```
-
-### Iniciando o Frontend
-
-```
-$ npm start
-```
-
-## Commit Semântico ⚡
+<!-- ## Commit Semântico ⚡
 
 Pequenas alterações que não são novas funcionalidades.
 
@@ -184,20 +153,7 @@ test: ensure that increment
 
 ```
 
-Para saber mais sobre os commits semânticos, [acesse este artigo](https://blog.geekhunter.com.br/o-que-e-commit-e-como-usar-commits-semanticos/).
+Para saber mais sobre os commits semânticos, [acesse este artigo](https://blog.geekhunter.com.br/o-que-e-commit-e-como-usar-commits-semanticos/). -->
 
-## Mapa de Tecnologias 🖱️
 
-A Lib/Framework principal utilizada será ReactJS.
 
-- [Typescript](https://www.typescriptlang.org/download)
-- [Node JS](https://nodejs.org/en/)
-- [Axios](https://www.npmjs.com/package/axios)
-- [Express](https://expressjs.com/pt-br/)
-- [Mongoose](https://mongoosejs.com/)
-- [Express Validator](https://www.npmjs.com/package/express-validator)
-- [JWT](https://jwt.io/)
-
-## Versionamento 🌲
-
-Será utilizado Git com Github.
