@@ -1,67 +1,54 @@
 {
-  "topicos": [
+  "topics": [
     {
-      " id ": 1,
-      " title ": "O que é acessibilidade?"
+      "id": 1,
+      "title": "O que é acessibilidade?",
+      "contents": ""
     },
     {
-      " id ": 2,
-      " title ": "Tipos de acessibilidade"
+      "title": "Tipos de acessibilidade",
+      "type": "ATITUDINAL",
+      "contents": "Refere-se à percepção do outro sem preconceitos,estigmas, estereótypes e discriminações. Todos os demais ts de acessibilidade estão relacionados a essa, pois é a atitude da pessoa que impulsiona a remoção de barreiras."
     },
     {
-      " id ": 3,
-      " title ": "Boas práticas para a inclusão"
+      "type": "ARQUITETÔNICA",
+      "contents": "Eliminação das barreiras ambientais físicas nas residências, nos edifícios, nos espaços e equipamentos urbanos Exemplos: rampa de acesso, banheiros e elevadores adaptados."
     },
     {
-      " id ": 4,
-      " title ": "Acessibilidade em eventos"
+      "type": "ARQUITETÔNICA",
+      "contents": "Eliminação das barreiras ambientais físicas nas residências, nos edifícios, nos espaços e equipamentos urbanos Exemplos: rampa de acesso, banheiros e elevadores adaptados."
     },
     {
-      " id ": 5,
-      " title ": "Acessibilidade em materiais"
+      "type": "PROGRAMÁTICA",
+      "contents": "Eliminação de barreiras presentes nas políticas públicas."
     },
     {
-      " id ": 6,
-      " title ": "Compartilhados"
+      "type": "INSTRUMENTAL",
+      "contents": "Superação das barreiras nos instrumentos, utensílios e ferramentas de estudo (escolar), de trabalho (profissional), de lazer e recreação (comunitária, turística, esportiva)."
+    },
+    {
+      "type": "COMUNICACIONAL",
+      "contents": "Eliminação de barreiras na comunicação interpessoal (face a face, língua de sinais), escrita (jornal, revista, livro, carta, apostila etc., incluindo textos em braile, uso do computador portátil) e virtual (acessibilidade digital)."
+    },
+    {
+      "type": "DIGITAL",
+      "contents": "Eliminação de barreiras na comunicação, de acesso físico, de equipamentos e programas adequados, de conteúdo e apresentação da informação em formatos alternativos."
+    },
+    {
+      "id": 2,
+      "title": "Boas práticas para a inclusão"
+    },
+    {
+      "id": 3,
+      "title": "Acessibilidade em eventos"
+    },
+    {
+      "id": 4,
+      "title": "Acessibilidade em materiais"
+    },
+    {
+      "id": 5,
+      "title": "Compartilhados"
     }
-  ],
-  "tipos": [
-    {
-      " id ": 1,
-      "tipo": "ATITUDINAL",
-      "conteudo ": "Refere-se à percepção do outro sem preconceitos,estigmas, estereótipos e discriminações. Todos os demais tipos de acessibilidade estão relacionados a essa, pois é a atitude da pessoa que impulsiona a remoção de barreiras.",
-      " topicosId ": 2
-    },
-    {
-      " id ": 2,
-      "tipo": "ARQUITETÔNICA",
-      "conteudo ": "Eliminação das barreiras ambientais físicas nas residências, nos edifícios, nos espaços e equipamentos urbanos Exemplos: rampa de acesso, banheiros e elevadores adaptados.",
-      " topicosId ": 2
-    },
-    {
-      " id ": 3,
-      "tipo": "PROGRAMÁTICA",
-      "conteudo ": "Eliminação de barreiras presentes nas políticas públicas.",
-      " topicosId ": 2
-    },
-    {
-      " id ": 4,
-      "tipo": "INSTRUMENTAL",
-      "conteudo ": "Superação das barreiras nos instrumentos, utensílios e ferramentas de estudo (escolar), de trabalho (profissional), de lazer e recreação (comunitária, turística, esportiva).",
-      " topicosId ": 2
-    },
-    {
-      " id ": 5,
-      "tipo": "COMUNICACIONAL",
-      "conteudo ": "Eliminação de barreiras na comunicação interpessoal (face a face, língua de sinais), escrita (jornal, revista, livro, carta, apostila etc., incluindo textos em braile, uso do computador portátil) e virtual (acessibilidade digital).",
-      " topicosId ": 2
-    },
-    {
-      " id ": 6,
-      "tipo": "DIGITAL",
-      "conteudo ": "Eliminação de barreiras na comunicação, de acesso físico, de equipamentos e programas adequados, de conteúdo e apresentação da informação em formatos alternativos.",
-      " topicosId ": 2
-    }
-  ],
-  "profile": { " name ": " typicode " }
+  ]
 }
