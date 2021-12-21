@@ -1,4 +1,4 @@
-import { AxiosResponse } from 'axios';
+import axios, { AxiosResponse } from 'axios';
 import api from './api';
 
 export interface CardGuidesResponse {
@@ -10,9 +10,10 @@ export interface CardGuidesResponse {
 export const getGuides = async (): Promise<
   AxiosResponse<CardGuidesResponse[], any> | undefined
 > => {
+  
   try {
     return api.get<CardGuidesResponse[]>(`topics`);
   } catch (err) {
-    alert('erro');
+    throw new Error();
   }
 };

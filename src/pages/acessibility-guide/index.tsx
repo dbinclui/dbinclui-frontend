@@ -6,11 +6,17 @@ import { CardGuidesResponse, getGuides } from '../../services/guides';
 
 export default function AcessibilityGuide() {
   const [cards, setCards] = useState<CardGuidesResponse[]>([]);
+  const [loading, setLoading] = useState(true);
 
   const getCards = async () => {
-    const cards = await getGuides();
+    const cards = await getGuides()
+    .catch((error) => {
+      setLoading(false);
+      alert('Erro');
+    })
     if (cards) {
       setCards(cards.data);
+      setLoading(false);
     }
   };
 
@@ -19,6 +25,9 @@ export default function AcessibilityGuide() {
   }, []);
 
   return (
+    loading ? ( 
+      <div className="lds-spinner"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
+    ) : (
     <div>
       <h1 className="page-title" style={{ textAlign: 'center' }}>
         Guia de Acessibilidade
@@ -29,5 +38,6 @@ export default function AcessibilityGuide() {
         ))}
       </div>
     </div>
-  );
+  )
+  )
 }
