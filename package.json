@@ -35,7 +35,6 @@
     "@types/jest": "^27.0.3",
     "@types/react": "^17.0.37",
     "babel-jest": "^26.6.0",
-    "eslint": "^7.11.0",
     "eslint-config-prettier": "^8.3.0",
     "eslint-config-react-app": "^7.0.0",
     "eslint-plugin-prettier": "^4.0.0",
