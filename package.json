@@ -4,7 +4,7 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test -- -c jest.config.ts",
+    "test": "npx jest -c jest.config.ts",
     "eject": "react-scripts eject",
     "lint:check": "npx eslint -c .eslintrc.json ./src/**/*.tsx",
     "lint:fix": "npx eslint -c .eslintrc.json --fix ./src/**/*.tsx",

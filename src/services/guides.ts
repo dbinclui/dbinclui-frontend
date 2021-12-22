@@ -10,10 +10,9 @@ export interface CardGuidesResponse {
 export const getGuides = async (): Promise<
   AxiosResponse<CardGuidesResponse[], any> | undefined
 > => {
-  
   try {
     return api.get<CardGuidesResponse[]>(`topics`);
-  } catch (err) {
-    throw new Error();
+  } catch {
+    throw new Error('Serviço não disponível');
   }
 };
