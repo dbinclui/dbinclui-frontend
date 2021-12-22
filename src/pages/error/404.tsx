@@ -6,11 +6,11 @@ export default function Error() {
   return (
     <>
       <div className="page-erros">
-        <div className="box">
-          <p>Desculpe, a página não foi encontrada!</p>
-        </div>
         <div className="icon-errro">
           <Error404 />
+        </div>
+        <div className="box">
+          <p>Desculpe, a página não foi encontrada!</p>
         </div>
       </div>
     </>
