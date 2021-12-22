@@ -6,20 +6,24 @@ import { CardGuidesResponse, getGuides } from '../../services/guides';
 
 export default function AcessibilityGuide() {
   const [cards, setCards] = useState<CardGuidesResponse[]>([]);
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(false);
 
   const getCards = async () => {
-    const cards = await getGuides().catch((error) => {
-      alert('Erro');
-    });
-    if (cards) {
-      setCards(cards.data);
+    await getGuides()
+    .then((response) => {
+      setCards(response!.data);
+      setError(false);
+    })
+    .catch((error) => {
+      setError(true);
+    })
+    .finally( () => {
       setLoading(false);
-    }
+    })
   };
 
   useEffect(() => {
-    setLoading(true);
     getCards();
   }, []);
 
@@ -39,6 +43,9 @@ export default function AcessibilityGuide() {
       <div></div>
     </div>
   ) : (
+    error ? (
+      <p className="error">Desculpe, ocorreu um erro ao carregar a página!</p>
+    ) : ( 
     <div>
       <h1 className="page-title" style={{ textAlign: 'center' }}>
         Guia de Acessibilidade
@@ -49,5 +56,6 @@ export default function AcessibilityGuide() {
         ))}
       </div>
     </div>
+    )
   );
 }
