@@ -11,16 +11,16 @@ export default function AcessibilityGuide() {
 
   const getCards = async () => {
     await getGuides()
-    .then((response) => {
-      setCards(response!.data);
-      setError(false);
-    })
-    .catch((error) => {
-      setError(true);
-    })
-    .finally( () => {
-      setLoading(false);
-    })
+      .then((response) => {
+        setCards(response!.data);
+        setError(false);
+      })
+      .catch((error) => {
+        setError(true);
+      })
+      .finally(() => {
+        setLoading(false);
+      });
   };
 
   useEffect(() => {
@@ -42,10 +42,9 @@ export default function AcessibilityGuide() {
       <div></div>
       <div></div>
     </div>
+  ) : error ? (
+    <p className="error">Desculpe, ocorreu um erro ao carregar a página!</p>
   ) : (
-    error ? (
-      <p className="error">Desculpe, ocorreu um erro ao carregar a página!</p>
-    ) : ( 
     <div>
       <h1 className="page-title" style={{ textAlign: 'center' }}>
         Guia de Acessibilidade
@@ -56,6 +55,5 @@ export default function AcessibilityGuide() {
         ))}
       </div>
     </div>
-    )
   );
 }
