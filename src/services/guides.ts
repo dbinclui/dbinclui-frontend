@@ -1,4 +1,3 @@
-import { AxiosResponse } from 'axios';
 import api from './api';
 
 export interface CardGuidesResponse {
@@ -7,11 +6,11 @@ export interface CardGuidesResponse {
   contents: string;
 }
 
-export const getGuides = async (): Promise<
-  AxiosResponse<CardGuidesResponse[], any> | undefined
-> => {
+export const getGuides = async () => {
   try {
-    return api.get<CardGuidesResponse[]>(`topics`);
+    return api.get<{
+      data: CardGuidesResponse[];
+    }>(`accessibility-guide`);
   } catch {
     throw new Error('Serviço não disponível');
   }

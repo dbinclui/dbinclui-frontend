@@ -17,8 +17,8 @@ describe('Página do Guia de Acessibilidade', () => {
     getGuidesMock.mockImplementation(
       async () =>
         ({
-          data: [],
-        } as unknown as Promise<AxiosResponse<CardGuidesResponse[]>>),
+          data: { data: [] },
+        } as unknown as Promise<AxiosResponse<{ data: CardGuidesResponse[] }>>),
     );
 
     // eslint-disable-next-line testing-library/no-unnecessary-act
@@ -40,8 +40,8 @@ describe('Página do Guia de Acessibilidade', () => {
     getGuidesMock.mockImplementation(
       async () =>
         ({
-          data: [cardMock, cardMock, cardMock, cardMock],
-        } as unknown as Promise<AxiosResponse<CardGuidesResponse[]>>),
+          data: { data: [cardMock, cardMock, cardMock, cardMock] },
+        } as unknown as Promise<AxiosResponse<{ data: CardGuidesResponse[] }>>),
     );
 
     // eslint-disable-next-line testing-library/no-unnecessary-act

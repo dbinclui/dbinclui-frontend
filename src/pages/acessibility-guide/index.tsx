@@ -12,7 +12,8 @@ export default function AcessibilityGuide() {
   const getCards = async () => {
     await getGuides()
       .then((response) => {
-        setCards(response!.data);
+        const { data } = response!.data;
+        setCards(data);
         setError(false);
       })
       .catch((error) => {
