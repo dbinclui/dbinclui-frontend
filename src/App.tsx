@@ -5,6 +5,7 @@ import Home from '../src/pages/home';
 import AcessibilityGuide from './pages/acessibility-guide';
 import DeafCultureGuide from './pages/deaf-culture-guide';
 import Error from './pages/error/404';
+import RegisterGuide from './pages/register-guide';
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
             <Route index element={<Home />} />
             <Route path="guia-acessibilidade" element={<AcessibilityGuide />} />
             <Route path="guia-cultura-surda" element={<DeafCultureGuide />} />
+            <Route path="cadastrar-guia" element={<RegisterGuide />} />
             <Route path="*" element={<Error />} />
           </Routes>
         </BrowserRouter>
