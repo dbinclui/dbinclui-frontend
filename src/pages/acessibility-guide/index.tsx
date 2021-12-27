@@ -23,7 +23,7 @@ export default function AcessibilityGuide() {
           <Card key={key} title={item} />
         ))}
       </div>
-      <Footer/>
+      <Footer />
     </div>
   );
 }
