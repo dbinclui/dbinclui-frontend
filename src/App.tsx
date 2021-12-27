@@ -4,6 +4,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Home from '../src/pages/home';
 import AcessibilityGuide from './pages/acessibility-guide';
 import DeafCultureGuide from './pages/deaf-culture-guide';
+import AdministrativeInterface from './pages/administrative-interface';
 import Error from './pages/error/404';
 
 function App() {
@@ -17,6 +18,7 @@ function App() {
             <Route index element={<Home />} />
             <Route path="guia-acessibilidade" element={<AcessibilityGuide />} />
             <Route path="guia-cultura-surda" element={<DeafCultureGuide />} />
+            <Route path="interface-administrativa" element={<AdministrativeInterface/>} />
             <Route path="*" element={<Error />} />
           </Routes>
         </BrowserRouter>
