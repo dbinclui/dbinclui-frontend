@@ -1,5 +1,6 @@
 import React from 'react';
 import Card from '../../components/Card';
+import Footer from '../../components/Footer';
 import './styles.css';
 
 const CARDS = [
@@ -22,6 +23,7 @@ export default function AcessibilityGuide() {
           <Card key={key} title={item} />
         ))}
       </div>
+      <Footer/>
     </div>
   );
 }
