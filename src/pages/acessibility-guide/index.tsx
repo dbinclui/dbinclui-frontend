@@ -1,6 +1,7 @@
 import React from 'react';
 import Card from '../../components/Card';
 import './styles.css';
+import MenuAcessibility from '../../components/Menu-acessibility';
 
 const CARDS = [
   'O que é acessibilidade?',
@@ -14,6 +15,9 @@ const CARDS = [
 export default function AcessibilityGuide() {
   return (
     <div>
+      <div>
+        <MenuAcessibility />
+      </div>
       <h1 className="page-title" style={{ textAlign: 'center' }}>
         Guia de Acessibilidade
       </h1>
