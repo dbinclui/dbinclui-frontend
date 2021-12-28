@@ -9,11 +9,9 @@ import './styles.css';
 
 let anoAtual = new Date().getFullYear();
 
-export interface ComponentFooterProps {}
+export interface FooterProps {}
 
-export const ComponentFooter: React.FC<
-  ComponentFooterProps
-> = (): JSX.Element => {
+export const Footer: React.FC<FooterProps> = (): JSX.Element => {
   return (
     <>
       <footer className="footer">
@@ -62,4 +60,4 @@ export const ComponentFooter: React.FC<
   );
 };
 
-export default ComponentFooter;
+export default Footer;
