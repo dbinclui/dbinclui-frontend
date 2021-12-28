@@ -8,31 +8,6 @@ describe('Componente do Footer', () => {
     expect(Footer).toBeTruthy();
   });
 
-  test('deve existir um heading para o título', () => {
-    render(<Footer />);
-
-    const FooterTitle = screen.getByRole('heading', { name: 'O DBInclui' });
-    expect(FooterTitle).toBeInTheDocument();
-  });
-
-  test('deve existir uma classe para o título', () => {
-    render(<Footer />);
-
-    const FooterTitleClass = screen.getByRole('heading', {
-      name: 'O DBInclui',
-    });
-    expect(FooterTitleClass).toHaveClass('titulo');
-  });
-
-  test('deve existir um parágrafo no footer', () => {
-    render(<Footer />);
-
-    const FooterDescription = screen.getByText(
-      'Dissemina a cultura de inclusão dentro da DBServer, com foco na cultura surda. É destinado para todas as pessoas que desejam aprender LIBRAS e entender um pouco mais sobre inclusão de PCD`s na sociedade. Também aproveita o guia de acessibilidade e a apostila de Libras como fonte de informação de inclusão, assim como utiliza a API Libras para as funcionalidades específicas.',
-    );
-    expect(FooterDescription).toBeInTheDocument();
-  });
-
   test('deve existir um texto de direitos autorais', () => {
     render(<Footer />);
 
