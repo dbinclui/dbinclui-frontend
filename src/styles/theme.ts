@@ -7,7 +7,7 @@ const theme =
 createTheme({
   palette: {
     background: {
-      default: '#221F52'
+      default: Colors.DARK_BLUE
     },
       text: {
         primary: Colors.WHITE
@@ -25,10 +25,27 @@ createTheme({
   typography:{
       fontFamily: "verdana"
   },
+/*Tem que ver uma forma de o botal não sumir com o hover*/
+  components:{
+    MuiButton:{
+      styleOverrides:{
+        outlined:{
+          backgroundColor: Colors.WHITE,
+          root:{
+            color: Colors.WHITE,
+            textTransform: 'none',
+            /*primary:{
+              '&:hover': {
+                backgroundColor: Colors.RED,
+                color: Colors.GREEN,
+            }
+            },*/
+          },
+        },
+      },
+    }
+  }
 
 });
-/*const background = {
-  background: 'linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)'
-}*/
 
 export default theme;
