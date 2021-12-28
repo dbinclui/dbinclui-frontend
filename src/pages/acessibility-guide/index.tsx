@@ -1,19 +1,52 @@
 import React from 'react';
 import Card from '../../components/Card';
 import './styles.css';
+import { useEffect, useState } from 'react';
+import { CardGuidesResponse, getGuides } from '../../services/guides';
 import MenuAcessibility from '../../components/Menu-acessibility';
 
-const CARDS = [
-  'O que é acessibilidade?',
-  'Tipos de acessibilidade',
-  'Boas práticas para inclusão',
-  'Acessibilidade em eventos',
-  'Acessibilidade em matéria',
-  'Glossário',
-];
-
 export default function AcessibilityGuide() {
-  return (
+  const [cards, setCards] = useState<CardGuidesResponse[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(false);
+
+  const getCards = async () => {
+    await getGuides()
+      .then((response) => {
+        const { data } = response!.data;
+        setCards(data);
+        setError(false);
+      })
+      .catch((error) => {
+        setError(true);
+      })
+      .finally(() => {
+        setLoading(false);
+      });
+  };
+
+  useEffect(() => {
+    getCards();
+  }, []);
+
+  return loading ? (
+    <div className="lds-spinner">
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+    </div>
+  ) : error ? (
+    <p className="error">Desculpe, ocorreu um erro ao carregar a página!</p>
+  ) : (
     <div>
       <div>
         <MenuAcessibility />
@@ -22,8 +55,8 @@ export default function AcessibilityGuide() {
         Guia de Acessibilidade
       </h1>
       <div className="conteiner_cards">
-        {CARDS.map((item, key) => (
-          <Card key={key} title={item} />
+        {cards.map((item, key) => (
+          <Card key={key} title={item.title} />
         ))}
       </div>
     </div>
