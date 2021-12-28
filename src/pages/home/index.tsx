@@ -7,10 +7,6 @@ import FormControlLabel from '@mui/material/FormControlLabel';
 import FormControl from '@mui/material/FormControl';
 import FormLabel from '@mui/material/FormLabel';
 
-import { ThemeProvider } from '@mui/material/styles';
-import theme from '../../styles/theme';
-
-
 import './style.css';
 
 export interface HomeProps {}
@@ -84,12 +80,7 @@ export const Home: React.FC<HomeProps> = (): JSX.Element => {
             <img src="" alt="" />
           </div>
         </div>
-
-        <ThemeProvider theme={theme}>
-          <Button variant="contained"> Olá Mundo</Button>
-        </ThemeProvider>
-
-
+        <Button variant="contained"> Olá Mundo</Button>
         <FormControl component="fieldset">
       <FormLabel component="legend">labelPlacement</FormLabel>
       <RadioGroup row aria-label="position" name="position" defaultValue="top">

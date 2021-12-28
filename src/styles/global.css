@@ -1,4 +1,4 @@
-*{
+/*{
     margin: 0;
     padding: 0;
     list-style: none;
@@ -21,10 +21,10 @@ body {
 h1, h2, h3, h4, h5, h6, strong {
     font-weight: 500;
   }
-
+*/
 
 /*Coloquei coisas não testadas como estão na pŕatica)*/
-@media screen and (min-width:1280px)  {
+/*@media screen and (min-width:1280px)  {
   body{
     grid-template-areas: 
     "nav"
@@ -39,4 +39,4 @@ h1, h2, h3, h4, h5, h6, strong {
     padding: 64px;
 
   }
-}
+}*/
