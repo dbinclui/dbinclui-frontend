@@ -20,28 +20,28 @@ export const Footer: React.FC<FooterProps> = (): JSX.Element => {
           target={'_blank'}
           rel="noreferrer"
         >
-          <FaFacebookSquare size={40} color="#4267B2" />
+          <FaFacebookSquare size={40} color="white" />
         </a>
         <a
           href="https://www.instagram.com/dbserver_ti/"
           target={'_blank'}
           rel="noreferrer"
         >
-          <FaInstagramSquare size={40} color="#C13584" />
+          <FaInstagramSquare size={40} color="white" />
         </a>
         <a
           href="https://twitter.com/dbserver_ti"
           target={'_blank'}
           rel="noreferrer"
         >
-          <FaTwitterSquare size={40} color="#1DA1F2" />
+          <FaTwitterSquare size={40} color="white" />
         </a>
         <a
           href="https://br.linkedin.com/company/dbserver"
           target={'_blank'}
           rel="noreferrer"
         >
-          <FaLinkedin size={40} color="#2867B2" />
+          <FaLinkedin size={40} color="white" />
         </a>
         <p className="copyright">
           © {anoAtual} DBInclui - Todos os direitos reservados

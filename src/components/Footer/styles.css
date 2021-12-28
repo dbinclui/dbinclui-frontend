@@ -1,9 +1,10 @@
 .footer {
   bottom: 0;
-  width: 100%;
-  text-align: center;
+  color: white;
   margin: 0 auto;
   padding-top: 3rem;
+  text-align: center;
+  width: 100%;
 }
 
 .copyright {
