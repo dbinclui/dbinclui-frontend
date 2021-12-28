@@ -5,13 +5,18 @@ import Home from '../src/pages/home';
 import AcessibilityGuide from './pages/acessibility-guide';
 import DeafCultureGuide from './pages/deaf-culture-guide';
 import Error from './pages/error/404';
+import Header from '../src/components/Header';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
-function App() {
+export interface AppProps {}
+
+export const App: React.FC<AppProps> = (): JSX.Element => {
   return (
     <>
       <VLibras />
       <React.StrictMode>
         <BrowserRouter>
+          <Header />
           <Routes>
             <Route path="/" element={<App />} />
             <Route index element={<Home />} />
@@ -23,6 +28,6 @@ function App() {
       </React.StrictMode>
     </>
   );
-}
+};
 
 export default App;
