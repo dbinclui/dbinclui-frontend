@@ -15,15 +15,6 @@ export const Footer: React.FC<FooterProps> = (): JSX.Element => {
   return (
     <>
       <footer className="footer">
-        <h1 className="titulo">O DBInclui</h1>
-        <p className="descricao">
-          Dissemina a cultura de inclusão dentro da DBServer, com foco na
-          cultura surda. É destinado para todas as pessoas que desejam aprender
-          LIBRAS e entender um pouco mais sobre inclusão de PCD`s na sociedade.
-          Também aproveita o guia de acessibilidade e a apostila de Libras como
-          fonte de informação de inclusão, assim como utiliza a API Libras para
-          as funcionalidades específicas.
-        </p>
         <a
           href="https://www.facebook.com/DBServerTI/"
           target={'_blank'}
