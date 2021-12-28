@@ -1,6 +1,7 @@
+import { Breadcrumbs, Typography } from '@mui/material';
 import React from 'react';
 import { Navbar, Container, Nav } from 'react-bootstrap';
-import { NavLink } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 import './styles.css';
 
 export interface HeaderProps {}
@@ -8,6 +9,22 @@ export interface HeaderProps {}
 export const Header: React.FC<HeaderProps> = (): JSX.Element => {
   return (
     <header className="dbinclui-header">
+      <Breadcrumbs aria-label="breadcrumb">
+        <Link underline = "hover" 
+        color="inherit" 
+        href="/">
+          MUI
+        </Link>
+        <Link
+          underline ="hover"
+          color="inherit"
+          href="/getting-started/installation/"
+        >
+          Core
+        </Link>
+        <Typography color="text.primary">Breadcrumbs</Typography>
+      </Breadcrumbs>
+
       {/* <Breadcrumbs aria-label="breadcrumb">
         <Link underline="hover" color="inherit" href="/">
           MUI
