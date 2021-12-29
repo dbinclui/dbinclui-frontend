@@ -77,7 +77,6 @@ export const Home: React.FC<HomeProps> = (): JSX.Element => {
         </div>
       </section>
     </>
-
   );
 };
 

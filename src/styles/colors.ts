@@ -1,11 +1,11 @@
 //eslint-disable-next-line no-shadow
 export enum Colors {
-    WHITE = '#FFF',
-    BLACK = '#000',
-    DARK_BLUE = '#221F52',
-    PINK = '#ED0973',
-    RED = '#FF1229',
-    YELLOW = '#FFB400',
-    GREEN = '#42CE95',
-    LIGHT_BLUE = '#14B6EF'
-  }
+  WHITE = '#FFF',
+  BLACK = '#000',
+  PRIMARY = '#221F52',
+  SECONDARY = '#ED0973',
+  DANGER = '#FF1229',
+  WARNING = '#FFB400',
+  SUCCESS = '#42CE95',
+  INFO = '#14B6EF',
+}
