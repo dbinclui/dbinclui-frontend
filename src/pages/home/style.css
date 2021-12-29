@@ -20,14 +20,14 @@
   background-color: #c4c4c4;
   border: 0;
 }
-
+/* 
 .box-welcome {
   padding: 30px;
   font-size: 18px;
   text-align: center;
   margin-top: 2rem;
   margin-bottom: 5rem;
-}
+} */
 
 .container-center {
   display: grid;
@@ -53,8 +53,7 @@
   background-color: rgba(12, 12, 12, 0.185);
 }
 
-.title {
+/* .title {
   font-weight: 100;
   font-size: 1.2rem;
-}
-
+} */
