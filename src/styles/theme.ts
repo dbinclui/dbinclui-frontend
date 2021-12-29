@@ -25,22 +25,11 @@ createTheme({
   typography:{
       fontFamily: "verdana"
   },
-/*Tem que ver uma forma de o botal não sumir com o hover*/
   components:{
     MuiButton:{
       styleOverrides:{
         outlined:{
           backgroundColor: Colors.WHITE,
-          root:{
-            color: Colors.WHITE,
-            textTransform: 'none',
-            /*primary:{
-              '&:hover': {
-                backgroundColor: Colors.RED,
-                color: Colors.GREEN,
-            }
-            },*/
-          },
         },
       },
     }

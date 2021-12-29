@@ -1,8 +1,4 @@
-<<<<<<< HEAD
-*{
-=======
 /*{
->>>>>>> 88b5786287465bf057fabb6640f8d6578a62b548
     margin: 0;
     padding: 0;
     list-style: none;
@@ -25,50 +21,10 @@ body {
 h1, h2, h3, h4, h5, h6, strong {
     font-weight: 500;
   }
-<<<<<<< HEAD
-
-  .btn{
-    color: #221F52;
-    background-color: #FFF;
-  }
-
-  .btn-primary{
-    border-radius: 10px;
-    color: #221F52;
-    background-color: #FFF;
-  }
-
-  .btn-secondary{
-    color: #FFF;
-  }
-
-  .btn-success{
-    color: #FFF;
-  }
-
-  .btn-danger{
-    color: #FFF;
-  }
-
-  .btn-warning{
-    color: #FFF;
-  }
-
-  .btn-info{
-    color: #FFF;
-  }
-
-  .btn-dark{
-    color: #FFF;
-}
-/*Coloquei coisas não testadas como estão na pŕatica)*/
-@media screen and (min-width:1280px)  {
-=======
 */
 
 /*Coloquei coisas não testadas como estão na pŕatica)*/
 /*@media screen and (min-width:1280px)  {
->>>>>>> 88b5786287465bf057fabb6640f8d6578a62b548
   body{
     grid-template-areas: 
     "nav"
@@ -83,8 +39,4 @@ h1, h2, h3, h4, h5, h6, strong {
     padding: 64px;
 
   }
-<<<<<<< HEAD
-}
-=======
 }*/
->>>>>>> 88b5786287465bf057fabb6640f8d6578a62b548

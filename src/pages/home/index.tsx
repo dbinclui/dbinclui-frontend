@@ -1,7 +1,6 @@
 import React from 'react';
 
 import { useNavigate } from 'react-router-dom';
-import Button from '@mui/material/Button';
 
 import './style.css';
 
@@ -77,7 +76,6 @@ export const Home: React.FC<HomeProps> = (): JSX.Element => {
           </div>
         </div>
       </section>
-        <Button variant="outlined"> Olá Mundo</Button>
     </>
 
   );
