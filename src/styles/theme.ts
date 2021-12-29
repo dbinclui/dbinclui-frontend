@@ -1,3 +1,4 @@
+import { ColorizeSharp } from '@mui/icons-material';
 import { createTheme } from '@mui/material/styles';
 import { Colors } from './colors';
 
@@ -11,6 +12,7 @@ const theme = createTheme({
       primary: Colors.LIGHT,
     },
     primary: {
+      light: Colors.PRIMARY_LIGHT,
       main: Colors.PRIMARY,
     },
     secondary: {

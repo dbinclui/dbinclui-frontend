@@ -3,6 +3,7 @@ export enum Colors {
   LIGHT = '#FFF',
   DARK = '#000',
   PRIMARY = '#221F52',
+  PRIMARY_LIGHT = '#C5CAE9',
   SECONDARY = '#ED0973',
   DANGER = '#FF1229',
   WARNING = '#FFB400',

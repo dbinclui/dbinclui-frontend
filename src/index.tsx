@@ -11,7 +11,6 @@ ReactDOM.render(
     <ThemeProvider theme={theme}>
       <CssBaseline />
       <App />
-      <Footer />
     </ThemeProvider>
   </>,
   document.getElementById('root'),
