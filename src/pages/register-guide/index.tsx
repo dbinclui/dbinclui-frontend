@@ -1,13 +1,26 @@
 import React, { useState } from 'react';
 import * as yup from 'yup';
-import { object } from 'yup/lib/locale';
 
 export const RegisterGuide: React.FC = (): JSX.Element => {
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
 
-  function handleSubmit(event: React.FormEvent) {
+  async function handleSubmit(event: React.FormEvent) {
     event.preventDefault();
+    validateInput({
+      title,
+      description,
+    });
+  }
+
+  async function validateInput(data: { title: string; description: string }) {
+    const schema = yup.object().shape({
+      title: yup.string().required().min(1).max(32).trim(),
+      description: yup.string().required().trim(),
+    });
+
+    let valid = await schema.isValid(data);
+    return valid;
   }
 
   return (
