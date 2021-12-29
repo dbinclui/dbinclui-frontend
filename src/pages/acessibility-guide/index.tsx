@@ -3,7 +3,7 @@ import Card from '../../components/Card';
 import './styles.css';
 import { useEffect, useState } from 'react';
 import { CardGuidesResponse, getGuides } from '../../services/guides';
-import MenuAcessibility from '../../components/Menu-acessibility';
+import MenuAcessibility from '../../components/Menu-acessibility/AcessibililityGuide';
 
 export default function AcessibilityGuide() {
   const [cards, setCards] = useState<CardGuidesResponse[]>([]);
