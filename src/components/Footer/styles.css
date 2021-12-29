@@ -1,25 +1,14 @@
-/* O position do footer está como 'fixed' por enquanto, já que a página não
-cobre 100% da tela ainda, posteriormente, essa propriedade pode ser removido */
-
 .footer {
-  position: fixed;
+  background-color: #221f52;
   bottom: 0;
-  width: 100%;
-  background-color: #f3f1f1;
+  color: white;
+  padding: 2rem 0 1rem;
   text-align: center;
-  margin: 0 auto;
-}
-
-.titulo {
-  text-align: left;
-  padding: 1rem 0 0 2rem;
-}
-
-.descricao {
-  text-align: justify;
-  padding: 0.5rem 2rem;
+  width: 100%;
+  height: 125px;
 }
 
 .copyright {
   font-weight: bold;
+  margin: 0 auto;
 }

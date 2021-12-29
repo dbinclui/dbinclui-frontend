@@ -1,10 +1,8 @@
 import React from 'react';
-import {
-  FaFacebookSquare,
-  FaInstagramSquare,
-  FaTwitterSquare,
-  FaLinkedin,
-} from 'react-icons/fa';
+import FacebookIcon from '@mui/icons-material/Facebook';
+import InstagramIcon from '@mui/icons-material/Instagram';
+import TwitterIcon from '@mui/icons-material/Twitter';
+import LinkedInIcon from '@mui/icons-material/LinkedIn';
 import './styles.css';
 
 let anoAtual = new Date().getFullYear();
@@ -15,42 +13,33 @@ export const Footer: React.FC<FooterProps> = (): JSX.Element => {
   return (
     <>
       <footer className="footer">
-        <h1 className="titulo">O DBInclui</h1>
-        <p className="descricao">
-          Dissemina a cultura de inclusão dentro da DBServer, com foco na
-          cultura surda. É destinado para todas as pessoas que desejam aprender
-          LIBRAS e entender um pouco mais sobre inclusão de PCD`s na sociedade.
-          Também aproveita o guia de acessibilidade e a apostila de Libras como
-          fonte de informação de inclusão, assim como utiliza a API Libras para
-          as funcionalidades específicas.
-        </p>
         <a
           href="https://www.facebook.com/DBServerTI/"
           target={'_blank'}
-          rel="noreferrer"
+          rel="noopener noreferrer"
         >
-          <FaFacebookSquare size={40} color="#4267B2" />
+          <FacebookIcon style={{ color: 'white', fontSize: '32px' }} />
         </a>
         <a
           href="https://www.instagram.com/dbserver_ti/"
           target={'_blank'}
-          rel="noreferrer"
+          rel="noopener noreferrer"
         >
-          <FaInstagramSquare size={40} color="#C13584" />
+          <InstagramIcon style={{ color: 'white', fontSize: '32px' }} />
         </a>
         <a
           href="https://twitter.com/dbserver_ti"
           target={'_blank'}
-          rel="noreferrer"
+          rel="noopener noreferrer"
         >
-          <FaTwitterSquare size={40} color="#1DA1F2" />
+          <TwitterIcon style={{ color: 'white', fontSize: '32px' }} />
         </a>
         <a
           href="https://br.linkedin.com/company/dbserver"
           target={'_blank'}
-          rel="noreferrer"
+          rel="noopener noreferrer"
         >
-          <FaLinkedin size={40} color="#2867B2" />
+          <LinkedInIcon style={{ color: 'white', fontSize: '32px' }} />
         </a>
         <p className="copyright">
           © {anoAtual} DBInclui - Todos os direitos reservados
