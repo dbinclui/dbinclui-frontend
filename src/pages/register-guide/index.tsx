@@ -1,5 +1,7 @@
 import React from 'react';
 
-export default function RegisterGuide() {
-  return <p>Teste página de cadastrar guia</p>;
-}
+export const RegisterGuide: React.FC = (): JSX.Element => {
+  return <>...</>;
+};
+
+export default RegisterGuide;
