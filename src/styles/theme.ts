@@ -1,4 +1,3 @@
-import { ColorizeSharp } from '@mui/icons-material';
 import { createTheme } from '@mui/material/styles';
 import { Colors } from './colors';
 
