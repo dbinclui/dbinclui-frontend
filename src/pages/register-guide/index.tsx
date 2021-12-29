@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import * as yup from 'yup';
+import validateInput from './validator';
 
 export const RegisterGuide: React.FC = (): JSX.Element => {
   const [title, setTitle] = useState('');
@@ -7,20 +7,13 @@ export const RegisterGuide: React.FC = (): JSX.Element => {
 
   async function handleSubmit(event: React.FormEvent) {
     event.preventDefault();
-    validateInput({
+    const valid = await validateInput({
       title,
       description,
     });
-  }
 
-  async function validateInput(data: { title: string; description: string }) {
-    const schema = yup.object().shape({
-      title: yup.string().required().min(1).max(32).trim(),
-      description: yup.string().required().trim(),
-    });
-
-    let valid = await schema.isValid(data);
-    return valid;
+    // isso é temporário, apenas para confirmar o resultado
+    console.log(valid);
   }
 
   return (
