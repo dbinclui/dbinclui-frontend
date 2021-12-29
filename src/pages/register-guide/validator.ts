@@ -1,9 +1,13 @@
 import * as yup from 'yup';
 
-export default async function validateInput(data: {
+interface InputInterface {
   title: string;
   description: string;
-}) {
+}
+
+export default async function validateInput(
+  data: InputInterface,
+): Promise<InputInterface | yup.ValidationError> {
   const schema = yup.object().shape({
     title: yup
       .string()
@@ -20,7 +24,7 @@ export default async function validateInput(data: {
     if (error instanceof yup.ValidationError) {
       return error;
     } else {
-      return false;
+      return new yup.ValidationError('Algum outro erro ocorreu');
     }
   }
 }
