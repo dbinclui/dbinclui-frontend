@@ -1,0 +1,9 @@
+.modal {
+  position: absolute;
+  width: 30%;
+}
+.box-modal {
+  border-radius: 10%;
+  width: 10%;
+  border: 1px solid #221f52;
+}
