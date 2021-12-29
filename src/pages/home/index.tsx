@@ -1,6 +1,6 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import AcessibilityMenu from '../../components/Menu-acessibility';
+import AcessibilityMenu from '../../components/Menu-acessibility/AcessibililityGuide';
 import './style.css';
 
 export interface HomeProps {}
