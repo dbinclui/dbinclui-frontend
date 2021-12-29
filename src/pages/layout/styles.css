@@ -8,6 +8,7 @@
 }
 
 .mainLayout {
-  min-height: 70vh;
+  min-height: calc(100vh - 125px);
   padding-top: 100px;
+  padding-bottom: 70px;
 }

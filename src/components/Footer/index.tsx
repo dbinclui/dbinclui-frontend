@@ -18,28 +18,28 @@ export const Footer: React.FC<FooterProps> = (): JSX.Element => {
           target={'_blank'}
           rel="noopener noreferrer"
         >
-          <FacebookIcon style={{ color: 'white', fontSize: "32px" }} />
+          <FacebookIcon style={{ color: 'white', fontSize: '32px' }} />
         </a>
         <a
           href="https://www.instagram.com/dbserver_ti/"
           target={'_blank'}
           rel="noopener noreferrer"
         >
-          <InstagramIcon style={{ color: 'white', fontSize: "32px" }} />
+          <InstagramIcon style={{ color: 'white', fontSize: '32px' }} />
         </a>
         <a
           href="https://twitter.com/dbserver_ti"
           target={'_blank'}
           rel="noopener noreferrer"
         >
-          <TwitterIcon style={{ color: 'white', fontSize: "32px" }} />
+          <TwitterIcon style={{ color: 'white', fontSize: '32px' }} />
         </a>
         <a
           href="https://br.linkedin.com/company/dbserver"
           target={'_blank'}
           rel="noopener noreferrer"
         >
-          <LinkedInIcon style={{ color: 'white', fontSize: "32px" }} />
+          <LinkedInIcon style={{ color: 'white', fontSize: '32px' }} />
         </a>
         <p className="copyright">
           © {anoAtual} DBInclui - Todos os direitos reservados
