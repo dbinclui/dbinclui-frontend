@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
 import validateInput from './validator';
 
-export const RegisterGuide: React.FC = (): JSX.Element => {
+export interface RegisterGuideProps {}
+
+export const RegisterGuide: React.FC<RegisterGuideProps> = (): JSX.Element => {
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
 
