@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
 <<<<<<< HEAD
+<<<<<<< HEAD
 import './styles/global.css';
 =======
 import { Footer } from './components/Footer/index';
@@ -14,3 +15,16 @@ ReactDOM.render(
   </>,
   document.getElementById('root'),
 );
+=======
+import { CssBaseline } from '@mui/material';
+import { ThemeProvider } from '@mui/material/styles';
+import theme from './styles/theme';
+
+ReactDOM.render(
+    <ThemeProvider theme={theme}>
+        <CssBaseline />
+            <App />
+    </ThemeProvider>,
+
+ document.getElementById('root'));
+>>>>>>> 88b5786287465bf057fabb6640f8d6578a62b548

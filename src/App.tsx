@@ -11,7 +11,7 @@ function App() {
   return (
     <>
       <VLibras />
-      <React.StrictMode>
+      <React.StrictMode> 
         <BrowserRouter>
           <Routes>
             <Route path="/" element={<App />} />
