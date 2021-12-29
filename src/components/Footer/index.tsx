@@ -1,10 +1,8 @@
 import React from 'react';
-import {
-  FaFacebookSquare,
-  FaInstagramSquare,
-  FaTwitterSquare,
-  FaLinkedin,
-} from 'react-icons/fa';
+import FacebookIcon from '@mui/icons-material/Facebook';
+import InstagramIcon from '@mui/icons-material/Instagram';
+import TwitterIcon from '@mui/icons-material/Twitter';
+import LinkedInIcon from '@mui/icons-material/LinkedIn';
 import './styles.css';
 
 let anoAtual = new Date().getFullYear();
@@ -20,28 +18,28 @@ export const Footer: React.FC<FooterProps> = (): JSX.Element => {
           target={'_blank'}
           rel="noopener noreferrer"
         >
-          <FaFacebookSquare size={40} color="white" />
+          <FacebookIcon style={{ color: 'white', fontSize: "32px" }} />
         </a>
         <a
           href="https://www.instagram.com/dbserver_ti/"
           target={'_blank'}
           rel="noopener noreferrer"
         >
-          <FaInstagramSquare size={40} color="white" />
+          <InstagramIcon style={{ color: 'white', fontSize: "32px" }} />
         </a>
         <a
           href="https://twitter.com/dbserver_ti"
           target={'_blank'}
           rel="noopener noreferrer"
         >
-          <FaTwitterSquare size={40} color="white" />
+          <TwitterIcon style={{ color: 'white', fontSize: "32px" }} />
         </a>
         <a
           href="https://br.linkedin.com/company/dbserver"
           target={'_blank'}
           rel="noopener noreferrer"
         >
-          <FaLinkedin size={40} color="white" />
+          <LinkedInIcon style={{ color: 'white', fontSize: "32px" }} />
         </a>
         <p className="copyright">
           © {anoAtual} DBInclui - Todos os direitos reservados
