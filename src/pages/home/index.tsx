@@ -1,6 +1,6 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-
+import AcessibilityMenu from '../../components/Menu-acessibility';
 import './style.css';
 
 export interface HomeProps {}
@@ -10,6 +10,7 @@ export const Home: React.FC<HomeProps> = (): JSX.Element => {
 
   return (
     <>
+      <AcessibilityMenu/>
       <main className="conteudo" role="main">
         <section className="container-home">
           <input
@@ -18,7 +19,7 @@ export const Home: React.FC<HomeProps> = (): JSX.Element => {
             placeholder="pesquise aqui"
             role="search"
           />
-          <p className="box-welcome">
+          <p className="box-welcome acessibilidade">
             Bem-vindo ao DBINCLUI, lorem ipsum dolor sit amet, consectetur
             adipiscing elit. Etiam mattis fringilla dolor, id congue diam
             rhoncus sit amet. Fusce at lacus metus. Maecenas gravida finibus
