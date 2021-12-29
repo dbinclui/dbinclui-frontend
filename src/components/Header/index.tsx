@@ -1,97 +1,71 @@
+import { Link, Grid } from '@mui/material';
 import React from 'react';
-import { Navbar, Container, Nav } from 'react-bootstrap';
-import { NavLink } from 'react-router-dom';
 import './styles.css';
+import Logo from '../svgs/logo';
 
 export interface HeaderProps {}
 
 export const Header: React.FC<HeaderProps> = (): JSX.Element => {
   return (
     <header className="dbinclui-header">
-      {/* <Breadcrumbs aria-label="breadcrumb">
-        <Link underline="hover" color="inherit" href="/">
-          MUI
+      <div>
+        <Link className="nav-logo" underline="hover" color="inherit" href="/">
+          <Logo />
+        </Link>
+      </div>
+      <div className="nav-links">
+        <Link
+          className="nav-item nav-border"
+          underline="hover"
+          color="#ffffff"
+          href="/"
+        >
+          HOME
         </Link>
         <Link
+          className="nav-item nav-border"
           underline="hover"
-          color="inherit"
-          href="/getting-started/installation/"
+          color="#ffffff"
+          href="/sobre"
         >
-          Core
+          SOBRE
         </Link>
-        <Typography color="text.primary">Breadcrumbs</Typography>
-      </Breadcrumbs> */}
-
-      {/* <Navbar>
-        <Container>
-          <Navbar.Brand className="nav-logo">DBinclui</Navbar.Brand>
-          <Nav className="justify-content-end" color="primary">
-            <Nav.Link bsPrefix="dbinclui" as={NavLink} to="/">
-              HOME
-            </Nav.Link>
-
-            <Nav.Link as={NavLink} to="/sobre">
-              SOBRE
-            </Nav.Link>
-            <Nav.Link as={NavLink} to="/ajuda">
-              AJUDA
-            </Nav.Link>
-            <Nav.Link as={NavLink} to="/contato">
-              CONTATO
-            </Nav.Link>
-            <Nav.Link as={NavLink} to="/avaliar">
-              AVALIAR O APP
-            </Nav.Link>
-            <Nav.Link as={NavLink} to="/login">
-              LOGIN
-            </Nav.Link>
-          </Nav>
-        </Container>
-      </Navbar> */}
+        <Link
+          className="nav-item nav-border"
+          underline="hover"
+          color="#ffffff"
+          href="/ajuda"
+        >
+          AJUDA
+        </Link>
+        <Link
+          className="nav-item nav-border"
+          underline="hover"
+          color="#ffffff"
+          href="/contato"
+        >
+          CONTATO
+        </Link>
+        <Link
+          className="nav-item nav-border"
+          underline="hover"
+          color="#ffffff"
+          href="/avaliar"
+        >
+          AVALIAR O APP
+        </Link>
+        <Link
+          className="nav-item"
+          underline="hover"
+          color="#ffffff"
+          href="/login"
+        >
+          LOGIN
+        </Link>
+      </div>
+      <div className="circulo"></div>
     </header>
   );
 };
 
 export default Header;
-
-/* <nav className="navbar navbar-expand-lg navbar-light bg-light">
-        <div className="container-fluid">
-          <a className="navbar-brand" href="/">
-            DBinclui
-          </a>
-          <div className="collapse navbar-collapse" id="navbarNav">
-            <ul className="navbar-nav">
-              <li className="nav-item">
-                <a className="nav-link active" aria-current="page" href="/">
-                  HOME
-                </a>
-              </li>
-              <li className="nav-item">
-                <a className="nav-link" href="/sobre">
-                  SOBRE
-                </a>
-              </li>
-              <li className="nav-item">
-                <a className="nav-link" href="/ajuda">
-                  AJUDA
-                </a>
-              </li>
-              <li className="nav-item">
-                <a className="nav-link" href="/contato">
-                  CONTATO
-                </a>
-              </li>
-              <li className="nav-item">
-                <a className="nav-link" href="/avaliar">
-                  AVALIAR O APP
-                </a>
-              </li>
-              <li className="nav-item">
-                <a className="nav-link" href="/login">
-                  LOGIN
-                </a>
-              </li>
-            </ul>
-          </div>
-        </div>
-      </nav> */

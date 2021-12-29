@@ -1,3 +1,40 @@
-.navbar-brand {
-  justify-content: end;
+.dbinclui-header {
+  background-color: #221f52;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.nav-item:hover {
+  color: #ffffff;
+}
+
+.nav-links {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+}
+
+a.nav-item.nav-border {
+  border-right: 1px solid #ffffff;
+  padding-right: 1rem;
+  padding-left: 1rem;
+}
+
+a.nav-item {
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
+.circulo {
+  width: 3rem;
+  height: 3rem;
+  background-color: #c4c4c4;
+  border-radius: 50%;
+  margin-right: 2rem;
+}
+
+a.nav-logo {
+  margin-right: 32rem;
 }
