@@ -13,7 +13,6 @@ ReactDOM.render(
       <App />
       <Footer />
     </ThemeProvider>
-    ,
   </>,
   document.getElementById('root'),
 );

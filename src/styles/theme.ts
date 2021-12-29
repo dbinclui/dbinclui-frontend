@@ -8,7 +8,7 @@ const theme = createTheme({
       default: Colors.PRIMARY,
     },
     text: {
-      primary: Colors.WHITE,
+      primary: Colors.LIGHT,
     },
     primary: {
       main: Colors.PRIMARY,
@@ -28,9 +28,9 @@ const theme = createTheme({
       styleOverrides: {
         outlined: {
           '&:hover': {
-            backgroundColor: Colors.WHITE,
+            backgroundColor: Colors.LIGHT,
           },
-          'backgroundColor': Colors.WHITE,
+          'backgroundColor': Colors.LIGHT,
         },
       },
     },
