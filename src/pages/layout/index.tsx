@@ -8,7 +8,6 @@ export interface LayoutProps {}
 export const Layout: React.FC<LayoutProps> = (): JSX.Element => {
   return (
     <>
-      {/* <header className="headerLayout">logo</header> */}
       <main className="mainLayout">
         <Outlet />
       </main>
