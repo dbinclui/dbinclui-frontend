@@ -2,7 +2,7 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import Button from '@mui/material/Button';
 import Grid from '@mui/material/Grid';
-import Box, { BoxProps } from '@mui/material/Box';
+import { Box, BoxProps } from '@mui/material';
 
 
 
@@ -14,54 +14,58 @@ export const Admin: React.FC<AdminProps> = (): JSX.Element => {
   return (
     <>
 
-    <Box >
+   
+<Box
+        sx={{
+          display: 'flex',
+          alignItems: 'center',
+          flexDirection: 'column',
+          p: 1,
+          m: 25,
+        }}
+      >
 
-
-   <Grid
-  container
-  direction="column"
- justifyContent="center"
-  alignItems="center"
-   columnSpacing = {10}>
-
-   <Grid item >
+    <Grid item sx={{m: 2}} >
 
       <Button variant="outlined" size='large'
+      style={{textTransform: 'none'}}
         onClick={() => {
           navigate('cadastrar-guia');
         } }
       >
         Cadastrar Guia
-      </Button></Grid>
+      </Button>
+    </Grid>
     
     
-      <Grid item>
+    <Grid item sx={{m: 2}} >
 
-        <Button
-        variant="outlined" size='large'
+      <Button variant="outlined" size='large'
+      style={{textTransform: 'none'}}
+
           onClick={() => {
             navigate('');
           } }
         >
           Cadastro de Categorias
-        </Button>
+      </Button>
     
-       </Grid>
+    </Grid>
     
-      <Grid item>
-      <Button
-      variant="outlined"
+    <Grid item sx={{m: 2}} >
+    <Button variant="outlined" size='large'
+      style={{textTransform: 'none'}}
+
         onClick={() => {
           navigate('');
         }}
       >
         Cadastro de Conteúdo digital
       </Button>
-  </Grid>
-
     </Grid>
 
-         </Box>
+</Box>
+
 
 
       
