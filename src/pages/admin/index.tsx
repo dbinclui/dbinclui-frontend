@@ -2,7 +2,7 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import Button from '@mui/material/Button';
 import Grid from '@mui/material/Grid';
-import { Box, BoxProps } from '@mui/material';
+import { Box } from '@mui/material';
 
 
 
