@@ -1,22 +1,19 @@
-.box-modal {
+.acessibility-widget {
   position: fixed;
-  margin-top: 27%;
-  width: 20%;
-  height: 8%;
-  margin-left: 88%;
+  top: 50%;
+  height: 40px;
+  right: -50px;
   border-radius: 20px 20px 0 0;
   background-color: #c5cae9;
   transform: rotate(-90deg);
 }
+
 .btn-modal {
-  letter-spacing: 2px;
+  font-size: 16px;
 }
+
 .icon-modal {
-  margin-top: 15px;
-  margin-left: 30px;
-  font-size: 1.05em;
   transform: rotate(90deg);
-  color: #000000;
 }
 .icon-modal::after {
   transform: rotate(-90deg);
@@ -60,6 +57,7 @@
     height: 8%;
     border-radius: 20px 20px 0 0;
   }
+
   .btn-modal {
     margin-top: 20px;
     font-size: 1em;
@@ -78,17 +76,14 @@
 }
 /*Estilo para smartphone*/
 @media only screen and (min-width: 300px) and (max-width: 787px) {
-  .box-modal {
-    width: 50%;
-    height: 8%;
-    margin-top: 0;
-    margin-left: 30%;
-    transform: rotate(180deg);
+  .acessibility-widget {
+    top: 0;
+    border-radius: 0 0 20px 20px;
+    transform: rotate(0);
+    max-width: 250px;
+    left: calc(50% - 125px);
   }
-  .btn-modal {
-    font-size: px;
-    transform: rotate(180deg);
-  }
+
   .modal {
     margin-left: 30%;
     margin-top: 30%;

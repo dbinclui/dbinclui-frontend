@@ -4,7 +4,6 @@ import Routers from './routes/routes';
 import { CssBaseline } from '@mui/material';
 import { ThemeProvider } from '@mui/material/styles';
 import theme, { StyleModeInterface } from './styles/theme';
-import MenuAcessibility from './components/MenuAcessibility';
 import BtnAcessibility from './components/Menu-acessibility/btnAcessibility';
 
 function App() {
@@ -18,8 +17,7 @@ function App() {
     <ThemeProvider theme={theme(styleMode)}>
       <CssBaseline />
       <VLibras />
-      <MenuAcessibility handleChangeCounter={setStyleMode} />
-      <BtnAcessibility />
+      <BtnAcessibility handleChangeCounter={setStyleMode} />
       <React.StrictMode>
         <Routers />
       </React.StrictMode>

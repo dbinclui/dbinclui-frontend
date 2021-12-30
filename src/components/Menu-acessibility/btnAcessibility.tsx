@@ -5,23 +5,21 @@ import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
 import './styles.css';
 import Counter from './../Counter/index';
 import { Typography } from '@mui/material';
-export interface BtnAcessibilityProps {}
+import { StyleModeInterface } from '../../styles/theme';
 
-export const BtnAcessibility: React.FC<
-  BtnAcessibilityProps
-> = (): JSX.Element => {
+export interface BtnAcessibilityProps {
+  handleChangeCounter: (styleMode: StyleModeInterface) => void;
+}
+
+export const BtnAcessibility: React.FC<BtnAcessibilityProps> = ({
+  handleChangeCounter,
+}): JSX.Element => {
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
 
   return (
-    <div className="box-modal">
-      <ArrowBackIosNewIcon className="icon-modal" />
-      <Button onClick={handleOpen}>
-        <Typography variant="h6" className="btn-modal">
-          Acessibilidade
-        </Typography>
-      </Button>
+    <>
       <Modal
         open={open}
         onClose={handleClose}
@@ -29,14 +27,33 @@ export const BtnAcessibility: React.FC<
         aria-describedby="modal-modal-description"
       >
         <div className="modal">
-          <button className="btn-resize">A+</button>
-          <button className="btn-resize">A</button>
-          <button className="btn-resize">A-</button>
-          <br></br>
-          <button className="btn-contrast">Contraste</button>
+          <Counter
+            handleCounter={(counter) => {
+              handleChangeCounter({
+                typography: {
+                  baseSize: counter,
+                },
+              });
+            }}
+          />
+          <div>
+            <Button variant="contained" className="btn-contrast">
+              Contraste
+            </Button>
+          </div>
         </div>
       </Modal>
-    </div>
+      <div className="acessibility-widget">
+        <Button
+          startIcon={<ArrowBackIosNewIcon className="icon-modal" />}
+          onClick={handleOpen}
+          size="large"
+          disableElevation
+        >
+          Acessibilidade
+        </Button>
+      </div>
+    </>
   );
 };
 
