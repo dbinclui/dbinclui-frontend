@@ -1,4 +1,3 @@
-import { ValidationError } from 'yup';
 import validateInput from './validator';
 describe('Função de validação de dados', () => {
   test('Deve validar corretamente os dados sem erros', async () => {
