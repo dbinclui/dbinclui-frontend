@@ -13,9 +13,6 @@ export const RegisterGuide: React.FC<RegisterGuideProps> = (): JSX.Element => {
       title,
       description,
     });
-
-    // isso é temporário, apenas para confirmar o resultado
-    console.log(valid);
   }
 
   return (
