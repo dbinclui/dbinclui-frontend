@@ -13,6 +13,7 @@ import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import { Link } from 'react-router-dom';
 import Logo from '../svgs/logo';
+import './styles.css';
 
 const ResponsiveAppBar = () => {
   const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(
@@ -28,17 +29,19 @@ const ResponsiveAppBar = () => {
   };
 
   return (
-    <AppBar position="static">
+    <AppBar position="static" className="app-header" elevation={0}>
       <Container maxWidth="xl">
-        <Toolbar disableGutters>
+        <Toolbar disableGutters className="toolbar">
           <Typography
             variant="h6"
             noWrap
             component="div"
             sx={{ mr: 2, display: { xs: 'none', md: 'flex' } }}
           >
-            <Logo />
+            <Logo/>
           </Typography>
+
+          {/*MENU HAMBURGUER*/}
 
           <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
             <IconButton
@@ -84,6 +87,21 @@ const ResponsiveAppBar = () => {
                   AJUDA
                 </Typography>
               </MenuItem>
+              <MenuItem component={Link} to="/contato">
+                <Typography textAlign="center" color="black">
+                  CONTATO
+                </Typography>
+              </MenuItem>
+              <MenuItem component={Link} to="/avaliar-app">
+                <Typography textAlign="center" color="black">
+                  AVALIAR O APP
+                </Typography>
+              </MenuItem>
+              <MenuItem component={Link} to="/login">
+                <Typography textAlign="center" color="black">
+                  LOGIN
+                </Typography>
+              </MenuItem>
             </Menu>
           </Box>
           <Typography
@@ -94,27 +112,53 @@ const ResponsiveAppBar = () => {
           >
             <Logo />
           </Typography>
-          <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
+
+
+          {/*MENU DESKTOP*/}
+          
+          <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }} className="box-links">
             <Button
               href="/"
               onClick={handleCloseNavMenu}
-              sx={{ my: 2, color: 'white', display: 'block' }}
+              
             >
               HOME
             </Button>
             <Button
               href="/sobre"
               onClick={handleCloseNavMenu}
-              sx={{ my: 2, color: 'white', display: 'block' }}
+              
             >
               SOBRE
             </Button>
             <Button
               href="/ajuda"
               onClick={handleCloseNavMenu}
-              sx={{ my: 2, color: 'white', display: 'block' }}
+              
             >
               AJUDA
+            </Button>
+            <Button
+              href="/contato"
+              onClick={handleCloseNavMenu}
+              
+            >
+              CONTATO
+            </Button>
+
+            <Button
+              href="/avaliar-app"
+              onClick={handleCloseNavMenu}
+              
+            >
+              AVALIAR O APP
+            </Button>
+            <Button
+              href="/login"
+              onClick={handleCloseNavMenu}
+              
+            >
+              LOGIN
             </Button>
           </Box>
 

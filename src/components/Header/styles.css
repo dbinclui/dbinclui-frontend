@@ -60,34 +60,27 @@ a.nav-item {
   margin: 8px;
 }
 
-.mobile-menu {
-  cursor: pointer;
-  display: none;
+.app-header a.MuiButton-root:hover {
+  color: #ffffff;
+  text-decoration: underline;
 }
 
-@media (max-width: 999px) {
-  body {
-    overflow-x: hidden;
-  }
+.app-header a.MuiButton-root {
+  color: #ffffff;
+  display: block;
+  margin: 1rem 0 1rem;
+}
 
-  .nav-links {
-    position: absolute;
-    top: 8vh;
-    right: 0;
-    width: 50vw;
-    height: 92vh;
-    background: #ffffff;
-    flex-direction: column;
-    align-items: center;
-    justify-content: space-around;
-    transform: translateX(100%);
-  }
+.toolbar {
+  display: flex;
+  justify-content: space-between;
+}
 
-  .mobile-menu {
-    display: block;
-  }
+.box-links {
+  display: flex;
+  justify-content: right;
+}
 
-  .nav-links.active {
-    transform: translateX(0);
-  }
+.logo {
+  margin-top: 0.8rem;
 }
