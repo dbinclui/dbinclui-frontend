@@ -1,6 +1,6 @@
 import { ValidationError } from 'yup';
 import validateInput from './validator';
-describe('Página de cadastro de nova guia', () => {
+describe('Função de validação de dados', () => {
   test('Deve validar corretamente os dados sem erros', async () => {
     const data = {
       title: 'Guia de Acessibilidade',
@@ -16,8 +16,7 @@ describe('Página de cadastro de nova guia', () => {
       description: 'Essa é a guia de acessibilidade',
     };
 
-    const result = await validateInput(data);
-    expect((result as ValidationError).errors).toContain(
+    return expect(validateInput(data)).rejects.toThrow(
       'O título é muito grande',
     );
   });
@@ -28,8 +27,7 @@ describe('Página de cadastro de nova guia', () => {
       description: '',
     };
 
-    const result = await validateInput(data);
-    expect((result as ValidationError).errors).toContain(
+    return expect(validateInput(data)).rejects.toThrow(
       'A descrição é obrigatória',
     );
   });
@@ -40,8 +38,7 @@ describe('Página de cadastro de nova guia', () => {
       description: 'Essa é a guia de acessibilidade',
     };
 
-    const result = await validateInput(data);
-    expect((result as ValidationError).errors).toContain(
+    return expect(validateInput(data)).rejects.toThrow(
       'O título é obrigatório',
     );
   });

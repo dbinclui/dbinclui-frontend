@@ -9,10 +9,13 @@ export const RegisterGuide: React.FC<RegisterGuideProps> = (): JSX.Element => {
 
   async function handleSubmit(event: React.FormEvent) {
     event.preventDefault();
-    const valid = await validateInput({
-      title,
-      description,
-    });
+
+    try {
+      await validateInput({
+        title,
+        description,
+      });
+    } catch {}
   }
 
   return (

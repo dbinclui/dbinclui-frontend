@@ -17,14 +17,5 @@ export default async function validateInput(
     description: yup.string().required('A descrição é obrigatória'),
   });
 
-  try {
-    let valid = await schema.validate(data);
-    return valid;
-  } catch (error) {
-    if (error instanceof yup.ValidationError) {
-      return error;
-    } else {
-      return new yup.ValidationError('Algum outro erro ocorreu');
-    }
-  }
+  return await schema.validate(data);
 }
