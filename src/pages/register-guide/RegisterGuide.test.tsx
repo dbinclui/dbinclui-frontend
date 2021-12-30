@@ -1,6 +1,7 @@
 import React from 'react';
 import RegisterGuide from './index';
 import { render, screen } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
 
 describe('Página de cadastro de nova guia', () => {
   test('Deve mostrar um formulário', () => {
@@ -19,5 +20,9 @@ describe('Página de cadastro de nova guia', () => {
     expect(labelDescricao).toBeTruthy();
     expect(input).toBeTruthy();
     expect(textArea).toBeTruthy();
+  });
+
+  test('Deve executar a função handleSubmit quando o botão de submit for clicado', () => {
+    render(<RegisterGuide />);
   });
 });
