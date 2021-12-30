@@ -1,39 +1,37 @@
-import React, { useState } from "react";
+import React, { useState } from 'react';
 
 export interface CounterProps {
-    handleAdd?: (counter: number) => void;
-    handleRemove?: (counter: number, action: 'add' | 'remove') => void;
+  handleCounter?: (counter: number) => void;
 }
 
 export const Counter: React.FC<CounterProps> = ({
-    handleAdd,
-    handleRemove,
+  handleCounter,
 }): JSX.Element => {
-    const [counter, setCounter] = useState(0);
+  const [counter, setCounter] = useState(1);
 
-    const remove = () => {
-        const removeCounter = counter === 0 ? counter : counter - 1;
-        setCounter(removeCounter)
-        if(handleRemove){
-            handleRemove(removeCounter);
-        }
-    };
+  const remove = () => {
+    const removeCounter = counter === 1 ? counter : counter - 1;
+    setCounter(removeCounter);
+    if (handleCounter) {
+      handleCounter(removeCounter);
+    }
+  };
 
-    const add = () => {
-        const addCounter = counter === 10 ? counter : counter + 1;
-        setCounter(addCounter)
-        if(handleAdd){
-            handleAdd(addCounter);
-        }
-    };
+  const add = () => {
+    const addCounter = counter === 10 ? counter : counter + 1;
+    setCounter(addCounter);
+    if (handleCounter) {
+      handleCounter(addCounter);
+    }
+  };
 
-    return (
-       <>
-            
-            <button onClick={remove}>-</button>
-            {counter}
-           
-            <button onClick={add}>+</button>
-       </>
-   );
+  return (
+    <>
+      <button onClick={remove}>-</button>
+      {counter}
+      <button onClick={add}>+</button>
+    </>
+  );
 };
+
+export default Counter;
