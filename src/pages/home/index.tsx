@@ -74,6 +74,10 @@ export const Home: React.FC<HomeProps> = (): JSX.Element => {
           <div className="box-libras">
             <img src="" alt="" />
           </div>
+          {/* <h1>teste</h1>
+          <h1>teste</h1>
+          <h1>teste</h1>
+          <h1>teste</h1> */}
         </div>
       </section>
     </>
