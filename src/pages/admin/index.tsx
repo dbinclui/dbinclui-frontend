@@ -28,7 +28,6 @@ export const Admin: React.FC<AdminProps> = (): JSX.Element => {
     <Grid item sx={{m: 2}} >
 
       <Button variant="outlined" size='large'
-      style={{textTransform: 'none'}}
         onClick={() => {
           navigate('cadastrar-guia');
         } }
@@ -41,8 +40,6 @@ export const Admin: React.FC<AdminProps> = (): JSX.Element => {
     <Grid item sx={{m: 2}} >
 
       <Button variant="outlined" size='large'
-      style={{textTransform: 'none'}}
-
           onClick={() => {
             navigate('');
           } }
@@ -54,8 +51,6 @@ export const Admin: React.FC<AdminProps> = (): JSX.Element => {
     
     <Grid item sx={{m: 2}} >
     <Button variant="outlined" size='large'
-      style={{textTransform: 'none'}}
-
         onClick={() => {
           navigate('');
         }}
@@ -66,14 +61,8 @@ export const Admin: React.FC<AdminProps> = (): JSX.Element => {
 
 </Box>
 
-
-
-      
       </>
 
-          
-      
-    
   );
 };
 
