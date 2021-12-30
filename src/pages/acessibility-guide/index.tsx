@@ -3,7 +3,6 @@ import Card from '../../components/Card';
 import './styles.css';
 import { useEffect, useState } from 'react';
 import { CardGuidesResponse, getGuides } from '../../services/guides';
-import MenuAcessibility from '../../components/Menu-acessibility/AcessibililityGuide';
 
 export default function AcessibilityGuide() {
   const [cards, setCards] = useState<CardGuidesResponse[]>([]);
@@ -48,9 +47,6 @@ export default function AcessibilityGuide() {
     <p className="error">Desculpe, ocorreu um erro ao carregar a página!</p>
   ) : (
     <div>
-      <div>
-        <MenuAcessibility />
-      </div>
       <h1 className="page-title" style={{ textAlign: 'center' }}>
         Guia de Acessibilidade
       </h1>

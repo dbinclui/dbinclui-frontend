@@ -1,8 +1,10 @@
 import * as React from 'react';
-import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Modal from '@mui/material/Modal';
+import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
 import './styles.css';
+import Counter from './../Counter/index';
+import { Typography } from '@mui/material';
 export interface BtnAcessibilityProps {}
 
 export const BtnAcessibility: React.FC<
@@ -14,8 +16,11 @@ export const BtnAcessibility: React.FC<
 
   return (
     <div className="box-modal">
-      <Button className="btn-modal" onClick={handleOpen}>
-        Acessibilidade
+      <ArrowBackIosNewIcon className="icon-modal" />
+      <Button onClick={handleOpen}>
+        <Typography variant="h6" className="btn-modal">
+          Acessibilidade
+        </Typography>
       </Button>
       <Modal
         open={open}
