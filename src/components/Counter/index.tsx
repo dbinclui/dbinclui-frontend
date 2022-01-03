@@ -27,9 +27,15 @@ export const Counter: React.FC<CounterProps> = ({
 
   return (
     <>
-      <button onClick={remove}>-</button>
+      <button 
+        onClick={remove}
+        aria-label="diminuir letra"
+        >-</button>
       {counter}
-      <button onClick={add}>+</button>
+      <button 
+        onClick={add}
+        aria-label="aumentar letra"
+        >+</button>
     </>
   );
 };

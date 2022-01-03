@@ -37,7 +37,10 @@ export const BtnAcessibility: React.FC<BtnAcessibilityProps> = ({
             }}
           />
           <div>
-            <Button variant="contained" className="btn-contrast">
+            <Button 
+              variant="contained" 
+              className="btn-contrast"
+              aria-label="mudar contraste da tela">
               Contraste
             </Button>
           </div>
@@ -49,6 +52,7 @@ export const BtnAcessibility: React.FC<BtnAcessibilityProps> = ({
           onClick={handleOpen}
           size="large"
           disableElevation
+          aria-label="Acessibilidade"
         >
           Acessibilidade
         </Button>
