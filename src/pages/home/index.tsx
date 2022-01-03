@@ -1,7 +1,8 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Typography } from '@mui/material';
-import { Card } from '@mui/material';
+import { Paper } from '@mui/material';
+import { Grid } from '@mui/material';
 
 import './style.css';
 
@@ -23,8 +24,18 @@ export const Home: React.FC<HomeProps> = (): JSX.Element => {
         </section>
       </main>
 
-      <section className="container-center">
-        <div
+        <Grid container columnSpacing={15} xs={4}>
+          <Grid item xs={4}>
+            <Paper>xs=6 md=8</Paper>
+          </Grid>
+          <Grid item xs={4}>
+            <Paper>xs=6 md=8</Paper>
+          </Grid>
+          <Grid item xs={4}>
+            <Paper>xs=6 md=8</Paper>
+          </Grid>
+        </Grid>
+        {/* <div
           className="box"
           role="button"
           tabIndex={1}
@@ -71,9 +82,8 @@ export const Home: React.FC<HomeProps> = (): JSX.Element => {
           {/* <h1>teste</h1>
           <h1>teste</h1>
           <h1>teste</h1>
-          <h1>teste</h1> */}
-        </div>
-      </section>
+          <h1>teste</h1> *
+        </div> */}
       <div className="box-welcome">
         <Typography>
           Bem-vindo ao DBINCLUI, lorem ipsum dolor sit amet, consectetur
