@@ -15,7 +15,39 @@ import { Link } from 'react-router-dom';
 import Logo from '../svgs/logo';
 import './styles.css';
 
-const ResponsiveAppBar = () => {
+export interface HeaderProps {}
+
+export interface MenuItemsInterface{
+  title: string,
+  href: string
+}
+
+export const MenuItems:MenuItemsInterface[] = [{
+  title: 'HOME',
+  href: '/'
+},
+{
+  title: 'SOBRE',
+  href: '/sobre'
+},
+{
+  title: 'AJUDA',
+  href: '/ajuda'
+},
+{
+  title: 'CONTATO',
+  href: '/contato'
+},
+{
+  title: 'AVALIAR O APP',
+  href: '/avaliar-app'
+},
+{
+  title: 'LOGIN',
+  href: '/login'
+}];
+
+export const Header: React.FC<HeaderProps> = (): JSX.Element => {
   const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(
     null,
   );
@@ -72,36 +104,11 @@ const ResponsiveAppBar = () => {
                 display: { xs: 'block', md: 'none' },
               }}
             >
-              <MenuItem component={Link} to="/">
-                <Typography textAlign="center" color="black">
-                  HOME
+              {MenuItems.map((item, key) => <MenuItem key={key} to={item.href} component={Link}>
+                <Typography textAlign="center" color="black" className="button-teste">
+                  {item.title}
                 </Typography>
-              </MenuItem>
-              <MenuItem component={Link} to="/sobre">
-                <Typography textAlign="center" color="black">
-                  SOBRE
-                </Typography>
-              </MenuItem>
-              <MenuItem component={Link} to="/ajuda">
-                <Typography textAlign="center" color="black">
-                  AJUDA
-                </Typography>
-              </MenuItem>
-              <MenuItem component={Link} to="/contato">
-                <Typography textAlign="center" color="black">
-                  CONTATO
-                </Typography>
-              </MenuItem>
-              <MenuItem component={Link} to="/avaliar-app">
-                <Typography textAlign="center" color="black">
-                  AVALIAR O APP
-                </Typography>
-              </MenuItem>
-              <MenuItem component={Link} to="/login">
-                <Typography textAlign="center" color="black">
-                  LOGIN
-                </Typography>
-              </MenuItem>
+                </MenuItem>)}
             </Menu>
           </Box>
           <Typography
@@ -117,50 +124,10 @@ const ResponsiveAppBar = () => {
           {/*MENU DESKTOP*/}
           
           <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }} className="box-links">
-            <Button
-              href="/"
-              onClick={handleCloseNavMenu}
-              
-            >
-              HOME
-            </Button>
-            <Button
-              href="/sobre"
-              onClick={handleCloseNavMenu}
-              
-            >
-              SOBRE
-            </Button>
-            <Button
-              href="/ajuda"
-              onClick={handleCloseNavMenu}
-              
-            >
-              AJUDA
-            </Button>
-            <Button
-              href="/contato"
-              onClick={handleCloseNavMenu}
-              
-            >
-              CONTATO
-            </Button>
-
-            <Button
-              href="/avaliar-app"
-              onClick={handleCloseNavMenu}
-              
-            >
-              AVALIAR O APP
-            </Button>
-            <Button
-              href="/login"
-              onClick={handleCloseNavMenu}
-              
-            >
-              LOGIN
-            </Button>
+              {MenuItems.map((item, key) => <Button key={key} href={item.href} onClick={handleCloseNavMenu}>{item.title}</Button>)}
+            
           </Box>
+          
 
           <Box sx={{ flexGrow: 0 }}>
             <Tooltip title="Open settings">
@@ -192,7 +159,7 @@ const ResponsiveAppBar = () => {
     </AppBar>
   );
 };
-export default ResponsiveAppBar;
+export default Header;
 
 // import { Link, Grid, Container, IconButton } from '@mui/material';
 // import React from 'react';
