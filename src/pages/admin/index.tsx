@@ -4,8 +4,6 @@ import Button from '@mui/material/Button';
 import Grid from '@mui/material/Grid';
 import { Box } from '@mui/material';
 
-
-
 export interface AdminProps {}
 
 export const Admin: React.FC<AdminProps> = (): JSX.Element => {
@@ -13,9 +11,7 @@ export const Admin: React.FC<AdminProps> = (): JSX.Element => {
 
   return (
     <>
-
-   
-<Box
+      <Box
         sx={{
           display: 'flex',
           alignItems: 'center',
@@ -24,45 +20,43 @@ export const Admin: React.FC<AdminProps> = (): JSX.Element => {
           m: 25,
         }}
       >
+        <Grid item sx={{ m: 2 }}>
+          <Button
+            variant="outlined"
+            size="large"
+            onClick={() => {
+              navigate('cadastrar-guia');
+            }}
+          >
+            Cadastrar Guia
+          </Button>
+        </Grid>
 
-    <Grid item sx={{m: 2}} >
+        <Grid item sx={{ m: 2 }}>
+          <Button
+            variant="outlined"
+            size="large"
+            onClick={() => {
+              navigate('cadastrar-categoria');
+            }}
+          >
+            Cadastro de Categorias
+          </Button>
+        </Grid>
 
-      <Button variant="outlined" size='large'
-        onClick={() => {
-          navigate('cadastrar-guia');
-        } }
-      >
-        Cadastrar Guia
-      </Button>
-    </Grid>
-    
-    
-    <Grid item sx={{m: 2}} >
-
-      <Button variant="outlined" size='large'
-          onClick={() => {
-            navigate('');
-          } }
-        >
-          Cadastro de Categorias
-      </Button>
-    
-    </Grid>
-    
-    <Grid item sx={{m: 2}} >
-    <Button variant="outlined" size='large'
-        onClick={() => {
-          navigate('');
-        }}
-      >
-        Cadastro de Conteúdo digital
-      </Button>
-    </Grid>
-
-</Box>
-
-      </>
-
+        <Grid item sx={{ m: 2 }}>
+          <Button
+            variant="outlined"
+            size="large"
+            onClick={() => {
+              navigate('cadastro-conteudo-digital');
+            }}
+          >
+            Cadastro de Conteúdo digital
+          </Button>
+        </Grid>
+      </Box>
+    </>
   );
 };
 
