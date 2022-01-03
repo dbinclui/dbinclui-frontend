@@ -52,6 +52,12 @@ export const Header: React.FC<HeaderProps> = (): JSX.Element => {
     null,
   );
 
+  const handleChangePage = (
+    target: React.MouseEvent<HTMLElement>['currentTarget'],
+  ) => {
+    setAnchorElNav(target);
+  };
+
   const handleOpenNavMenu = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorElNav(event.currentTarget);
   };
@@ -75,7 +81,7 @@ export const Header: React.FC<HeaderProps> = (): JSX.Element => {
 
           {/*MENU HAMBURGUER*/}
 
-          <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
+          <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }} >
             <IconButton
               size="large"
               aria-label="account of current user"
@@ -104,8 +110,13 @@ export const Header: React.FC<HeaderProps> = (): JSX.Element => {
                 display: { xs: 'block', md: 'none' },
               }}
             >
-              {MenuItems.map((item, key) => <MenuItem key={key} to={item.href} component={Link}>
-                <Typography textAlign="center" color="black" className="button-teste">
+              {MenuItems.map((item, key) => 
+              <MenuItem key={key} to={item.href} component={Link}>
+                <Typography textAlign="center" 
+                color="black" 
+                className="menu-item-mobile"
+                component={Link}
+                to={item.href}>
                   {item.title}
                 </Typography>
                 </MenuItem>)}
@@ -124,15 +135,24 @@ export const Header: React.FC<HeaderProps> = (): JSX.Element => {
           {/*MENU DESKTOP*/}
           
           <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }} className="box-links">
-              {MenuItems.map((item, key) => <Button key={key} href={item.href} onClick={handleCloseNavMenu}>{item.title}</Button>)}
-            
+              {MenuItems.map((item, key) => 
+              <Button 
+              key={key} 
+              className="menu-item-desktop" 
+              component={Link}
+              to={item.href}
+              onClick={({ currentTarget }: React.MouseEvent<HTMLElement>) =>
+                  handleChangePage(currentTarget)
+                }>
+                {item.title}
+              </Button>)}
           </Box>
           
 
           <Box sx={{ flexGrow: 0 }}>
-            <Tooltip title="Open settings">
+            <Tooltip title="Administrador">
               <IconButton sx={{ p: 0 }}>
-                <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
+                <Avatar src="/broken-image.jpg"/>
               </IconButton>
             </Tooltip>
             <Menu
@@ -161,97 +181,3 @@ export const Header: React.FC<HeaderProps> = (): JSX.Element => {
 };
 export default Header;
 
-// import { Link, Grid, Container, IconButton } from '@mui/material';
-// import React from 'react';
-// import './styles.css';
-// import Logo from '../svgs/logo';
-// import PersonIcon from '@mui/icons-material/Person';
-
-// export interface HeaderProps {}
-
-// export const Header: React.FC<HeaderProps> = (): JSX.Element => {
-//   return (
-//     <header className="dbinclui-header">
-//       <Container>
-//         <Grid container className="grid-container-header">
-//           <Grid item>
-//             <Link
-//               className="nav-logo"
-//               underline="hover"
-//               color="inherit"
-//               href="/"
-//             >
-//               <Logo />
-//             </Link>
-//           </Grid>
-//           <div className="mobile-menu">
-//             <div className="line-1"></div>
-//             <div className="line-2"></div>
-//             <div className="line-3"></div>
-//           </div>
-//           <Grid item>
-//             <nav className="nav-links">
-//               <Link
-//                 className="nav-item"
-//                 underline="hover"
-//                 color="#ffffff"
-//                 href="/"
-//               >
-//                 HOME
-//               </Link>
-//               <Link
-//                 className="nav-item"
-//                 underline="hover"
-//                 color="#ffffff"
-//                 href="/sobre"
-//               >
-//                 SOBRE
-//               </Link>
-//               <Link
-//                 className="nav-item"
-//                 underline="hover"
-//                 color="#ffffff"
-//                 href="/ajuda"
-//               >
-//                 AJUDA
-//               </Link>
-//               <Link
-//                 className="nav-item"
-//                 underline="hover"
-//                 color="#ffffff"
-//                 href="/contato"
-//               >
-//                 CONTATO
-//               </Link>
-//               <Link
-//                 className="nav-item"
-//                 underline="hover"
-//                 color="#ffffff"
-//                 href="/avaliar"
-//               >
-//                 AVALIAR O APP
-//               </Link>
-//               <Link
-//                 className="nav-item"
-//                 underline="hover"
-//                 color="#ffffff"
-//                 href="/login"
-//               >
-//                 LOGIN
-//               </Link>
-//             </nav>
-//           </Grid>
-//           <Grid item>
-//             <div className="account-action">
-//               <IconButton color="primary">
-//                 <PersonIcon />
-//               </IconButton>
-//             </div>
-//           </Grid>
-//         </Grid>
-//       </Container>
-//     </header>
-//   );
-// };
-
-// export default Header;
