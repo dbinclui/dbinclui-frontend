@@ -4,12 +4,12 @@
   margin: 0 auto;
 }
 
-.box p {
-  font-size: 2em;
+.box-p {
   text-align: center;
 }
 
-.icon-errro {
-  width: 300px;
+.icon-erro {
+  width: 400px;
   margin: 0 auto;
+  margin-bottom: 10px;
 }

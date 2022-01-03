@@ -1,93 +1,43 @@
 .acessibility-widget {
   position: fixed;
   top: 50%;
-  height: 40px;
+  max-width: 150px;
+  height: 50px;
   right: -50px;
   border-radius: 20px 20px 0 0;
   background-color: #c5cae9;
   transform: rotate(-90deg);
 }
 
-.btn-modal {
-  font-size: 16px;
-}
-
 .icon-modal {
+  color: #000;
   transform: rotate(90deg);
 }
-.icon-modal::after {
-  transform: rotate(-90deg);
-}
-.modal {
-  margin-left: 80%;
-  margin-top: 22%;
-  width: 15%;
-  height: 30%;
-  background-color: #c5cae9;
-  align-items: center;
-  border-radius: 20px;
-}
-.btn-resize,
-.btn-contrast {
-  color: #c5cae9;
-  background-color: #2c3382;
-  border: none;
-  font-size: 1em;
-}
-.btn-resize {
-  margin: 50px 1px 20px 12px;
-  width: 25%;
-  height: 20%;
-  border-radius: 20px;
-}
-.btn-contrast {
-  margin: 0 20px;
-  width: 80%;
-  height: 20%;
-  border-radius: 20px;
-}
-/*Estilo para tablets*/
-@media only screen and (min-width: 788px) and (max-width: 1279px) {
-  .box-modal {
-    display: flex;
-    max-width: 100%;
-    width: 23%;
-    margin-left: 86%;
-    margin-top: 40%;
-    height: 8%;
-    border-radius: 20px 20px 0 0;
-  }
 
-  .btn-modal {
-    margin-top: 20px;
-    font-size: 1em;
-    color: #000000;
-  }
-  .icon-modal {
-    margin-top: 15px;
-    margin-left: 30px;
-  }
-  .modal {
-    margin-left: 73%;
-    margin-top: 34%;
-    width: 20%;
-    height: 30%;
-  }
+.modal {
+  margin-left: 85%;
+  margin-top: 21%;
+  width: 150px;
+  height: 150px;
+  background-color: #c5cae9;
+  border-radius: 20px;
 }
+
 /*Estilo para smartphone*/
 @media only screen and (min-width: 300px) and (max-width: 787px) {
   .acessibility-widget {
     top: 0;
     border-radius: 0 0 20px 20px;
     transform: rotate(0);
-    max-width: 250px;
+    max-width: 150px;
     left: calc(50% - 125px);
+  }
+  .icon-modal {
+    transform: rotate(-90deg);
   }
 
   .modal {
-    margin-left: 30%;
-    margin-top: 30%;
-    width: 30%;
-    height: 30%;
+    margin-top: 250px;
+    margin-left: 250px;
   }
 }

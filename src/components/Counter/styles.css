@@ -1,0 +1,19 @@
+.btn-resize,
+.btn-contrast {
+  color: #c5cae9;
+  background-color: #2c3382;
+  border: none;
+  font-size: 1em;
+}
+.Button-resize {
+  margin: 50px 1px 20px 12px;
+  width: 50%;
+  height: 50%;
+  border-radius: 20px;
+}
+.btn-contrast {
+  margin: 0 20px;
+  width: 80%;
+  height: 20%;
+  border-radius: 20px;
+}

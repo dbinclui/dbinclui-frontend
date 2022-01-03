@@ -1,3 +1,4 @@
+import { Button } from '@mui/material';
 import React, { useState } from 'react';
 
 export interface CounterProps {
@@ -27,9 +28,32 @@ export const Counter: React.FC<CounterProps> = ({
 
   return (
     <>
-      <button onClick={remove}>-</button>
-      {counter}
-      <button onClick={add}>+</button>
+      <Button
+        variant="contained"
+        sx={{
+          top: '30px',
+          left: '8px',
+          width: '30%',
+          borderRadius: '20px',
+          fontSize: '12px',
+        }}
+        onClick={add}
+      >
+        A+
+      </Button>
+      <Button
+        variant="contained"
+        sx={{
+          top: '30px',
+          left: '15px',
+          width: '30%',
+          borderRadius: '20px',
+          fontSize: '12px',
+        }}
+        onClick={remove}
+      >
+        A-
+      </Button>
     </>
   );
 };

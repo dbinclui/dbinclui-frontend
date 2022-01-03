@@ -20,7 +20,7 @@ export const Home: React.FC<HomeProps> = (): JSX.Element => {
             role="search"
           />
 
-          <Typography variant="body1" className="box-welcome">
+          <Typography variant="body2" className="box-welcome">
             Bem-vindo ao DBINCLUI, lorem ipsum dolor sit amet, consectetur
             adipiscing elit. Etiam mattis fringilla dolor, id congue diam
             rhoncus sit amet. Fusce at lacus metus. Maecenas gravida finibus

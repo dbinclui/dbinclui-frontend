@@ -4,7 +4,6 @@ import Modal from '@mui/material/Modal';
 import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
 import './styles.css';
 import Counter from './../Counter/index';
-import { Typography } from '@mui/material';
 import { StyleModeInterface } from '../../styles/theme';
 
 export interface BtnAcessibilityProps {
@@ -36,8 +35,17 @@ export const BtnAcessibility: React.FC<BtnAcessibilityProps> = ({
               });
             }}
           />
-          <div>
-            <Button variant="contained" className="btn-contrast">
+          <div className="container-btn">
+            <Button
+              variant="contained"
+              sx={{
+                top: '40px',
+                left: '8px',
+                width: '90%',
+                borderRadius: '20px',
+                fontSize: '12px',
+              }}
+            >
               Contraste
             </Button>
           </div>
@@ -49,6 +57,11 @@ export const BtnAcessibility: React.FC<BtnAcessibilityProps> = ({
           onClick={handleOpen}
           size="large"
           disableElevation
+          sx={{
+            fontSize: '12px',
+            top: '10px',
+            color: 'black',
+          }}
         >
           Acessibilidade
         </Button>

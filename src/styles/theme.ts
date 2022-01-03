@@ -63,7 +63,7 @@ const theme = (styleMode: StyleModeInterface) => {
       ),
       body1: {
         color: '#FFF',
-        fontSize: handleResizeTypography(16, styleMode.typography.baseSize),
+        //fontSize: handleResizeTypography(16, styleMode.typography.baseSize),
       },
       body2: {
         color: '#FFF',
