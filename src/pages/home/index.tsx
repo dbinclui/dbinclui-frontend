@@ -1,6 +1,7 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Typography } from '@mui/material';
+import { Card } from '@mui/material';
 
 import './style.css';
 
@@ -73,12 +74,14 @@ export const Home: React.FC<HomeProps> = (): JSX.Element => {
           <h1>teste</h1> */}
         </div>
       </section>
-      <Typography variant="body1" className="box-welcome">
-        Bem-vindo ao DBINCLUI, lorem ipsum dolor sit amet, consectetur
-        adipiscing elit. Etiam mattis fringilla dolor, id congue diam rhoncus
-        sit amet. Fusce at lacus metus. Maecenas gravida finibus ligula, vitae
-        lacinia est. Integer tristique libero non nunc faucibus elementum.
-      </Typography>
+      <div className="box-welcome">
+        <Typography>
+          Bem-vindo ao DBINCLUI, lorem ipsum dolor sit amet, consectetur
+          adipiscing elit. Etiam mattis fringilla dolor, id congue diam rhoncus
+          sit amet. Fusce at lacus metus. Maecenas gravida finibus ligula, vitae
+          lacinia est. Integer tristique libero non nunc faucibus elementum.
+        </Typography>
+      </div>
     </>
   );
 };

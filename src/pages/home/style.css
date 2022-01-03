@@ -1,6 +1,6 @@
 .container-home {
   display: grid;
-  grid-template-columns: minmax(10rem, 40rem);
+  /* grid-template-columns: minmax(10rem, 40rem); */
   align-items: center;
   justify-content: center;
 }
@@ -9,24 +9,25 @@
   display: grid;
   align-items: center;
   justify-content: center;
-  margin-top: 120px;
+  margin-top: 100px;
 }
 
 .box-busca {
   padding: 1rem 2rem;
   border-radius: 20px;
-  margin-left: 5rem;
-  margin-right: 5rem;
+  /* margin-left: 5rem; */
+  /* margin-right: 5rem; */
   background-color: #c4c4c4;
   border: 0;
+  width: 62.5rem;
 }
 
 .box-welcome {
   padding: 30px;
   font-size: 18px;
   text-align: center;
-  margin-top: 2rem;
-  margin-bottom: 1px;
+  margin-top: 6.6875rem;
+  margin-bottom: 6.8125rem;
 }
 
 .container-center {
