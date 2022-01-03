@@ -6,7 +6,7 @@ import Home from '../pages/home';
 import RegisterGuide from '../pages/register-guide';
 import Error from '../pages/error/404';
 import Admin from '@pages/admin';
-import Layout from '../pages/layout';
+import Layout from '@pages/layout';
 export interface RoutersProps {}
 
 export const Routers: React.FC<RoutersProps> = (): JSX.Element => {
