@@ -1,7 +1,7 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Typography } from '@mui/material';
-import { Paper } from '@mui/material';
+import { Paper, Box } from '@mui/material';
 import { Grid } from '@mui/material';
 
 import './style.css';
@@ -24,9 +24,16 @@ export const Home: React.FC<HomeProps> = (): JSX.Element => {
         </section>
       </main>
 
+      <Box sx={{
+        width: 300,
+        height: 300,
+        display: "flex",
+        justifyContent: "center",
+        backgroundColor: 'primary.dark',
+      }}>
         <Grid container columnSpacing={15} xs={4}>
           <Grid item xs={4}>
-            <Paper>xs=6 md=8</Paper>
+            <Paper sx={{m:5}}>xs=6 md=8</Paper>
           </Grid>
           <Grid item xs={4}>
             <Paper>xs=6 md=8</Paper>
@@ -35,7 +42,8 @@ export const Home: React.FC<HomeProps> = (): JSX.Element => {
             <Paper>xs=6 md=8</Paper>
           </Grid>
         </Grid>
-        {/* <div
+      </Box>
+      {/* <div
           className="box"
           role="button"
           tabIndex={1}
