@@ -1,5 +1,6 @@
 import React from 'react';
-import { getByText, render, screen, debug } from '@testing-library/react';
+import { getByText, render } from '@testing-library/react';
+import { screen } from '@testing-library/dom';
 import  Header, { MenuItems }  from './index';
 import  userEvent  from '@testing-library/user-event';
 import { useHref } from 'react-router-dom';
