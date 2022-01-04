@@ -15,7 +15,7 @@ export interface HomeProps {}
 
 export const CardItems: CardHomeProps[] = [
   {
-    title: 'Traduto de libras',
+    title: 'Tradutor de libras',
     path: '/tradutor',
   },
   {
