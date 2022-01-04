@@ -5,15 +5,23 @@ import { Link } from 'react-router-dom';
 export interface CardHomeProps {
   title: string;
   path: string;
-  key?: number;
+  tabIndex?: number;
 }
 
 export const CardHome: React.FC<CardHomeProps> = ({
   title,
   path,
-  key,
+  tabIndex,
 }): JSX.Element => (
-  <Grid item sm={12} xs={12} lg={3} component={Link} to={path}>
+  <Grid
+    item
+    sm={12}
+    xs={12}
+    lg={3}
+    component={Link}
+    to={path}
+    data-testid={'cardHome'}
+  >
     <Grid flexDirection={'column'} alignItems={'center'} container>
       <Grid item>
         <Typography
@@ -36,8 +44,10 @@ export const CardHome: React.FC<CardHomeProps> = ({
             borderRadius: '1.25rem',
             mb: 2,
           }}
-          tabIndex={key}
+          tabIndex={tabIndex}
           aria-label={title}
+          role="button"
+          className="card-home"
         ></Paper>
       </Grid>
     </Grid>

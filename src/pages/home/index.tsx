@@ -9,7 +9,7 @@ import {
 } from '@mui/material';
 import SearchIcon from '@mui/icons-material/Search';
 import './style.css';
-import CardHome, { CardHomeProps } from './CardHome';
+import CardHome, { CardHomeProps } from '@components/CardHome';
 
 export interface HomeProps {}
 
@@ -72,7 +72,12 @@ export const Home: React.FC<HomeProps> = (): JSX.Element => {
           <Grid item md={12}>
             <Grid container justifyContent={'center'}>
               {CardItems.map((item, key) => (
-                <CardHome title={item.title} path={item.path} key={key} />
+                <CardHome
+                  title={item.title}
+                  path={item.path}
+                  key={key}
+                  tabIndex={key}
+                />
               ))}
             </Grid>
           </Grid>
