@@ -1,6 +1,6 @@
 import React, { useContext, useMemo } from 'react';
 import { Typography, TypographyProps } from '@mui/material';
-import { AccessibilityContext } from '../../contexts/AccessibilityContext';
+import { AccessibilityContext } from '@contexts/AccessibilityContext';
 import { getFontSize, getDefaultFontSize } from './utils';
 
 export interface AccessibilityTypographyProps extends TypographyProps {
