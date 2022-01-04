@@ -6,7 +6,9 @@ import { ThemeProvider } from '@mui/material/styles';
 import theme, { StyleModeInterface } from './styles/theme';
 import MenuAcessibility from './components/MenuAcessibility';
 
-function App() {
+export interface AppProps {}
+
+export const App: React.FC<AppProps> = (): JSX.Element => {
   const [styleMode, setStyleMode] = useState<StyleModeInterface>({
     typography: {
       baseSize: 1,
@@ -23,6 +25,6 @@ function App() {
       </React.StrictMode>
     </ThemeProvider>
   );
-}
+};
 
 export default App;
