@@ -19,14 +19,14 @@ export const Counter: React.FC<CounterProps> = ({
             variant="contained"
             onClick={() => remove(counter)}
             sx={{
-              margin: '0 0 0 -30px',
+              margin: '0 0 0 -34px',
               borderRadius: '20px',
               backgroundColor: 'primary',
               fontSize: '15px',
             }}
           >
             A
-            <RemoveIcon />
+            <RemoveIcon fontSize="inherit" />
           </Button>
         </Grid>
 
@@ -35,14 +35,14 @@ export const Counter: React.FC<CounterProps> = ({
             variant="contained"
             onClick={() => add(counter)}
             sx={{
-              margin: '0 -25px 0 10px',
+              margin: '0 0 0 10px',
               borderRadius: '20px',
               backgroundColor: 'primary',
               fontSize: '15px',
             }}
           >
             A
-            <AddIcon />
+            <AddIcon fontSize="inherit" />
           </Button>
         </Grid>
       </Grid>
