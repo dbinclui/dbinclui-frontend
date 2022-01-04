@@ -1,8 +1,9 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Button, Typography } from '@mui/material';
+import { Button, IconButton, InputBase, Typography } from '@mui/material';
 import { Paper, Box } from '@mui/material';
 import { Grid } from '@mui/material';
+import SearchIcon from '@mui/icons-material/Search';
 
 import './style.css';
 
@@ -15,19 +16,37 @@ export const Home: React.FC<HomeProps> = (): JSX.Element => {
     <>
       <main className="conteudo" role="main">
         <section className="container-home">
-          <input
+          <Paper
+            component="form"
+            sx={{
+              display: 'flex',
+              alignItems: 'center',
+              width: 1018,
+              borderRadius: '20px',
+            }}
+          >
+            <InputBase
+              sx={{ ml: 1, flex: 1, p: 2 }}
+              placeholder="Pesquise aqui"
+              inputProps={{ 'aria-label': 'pesquise aqui' }}
+            />
+            <IconButton type="submit" sx={{ p: '10px' }} aria-label="search">
+              <SearchIcon />
+            </IconButton>
+          </Paper>
+          {/*<input
             type="text"
             className="box-busca"
             placeholder="pesquise aqui"
             role="search"
-          />
+          />*/}
         </section>
       </main>
 
       <Box
         sx={{
           /*width: '100vh',*/
-          mt: 6,
+          mt: 13,
           mr: 24,
           mb: 13,
           ml: 24,
@@ -45,7 +64,12 @@ export const Home: React.FC<HomeProps> = (): JSX.Element => {
             </Typography>
             <Button
               variant="outlined"
-              sx={{ width: '340px', height: '295px', borderRadius: '20px' }}
+              sx={{
+                width: '340px',
+                height: '295px',
+                borderRadius: '20px',
+                mb: 2,
+              }}
             ></Button>
             {/*<Paper
               sx={{ width: '340px', height: '295px', borderRadius: '20px' }}
@@ -60,7 +84,12 @@ export const Home: React.FC<HomeProps> = (): JSX.Element => {
             </Typography>
             <Button
               variant="outlined"
-              sx={{ width: '340px', height: '295px', borderRadius: '20px' }}
+              sx={{
+                width: '340px',
+                height: '295px',
+                borderRadius: '20px',
+                mb: 2,
+              }}
             ></Button>
             {/*<Paper
               sx={{ width: '340px', height: '295px', borderRadius: '20px' }}
@@ -74,7 +103,12 @@ export const Home: React.FC<HomeProps> = (): JSX.Element => {
             </Typography>
             <Button
               variant="outlined"
-              sx={{ width: '340px', height: '295px', borderRadius: '20px' }}
+              sx={{
+                width: '340px',
+                height: '295px',
+                borderRadius: '20px',
+                mb: 2,
+              }}
             ></Button>
             {/*} <Paper
               sx={{ width: '340px', height: '295px', borderRadius: '20px' }}
@@ -133,17 +167,17 @@ export const Home: React.FC<HomeProps> = (): JSX.Element => {
           <h1>teste</h1>
           <h1>teste</h1> *
         </div> */}
-      <div className="box-welcome">
-        <Typography sx={{ mr: 18, ml: 18 }}>
-          Bem-vindo ao DB INCLUI, o DB INCLUI é um web app que dissemina a
-          cultura de inclusão dentro da DBserver, com foco na cultura surda. O
-          web app é destinado para todas as pessoas que desejam aprender LIBRAS
-          e entender um pouco mais sobre Inclusão de PCD&apos;s na sociedade. O
-          web app aproveita o Guia de Acessibilidade e a Apostila de Libras como
-          fonte para informação de inclusão, assim como, utiliza a API VLIBRAS
-          para as funcionalidades específicas.
-        </Typography>
-      </div>
+      {/*<div className="box-welcome">*/}
+      <Typography sx={{ mr: 18, ml: 18 }}>
+        Bem-vindo ao DB INCLUI, o DB INCLUI é um web app que dissemina a cultura
+        de inclusão dentro da DBserver, com foco na cultura surda. O web app é
+        destinado para todas as pessoas que desejam aprender LIBRAS e entender
+        um pouco mais sobre Inclusão de PCD&apos;s na sociedade. O web app
+        aproveita o Guia de Acessibilidade e a Apostila de Libras como fonte
+        para informação de inclusão, assim como, utiliza a API VLIBRAS para as
+        funcionalidades específicas.
+      </Typography>
+      {/* </div> */}
     </>
   );
 };
