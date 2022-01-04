@@ -1,6 +1,6 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Box, Typography } from '@mui/material';
+import { Box } from '@mui/material';
 
 import './style.css';
 import AccessibilityTypography from '../../components/AccessibilityTypography';
