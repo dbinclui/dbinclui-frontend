@@ -4,13 +4,13 @@ import AccessibilityTools from '.';
 import { fireEvent } from '@testing-library/dom';
 
 describe('AccessibilityTools Component', () => {
-  it('Botão de acessibilidade deve ser exibido', () => {
+  it('AccessibilityTools: Botão de acessibilidade deve ser exibido', () => {
     render(<AccessibilityTools />);
     const acessBtn = screen.getByText('Acessibilidade');
     expect(acessBtn).toBeTruthy();
   });
 
-  it('O Modal deve ser apresentado quando clicado no widget', () => {
+  it('AccessibilityTools: O Modal deve ser apresentado quando clicado no widget', () => {
     render(<AccessibilityTools />);
     const acessBtn = screen.getByText('Acessibilidade');
     fireEvent.click(acessBtn);
