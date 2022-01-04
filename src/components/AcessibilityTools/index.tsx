@@ -53,7 +53,7 @@ export const AccessibilityTools: React.FC<
               <Button
                 variant="contained"
                 sx={{
-                  left: '8px',
+                  left: '10px',
                   top: '10px',
                   width: '90%',
                   borderRadius: '20px',
