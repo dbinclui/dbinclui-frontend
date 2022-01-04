@@ -1,9 +1,15 @@
 import React, { useState } from 'react';
 import validateInput from './validator';
-import Button from '@mui/material/Button';
-import Box from '@mui/material/Box';
-import Typography from '@mui/material/Typography';
+import {
+  Button,
+  Box,
+  Typography,
+  Grid,
+  InputLabel,
+  InputBase,
+} from '@mui/material';
 import './styles.css';
+import styles from './styles';
 
 export interface RegisterGuideProps {}
 
@@ -23,39 +29,66 @@ export const RegisterGuide: React.FC<RegisterGuideProps> = (): JSX.Element => {
   }
 
   return (
-    <main className="register-guide-wrapper" role="main">
-      <Box className="register-guide-content" component="section">
-        <header>
-          <Typography variant="h1">CADASTRO DE GUIA</Typography>
-        </header>
-        <section>
-          <Button variant="outlined">Buscar conteúdo digital</Button>
-          <form className="register-guide-form" onSubmit={handleSubmit}>
-            <label htmlFor="titulo">Título</label>
-            <input
+    <Grid container alignItems={'center'} justifyContent={'center'} role="main">
+      <Grid item md={6} sx={styles.content} component="section">
+        <Box sx={styles.header} component="header">
+          <Typography sx={styles.headerTitle} variant="h1">
+            CADASTRO DE GUIA
+          </Typography>
+        </Box>
+        <Box padding={'1rem 3rem'} component="section">
+          <Button variant="contained" sx={styles.buttonDigitalContent}>
+            Buscar conteúdo digital
+          </Button>
+          <Box
+            component="form"
+            onSubmit={handleSubmit}
+            flexDirection={'column'}
+            display={'flex'}
+          >
+            <InputLabel htmlFor="titulo" sx={styles.labelInput}>
+              Título:
+            </InputLabel>
+            <InputBase
               type="text"
               id="titulo"
               name="titulo"
               value={title}
+              sx={styles.input}
               onChange={(event) => setTitle(event.target.value)}
             />
-            <label htmlFor="descricao">Descrição</label>
-            <textarea
+            <InputLabel htmlFor="descricao" sx={styles.labelInput}>
+              Descrição:
+            </InputLabel>
+            <InputBase
+              multiline={true}
+              minRows={5}
               id="descricao"
               name="descricao"
               value={description}
+              sx={styles.input}
               onChange={(event) => setDescription(event.target.value)}
             />
-            <Button sx={{ fontWeight: 700 }} variant="outlined" type="submit">
-              Salvar
-            </Button>
-            <Button variant="outlined" type="reset">
-              Fechar
-            </Button>
-          </form>
-        </section>
-      </Box>
-    </main>
+            <Grid
+              container
+              justifyContent={'space-evenly'}
+              alignItems={'center'}
+            >
+              <Grid item md={6} sx={styles.buttonWrapper}>
+                <Button sx={styles.button} variant="outlined" type="submit">
+                  Salvar
+                </Button>
+              </Grid>
+              <Grid item md={6} sx={styles.buttonWrapper}>
+                <Button sx={styles.button} variant="contained" type="reset">
+                  Fechar
+                </Button>
+              </Grid>
+            </Grid>
+          </Box>
+        </Box>
+      </Grid>
+    </Grid>
   );
 };
 

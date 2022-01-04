@@ -11,8 +11,8 @@ describe('Página de cadastro de nova guia', () => {
   test('Deve mostrar um formulário', () => {
     render(<RegisterGuide />);
 
-    const textoLabelTitulo = 'Título';
-    const textoLabelDescricao = 'Descrição';
+    const textoLabelTitulo = 'Título:';
+    const textoLabelDescricao = 'Descrição:';
 
     const labelTitulo = screen.getByText(textoLabelTitulo);
     const labelDescricao = screen.getByText(textoLabelDescricao);
@@ -29,8 +29,8 @@ describe('Página de cadastro de nova guia', () => {
   test('Deve atualizar o valor dos campos de input quando o valor destes mudar', () => {
     render(<RegisterGuide />);
 
-    const textoLabelTitulo = 'Título';
-    const textoLabelDescricao = 'Descrição';
+    const textoLabelTitulo = 'Título:';
+    const textoLabelDescricao = 'Descrição:';
 
     const input = screen.getByLabelText(textoLabelTitulo);
     const textArea = screen.getByLabelText(textoLabelDescricao);
