@@ -4,12 +4,32 @@ import Button from '@mui/material/Button';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import './styles.css';
+import { CardGuidesResponse, registerGuides } from '../../services/guides';
 
 export interface RegisterGuideProps {}
 
 export const RegisterGuide: React.FC<RegisterGuideProps> = (): JSX.Element => {
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
+  const [error, setError] = useState(false);
+  const [loading, setLoading] = useState(true);
+
+  const registerCards = async () => {
+    const guides: CardGuidesResponse = {
+      title: title,
+      content: description
+    }
+    await registerGuides(guides)
+      .then((response) => {
+        setError(false);
+      })
+      .catch((error) => {
+        setError(true);
+      })
+      .finally(() => {
+        setLoading(false);
+      });
+  };
 
   async function handleSubmit(event: React.FormEvent) {
     event.preventDefault();
@@ -19,6 +39,8 @@ export const RegisterGuide: React.FC<RegisterGuideProps> = (): JSX.Element => {
         title,
         description,
       });
+
+     await registerCards();
     } catch {}
   }
 
