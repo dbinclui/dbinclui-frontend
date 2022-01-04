@@ -11,7 +11,7 @@ import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import Logo from '../svgs/logo';
 import './styles.css';
 
@@ -53,6 +53,8 @@ export const Header: React.FC<HeaderProps> = (): JSX.Element => {
   const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(
     null,
   );
+
+  const navigate = useNavigate();
 
   const handleChangePage = (
     target: React.MouseEvent<HTMLElement>['currentTarget'],
@@ -165,7 +167,7 @@ export const Header: React.FC<HeaderProps> = (): JSX.Element => {
 
           <Box sx={{ flexGrow: 0 }}>
             <Tooltip title="Administrador">
-              <IconButton sx={{ p: 0 }}>
+              <IconButton sx={{ p: 0 }} onClick={() => navigate('admin')}>
                 <Avatar src="/broken-image.jpg" />
               </IconButton>
             </Tooltip>
