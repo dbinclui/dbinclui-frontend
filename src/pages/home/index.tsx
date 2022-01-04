@@ -41,15 +41,8 @@ export const Home: React.FC<HomeProps> = (): JSX.Element => {
             <SearchIcon />
           </IconButton>
         </Paper>
-        {/*<input
-                type="text"
-                className="box-busca"
-                placeholder="pesquise aqui"
-                role="search"
-              />*/}
         <Box
           sx={{
-            /*width: '100vh',*/
             mt: 13,
             mr: 24,
             mb: 13,
@@ -63,62 +56,47 @@ export const Home: React.FC<HomeProps> = (): JSX.Element => {
             sx={{ display: 'flex', justifyContent: 'space-around' }}
           >
             <Grid item>
-              <Typography variant="h3" sx={{ mb: 2, textAlign: 'center' }}>
+              <Typography variant="h5" sx={{ mb: 2, textAlign: 'center' }}>
                 TRADUTOR DE LIBRAS
               </Typography>
               <Button
                 variant="outlined"
                 sx={{
-                  width: '340px',
-                  height: '295px',
+                  width: '228px',
+                  height: '192px',
                   borderRadius: '20px',
                   mb: 2,
                 }}
               ></Button>
-              {/*<Paper
-              sx={{ width: '340px', height: '295px', borderRadius: '20px' }}
-            >
-              Uma Imagem
-            </Paper>*/}
             </Grid>
 
             <Grid item>
-              <Typography variant="h3" sx={{ mb: 2, textAlign: 'center' }}>
+              <Typography variant="h5" sx={{ mb: 2, textAlign: 'center' }}>
                 GUIA DE ACESSIBILIDADE
               </Typography>
               <Button
                 variant="outlined"
                 sx={{
-                  width: '340px',
-                  height: '295px',
+                  width: '228px',
+                  height: '192px',
                   borderRadius: '20px',
                   mb: 2,
                 }}
               ></Button>
-              {/*<Paper
-              sx={{ width: '340px', height: '295px', borderRadius: '20px' }}
-            >
-              Uma Imagem
-            </Paper>*/}
             </Grid>
             <Grid>
-              <Typography variant="h3" sx={{ mb: 2, textAlign: 'center' }}>
+              <Typography variant="h5" sx={{ mb: 2, textAlign: 'center' }}>
                 GUIA DE ACESSIBILIDADE
               </Typography>
               <Button
                 variant="outlined"
                 sx={{
-                  width: '340px',
-                  height: '295px',
+                  width: '228px',
+                  height: '192px',
                   borderRadius: '20px',
                   mb: 2,
                 }}
               ></Button>
-              {/*} <Paper
-              sx={{ width: '340px', height: '295px', borderRadius: '20px' }}
-            >
-              Uma Imagem
-          </Paper>*/}
             </Grid>
           </Grid>
         </Box>
