@@ -4,10 +4,10 @@ import Modal from '@mui/material/Modal';
 import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
 import './styles.css';
 import Counter from './../Counter/index';
-import { StyleModeInterface } from '../../styles/theme';
+// import { StyleModeInterface } from '../../styles/theme';
 
 export interface BtnAcessibilityProps {
-  handleChangeCounter: (styleMode: StyleModeInterface) => void;
+  handleChangeCounter: (styleMode: any) => void;
 }
 
 export const BtnAcessibility: React.FC<BtnAcessibilityProps> = ({
@@ -26,7 +26,7 @@ export const BtnAcessibility: React.FC<BtnAcessibilityProps> = ({
         aria-describedby="modal-modal-description"
       >
         <div className="modal">
-          <Counter
+          {/* <Counter
             handleCounter={(counter) => {
               handleChangeCounter({
                 typography: {
@@ -34,7 +34,7 @@ export const BtnAcessibility: React.FC<BtnAcessibilityProps> = ({
                 },
               });
             }}
-          />
+          /> */}
           <div className="container-btn">
             <Button
               variant="contained"
