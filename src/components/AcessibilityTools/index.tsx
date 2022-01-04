@@ -50,7 +50,18 @@ export const AccessibilityTools: React.FC<
               <div>
                 <Counter {...useCounter} />
               </div>
-              <Button variant="contained">Contraste</Button>
+              <Button
+                variant="contained"
+                sx={{
+                  left: '8px',
+                  top: '10px',
+                  width: '90%',
+                  borderRadius: '20px',
+                  fontSize: '14px',
+                }}
+              >
+                Contraste
+              </Button>
             </Box>
           </Fade>
         </Modal>

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Grid, IconButton, Typography } from '@mui/material';
+import { Grid, Button, Typography } from '@mui/material';
 import RemoveIcon from '@mui/icons-material/Remove';
 import AddIcon from '@mui/icons-material/Add';
 import { UseCounterHook } from '../../hooks/Counter';
@@ -15,23 +15,35 @@ export const Counter: React.FC<CounterProps> = ({
     <>
       <Grid container justifyContent={'center'} alignItems={'center'}>
         <Grid item lg={3}>
-          <IconButton
-            size="large"
-            color="primary"
+          <Button
+            variant="contained"
             onClick={() => remove(counter)}
+            sx={{
+              margin: '0 0 0 -30px',
+              borderRadius: '20px',
+              backgroundColor: 'primary',
+              fontSize: '15px',
+            }}
           >
+            A
             <RemoveIcon />
-          </IconButton>
+          </Button>
         </Grid>
-        <Grid item p={2} lg={3} justifyContent={'center'} alignItems={'center'}>
-          <Typography variant="body1" color="primary">
-            {counter}
-          </Typography>
-        </Grid>
+
         <Grid item lg={3}>
-          <IconButton size="large" color="primary" onClick={() => add(counter)}>
+          <Button
+            variant="contained"
+            onClick={() => add(counter)}
+            sx={{
+              margin: '0 -25px 0 10px',
+              borderRadius: '20px',
+              backgroundColor: 'primary',
+              fontSize: '15px',
+            }}
+          >
+            A
             <AddIcon />
-          </IconButton>
+          </Button>
         </Grid>
       </Grid>
     </>
