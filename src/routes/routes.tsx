@@ -1,12 +1,12 @@
 import React from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import AcessibilityGuide from '../pages/acessibility-guide';
-import DeafCultureGuide from '../pages/deaf-culture-guide';
-import Home from '../pages/home';
-import RegisterGuide from '../pages/register-guide';
-import Error from '../pages/error/404';
-import Admin from '../pages/admin';
-import Layout from '../pages/layout';
+import AcessibilityGuide from '@pages/acessibility-guide';
+import DeafCultureGuide from '@pages/deaf-culture-guide';
+import Home from '@pages/home';
+import RegisterGuide from '@pages/register-guide';
+import Error from '@pages/error/404';
+import Layout from '@pages/layout';
+import Admin from '@pages/admin';
 export interface RoutersProps {}
 
 export const Routers: React.FC<RoutersProps> = (): JSX.Element => {
