@@ -15,7 +15,7 @@ const header: SxProps<Theme> = {
 
 const headerTitle: SxProps<Theme> = {
   color: (theme) => theme.palette.primary.main,
-  fontSize: '1.8rem',
+  fontSize: '1.3rem',
   fontWeight: 'bold',
   textAlign: 'center',
   padding: '2rem 0',
@@ -25,8 +25,10 @@ const buttonDigitalContent: SxProps<Theme> = {
   mr: 0,
   ml: 'auto',
   mb: '0.8rem',
-  fontWeight: 'bold',
   display: 'block',
+  padding: '0.3rem 1rem',
+  fontWeight: '700',
+  textTransform: 'none',
 };
 
 const labelInput: SxProps<Theme> = {
@@ -54,6 +56,8 @@ const buttonWrapper: SxProps<Theme> = {
 const button: SxProps<Theme> = {
   fontWeight: '700',
   padding: '0.5rem 1.5rem',
+  textTransform: 'none',
+  fontSize: '1.2rem',
 };
 
 const styles = {
