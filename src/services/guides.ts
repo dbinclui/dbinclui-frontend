@@ -15,12 +15,3 @@ export const getGuides = async () => {
     throw new Error('Serviço não disponível');
   }
 };
-
-export async function registerGuides(guides: CardGuidesResponse) {
-  
-  try {
-    return api.post(`register-guide`, guides)
-  } catch {
-    throw new Error('Serviço não disponível');
-  }
-};
