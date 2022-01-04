@@ -26,11 +26,7 @@ export const Home: React.FC<HomeProps> = (): JSX.Element => {
               variant="body1"
               className="box-welcome"
             >
-              Bem-vindo ao DBINCLUI, lorem ipsum dolor sit amet, consectetur
-              adipiscing elit. Etiam mattis fringilla dolor, id congue diam
-              rhoncus sit amet. Fusce at lacus metus. Maecenas gravida finibus
-              ligula, vitae lacinia est. Integer tristique libero non nunc
-              faucibus elementum.
+              Bem-vindo ao DBINCLUI é um web app que dissemina a cultura de inclusão dentro da DBserver, com foco na cultura surda. O web app é destinado para todas as pessoas que desejam aprender LIBRAS e entender um pouco mais sobre Inclusão de PCD's na sociedade. O web app aproveita o Guia de Acessibilidade e a Apostila de Libras como fonte para informação de inclusão, assim como, utiliza a API VLIBRAS para as funcionalidades específicas.
             </AccessibilityTypography>
           </Box>
         </section>

@@ -17,6 +17,7 @@ export const Counter: React.FC<CounterProps> = ({
         <Grid item lg={3}>
           <Button
             variant="contained"
+            aria-label="Diminuir fonte"
             onClick={() => remove(counter)}
             sx={{
               margin: '0 0 0 -34px',
@@ -33,6 +34,7 @@ export const Counter: React.FC<CounterProps> = ({
         <Grid item lg={3}>
           <Button
             variant="contained"
+            aria-label="Aumentar fonte"
             onClick={() => add(counter)}
             sx={{
               margin: '0 0 0 10px',

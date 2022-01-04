@@ -39,7 +39,7 @@ export const AccessibilityTools: React.FC<
             onClick={() => setModalOpen(!modalOpen)}
             startIcon={renderArrowIcon()}
           >
-            <Typography variant="body1">Acessibilidade</Typography>
+            <Typography variant="body1" aria-label="Acessibilidade">Acessibilidade</Typography>
           </Button>
         </Box>
       </Box>
@@ -52,6 +52,7 @@ export const AccessibilityTools: React.FC<
               </div>
               <Button
                 variant="contained"
+                aria-label="Mudar contraste da tela"
                 sx={{
                   left: '8px',
                   top: '10px',
