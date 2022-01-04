@@ -1,130 +1,95 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import {
-  Button,
   Container,
   IconButton,
-  InputBase,
+  TextField,
   Typography,
+  Paper,
+  Grid,
 } from '@mui/material';
-import { Paper, Box } from '@mui/material';
-import { Grid } from '@mui/material';
 import SearchIcon from '@mui/icons-material/Search';
-
 import './style.css';
+import CardHome from './CardHome';
 
 export interface HomeProps {}
 
 export const Home: React.FC<HomeProps> = (): JSX.Element => {
   const navigate = useNavigate();
-
   return (
     <>
       <Container>
-        <Box
-          sx={{
-            display: 'grid',
-            alignItems: 'center',
-            justifyContent: 'center',
-            mb: 13,
-          }}
-        >
-          <div className="container-home">
+        <Grid container justifyContent={'center'}>
+          <Grid item py={'75px'} md={9}>
             <Paper
-              component="form"
-              sx={{
-                display: 'flex',
-                alignItems: 'center',
-                width: 1018,
-                borderRadius: '20px',
-              }}
-            >
-              <InputBase
-                sx={{ ml: 1, flex: 1, p: 1 }}
-                placeholder="Pesquise aqui"
-                inputProps={{ 'aria-label': 'pesquise aqui' }}
-              />
-              <IconButton type="submit" sx={{ p: '10px' }} aria-label="search">
-                <SearchIcon />
-              </IconButton>
-            </Paper>
-          </div>
-
-          <Box
-            sx={{
-              margin: '6.5rem 12rem',
-              display: 'flex',
-              justifyContent: 'space-around',
-            }}
-          >
-            <Grid
+              p={'5px'}
+              borderRadius={'1.25rem'}
+              component={Grid}
               container
-              sx={{ display: 'flex', justifyContent: 'space-around' }}
+              flexDirection={'row'}
+              alignItems={'center'}
             >
-              <Grid item>
-                <Typography variant="h5" sx={{ mb: 2, textAlign: 'center' }}>
-                  TRADUTOR DE LIBRAS
-                </Typography>
-                <Button
-                  variant="outlined"
+              <Grid item md={11}>
+                <TextField
+                  size="small"
+                  fullWidth
+                  placeholder="Pesquise aqui"
                   sx={{
-                    width: '14.25rem',
-                    height: '12rem',
-                    borderRadius: '1.25rem',
-                    mb: 2,
+                    '&::placeholder': {
+                      color: '#222',
+                    },
                   }}
-                  tabIndex={2}
-                  aria-label="TRADUTOR DE LIBRAS"
-                  onClick={() => navigate('/tradutor')}
-                ></Button>
+                  inputProps={{ 'aria-label': 'pesquise aqui' }}
+                />
               </Grid>
-
-              <Grid item>
-                <Typography variant="h5" sx={{ mb: 2, textAlign: 'center' }}>
-                  GUIA DE ACESSIBILIDADE
-                </Typography>
-                <Button
-                  variant="outlined"
+              <Grid item md={1}>
+                <IconButton
+                  type="submit"
                   sx={{
-                    width: '14.25rem',
-                    height: '12rem',
-                    borderRadius: '1.25rem',
-                    mb: 2,
+                    width: '100%',
+                    borderRadius: '4px',
                   }}
-                  tabIndex={3}
-                  aria-label="GUIA DE ACESSIBILIDADE"
-                  onClick={() => navigate('/guia-acessibilidade')}
-                ></Button>
+                  aria-label="search"
+                >
+                  <SearchIcon />
+                </IconButton>
               </Grid>
-              <Grid>
-                <Typography variant="h5" sx={{ mb: 2, textAlign: 'center' }}>
-                  GUIA DE ACESSIBILIDADE
-                </Typography>
-                <Button
-                  variant="outlined"
-                  sx={{
-                    width: '14.25rem',
-                    height: '12rem',
-                    borderRadius: '1.25rem',
-                    mb: 2,
-                  }}
-                  tabIndex={4}
-                  aria-label="GUIA DA CULTURA SURDA"
-                  onClick={() => navigate('/guia-cultura-surda')}
-                ></Button>
-              </Grid>
+            </Paper>
+          </Grid>
+          <Grid item md={12}>
+            <Grid container justifyContent={'center'}>
+              <CardHome
+                title="Traduto de libras"
+                path="/tradutor"
+                navigate={navigate}
+              />
+              <CardHome
+                title="Guia de acessibilidade"
+                path="/guia-acessibilidade"
+                navigate={navigate}
+              />
+              <CardHome
+                title="Guia da cultura surda"
+                path="/guia-cultura-surda"
+                navigate={navigate}
+              />
             </Grid>
-          </Box>
-          <Typography sx={{ mr: 18, ml: 18, textAlign: 'center' }}>
-            Bem-vindo ao DB INCLUI, o DB INCLUI é um web app que dissemina a
-            cultura de inclusão dentro da DBserver, com foco na cultura surda. O
-            web app é destinado para todas as pessoas que desejam aprender
-            LIBRAS e entender um pouco mais sobre Inclusão de PCD&apos;s na
-            sociedade. O web app aproveita o Guia de Acessibilidade e a Apostila
-            de Libras como fonte para informação de inclusão, assim como,
-            utiliza a API VLIBRAS para as funcionalidades específicas.
-          </Typography>
-        </Box>
+          </Grid>
+          <Grid item md={12} py={'45px'} px={'20px'} justifyContent={'center'}>
+            <Grid maxWidth={'800px'} m="auto">
+              <Typography textAlign={'center'}>
+                Bem-vindo ao DB INCLUI, o DB INCLUI é um web app que dissemina a
+                cultura de inclusão dentro da DBserver, com foco na cultura
+                surda. O web app é destinado para todas as pessoas que desejam
+                aprender LIBRAS e entender um pouco mais sobre Inclusão de
+                PCD&apos;s na sociedade. O web app aproveita o Guia de
+                Acessibilidade e a Apostila de Libras como fonte para informação
+                de inclusão, assim como, utiliza a API VLIBRAS para as
+                funcionalidades específicas.
+              </Typography>
+            </Grid>
+          </Grid>
+        </Grid>
       </Container>
     </>
   );
