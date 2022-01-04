@@ -3,7 +3,7 @@ import Card from '../../components/Card';
 import './styles.css';
 import { useEffect, useState } from 'react';
 import { CardGuidesResponse, getGuides } from '../../services/guides';
-import { Typography } from '@mui/material';
+import AccessibilityTypography from '../../components/AccessibilityTypography';
 
 export default function AcessibilityGuide() {
   const [cards, setCards] = useState<CardGuidesResponse[]>([]);
@@ -45,9 +45,9 @@ export default function AcessibilityGuide() {
       <div></div>
     </div>
   ) : error ? (
-    <Typography variant="h3" className="error">
+    <AccessibilityTypography variant="h1" className="error">
       Desculpe, ocorreu um erro ao carregar a página!
-    </Typography>
+    </AccessibilityTypography>
   ) : (
     <div>
       <h1 className="page-title" style={{ textAlign: 'center' }}>
