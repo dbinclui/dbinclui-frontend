@@ -73,7 +73,8 @@ export const Header: React.FC<HeaderProps> = (): JSX.Element => {
           <Typography
             variant="h6"
             noWrap
-            component="div"
+            component={Link}
+            to="/"
             sx={{ mr: 2, display: { xs: 'none', md: 'flex' } }}
           >
             <Logo/>
@@ -111,7 +112,7 @@ export const Header: React.FC<HeaderProps> = (): JSX.Element => {
               }}
             >
               {MenuItems.map((item, key) => 
-              <MenuItem key={key} to={item.href} component={Link}>
+              <MenuItem key={key}>
                 <Typography textAlign="center" 
                 color="black" 
                 className="menu-item-mobile"
