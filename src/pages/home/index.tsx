@@ -15,18 +15,25 @@ export const Home: React.FC<HomeProps> = (): JSX.Element => {
       <main className="conteudo" role="main">
         <section className="container-home">
           <input
+            tabIndex={1}
             type="text"
             className="box-busca"
             placeholder="pesquise aqui"
             role="search"
           />
-          <Box p={5}>
+          <Box role="document" tabIndex={2} p={5}>
             <AccessibilityTypography
               align="center"
               variant="body1"
               className="box-welcome"
             >
-              Bem-vindo ao DBINCLUI é um web app que dissemina a cultura de inclusão dentro da DBserver, com foco na cultura surda. O web app é destinado para todas as pessoas que desejam aprender LIBRAS e entender um pouco mais sobre Inclusão de PCD's na sociedade. O web app aproveita o Guia de Acessibilidade e a Apostila de Libras como fonte para informação de inclusão, assim como, utiliza a API VLIBRAS para as funcionalidades específicas.
+              Bem-vindo ao DBINCLUI é um web app que dissemina a cultura de
+              inclusão dentro da DBserver, com foco na cultura surda. O web app
+              é destinado para todas as pessoas que desejam aprender LIBRAS e
+              entender um pouco mais sobre Inclusão de PCDs na sociedade. O web
+              app aproveita o Guia de Acessibilidade e a Apostila de Libras como
+              fonte para informação de inclusão, assim como, utiliza a API
+              VLIBRAS para as funcionalidades específicas.
             </AccessibilityTypography>
           </Box>
         </section>
@@ -36,7 +43,7 @@ export const Home: React.FC<HomeProps> = (): JSX.Element => {
         <div
           className="box"
           role="button"
-          tabIndex={1}
+          tabIndex={3}
           aria-label="TRADUTOR DE LIBRAS"
           onClick={() => navigate('/tradutor')}
         >
@@ -57,7 +64,7 @@ export const Home: React.FC<HomeProps> = (): JSX.Element => {
         <div
           className="box"
           role="button"
-          tabIndex={2}
+          tabIndex={4}
           aria-label="GUIA DE ACESSIBILIDADE"
           onClick={() => navigate('/guia-acessibilidade')}
         >
@@ -77,7 +84,7 @@ export const Home: React.FC<HomeProps> = (): JSX.Element => {
         <div
           className="box"
           role="button"
-          tabIndex={3}
+          tabIndex={5}
           aria-label="GUIA DA CULTURA SURDA"
           onClick={() => navigate('/guia-cultura-surda')}
         >
