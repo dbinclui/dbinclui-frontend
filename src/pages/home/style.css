@@ -23,10 +23,14 @@
 
 .box-welcome {
   padding: 30px;
-  font-size: 18px;
   text-align: center;
+<<<<<<< HEAD
   margin-top: 6.6875rem;
   margin-bottom: 6.8125rem;
+=======
+  margin-top: 2rem;
+  margin-bottom: 5rem;
+>>>>>>> 9393ee1594e555f47ac8b27cf15e81acb01a239f
 }
 
 .container-center {
