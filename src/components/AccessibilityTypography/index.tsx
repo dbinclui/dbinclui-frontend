@@ -1,7 +1,7 @@
+import React, { useContext, useMemo } from 'react';
 import { Typography, TypographyProps } from '@mui/material';
-import React, { useContext, useRef } from 'react';
 import { AccessibilityContext } from '../../contexts/AccessibilityContext';
-import { getFontSize } from './utils';
+import { getFontSize, getDefaultFontSize } from './utils';
 
 export interface AccessibilityTypographyProps extends TypographyProps {
   className?: string;
@@ -10,17 +10,22 @@ export interface AccessibilityTypographyProps extends TypographyProps {
 export const AccessibilityTypography: React.FC<
   AccessibilityTypographyProps
 > = ({ children, ...props }): JSX.Element => {
-  const textRef = useRef<HTMLElement>(null);
   const context = useContext(AccessibilityContext);
+
+  const fontSize = useMemo(
+    () => (font: string | number) =>
+      getFontSize(font, context.state.fontSizeScale),
+    [context.state.fontSizeScale],
+  );
+
   return (
     <Typography
       sx={{
         transition: '.3s ease',
+        fontSize: (theme) =>
+          fontSize(getDefaultFontSize({ variant: props.variant }, theme)),
       }}
-      variant="body1"
-      ref={textRef}
       {...props}
-      fontSize={getFontSize(textRef.current, context.state.fontSizeScale)}
     >
       {children}
     </Typography>

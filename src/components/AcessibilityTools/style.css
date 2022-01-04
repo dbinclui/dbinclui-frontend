@@ -1,15 +1,16 @@
 .widget-accessibility-tools {
   position: fixed;
   top: 50vh;
-  right: -68px;
+  right: -72px;
   background: #fff;
   border-radius: 0 0 15px 15px;
   transform: rotate(90deg);
   z-index: 99999;
+  width: 180px;
 }
 
 .modal-accessibility-tools {
-  /* width: 200px; */
+  width: 200px;
   height: auto;
   background: #fff;
   padding: 10px;
@@ -30,5 +31,6 @@
     transform: rotate(0);
     border-radius: 0 0 15px 15px;
     left: calc(50% - 170.67px / 2);
+    font-size: 14px;
   }
 }

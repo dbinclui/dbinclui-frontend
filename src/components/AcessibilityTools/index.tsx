@@ -15,6 +15,7 @@ export const AccessibilityTools: React.FC<
 > = (): JSX.Element => {
   const [modalOpen, setModalOpen] = useState(false);
   const contextAcessibility = useContext(AccessibilityContext);
+
   const renderArrowIcon = () =>
     modalOpen ? <KeyboardArrowUpIcon /> : <KeyboardArrowDownIcon />;
 

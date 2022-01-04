@@ -21,7 +21,11 @@ export const Home: React.FC<HomeProps> = (): JSX.Element => {
             role="search"
           />
           <Box p={5}>
-            <AccessibilityTypography variant="body1" className="box-welcome">
+            <AccessibilityTypography
+              align="center"
+              variant="body1"
+              className="box-welcome"
+            >
               Bem-vindo ao DBINCLUI, lorem ipsum dolor sit amet, consectetur
               adipiscing elit. Etiam mattis fringilla dolor, id congue diam
               rhoncus sit amet. Fusce at lacus metus. Maecenas gravida finibus
@@ -40,7 +44,12 @@ export const Home: React.FC<HomeProps> = (): JSX.Element => {
           aria-label="TRADUTOR DE LIBRAS"
           onClick={() => navigate('/tradutor')}
         >
-          <AccessibilityTypography variant="h3" className="title" id="card1">
+          <AccessibilityTypography
+            align="center"
+            variant="h3"
+            className="title"
+            id="card1"
+          >
             TRADUTOR DE LIBRAS
           </AccessibilityTypography>
 
@@ -56,7 +65,12 @@ export const Home: React.FC<HomeProps> = (): JSX.Element => {
           aria-label="GUIA DE ACESSIBILIDADE"
           onClick={() => navigate('/guia-acessibilidade')}
         >
-          <AccessibilityTypography variant="h3" className="title" id="card2">
+          <AccessibilityTypography
+            align="center"
+            variant="h3"
+            className="title"
+            id="card2"
+          >
             GUIA DE ACESSIBILIDADE
           </AccessibilityTypography>
           <div className="box-libras">
@@ -71,7 +85,12 @@ export const Home: React.FC<HomeProps> = (): JSX.Element => {
           aria-label="GUIA DA CULTURA SURDA"
           onClick={() => navigate('/guia-cultura-surda')}
         >
-          <AccessibilityTypography variant="h3" className="title" id="card3">
+          <AccessibilityTypography
+            align="center"
+            variant="h3"
+            className="title"
+            id="card3"
+          >
             GUIA DA CULTURA SURDA
           </AccessibilityTypography>
           <div className="box-libras">

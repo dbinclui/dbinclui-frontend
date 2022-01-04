@@ -31,16 +31,16 @@ const theme = createTheme({
     fontFamily: 'verdana',
     h1: getTitleStyle('72px'),
     h2: getTitleStyle('32px'),
-    h3: getTitleStyle('24'),
-    h4: getTitleStyle('18'),
-    h5: getTitleStyle('16'),
-    h6: getTitleStyle('14'),
+    h3: getTitleStyle('24px'),
+    h4: getTitleStyle('18px'),
+    h5: getTitleStyle('16px'),
+    h6: getTitleStyle('14px'),
     body1: {
       fontSize: '16px',
-      lineHeight: '32px',
     },
     body2: {
       fontSize: '14px',
+      lineHeight: '28px',
     },
   },
   components: {
