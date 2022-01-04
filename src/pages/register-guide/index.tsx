@@ -8,7 +8,6 @@ import {
   InputLabel,
   InputBase,
 } from '@mui/material';
-import './styles.css';
 import styles from './styles';
 
 export interface RegisterGuideProps {}
@@ -37,7 +36,11 @@ export const RegisterGuide: React.FC<RegisterGuideProps> = (): JSX.Element => {
           </Typography>
         </Box>
         <Box padding={'1rem 3rem'} component="section">
-          <Button variant="contained" sx={styles.buttonDigitalContent}>
+          <Button
+            variant="contained"
+            sx={styles.buttonDigitalContent}
+            role="button"
+          >
             Buscar conteúdo digital
           </Button>
           <Box
@@ -46,25 +49,39 @@ export const RegisterGuide: React.FC<RegisterGuideProps> = (): JSX.Element => {
             flexDirection={'column'}
             display={'flex'}
           >
-            <InputLabel htmlFor="titulo" sx={styles.labelInput}>
+            <InputLabel
+              htmlFor="titulo"
+              id="tituloLabel"
+              sx={styles.labelInput}
+            >
               Título:
             </InputLabel>
             <InputBase
               type="text"
               id="titulo"
               name="titulo"
+              role="input"
+              required
+              aria-labelledby="tituloLabel"
               value={title}
               sx={styles.input}
               onChange={(event) => setTitle(event.target.value)}
             />
-            <InputLabel htmlFor="descricao" sx={styles.labelInput}>
+            <InputLabel
+              htmlFor="descricao"
+              sx={styles.labelInput}
+              id="descricaoLabel"
+            >
               Descrição:
             </InputLabel>
             <InputBase
               multiline={true}
               minRows={5}
+              role="input"
               id="descricao"
               name="descricao"
+              aria-labelledby="descricaoLabel"
+              required
               value={description}
               sx={styles.input}
               onChange={(event) => setDescription(event.target.value)}
@@ -75,12 +92,22 @@ export const RegisterGuide: React.FC<RegisterGuideProps> = (): JSX.Element => {
               alignItems={'center'}
             >
               <Grid item md={6} sx={styles.buttonWrapper}>
-                <Button sx={styles.button} variant="outlined" type="submit">
+                <Button
+                  sx={styles.button}
+                  variant="outlined"
+                  type="submit"
+                  role="button"
+                >
                   Salvar
                 </Button>
               </Grid>
               <Grid item md={6} sx={styles.buttonWrapper}>
-                <Button sx={styles.button} variant="contained" type="reset">
+                <Button
+                  sx={styles.button}
+                  variant="contained"
+                  type="reset"
+                  role="button"
+                >
                   Fechar
                 </Button>
               </Grid>

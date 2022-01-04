@@ -17,8 +17,12 @@ describe('Página de cadastro de nova guia', () => {
     const labelTitulo = screen.getByText(textoLabelTitulo);
     const labelDescricao = screen.getByText(textoLabelDescricao);
 
-    const input = screen.getByLabelText(textoLabelTitulo);
-    const textArea = screen.getByLabelText(textoLabelDescricao);
+    const input = screen.getByLabelText(textoLabelTitulo, {
+      selector: 'input',
+    });
+    const textArea = screen.getByLabelText(textoLabelDescricao, {
+      selector: 'textarea',
+    });
 
     expect(labelTitulo).toBeTruthy();
     expect(labelDescricao).toBeTruthy();
@@ -32,8 +36,12 @@ describe('Página de cadastro de nova guia', () => {
     const textoLabelTitulo = 'Título:';
     const textoLabelDescricao = 'Descrição:';
 
-    const input = screen.getByLabelText(textoLabelTitulo);
-    const textArea = screen.getByLabelText(textoLabelDescricao);
+    const input = screen.getByLabelText(textoLabelTitulo, {
+      selector: 'input',
+    });
+    const textArea = screen.getByLabelText(textoLabelDescricao, {
+      selector: 'textarea',
+    });
 
     const inputText = 'Esse é o texto presente no elemento input';
     const textAreaText =
