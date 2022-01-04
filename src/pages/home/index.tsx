@@ -1,6 +1,6 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Typography } from '@mui/material';
+import { Button, Typography } from '@mui/material';
 import { Paper, Box } from '@mui/material';
 import { Grid } from '@mui/material';
 
@@ -26,22 +26,61 @@ export const Home: React.FC<HomeProps> = (): JSX.Element => {
 
       <Box
         sx={{
-          width: 300,
-          height: 300,
+          /*width: '100vh',*/
+          mt: 6,
+          mr: 24,
+          mb: 13,
+          ml: 24,
           display: 'flex',
-          justifyContent: 'center',
-          backgroundColor: 'primary.dark',
+          justifyContent: 'space-around',
         }}
       >
-        <Grid container columnSpacing={15} xs={4}>
-          <Grid item xs={4}>
-            <Paper sx={{ m: 5 }}>xs=6 md=8</Paper>
+        <Grid
+          container
+          sx={{ display: 'flex', justifyContent: 'space-around' }}
+        >
+          <Grid item>
+            <Typography variant="h3" sx={{ mb: 2, textAlign: 'center' }}>
+              TRADUTOR DE LIBRAS
+            </Typography>
+            <Button
+              variant="outlined"
+              sx={{ width: '340px', height: '295px', borderRadius: '20px' }}
+            ></Button>
+            {/*<Paper
+              sx={{ width: '340px', height: '295px', borderRadius: '20px' }}
+            >
+              Uma Imagem
+            </Paper>*/}
           </Grid>
-          <Grid item xs={4}>
-            <Paper>xs=6 md=8</Paper>
+
+          <Grid item>
+            <Typography variant="h3" sx={{ mb: 2, textAlign: 'center' }}>
+              GUIA DE ACESSIBILIDADE
+            </Typography>
+            <Button
+              variant="outlined"
+              sx={{ width: '340px', height: '295px', borderRadius: '20px' }}
+            ></Button>
+            {/*<Paper
+              sx={{ width: '340px', height: '295px', borderRadius: '20px' }}
+            >
+              Uma Imagem
+            </Paper>*/}
           </Grid>
-          <Grid item xs={4}>
-            <Paper>xs=6 md=8</Paper>
+          <Grid>
+            <Typography variant="h3" sx={{ mb: 2, textAlign: 'center' }}>
+              GUIA DE ACESSIBILIDADE
+            </Typography>
+            <Button
+              variant="outlined"
+              sx={{ width: '340px', height: '295px', borderRadius: '20px' }}
+            ></Button>
+            {/*} <Paper
+              sx={{ width: '340px', height: '295px', borderRadius: '20px' }}
+            >
+              Uma Imagem
+          </Paper>*/}
           </Grid>
         </Grid>
       </Box>
@@ -95,7 +134,7 @@ export const Home: React.FC<HomeProps> = (): JSX.Element => {
           <h1>teste</h1> *
         </div> */}
       <div className="box-welcome">
-        <Typography>
+        <Typography sx={{ mr: 18, ml: 18 }}>
           Bem-vindo ao DB INCLUI, o DB INCLUI é um web app que dissemina a
           cultura de inclusão dentro da DBserver, com foco na cultura surda. O
           web app é destinado para todas as pessoas que desejam aprender LIBRAS
