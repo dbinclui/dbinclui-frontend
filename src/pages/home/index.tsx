@@ -24,16 +24,18 @@ export const Home: React.FC<HomeProps> = (): JSX.Element => {
         </section>
       </main>
 
-      <Box sx={{
-        width: 300,
-        height: 300,
-        display: "flex",
-        justifyContent: "center",
-        backgroundColor: 'primary.dark',
-      }}>
+      <Box
+        sx={{
+          width: 300,
+          height: 300,
+          display: 'flex',
+          justifyContent: 'center',
+          backgroundColor: 'primary.dark',
+        }}
+      >
         <Grid container columnSpacing={15} xs={4}>
           <Grid item xs={4}>
-            <Paper sx={{m:5}}>xs=6 md=8</Paper>
+            <Paper sx={{ m: 5 }}>xs=6 md=8</Paper>
           </Grid>
           <Grid item xs={4}>
             <Paper>xs=6 md=8</Paper>
@@ -94,10 +96,13 @@ export const Home: React.FC<HomeProps> = (): JSX.Element => {
         </div> */}
       <div className="box-welcome">
         <Typography>
-          Bem-vindo ao DBINCLUI, lorem ipsum dolor sit amet, consectetur
-          adipiscing elit. Etiam mattis fringilla dolor, id congue diam rhoncus
-          sit amet. Fusce at lacus metus. Maecenas gravida finibus ligula, vitae
-          lacinia est. Integer tristique libero non nunc faucibus elementum.
+          Bem-vindo ao DB INCLUI, o DB INCLUI é um web app que dissemina a
+          cultura de inclusão dentro da DBserver, com foco na cultura surda. O
+          web app é destinado para todas as pessoas que desejam aprender LIBRAS
+          e entender um pouco mais sobre Inclusão de PCD&apos;s na sociedade. O
+          web app aproveita o Guia de Acessibilidade e a Apostila de Libras como
+          fonte para informação de inclusão, assim como, utiliza a API VLIBRAS
+          para as funcionalidades específicas.
         </Typography>
       </div>
     </>
