@@ -4,10 +4,12 @@ import { screen } from '@testing-library/dom';
 import Header, { MenuItems } from './index';
 import '@testing-library/jest-dom/extend-expect';
 
+const mockedNavigate = jest.fn();
 jest.mock('react-router-dom', () => {
   const useHref = jest.fn();
   return {
     useHref,
+    useNavigate: () => mockedNavigate,
   };
 });
 
@@ -46,5 +48,19 @@ describe('Componente Header', () => {
     expect(button).toHaveTextContent(title);
     expect(button.getAttribute('to')).toBe(href);
     fireEvent.click(button);
+  });
+
+  test('Quando o avatar for clicado, o usuário deve ser levado para a página de administração', () => {
+    render(<Header />);
+
+    // O label text nesse caso é o texto do tooltip
+    // O MUI define uma tag aria-label com o texto do tooltip no elemento
+    // que ele envolve
+    const button = screen.getByLabelText('Administrador');
+
+    fireEvent.click(button);
+
+    expect(mockedNavigate).toBeCalled();
+    expect(mockedNavigate).toBeCalledWith('admin');
   });
 });
