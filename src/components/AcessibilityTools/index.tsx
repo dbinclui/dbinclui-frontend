@@ -54,7 +54,7 @@ export const AccessibilityTools: React.FC<
                 variant="contained"
                 aria-label="Mudar contraste da tela"
                 sx={{
-                  left: '8px',
+                  left: '10px',
                   top: '10px',
                   width: '90%',
                   borderRadius: '20px',
