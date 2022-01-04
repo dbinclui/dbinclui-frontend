@@ -1,5 +1,4 @@
 import React from 'react';
-import { useNavigate } from 'react-router-dom';
 import {
   Container,
   IconButton,
@@ -10,12 +9,26 @@ import {
 } from '@mui/material';
 import SearchIcon from '@mui/icons-material/Search';
 import './style.css';
-import CardHome from './CardHome';
+import CardHome, { CardHomeProps } from './CardHome';
 
 export interface HomeProps {}
 
+export const CardItems: CardHomeProps[] = [
+  {
+    title: 'Traduto de libras',
+    path: '/tradutor',
+  },
+  {
+    title: 'Guia de acessibilidade',
+    path: '/guia-acessibilidade',
+  },
+  {
+    title: 'Guia da cultura surda',
+    path: '/guia-cultura-surda',
+  },
+];
+
 export const Home: React.FC<HomeProps> = (): JSX.Element => {
-  const navigate = useNavigate();
   return (
     <>
       <Container>
@@ -58,21 +71,9 @@ export const Home: React.FC<HomeProps> = (): JSX.Element => {
           </Grid>
           <Grid item md={12}>
             <Grid container justifyContent={'center'}>
-              <CardHome
-                title="Traduto de libras"
-                path="/tradutor"
-                navigate={navigate}
-              />
-              <CardHome
-                title="Guia de acessibilidade"
-                path="/guia-acessibilidade"
-                navigate={navigate}
-              />
-              <CardHome
-                title="Guia da cultura surda"
-                path="/guia-cultura-surda"
-                navigate={navigate}
-              />
+              {CardItems.map((item, key) => (
+                <CardHome title={item.title} path={item.path} key={key} />
+              ))}
             </Grid>
           </Grid>
           <Grid item md={12} py={'45px'} px={'20px'} justifyContent={'center'}>
