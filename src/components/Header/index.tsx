@@ -71,8 +71,13 @@ export const Header: React.FC<HeaderProps> = (): JSX.Element => {
   };
 
   return (
-    <AppBar position="static" className="app-header" elevation={0}>
-      <Container maxWidth="xl">
+    <AppBar
+      role="header"
+      position="static"
+      className="app-header"
+      elevation={0}
+    >
+      <Container>
         <Toolbar disableGutters className="toolbar">
           <Typography
             variant="h6"
