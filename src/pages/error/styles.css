@@ -13,3 +13,9 @@
   margin: 0 auto;
   margin-bottom: 10px;
 }
+
+@media (max-width: 480px) {
+  .icon-erro {
+    max-width: 280px;
+  }
+}
