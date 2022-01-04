@@ -1,9 +1,9 @@
 import api from './api';
 
 export interface CardGuidesResponse {
-  id: number;
+  id?: number;
   title: string;
-  contents: string;
+  content: string;
 }
 
 export const getGuides = async () => {
