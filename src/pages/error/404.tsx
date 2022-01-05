@@ -7,8 +7,8 @@ export interface ErrorProps {}
 export const Error: React.FC<ErrorProps> = (): JSX.Element => {
   return (
     <>
-      <div className="page-erros">
-        <div className="icon-erro">
+      <div className="page-error">
+        <div className="icon-error">
           <Error404 />
         </div>
         <div>
