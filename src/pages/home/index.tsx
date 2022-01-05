@@ -1,86 +1,102 @@
 import React from 'react';
-import { useNavigate } from 'react-router-dom';
-import { Typography } from '@mui/material';
-
+import {
+  Container,
+  IconButton,
+  TextField,
+  Typography,
+  Paper,
+  Grid,
+} from '@mui/material';
+import SearchIcon from '@mui/icons-material/Search';
 import './style.css';
+import CardHome, { CardHomeProps } from '@components/CardHome';
 
 export interface HomeProps {}
 
-export const Home: React.FC<HomeProps> = (): JSX.Element => {
-  const navigate = useNavigate();
+export const CardItems: CardHomeProps[] = [
+  {
+    title: 'Tradutor de libras',
+    path: '/tradutor',
+  },
+  {
+    title: 'Guia de acessibilidade',
+    path: '/guia-acessibilidade',
+  },
+  {
+    title: 'Guia da cultura surda',
+    path: '/guia-cultura-surda',
+  },
+];
 
+export const Home: React.FC<HomeProps> = (): JSX.Element => {
   return (
     <>
-      <main className="conteudo" role="main">
-        <section className="container-home">
-          <input
-            type="text"
-            className="box-busca"
-            placeholder="pesquise aqui"
-            role="search"
-          />
-
-          <Typography variant="body1" className="box-welcome">
-            Bem-vindo ao DBINCLUI, lorem ipsum dolor sit amet, consectetur
-            adipiscing elit. Etiam mattis fringilla dolor, id congue diam
-            rhoncus sit amet. Fusce at lacus metus. Maecenas gravida finibus
-            ligula, vitae lacinia est. Integer tristique libero non nunc
-            faucibus elementum.
-          </Typography>
-        </section>
-      </main>
-
-      <section className="container-center">
-        <div
-          className="box"
-          role="button"
-          tabIndex={1}
-          aria-label="TRADUTOR DE LIBRAS"
-          onClick={() => navigate('/tradutor')}
-        >
-          <Typography variant="h3" className="title" id="card1">
-            TRADUTOR DE LIBRAS
-          </Typography>
-
-          <div className="box-libras">
-            <img src="" alt="" />
-          </div>
-        </div>
-
-        <div
-          className="box"
-          role="button"
-          tabIndex={2}
-          aria-label="GUIA DE ACESSIBILIDADE"
-          onClick={() => navigate('/guia-acessibilidade')}
-        >
-          <Typography variant="h3" className="title" id="card2">
-            GUIA DE ACESSIBILIDADE
-          </Typography>
-          <div className="box-libras">
-            <img src="" alt="" />
-          </div>
-        </div>
-
-        <div
-          className="box"
-          role="button"
-          tabIndex={3}
-          aria-label="GUIA DA CULTURA SURDA"
-          onClick={() => navigate('/guia-cultura-surda')}
-        >
-          <Typography variant="h3" className="title" id="card3">
-            GUIA DA CULTURA SURDA
-          </Typography>
-          <div className="box-libras">
-            <img src="" alt="" />
-          </div>
-          {/* <h1>teste</h1>
-          <h1>teste</h1>
-          <h1>teste</h1>
-          <h1>teste</h1> */}
-        </div>
-      </section>
+      <Container>
+        <Grid container justifyContent={'center'}>
+          <Grid item py={'75px'} md={9}>
+            <Paper
+              p={'5px'}
+              borderRadius={'1.25rem'}
+              component={Grid}
+              container
+              flexDirection={'row'}
+              alignItems={'center'}
+            >
+              <Grid item md={11}>
+                <TextField
+                  size="small"
+                  fullWidth
+                  placeholder="Pesquise aqui"
+                  sx={{
+                    '&::placeholder': {
+                      color: '#222',
+                    },
+                  }}
+                  inputProps={{ 'aria-label': 'pesquise aqui' }}
+                />
+              </Grid>
+              <Grid item md={1}>
+                <IconButton
+                  type="submit"
+                  sx={{
+                    width: '100%',
+                    borderRadius: '4px',
+                  }}
+                  aria-label="search"
+                >
+                  <SearchIcon />
+                </IconButton>
+              </Grid>
+            </Paper>
+          </Grid>
+          <Grid item md={12}>
+            <Grid container justifyContent={'center'}>
+              {CardItems.map((item, key) => (
+                <CardHome
+                  title={item.title}
+                  path={item.path}
+                  key={key}
+                  tabIndex={key}
+                />
+              ))}
+            </Grid>
+          </Grid>
+          <Grid item md={12} py={'45px'} px={'20px'} justifyContent={'center'}>
+            <Grid maxWidth={'800px'} m="auto">
+              <Typography textAlign={'center'}>
+                Bem-vindo ao DB INCLUI, o DB INCLUI é um web app que dissemina a
+                cultura de inclusão dentro da DBserver, com foco na cultura
+                surda. O web app é destinado para todas as pessoas que desejam
+                aprender LIBRAS e entender um pouco mais sobre Inclusão de
+                PCD&apos;s na sociedade. O web app aproveita o Guia de
+                Acessibilidade e a Apostila de Libras como fonte para informação
+                de inclusão, assim como, utiliza a API VLIBRAS para as
+                funcionalidades específicas.
+              </Typography>
+            </Grid>
+          </Grid>
+        </Grid>
+      </Container>
     </>
   );
 };

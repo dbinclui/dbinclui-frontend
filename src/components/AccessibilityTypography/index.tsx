@@ -1,0 +1,35 @@
+import React, { useContext, useMemo } from 'react';
+import { Typography, TypographyProps } from '@mui/material';
+import { AccessibilityContext } from '@contexts/AccessibilityContext';
+import { getFontSize, getDefaultFontSize } from './utils';
+
+export interface AccessibilityTypographyProps extends TypographyProps {
+  className?: string;
+}
+
+export const AccessibilityTypography: React.FC<
+  AccessibilityTypographyProps
+> = ({ children, ...props }): JSX.Element => {
+  const context = useContext(AccessibilityContext);
+
+  const fontSize = useMemo(
+    () => (font: string | number) =>
+      getFontSize(font, context.state.fontSizeScale),
+    [context.state.fontSizeScale],
+  );
+
+  return (
+    <Typography
+      sx={{
+        transition: '.3s ease',
+        fontSize: (theme) =>
+          fontSize(getDefaultFontSize({ variant: props.variant }, theme)),
+      }}
+      {...props}
+    >
+      {children}
+    </Typography>
+  );
+};
+
+export default AccessibilityTypography;
