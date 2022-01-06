@@ -3,6 +3,9 @@ import React from 'react';
 export const Error404 = () => {
   return (
     <svg
+      role="img"
+      aria-label="IMAGEM ERRO 404"
+      tabIndex={0}
       id="Layer_1"
       data-name="Layer 1"
       xmlns="http://www.w3.org/2000/svg"

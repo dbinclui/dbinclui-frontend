@@ -10,9 +10,13 @@ export const Error: React.FC<ErrorProps> = (): JSX.Element => {
       <div className="page-error">
         <div className="icon-error">
           <Error404 />
-        </div>
-        <div>
-          <AccessibilityTypography variant="h2" className="box-p">
+          <div />
+          <AccessibilityTypography
+            tabIndex={0}
+            variant="h2"
+            className="box-p"
+            aria-label="DESCULPE, A PÁGINA NÃO FOI ENCONTRADA"
+          >
             Desculpe, a página não foi encontrada!
           </AccessibilityTypography>
         </div>
