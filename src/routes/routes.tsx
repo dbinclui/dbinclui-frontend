@@ -7,6 +7,7 @@ import RegisterGuide from '@pages/register-guide';
 import Error from '@pages/error/404';
 import Layout from '@pages/layout';
 import Admin from '@pages/admin';
+import RegisterCategory from '@pages/register-category';
 export interface RoutersProps {}
 
 export const Routers: React.FC<RoutersProps> = (): JSX.Element => {
@@ -20,6 +21,7 @@ export const Routers: React.FC<RoutersProps> = (): JSX.Element => {
             <Route path="guia-cultura-surda" element={<DeafCultureGuide />} />
             <Route path="admin" element={<Admin />} />
             <Route path="admin/cadastrar-guia" element={<RegisterGuide />} />
+            <Route path="admin/cadastrar-categoria" element={<RegisterCategory />} />
             <Route path="*" element={<Error />} />
           </Route>
         </Routes>
