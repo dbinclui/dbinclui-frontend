@@ -1,6 +1,7 @@
 import React from 'react';
 import { Grid, Paper, Typography } from '@mui/material';
 import { Link } from 'react-router-dom';
+import AccessibilityTypography from '../../components/AccessibilityTypography';
 
 export interface CardHomeProps {
   title: string;
@@ -28,11 +29,16 @@ export const CardHome: React.FC<CardHomeProps> = ({
           sx={{
             textTransform: 'uppercase',
             color: 'white',
+            textAlign: 'center',
+            display: 'flex',
+            flexWrap: 'nowrap',
+            marginLeft: '15px',
+            alignItems: 'center',
           }}
           variant="h5"
           mb={'25px'}
         >
-          {title}
+          <AccessibilityTypography>{title}</AccessibilityTypography>
         </Typography>
       </Grid>
       <Grid item>

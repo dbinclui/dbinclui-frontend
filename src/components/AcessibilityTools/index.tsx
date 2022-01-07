@@ -28,7 +28,7 @@ export const AccessibilityTools: React.FC<
 
   const useCounter = UseCounter({
     handleCounter,
-    limiters: [1, 3],
+    limiters: [1, 2],
   });
 
   return (
@@ -39,7 +39,9 @@ export const AccessibilityTools: React.FC<
             onClick={() => setModalOpen(!modalOpen)}
             startIcon={renderArrowIcon()}
           >
-            <Typography variant="body1" aria-label="Acessibilidade">Acessibilidade</Typography>
+            <Typography variant="body1" aria-label="Acessibilidade">
+              Acessibilidade
+            </Typography>
           </Button>
         </Box>
       </Box>

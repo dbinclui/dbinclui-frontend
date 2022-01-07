@@ -14,6 +14,7 @@ import MenuItem from '@mui/material/MenuItem';
 import { Link, useNavigate } from 'react-router-dom';
 import Logo from '../svgs/logo';
 import './styles.css';
+import AccessibilityTypography from '../../components/AccessibilityTypography';
 
 export interface HeaderProps {}
 
@@ -129,7 +130,9 @@ export const Header: React.FC<HeaderProps> = (): JSX.Element => {
                     component={Link}
                     to={item.href}
                   >
-                    {item.title}
+                    <AccessibilityTypography>
+                      {item.title}
+                    </AccessibilityTypography>
                   </Typography>
                 </MenuItem>
               ))}
@@ -160,7 +163,7 @@ export const Header: React.FC<HeaderProps> = (): JSX.Element => {
                   handleChangePage(currentTarget)
                 }
               >
-                {item.title}
+                <AccessibilityTypography>{item.title}</AccessibilityTypography>
               </Button>
             ))}
           </Box>
@@ -186,7 +189,7 @@ export const Header: React.FC<HeaderProps> = (): JSX.Element => {
               open={false}
             >
               <MenuItem onClick={handleCloseNavMenu}>
-                <Typography textAlign="center"></Typography>
+                <AccessibilityTypography textAlign="center"></AccessibilityTypography>
               </MenuItem>
             </Menu>
           </Box>
