@@ -27,12 +27,12 @@ describe('Componente de notificação', () => {
     const notificationTitleText = 'Título da Notificação';
 
     let notificationTitle = screen.getByTitle(notificationTitleText);
-    expect(notificationTitle).toContain(defaultErrorTitle);
+    expect(notificationTitle).toHaveTextContent(defaultErrorTitle);
 
     rerender(<Notification variant="success" message={message} />);
 
     notificationTitle = screen.getByTitle('Título da Notificação');
-    expect(notificationTitle).toContain(defaultSuccessTitle);
+    expect(notificationTitle).toHaveTextContent(defaultSuccessTitle);
   });
 
   test('Deve mostrar um título definido pelo usuário quando este está presente', () => {
@@ -43,7 +43,7 @@ describe('Componente de notificação', () => {
     const notificationTitleText = 'Título da Notificação';
 
     let notificationTitle = screen.getByTitle(notificationTitleText);
-    expect(notificationTitle).toContain(title);
+    expect(notificationTitle).toHaveTextContent(title);
   });
 
   test('Deve fechar a notificação quando o botão de fechar for clicado', () => {
@@ -55,21 +55,8 @@ describe('Componente de notificação', () => {
 
     userEvent.click(closeButton);
 
-    // esperamos que a notificação tenha sumido, então se procurarmos por ela não devemos encontrar nada
-
     const notificationComponent = screen.queryByText(message);
 
-    expect(notificationComponent).not.toBeTruthy();
-  });
-
-  test('Deve fechar a notificação quando o usuário clicar fora do componente', () => {
-    const message = 'Teste de notificação';
-    render(<Notification variant="error" message={message} />);
-
-    userEvent.click(document.body);
-
-    const notificationComponent = screen.queryByText(message);
-
-    expect(notificationComponent).not.toBeTruthy();
+    expect(notificationComponent).not.toBeVisible();
   });
 });
