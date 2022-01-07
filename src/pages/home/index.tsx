@@ -11,6 +11,8 @@ import SearchIcon from '@mui/icons-material/Search';
 import './style.css';
 import CardHome, { CardHomeProps } from '@components/CardHome';
 
+import Notification from '@components/Notification';
+
 export interface HomeProps {}
 
 export const CardItems: CardHomeProps[] = [
@@ -31,6 +33,11 @@ export const CardItems: CardHomeProps[] = [
 export const Home: React.FC<HomeProps> = (): JSX.Element => {
   return (
     <>
+      <Notification
+        message="Isso é um teste"
+        title="Erro de autenticação"
+        variant="success"
+      />
       <Container>
         <Grid container justifyContent={'center'}>
           <Grid item py={'75px'} md={9}>
