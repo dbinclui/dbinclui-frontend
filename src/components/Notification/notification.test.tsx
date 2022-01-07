@@ -49,5 +49,27 @@ describe('Componente de notificação', () => {
   test('Deve fechar a notificação quando o botão de fechar for clicado', () => {
     const message = 'Teste de notificação';
     render(<Notification variant="error" message={message} />);
+
+    const closeButtonText = 'Fechar';
+    const closeButton = screen.getByTitle(closeButtonText);
+
+    userEvent.click(closeButton);
+
+    // esperamos que a notificação tenha sumido, então se procurarmos por ela não devemos encontrar nada
+
+    const notificationComponent = screen.queryByText(message);
+
+    expect(notificationComponent).not.toBeTruthy();
+  });
+
+  test('Deve fechar a notificação quando o usuário clicar fora do componente', () => {
+    const message = 'Teste de notificação';
+    render(<Notification variant="error" message={message} />);
+
+    userEvent.click(document.body);
+
+    const notificationComponent = screen.queryByText(message);
+
+    expect(notificationComponent).not.toBeTruthy();
   });
 });

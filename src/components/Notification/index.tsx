@@ -29,6 +29,7 @@ export const Notification: React.FC<NotificationProps> = ({
         severity={variant}
         onClose={handleClose}
         sx={{ width: '100%' }}
+        closeText="Fechar"
       >
         {title ? (
           <AlertTitle title="Título da Notificação">{title}</AlertTitle>
