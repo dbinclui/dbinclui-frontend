@@ -31,7 +31,7 @@ describe('Componente de notificação', () => {
 
     rerender(<Notification variant="success" message={message} />);
 
-    notificationTitle = screen.getByTitle('Título da Notificação');
+    notificationTitle = screen.getByTitle(notificationTitleText);
     expect(notificationTitle).toHaveTextContent(defaultSuccessTitle);
   });
 
