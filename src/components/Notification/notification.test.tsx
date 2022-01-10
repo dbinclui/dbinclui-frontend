@@ -15,23 +15,27 @@ describe('Componente de notificação', () => {
     expect(notificationComponent).toBeTruthy();
   });
 
-  test('Deve mostrar um título padrão baseado na variante quando nenhum título é especificado', () => {
+  test("Quando nenhum título é definido e a variant é 'error' um título padrão deve ser utilizado", () => {
     const message = 'Teste de notificação';
-    const { rerender } = render(
-      <Notification variant="error" message={message} />,
-    );
+    render(<Notification variant="error" message={message} />);
 
     const defaultErrorTitle = 'Erro';
+
+    const notificationTitleText = 'Título da Notificação';
+
+    const notificationTitle = screen.getByTitle(notificationTitleText);
+    expect(notificationTitle).toHaveTextContent(defaultErrorTitle);
+  });
+
+  test("Quando nenhum título é definido e a variant é 'success' um título padrão deve ser utilizado", () => {
+    const message = 'Teste de notificação';
+    render(<Notification variant="success" message={message} />);
+
     const defaultSuccessTitle = 'Sucesso';
 
     const notificationTitleText = 'Título da Notificação';
 
-    let notificationTitle = screen.getByTitle(notificationTitleText);
-    expect(notificationTitle).toHaveTextContent(defaultErrorTitle);
-
-    rerender(<Notification variant="success" message={message} />);
-
-    notificationTitle = screen.getByTitle(notificationTitleText);
+    const notificationTitle = screen.getByTitle(notificationTitleText);
     expect(notificationTitle).toHaveTextContent(defaultSuccessTitle);
   });
 
