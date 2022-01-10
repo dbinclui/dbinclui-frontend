@@ -6,7 +6,10 @@
 .app-header a.MuiButton-root {
   color: #ffffff;
   display: block;
-  margin: 1rem 0 1rem;
+  text-align: center;
+  margin: 1rem;
+}
+.app-header .MuiButton-root {
 }
 
 .toolbar {
@@ -17,6 +20,11 @@
 .box-links {
   display: flex;
   justify-content: right;
+  margin: 1rem 0;
+  max-width: 78%;
+}
+.box-admin {
+  margin: 1rem 0 1rem 1rem;
 }
 
 .logo {

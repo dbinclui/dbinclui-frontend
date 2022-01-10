@@ -33,10 +33,10 @@ export const CardHome: React.FC<CardHomeProps> = ({
             display: 'flex',
             marginLeft: '15px',
             alignItems: 'center',
-            margin: '-4px'
+            margin: '-15px',
+            mt: '8px',
           }}
           variant="h5"
-          
           mb={'25px'}
         >
           <AccessibilityTypography>{title}</AccessibilityTypography>
@@ -50,7 +50,7 @@ export const CardHome: React.FC<CardHomeProps> = ({
             height: '12rem',
             borderRadius: '1.25rem',
             mb: 2,
-            marginTop: '20px'
+            mt: '30px',
           }}
           tabIndex={tabIndex}
           aria-label={title}
