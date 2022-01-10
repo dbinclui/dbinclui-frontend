@@ -10,7 +10,7 @@ describe('Componente de notificação', () => {
     const message = 'Teste de notificação';
     render(<Notification variant="error" message={message} />);
 
-    const notificationComponent = screen.getByText(message);
+    const notificationComponent = screen.queryByText(message);
 
     expect(notificationComponent).toBeTruthy();
   });
