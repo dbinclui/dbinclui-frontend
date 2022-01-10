@@ -10,9 +10,9 @@ describe('Componente de notificação', () => {
     const message = 'Teste de notificação';
     render(<Notification variant="error" message={message} />);
 
-    const notificationComponent = screen.queryByText(message);
+    const notificationComponent = screen.getByText(message);
 
-    expect(notificationComponent).toBeTruthy();
+    expect(notificationComponent).toBeVisible();
   });
 
   test("Quando nenhum título é definido e a variant é 'error' um título padrão deve ser utilizado", () => {
