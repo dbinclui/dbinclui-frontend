@@ -16,6 +16,13 @@ export const Notification: React.FC<NotificationProps> = ({
 
   const handleClose = () => setShouldOpen(false);
 
+  const getNotificationTitle = (title: string | undefined) => {
+    if (!title) {
+      return variant === 'error' ? 'Erro' : 'Sucesso';
+    }
+    return title;
+  };
+
   return (
     <Snackbar
       anchorOrigin={{ vertical: 'bottom', horizontal: 'center' }}
@@ -31,14 +38,9 @@ export const Notification: React.FC<NotificationProps> = ({
         sx={{ width: '100%' }}
         closeText="Fechar"
       >
-        {title ? (
-          <AlertTitle title="Título da Notificação">{title}</AlertTitle>
-        ) : variant === 'error' ? (
-          <AlertTitle title="Título da Notificação">Erro</AlertTitle>
-        ) : (
-          <AlertTitle title="Título da Notificação">Sucesso</AlertTitle>
-        )}
-
+        <AlertTitle title="Título da Notificação">
+          {getNotificationTitle(title)}
+        </AlertTitle>
         {message}
       </Alert>
     </Snackbar>
