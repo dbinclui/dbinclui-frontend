@@ -87,7 +87,9 @@ export const Header: React.FC<HeaderProps> = (): JSX.Element => {
             to="/"
             sx={{ mr: 2, display: { xs: 'none', md: 'flex' } }}
           >
-            <Logo />
+            <Box sx={{ mb: '20px' }}>
+              <Logo />
+            </Box>
           </Typography>
 
           {/*MENU HAMBURGUER*/}
@@ -168,12 +170,16 @@ export const Header: React.FC<HeaderProps> = (): JSX.Element => {
             ))}
           </Box>
 
-          <Box sx={{ flexGrow: 0 }}>
+          <Box className="box-admin" sx={{ flexGrow: 0 }}>
             <Tooltip title="Administrador">
-              <IconButton sx={{ p: 0 }} onClick={() => navigate('admin')}>
+              <IconButton
+                sx={{ p: 0, m: '0 auto' }}
+                onClick={() => navigate('admin')}
+              >
                 <Avatar src="/broken-image.jpg" />
               </IconButton>
             </Tooltip>
+
             <Menu
               sx={{ mt: '45px' }}
               id="menu-appbar"
@@ -189,7 +195,7 @@ export const Header: React.FC<HeaderProps> = (): JSX.Element => {
               open={false}
             >
               <MenuItem onClick={handleCloseNavMenu}>
-                <AccessibilityTypography textAlign="center"></AccessibilityTypography>
+                <Typography textAlign="center"></Typography>
               </MenuItem>
             </Menu>
           </Box>

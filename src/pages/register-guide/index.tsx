@@ -9,6 +9,7 @@ import {
   InputBase,
 } from '@mui/material';
 import styles from './styles';
+import AccessibilityTypography from '../../components/AccessibilityTypography';
 
 export interface RegisterGuideProps {}
 
@@ -32,7 +33,7 @@ export const RegisterGuide: React.FC<RegisterGuideProps> = (): JSX.Element => {
       <Grid item md={6} sx={styles.content} component="section">
         <Box sx={styles.header} component="header">
           <Typography sx={styles.headerTitle} variant="h1">
-            CADASTRO DE GUIA
+            <AccessibilityTypography>CADASTRO DE GUIA</AccessibilityTypography>
           </Typography>
         </Box>
         <Box padding={'1rem 3rem'} component="section">
@@ -54,8 +55,9 @@ export const RegisterGuide: React.FC<RegisterGuideProps> = (): JSX.Element => {
               id="tituloLabel"
               sx={styles.labelInput}
             >
-              Título:
+              <AccessibilityTypography>Título:</AccessibilityTypography>
             </InputLabel>
+
             <InputBase
               type="text"
               id="titulo"
@@ -67,13 +69,15 @@ export const RegisterGuide: React.FC<RegisterGuideProps> = (): JSX.Element => {
               sx={styles.input}
               onChange={(event) => setTitle(event.target.value)}
             />
+
             <InputLabel
               htmlFor="descricao"
               sx={styles.labelInput}
               id="descricaoLabel"
             >
-              Descrição:
+              <AccessibilityTypography>Descrição:</AccessibilityTypography>
             </InputLabel>
+
             <InputBase
               multiline={true}
               minRows={5}
