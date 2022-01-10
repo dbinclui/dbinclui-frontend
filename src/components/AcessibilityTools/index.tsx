@@ -5,7 +5,7 @@ import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
 import Fade from '@mui/material/Fade';
 import Counter from '../Counter';
 import { AccessibilityContext } from '../../contexts/AccessibilityContext';
-import './style.css';
+import styles from './styles';
 import UseCounter from '../../hooks/Counter';
 
 export interface AccessibilityToolsProps {}
@@ -33,7 +33,7 @@ export const AccessibilityTools: React.FC<
 
   return (
     <>
-      <Box className="widget-accessibility-tools">
+      <Box sx={styles.widgetAccessibilityTools}>
         <Box className="widget-button">
           <Button
             onClick={() => setModalOpen(!modalOpen)}
