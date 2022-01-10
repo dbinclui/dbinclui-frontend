@@ -21,7 +21,7 @@ describe('Componente de notificação', () => {
 
     const defaultErrorTitle = 'Erro';
 
-    const notificationTitleText = 'Título da Notificação';
+    const notificationTitleText = `Título da Notificação:${defaultErrorTitle}`;
 
     const notificationTitle = screen.getByTitle(notificationTitleText);
     expect(notificationTitle).toHaveTextContent(defaultErrorTitle);
@@ -33,7 +33,7 @@ describe('Componente de notificação', () => {
 
     const defaultSuccessTitle = 'Sucesso';
 
-    const notificationTitleText = 'Título da Notificação';
+    const notificationTitleText = `Título da Notificação:${defaultSuccessTitle}`;
 
     const notificationTitle = screen.getByTitle(notificationTitleText);
     expect(notificationTitle).toHaveTextContent(defaultSuccessTitle);
@@ -44,7 +44,7 @@ describe('Componente de notificação', () => {
     const title = 'Esse é um título de teste da notificação';
     render(<Notification variant="error" message={message} title={title} />);
 
-    const notificationTitleText = 'Título da Notificação';
+    const notificationTitleText = `Título da Notificação:${title}`;
 
     const notificationTitle = screen.getByTitle(notificationTitleText);
     expect(notificationTitle).toHaveTextContent(title);

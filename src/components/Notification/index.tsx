@@ -38,7 +38,9 @@ export const Notification: React.FC<NotificationProps> = ({
         sx={{ width: '100%' }}
         closeText="Fechar"
       >
-        <AlertTitle title="Título da Notificação">
+        <AlertTitle
+          title={`Título da Notificação:${getNotificationTitle(title)}`}
+        >
           {getNotificationTitle(title)}
         </AlertTitle>
         {message}
