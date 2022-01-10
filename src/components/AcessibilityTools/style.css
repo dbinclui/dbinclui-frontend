@@ -2,17 +2,21 @@
   position: fixed;
   top: 50vh;
   right: -72px;
-  background: #fff;
+  background: #221f52;
   border-radius: 0 0 15px 15px;
   transform: rotate(90deg);
   z-index: 99999;
   width: 180px;
 }
+.widget-accessibility-tools:hover {
+  background: white;
+  color: #221f52;
+}
 
 .modal-accessibility-tools {
   width: 200px;
   height: 110px;
-  background: #fff;
+  background: #221f52;
   padding: 10px;
   border-radius: 4px;
   box-shadow: 0px 0px 10px -4px rgba(0, 0, 0, 0.75);
