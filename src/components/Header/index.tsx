@@ -15,6 +15,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import Logo from '../svgs/logo';
 import './styles.css';
 import AccessibilityTypography from '../../components/AccessibilityTypography';
+import { AccessibilityColors } from '../../styles/colorsAccessibility';
 
 export interface HeaderProps {}
 
@@ -77,7 +78,6 @@ export const Header: React.FC<HeaderProps> = (): JSX.Element => {
       position="static"
       className="app-header"
       elevation={0}
-      
     >
       <Container>
         <Toolbar disableGutters className="toolbar">
@@ -128,7 +128,6 @@ export const Header: React.FC<HeaderProps> = (): JSX.Element => {
                 <MenuItem key={key}>
                   <Typography
                     textAlign="center"
-                    color="black"
                     className="menu-item-mobile"
                     component={Link}
                     to={item.href}

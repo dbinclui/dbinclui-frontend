@@ -7,6 +7,8 @@ import Counter from '../Counter';
 import { AccessibilityContext } from '../../contexts/AccessibilityContext';
 import './style.css';
 import UseCounter from '../../hooks/Counter';
+import DefaultTheme from '../../styles/theme';
+import AccessibilityTheme from '../../styles/AccessibilityTheme';
 
 export interface AccessibilityToolsProps {}
 
@@ -15,6 +17,22 @@ export const AccessibilityTools: React.FC<
 > = (): JSX.Element => {
   const [modalOpen, setModalOpen] = useState(false);
   const contextAcessibility = useContext(AccessibilityContext);
+  const [theme, setTheme] = useState('DefaultTheme');
+
+  const ChangeContrast = () => {
+    if (theme === 'DefaultTheme') {
+      window.localStorage.setItem('theme', 'AccessibilityTheme');
+      setTheme('AccessibilityTheme');
+    } else {
+      window.localStorage.setItem('theme', 'DefaultTheme');
+      setTheme('DefaultTheme');
+    }
+  };
+
+  useEffect(() => {
+    const localTheme = window.localStorage.getItem('theme');
+    localTheme && setTheme(localTheme);
+  }, []);
 
   const renderArrowIcon = () =>
     modalOpen ? <KeyboardArrowUpIcon /> : <KeyboardArrowDownIcon />;
@@ -32,22 +50,22 @@ export const AccessibilityTools: React.FC<
   });
 
   const handleChangeContrast = () => {
-    if(localStorage.getItem('contrast')){
-      localStorage.removeItem('contrast')
+    if (theme) {
+      localStorage.removeItem('contrast');
       document.body.classList.remove('contrast');
-    }else {
-      localStorage.setItem('contrast', 'true')
+    } else {
+      localStorage.setItem('contrast', 'true');
       document.body.classList.add('contrast');
     }
-  }
+  };
 
   useEffect(() => {
-    if(localStorage.getItem('contrast')){
+    if (localStorage.getItem('contrast')) {
       document.body.classList.add('contrast');
-    }else {
+    } else {
       document.body.classList.remove('contrast');
     }
-  }, [])
+  }, []);
 
   return (
     <>
@@ -71,7 +89,7 @@ export const AccessibilityTools: React.FC<
                 <Counter {...useCounter} />
               </div>
               <Button
-                onClick={() => handleChangeContrast()}
+                onClick={ChangeContrast}
                 variant="contained"
                 aria-label="Mudar contraste da tela"
                 sx={{
