@@ -23,6 +23,8 @@ export const Notification: React.FC<NotificationProps> = ({
     return title;
   };
 
+  const notificationTitle = getNotificationTitle(title);
+
   return (
     <Snackbar
       anchorOrigin={{ vertical: 'bottom', horizontal: 'center' }}
@@ -38,10 +40,8 @@ export const Notification: React.FC<NotificationProps> = ({
         sx={{ width: '100%' }}
         closeText="Fechar"
       >
-        <AlertTitle
-          title={`Título da Notificação:${getNotificationTitle(title)}`}
-        >
-          {getNotificationTitle(title)}
+        <AlertTitle title={`Título da Notificação:${notificationTitle}`}>
+          {notificationTitle}
         </AlertTitle>
         {message}
       </Alert>
