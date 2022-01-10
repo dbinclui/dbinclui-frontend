@@ -14,13 +14,13 @@ describe('Página de cadastro de nova guia', () => {
     const textoLabelTitulo = 'Título:';
     const textoLabelDescricao = 'Descrição:';
 
-    const labelTitulo = screen.getByText(textoLabelTitulo);
-    const labelDescricao = screen.getByText(textoLabelDescricao);
+    const labelTitulo = screen.queryByText(textoLabelTitulo);
+    const labelDescricao = screen.queryByText(textoLabelDescricao);
 
-    const input = screen.getByLabelText(textoLabelTitulo, {
+    const input = screen.queryByLabelText(textoLabelTitulo, {
       selector: 'input',
     });
-    const textArea = screen.getByLabelText(textoLabelDescricao, {
+    const textArea = screen.queryByLabelText(textoLabelDescricao, {
       selector: 'textarea',
     });
 
