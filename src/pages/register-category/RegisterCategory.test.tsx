@@ -1,15 +1,7 @@
 import React from 'react';
 import RegisterCategory from '@pages/register-category';
-import {
-  render,
-  screen,
-  fireEvent,
-  within,
-  getByRole,
-} from '@testing-library/react';
-import userEvent from '@testing-library/user-event';
+import { render, screen } from '@testing-library/react';
 import '@testing-library/jest-dom';
-import { getAllByTestId, getByTestId } from '@testing-library/dom';
 
 describe('Página de cadastro de categorias', () => {
   test('Deve mostrar um formulário', () => {
@@ -37,18 +29,19 @@ describe('Página de cadastro de categorias', () => {
     expect(textArea).toBeVisible();
   });
 
-  test('Deve verificar se o id da label corresponde ao do elemento', () => {
+  test('Deve verificar se o ID da label corresponde ao aria-labelledby', () => {
     render(<RegisterCategory />);
 
     const textoLabelGuia = 'guideLabel';
     const textoLabelCategoria = 'categoryLabel';
-    const textoLabelDescricao = 'descricaoLabel';
+    const textoLabelDescricao = 'descriptionLabel';
 
     const idGuia = screen.getByTestId('guideTestId');
-    const idCategoria = screen.getByTestId('categoryTestId') as HTMLElement;
+    const idCategoria = screen.getByTestId('categoryTestId');
     const idDescricao = screen.getByTestId('descriptionTestId');
 
-    //expect(idGuia).toEqual(textoLabelGuia);
-    expect(idCategoria.text().equals('Categoria:')).toEqual(true);
+    expect(idGuia).toHaveAttribute('aria-labelledby', textoLabelGuia);
+    expect(idCategoria).toHaveAttribute('aria-labelledby', textoLabelCategoria);
+    expect(idDescricao).toHaveAttribute('aria-labelledby', textoLabelDescricao);
   });
 });
