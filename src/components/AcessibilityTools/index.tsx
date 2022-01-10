@@ -82,7 +82,7 @@ export const AccessibilityTools: React.FC<
                   fontSize: '14px',
                 }}
               >
-                Contraste
+                Contrastes
               </Button>
             </Box>
           </Fade>

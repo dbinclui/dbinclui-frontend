@@ -31,12 +31,12 @@ export const RegisterGuide: React.FC<RegisterGuideProps> = (): JSX.Element => {
   return (
     <Grid container alignItems={'center'} justifyContent={'center'} role="main">
       <Grid item md={6} sx={styles.content} component="section">
-        <Box sx={styles.header} component="header">
-          <Typography sx={styles.headerTitle} variant="h1">
+        <Box className="contrastH1" sx={styles.header} component="header">
+          <Typography  sx={styles.headerTitle} variant="h1">
             <AccessibilityTypography>CADASTRO DE GUIA</AccessibilityTypography>
           </Typography>
         </Box>
-        <Box padding={'1rem 3rem'} component="section">
+        <Box className="contrastContainer" padding={'1rem 3rem'} component="section">
           <Button
             variant="contained"
             sx={styles.buttonDigitalContent}
