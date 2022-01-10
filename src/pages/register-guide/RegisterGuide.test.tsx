@@ -14,20 +14,20 @@ describe('Página de cadastro de nova guia', () => {
     const textoLabelTitulo = 'Título:';
     const textoLabelDescricao = 'Descrição:';
 
-    const labelTitulo = screen.queryByText(textoLabelTitulo);
-    const labelDescricao = screen.queryByText(textoLabelDescricao);
+    const labelTitulo = screen.getByText(textoLabelTitulo);
+    const labelDescricao = screen.getByText(textoLabelDescricao);
 
-    const input = screen.queryByLabelText(textoLabelTitulo, {
+    const input = screen.getByLabelText(textoLabelTitulo, {
       selector: 'input',
     });
-    const textArea = screen.queryByLabelText(textoLabelDescricao, {
+    const textArea = screen.getByLabelText(textoLabelDescricao, {
       selector: 'textarea',
     });
 
-    expect(labelTitulo).toBeTruthy();
-    expect(labelDescricao).toBeTruthy();
-    expect(input).toBeTruthy();
-    expect(textArea).toBeTruthy();
+    expect(labelTitulo).toBeVisible();
+    expect(labelDescricao).toBeVisible();
+    expect(input).toBeVisible();
+    expect(textArea).toBeVisible();
   });
 
   test('Deve atualizar o valor dos campos de input quando o valor destes mudar', () => {
