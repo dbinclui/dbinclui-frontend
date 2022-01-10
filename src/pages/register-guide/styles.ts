@@ -1,5 +1,4 @@
-import { Theme } from '@mui/material';
-import { SxProps } from '@mui/material';
+import { Theme, SxProps } from '@mui/material';
 
 const content: SxProps<Theme> = {
   borderRadius: '20px',

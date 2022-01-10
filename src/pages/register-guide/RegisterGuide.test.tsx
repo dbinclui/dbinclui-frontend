@@ -24,10 +24,10 @@ describe('Página de cadastro de nova guia', () => {
       selector: 'textarea',
     });
 
-    expect(labelTitulo).toBeTruthy();
-    expect(labelDescricao).toBeTruthy();
-    expect(input).toBeTruthy();
-    expect(textArea).toBeTruthy();
+    expect(labelTitulo).toBeVisible();
+    expect(labelDescricao).toBeVisible();
+    expect(input).toBeVisible();
+    expect(textArea).toBeVisible();
   });
 
   test('Deve atualizar o valor dos campos de input quando o valor destes mudar', () => {
