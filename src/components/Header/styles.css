@@ -1,6 +1,6 @@
 .app-header a.MuiButton-root:hover {
   color: #ffffff;
-  text-decoration: underline;
+  /* text-decoration: underline; */
 }
 
 .app-header a.MuiButton-root {
@@ -31,4 +31,10 @@ a.menu-item-mobile {
   color: #2c3382;
   text-decoration: none;
   padding-top: 1rem;
+}
+
+@media screen and (min-width: 400px) and (max-width: 1024px) {
+  .app-header a.MuiButton-root {
+  background-color: yellow;
+ }
 }

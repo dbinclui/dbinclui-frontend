@@ -34,3 +34,33 @@
     font-size: 14px;
   }
 }
+
+.contrast{
+  background-color: black; 
+}
+
+.contrast header {
+  background-color: black;
+}
+
+.contrast a {
+  color: yellow !important;
+  background-color: transparent !important;
+}
+
+.contrast .MuiTypography-root {
+  color: yellow !important;
+  background-color: transparent !important;
+}
+
+.contrast .widget-button .MuiTypography-root {
+  color: #000 !important;
+}
+
+.contrast .widget-accessibility-tools {
+  background-color: yellow !important;
+}
+
+.contrast .mainLayout {
+  color: yellow !important;
+}

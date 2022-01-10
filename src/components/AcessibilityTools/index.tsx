@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import { Box, Button, Typography, Modal } from '@mui/material';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
@@ -31,6 +31,24 @@ export const AccessibilityTools: React.FC<
     limiters: [1, 2],
   });
 
+  const handleChangeContrast = () => {
+    if(localStorage.getItem('contrast')){
+      localStorage.removeItem('contrast')
+      document.body.classList.remove('contrast');
+    }else {
+      localStorage.setItem('contrast', 'true')
+      document.body.classList.add('contrast');
+    }
+  }
+
+  useEffect(() => {
+    if(localStorage.getItem('contrast')){
+      document.body.classList.add('contrast');
+    }else {
+      document.body.classList.remove('contrast');
+    }
+  }, [])
+
   return (
     <>
       <Box className="widget-accessibility-tools">
@@ -53,6 +71,7 @@ export const AccessibilityTools: React.FC<
                 <Counter {...useCounter} />
               </div>
               <Button
+                onClick={() => handleChangeContrast()}
                 variant="contained"
                 aria-label="Mudar contraste da tela"
                 sx={{
