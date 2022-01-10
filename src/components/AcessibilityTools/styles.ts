@@ -1,18 +1,30 @@
 import { Theme, SxProps } from '@mui/material';
 
 const widgetAccessibilityTools: SxProps<Theme> = {
-  position: 'fixed',
-  top: '50vh',
-  right: '-72px',
-  background: (theme) => theme.palette.secondary.main,
-  borderRadius: '0 0 15px 15px',
-  transform: 'rotate(90deg)',
-  zIndex: '99999',
-  width: '180px',
+  'position': 'fixed',
+  'top': '50vh',
+  'right': '-72px',
+  'background': (theme) => theme.palette.secondary.main,
+  'borderRadius': '0 0 15px 15px',
+  'transform': 'rotate(90deg)',
+  'zIndex': '99999',
+  'width': '180px',
   '&:hover': {
     background: (theme) => theme.palette.primary.light,
     color: (theme) => theme.palette.secondary.main,
   },
+};
+
+const widgetAccessibilityToolsonClick: SxProps<Theme> = {
+  position: 'fixed',
+  top: '50vh',
+  right: '-72px',
+  background: (theme) => theme.palette.primary.light,
+  color: (theme) => theme.palette.secondary.main,
+  borderRadius: '0 0 15px 15px',
+  transform: 'rotate(90deg)',
+  zIndex: '99999',
+  width: '180px',
 };
 
 const modalAccessibilityTools: SxProps<Theme> = {
@@ -33,6 +45,7 @@ const modalAccessibilityTools: SxProps<Theme> = {
 const styles = {
   widgetAccessibilityTools,
   modalAccessibilityTools,
+  widgetAccessibilityToolsonClick,
 };
 
 export default styles;

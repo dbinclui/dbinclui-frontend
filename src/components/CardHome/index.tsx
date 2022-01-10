@@ -1,5 +1,5 @@
 import React from 'react';
-import { Grid, Paper, Typography } from '@mui/material';
+import { Grid, Paper } from '@mui/material';
 import { Link } from 'react-router-dom';
 import AccessibilityTypography from '@components/AccessibilityTypography';
 
@@ -39,7 +39,7 @@ export const CardHome: React.FC<CardHomeProps> = ({
       <Grid item>
         <Paper
           sx={{
-            backgroundColor: '#221F52',
+            backgroundColor: 'secondary.main',
             width: '14.25rem',
             height: '12rem',
             borderRadius: '1.25rem',

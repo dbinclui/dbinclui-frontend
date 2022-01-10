@@ -38,7 +38,7 @@ export const Home: React.FC<HomeProps> = (): JSX.Element => {
             <Paper
               p={'5px'}
               borderRadius={'1.25rem'}
-              sx={{ borderColor: '#221F52' }}
+              sx={{ borderColor: 'secondary.main' }}
               component={Grid}
               container
               flexDirection={'row'}
@@ -51,7 +51,7 @@ export const Home: React.FC<HomeProps> = (): JSX.Element => {
                   placeholder="Pesquise aqui"
                   sx={{
                     '&::placeholder': {
-                      color: '#222',
+                      color: 'secondary.main',
                     },
                   }}
                   inputProps={{ 'aria-label': 'pesquise aqui' }}

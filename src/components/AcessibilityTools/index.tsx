@@ -14,7 +14,12 @@ export const AccessibilityTools: React.FC<
   AccessibilityToolsProps
 > = (): JSX.Element => {
   const [modalOpen, setModalOpen] = useState(false);
+  const [colorModalButton, setColorModalButton] = React.useState(true);
   const contextAcessibility = useContext(AccessibilityContext);
+
+  const handleClick = () => {
+    setColorModalButton(!colorModalButton);
+  };
 
   const renderArrowIcon = () =>
     modalOpen ? <KeyboardArrowUpIcon /> : <KeyboardArrowDownIcon />;
@@ -33,7 +38,14 @@ export const AccessibilityTools: React.FC<
 
   return (
     <>
-      <Box sx={styles.widgetAccessibilityTools}>
+      <Box
+        sx={
+          colorModalButton
+            ? styles.widgetAccessibilityTools
+            : styles.widgetAccessibilityToolsonClick
+        }
+        //backgroundColor={colorModalButton ? 'secondary' : 'primary'}
+      >
         <Box>
           <Button
             sx={{
@@ -41,7 +53,13 @@ export const AccessibilityTools: React.FC<
                 color: 'secondary.main',
               },
             }}
-            onClick={() => setModalOpen(!modalOpen)}
+            color={colorModalButton ? 'primary' : 'secondary'}
+            //backgroundColor={colorModalButton ? 'secondary' : 'primary'}
+
+            onClick={() => {
+              setModalOpen(!modalOpen);
+              handleClick();
+            }}
             startIcon={renderArrowIcon()}
           >
             <Typography variant="body1">Acessibilidade</Typography>
