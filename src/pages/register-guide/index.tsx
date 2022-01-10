@@ -9,6 +9,7 @@ import {
   InputBase,
 } from '@mui/material';
 import styles from './styles';
+import { postGuides } from '@services/guides';
 
 export interface RegisterGuideProps {}
 
@@ -24,9 +25,11 @@ export const RegisterGuide: React.FC<RegisterGuideProps> = (): JSX.Element => {
         title,
         description,
       });
+      await postGuides(title, description);
     } catch {}
   }
 
+  
   return (
     <Grid container alignItems={'center'} justifyContent={'center'} role="main">
       <Grid item md={6} sx={styles.content} component="section">
@@ -97,6 +100,7 @@ export const RegisterGuide: React.FC<RegisterGuideProps> = (): JSX.Element => {
                   variant="outlined"
                   type="submit"
                   role="button"
+                
                 >
                   Salvar
                 </Button>
@@ -107,6 +111,7 @@ export const RegisterGuide: React.FC<RegisterGuideProps> = (): JSX.Element => {
                   variant="contained"
                   type="reset"
                   role="button"
+                  
                 >
                   Fechar
                 </Button>
