@@ -21,7 +21,7 @@ export const Counter: React.FC<CounterProps> = ({
             sx={{
               margin: '0 0 0 -34px',
               borderRadius: '20px',
-              backgroundColor: 'primary',
+              backgroundColor: 'secondary',
               fontSize: '15px',
             }}
           >
@@ -37,7 +37,7 @@ export const Counter: React.FC<CounterProps> = ({
             sx={{
               margin: '0 0 0 10px',
               borderRadius: '20px',
-              backgroundColor: 'primary',
+              backgroundColor: 'secondary',
               fontSize: '15px',
             }}
           >
