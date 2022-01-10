@@ -4,8 +4,10 @@ import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import '@testing-library/jest-dom';
 import validateInput from './validator';
+import { postGuides } from '@services/Guides/guides';
 
 jest.mock('./validator');
+jest.mock('@services/guides');
 
 describe('Página de cadastro de nova guia', () => {
   test('Deve mostrar um formulário', () => {
@@ -63,5 +65,16 @@ describe('Página de cadastro de nova guia', () => {
     userEvent.click(botaoSubmit);
 
     expect(validateInput).toBeCalled();
+  });
+
+  test('Deve chamar a função postGuides quando o botão do submit for clicado', () => {
+    render(<RegisterGuide />);
+
+    const textoNoBotaoSubmit = 'Salvar';
+    const botaoSubmit = screen.getByText(textoNoBotaoSubmit);
+
+    userEvent.click(botaoSubmit);
+
+    expect(postGuides).toBeCalled();
   });
 });
