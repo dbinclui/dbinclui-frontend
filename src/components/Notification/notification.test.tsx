@@ -2,8 +2,7 @@ import React from 'react';
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import '@testing-library/jest-dom';
-
-import Notification from '.';
+import Notification from '@components/Notification';
 
 describe('Componente de notificação', () => {
   test('Deve renderizar o componente com uma mensagem definida', () => {
