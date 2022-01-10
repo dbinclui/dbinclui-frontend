@@ -52,8 +52,9 @@ export const RegisterCategory: React.FC<
               Guia:
             </InputLabel>
             <Select
+              labelId="guideLabel"
               required
-              data-testid="guide"
+              data-testid="guideTestId"
               role="select"
               aria-labelledby="guideLabel"
               name="guide"
@@ -66,9 +67,10 @@ export const RegisterCategory: React.FC<
                 <MenuItem
                   key={category}
                   value={category}
-                  data-testid="guide"
+                  data-testid="guideItensTestId"
+                  role="option"
                   aria-labelledby="itensLabel"
-                  sx={[styles.menuItem]}
+                  sx={styles.menuItem}
                 >
                   {category}
                 </MenuItem>
@@ -87,15 +89,16 @@ export const RegisterCategory: React.FC<
               name="category"
               role="input"
               required
+              data-testid="categoryTestId"
               aria-labelledby="categoryLabel"
               value={title}
               sx={styles.input}
               onChange={(event) => setTitle(event.target.value)}
             />
             <InputLabel
-              htmlFor="descricao"
+              htmlFor="description"
               sx={styles.labelInput}
-              id="descricaoLabel"
+              id="descriptionLabel"
             >
               Descrição:
             </InputLabel>
@@ -103,9 +106,10 @@ export const RegisterCategory: React.FC<
               multiline={true}
               minRows={5}
               role="input"
-              id="descricao"
-              name="descricao"
-              aria-labelledby="descricaoLabel"
+              id="description"
+              name="description"
+              aria-labelledby="descriptionLabel"
+              data-testid="descriptionTestId"
               required
               value={description}
               sx={styles.input}

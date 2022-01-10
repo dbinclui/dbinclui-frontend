@@ -1,8 +1,15 @@
 import React from 'react';
 import RegisterCategory from '@pages/register-category';
-import { render, screen, fireEvent, within, getByRole } from '@testing-library/react';
+import {
+  render,
+  screen,
+  fireEvent,
+  within,
+  getByRole,
+} from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import '@testing-library/jest-dom';
+import { getAllByTestId, getByTestId } from '@testing-library/dom';
 
 describe('Página de cadastro de categorias', () => {
   test('Deve mostrar um formulário', () => {
@@ -23,47 +30,25 @@ describe('Página de cadastro de categorias', () => {
       selector: 'textarea',
     });
 
-    expect(labelDescricao).toBeTruthy();
-    expect(labelCategoria).toBeTruthy();
-    expect(labelGuia).toBeTruthy();
-    expect(input).toBeTruthy();
-    expect(textArea).toBeTruthy();
+    expect(labelDescricao).toBeVisible();
+    expect(labelCategoria).toBeVisible();
+    expect(labelGuia).toBeVisible();
+    expect(input).toBeVisible();
+    expect(textArea).toBeVisible();
   });
 
-  test('Deve atualizar o valor dos campos de input quando o valor destes mudar', () => {
-   const {getByRole} = render(<RegisterCategory />);
+  test('Deve verificar se o id da label corresponde ao do elemento', () => {
+    render(<RegisterCategory />);
 
-    const textoLabelGuia = 'Guia:';
-    const textoLabelCategoria = 'Categoria:';
-    const textoLabelDescricao = 'Descrição:';
+    const textoLabelGuia = 'guideLabel';
+    const textoLabelCategoria = 'categoryLabel';
+    const textoLabelDescricao = 'descricaoLabel';
 
-    const select = screen.getByLabelText(textoLabelGuia, {
-      selector: 'select',
-    });
-    const input = screen.getByLabelText(textoLabelCategoria, {
-      selector: 'input',
-    });
-    const textArea = screen.getByLabelText(textoLabelDescricao, {
-      selector: 'textarea',
-    });
+    const idGuia = screen.getByTestId('guideTestId');
+    const idCategoria = screen.getByTestId('categoryTestId') as HTMLElement;
+    const idDescricao = screen.getByTestId('descriptionTestId');
 
-    const inputText = 'Esse é o texto presente no elemento input';
-    const textAreaText =
-      'Esse é o texto presente no elemento textarea\n Ele aceita novas linhas';
-    const selectText = 'Guia de acessibilidade';
-
-    userEvent.type(input, inputText);
-    userEvent.type(textArea, textAreaText);
-    userEvent.type(select, selectText);
-
-    fireEvent.mouseDown(getByRole('select'));
-    const listbox = within(getByRole('option'));
-    fireEvent.click(listbox.getByText(/Guia de acessibilidade/i) as HTMLElement);
-
-    expect(getByRole('heading').toHaveTextContent(/Guia de acessibilidade/i));
-
-    expect(input).toHaveValue(inputText);
-    expect(textArea).toHaveValue(textAreaText);
-    // expect(select).toHaveTextContent(selectText);
+    //expect(idGuia).toEqual(textoLabelGuia);
+    expect(idCategoria.text().equals('Categoria:')).toEqual(true);
   });
 });

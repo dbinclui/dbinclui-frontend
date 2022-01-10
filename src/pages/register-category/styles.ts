@@ -64,9 +64,11 @@ const select: SxProps<Theme> = {
 };
 
 const menuItem: SxProps<Theme> = {
-  backgroundColor: '#d5d6e6',
-  color: (theme) => theme.palette.primary.main,
-  paddingTop: 0,
+  'color': (theme) => theme.palette.primary.main,
+  'paddingTop': 0,
+  '.MuiList-root': {
+    backgroundColor: (theme) => theme.palette.text.primary,
+  },
 };
 
 const styles = {
