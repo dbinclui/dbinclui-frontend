@@ -34,8 +34,13 @@ export const AccessibilityTools: React.FC<
   return (
     <>
       <Box sx={styles.widgetAccessibilityTools}>
-        <Box className="widget-button">
+        <Box>
           <Button
+            sx={{
+              '&:hover': {
+                color: 'secondary.main',
+              },
+            }}
             onClick={() => setModalOpen(!modalOpen)}
             startIcon={renderArrowIcon()}
           >
@@ -46,7 +51,7 @@ export const AccessibilityTools: React.FC<
       {modalOpen && (
         <Modal open={modalOpen} onClose={() => setModalOpen(!modalOpen)}>
           <Fade in={modalOpen}>
-            <Box className="modal modal-accessibility-tools">
+            <Box sx={styles.modalAccessibilityTools}>
               <div>
                 <Counter {...useCounter} />
               </div>
