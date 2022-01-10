@@ -8,7 +8,6 @@ import {
   InputBase,
   Select,
   MenuItem,
-  OutlinedInput,
 } from '@mui/material';
 import styles from './styles';
 
@@ -53,14 +52,24 @@ export const RegisterCategory: React.FC<
               Guia:
             </InputLabel>
             <Select
-              labelId="guideLabel"
-              id="selectGuide"
+              required
+              data-testid="guide"
+              role="select"
+              aria-labelledby="guideLabel"
+              name="guide"
+              id="guide"
               value={guide}
               onChange={(event) => setGuide(event.target.value)}
               sx={[styles.input, styles.select]}
             >
               {categories.map((category) => (
-                <MenuItem key={category} value={category}>
+                <MenuItem
+                  key={category}
+                  value={category}
+                  data-testid="guide"
+                  aria-labelledby="itensLabel"
+                  sx={[styles.menuItem]}
+                >
                   {category}
                 </MenuItem>
               ))}

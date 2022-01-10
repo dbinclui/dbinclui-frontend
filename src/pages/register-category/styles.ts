@@ -63,6 +63,12 @@ const select: SxProps<Theme> = {
   padding: 0,
 };
 
+const menuItem: SxProps<Theme> = {
+  backgroundColor: '#d5d6e6',
+  color: (theme) => theme.palette.primary.main,
+  paddingTop: 0,
+};
+
 const styles = {
   content,
   header,
@@ -73,6 +79,7 @@ const styles = {
   buttonWrapper,
   button,
   select,
+  menuItem,
 };
 
 export default styles;
