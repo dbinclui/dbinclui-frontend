@@ -46,7 +46,7 @@ describe('Componente de notificação', () => {
 
     const notificationTitleText = 'Título da Notificação';
 
-    let notificationTitle = screen.getByTitle(notificationTitleText);
+    const notificationTitle = screen.getByTitle(notificationTitleText);
     expect(notificationTitle).toHaveTextContent(title);
   });
 
