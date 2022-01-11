@@ -62,4 +62,23 @@ describe('Componente de notificação', () => {
 
     expect(notificationComponent).not.toBeVisible();
   });
+
+  test('Deve chamar a função passada pela propriedade onClose quando a notificação for fechada', () => {
+    const message = 'Teste de notificação';
+    const onCloseFunction = jest.fn();
+    render(
+      <Notification
+        variant="error"
+        message={message}
+        onClose={onCloseFunction}
+      />,
+    );
+
+    const closeButtonText = 'Fechar';
+    const closeButton = screen.getByTitle(closeButtonText);
+
+    userEvent.click(closeButton);
+
+    expect(onCloseFunction).toBeCalled();
+  });
 });
