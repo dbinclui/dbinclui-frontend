@@ -1,5 +1,4 @@
 import { Theme, SxProps } from '@mui/material';
-import useMediaQuery from '@mui/material/useMediaQuery';
 
 const widgetAccessibilityTools: SxProps<Theme> = {
   'position': 'fixed',

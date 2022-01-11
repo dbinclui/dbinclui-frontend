@@ -1,12 +1,5 @@
 import React from 'react';
-import {
-  Container,
-  IconButton,
-  TextField,
-  Typography,
-  Paper,
-  Grid,
-} from '@mui/material';
+import { Container, IconButton, TextField, Paper, Grid } from '@mui/material';
 import SearchIcon from '@mui/icons-material/Search';
 import './style.css';
 import CardHome, { CardHomeProps } from '@components/CardHome';
