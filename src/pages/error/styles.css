@@ -1,0 +1,15 @@
+.page-errors .box {
+  width: 100%;
+  height: 100%;
+  margin: 0 auto;
+}
+
+.box-p {
+  text-align: center;
+}
+
+.icon-erro {
+  width: 400px;
+  margin: 0 auto;
+  margin-bottom: 10px;
+}

@@ -14,12 +14,24 @@
           "jsx": true
         },
         "ecmaVersion": 12,
-        "sourceType": "module"
+        "sourceType": "module",
+        "warnOnUnsupportedTypeScriptVersion": false
     },
     "plugins": [
         "react",
-        "@typescript-eslint"
+        "eslint-plugin-prettier"
     ],
     "rules": {
+    },
+    "settings": {
+      "import/resolver": {
+        "typescript": {
+          "alwaysTryTypes": true, // always try to resolve types under `<root>@types` directory even it doesn't contain any source code, like `@types/unist`
+          "project": [
+            "./tsconfig.json",
+            "./tsconfig.eslint.json"
+          ]
+        }
+      }
     }
 }
