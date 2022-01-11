@@ -49,21 +49,23 @@ export const AccessibilityTools: React.FC<
     limiters: [1, 2],
   });
 
+  const themeAcess = useThemeAcess()
+
   const handleChangeContrast = () => {
-    if (theme) {
-      localStorage.removeItem('contrast');
-      document.body.classList.remove('contrast');
+    if (AccessibilityTheme) {
+      localStorage.removeItem('AccessibilityColors');
+      document.body.classList.remove('AccessibilityColors');
     } else {
-      localStorage.setItem('contrast', 'true');
-      document.body.classList.add('contrast');
+      localStorage.setItem('AccessibilityColors', 'true');
+      document.body.classList.add('AccessibilityColors');
     }
   };
 
   useEffect(() => {
-    if (localStorage.getItem('contrast')) {
-      document.body.classList.add('contrast');
+    if (localStorage.getItem('AccessibilityColors')) {
+      document.body.classList.add('AccessibilityColors');
     } else {
-      document.body.classList.remove('contrast');
+      document.body.classList.remove('AccessibilityColors');
     }
   }, []);
 
@@ -111,3 +113,7 @@ export const AccessibilityTools: React.FC<
 };
 
 export default AccessibilityTools;
+function useThemeAcess() {
+  throw new Error('Function not implemented.');
+}
+
