@@ -18,11 +18,10 @@ export const getGuides = async () => {
 
 export const postGuides = async (title: string, content: string) => {
   try {
-    return api
-      .post('/register', {
-        title,
-        content
-      })
+    return api.post('/register', {
+      title,
+      content,
+    });
   } catch {
     throw new Error('Serviço não disponível');
   }

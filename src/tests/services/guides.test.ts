@@ -1,12 +1,6 @@
 // import { AxiosInstance } from 'axios';
-import {
-  getGuides,
-  postGuides,
-  CardGuidesResponse,
-} from '@services/Guides/guides';
+import { getGuides, postGuides } from '@services/Guides/guides';
 import api from '@services/api';
-import { title } from 'process';
-import { url } from 'inspector';
 
 jest.mock('@services/api');
 
@@ -49,12 +43,11 @@ describe('Testando o serviço "postGuides"', () => {
     const title = 'Test title';
     const content = 'Teste content';
     const pathExpect = '/register';
-    const resultExpect = true
+    const resultExpect = true;
     apiMock.post.mockResolvedValue(resultExpect);
     const result = await postGuides(title, content);
     expect(result).toBe(resultExpect);
-    expect(apiMock.post).toBeCalledWith(pathExpect, {title, content});
-    
+    expect(apiMock.post).toBeCalledWith(pathExpect, { title, content });
   });
 
   it(`${postGuides.name}: Tratamento de erro quando o serviço não estiver disponível`, async () => {
@@ -72,5 +65,4 @@ describe('Testando o serviço "postGuides"', () => {
     expect(apiMock.post).toThrow(Error);
     expect(apiMock.post).toThrow(errorMessage);
   });
-
 });
