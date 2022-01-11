@@ -1,4 +1,5 @@
 import { Theme, SxProps } from '@mui/material';
+import useMediaQuery from '@mui/material/useMediaQuery';
 
 const widgetAccessibilityTools: SxProps<Theme> = {
   'position': 'fixed',
@@ -13,18 +14,34 @@ const widgetAccessibilityTools: SxProps<Theme> = {
     background: (theme) => theme.palette.primary.light,
     color: (theme) => theme.palette.secondary.main,
   },
+  '@media (max-width: 600px)': {
+    top: '0',
+    right: 'inherit',
+    transform: 'rotate(0)',
+    borderRadius: '0 0 15px 15px',
+    left: 'calc(50% - 170.67px / 2)',
+    fontSize: '14px',
+  },
 };
 
 const widgetAccessibilityToolsonClick: SxProps<Theme> = {
-  position: 'fixed',
-  top: '50vh',
-  right: '-72px',
-  background: (theme) => theme.palette.primary.light,
-  color: (theme) => theme.palette.secondary.main,
-  borderRadius: '0 0 15px 15px',
-  transform: 'rotate(90deg)',
-  zIndex: '99999',
-  width: '180px',
+  'position': 'fixed',
+  'top': '50vh',
+  'right': '-72px',
+  'background': (theme) => theme.palette.primary.light,
+  'color': (theme) => theme.palette.secondary.main,
+  'borderRadius': '0 0 15px 15px',
+  'transform': 'rotate(90deg)',
+  'zIndex': '99999',
+  'width': '180px',
+  '@media (max-width: 600px)': {
+    top: '0',
+    right: 'inherit',
+    transform: 'rotate(0)',
+    borderRadius: '0 0 15px 15px',
+    left: 'calc(50% - 170.67px / 2)',
+    fontSize: '14px',
+  },
 };
 
 const modalAccessibilityTools: SxProps<Theme> = {

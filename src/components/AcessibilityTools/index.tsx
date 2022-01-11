@@ -14,7 +14,7 @@ export const AccessibilityTools: React.FC<
   AccessibilityToolsProps
 > = (): JSX.Element => {
   const [modalOpen, setModalOpen] = useState(false);
-  const [colorModalButton, setColorModalButton] = React.useState(true);
+  const [colorModalButton, setColorModalButton] = useState(true);
   const contextAcessibility = useContext(AccessibilityContext);
 
   const handleClick = () => {
