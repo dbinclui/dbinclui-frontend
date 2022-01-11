@@ -4,7 +4,7 @@ import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import '@testing-library/jest-dom';
 import validateInput from './validator';
-import { postGuides } from '@services/Guides/guides';
+import { postGuides } from '@services/Guides';
 
 jest.mock('./validator');
 jest.mock('@services/Guides/guides');

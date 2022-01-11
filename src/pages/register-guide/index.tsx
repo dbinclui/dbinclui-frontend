@@ -9,7 +9,7 @@ import {
   InputBase,
 } from '@mui/material';
 import styles from './styles';
-import { postGuides } from '@services/Guides/guides';
+import { postGuides } from '@services/Guides';
 import Notification from '@components/Notification';
 
 export interface RegisterGuideProps {}
