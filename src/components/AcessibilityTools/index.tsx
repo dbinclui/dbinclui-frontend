@@ -8,11 +8,13 @@ import { AccessibilityContext } from '../../contexts/AccessibilityContext';
 import './style.css';
 import UseCounter from '../../hooks/Counter';
 
-export interface AccessibilityToolsProps {}
+export interface AccessibilityToolsProps {
+  handleClickContrastButton: () => void
+}
 
 export const AccessibilityTools: React.FC<
   AccessibilityToolsProps
-> = (): JSX.Element => {
+> = ({handleClickContrastButton}): JSX.Element => {
   const [modalOpen, setModalOpen] = useState(false);
   const contextAcessibility = useContext(AccessibilityContext);
 
@@ -51,6 +53,7 @@ export const AccessibilityTools: React.FC<
                 <Counter {...useCounter} />
               </div>
               <Button
+                onClick={() => handleClickContrastButton()}
                 variant="contained"
                 sx={{
                   left: '8px',

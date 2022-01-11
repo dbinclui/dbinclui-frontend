@@ -1,8 +1,7 @@
-//eslint-disable-next-line no-shadow
-export enum ColorsDefault {
-  LIGHT = '#FFF',
+export enum AccessibilityColors {
+  LIGHT = '#FFFF00',
   DARK = '#000',
-  PRIMARY = '#221F52',
+  PRIMARY = '#000',
   PRIMARY_LIGHT = '#C5CAE9',
   SECONDARY = '#ED0973',
   DANGER = '#FF1229',
