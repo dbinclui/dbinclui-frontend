@@ -8,24 +8,24 @@ describe('Página de cadastro de categorias', () => {
   test('Deve mostrar um formulário', () => {
     render(<RegisterCategory />);
 
-    const textoLabelGuia = 'Guia:';
-    const textoLabelCategoria = 'Categoria:';
-    const textoLabelDescricao = 'Descrição:';
+    const textLabelGuide = 'Guia:';
+    const textLabelCategory = 'Categoria:';
+    const textLabelDescription = 'Descrição:';
 
-    const labelGuia = screen.getByText(textoLabelGuia);
-    const labelCategoria = screen.getByText(textoLabelCategoria);
-    const labelDescricao = screen.getByText(textoLabelDescricao);
+    const labelGuide = screen.getByText(textLabelGuide);
+    const labelCategory = screen.getByText(textLabelCategory);
+    const labelDescription = screen.getByText(textLabelDescription);
 
-    const input = screen.getByLabelText(textoLabelCategoria, {
+    const input = screen.getByLabelText(textLabelCategory, {
       selector: 'input',
     });
-    const textArea = screen.getByLabelText(textoLabelDescricao, {
+    const textArea = screen.getByLabelText(textLabelDescription, {
       selector: 'textarea',
     });
 
-    expect(labelDescricao).toBeVisible();
-    expect(labelCategoria).toBeVisible();
-    expect(labelGuia).toBeVisible();
+    expect(labelDescription).toBeVisible();
+    expect(labelCategory).toBeVisible();
+    expect(labelGuide).toBeVisible();
     expect(input).toBeVisible();
     expect(textArea).toBeVisible();
   });
@@ -33,23 +33,23 @@ describe('Página de cadastro de categorias', () => {
   test('Deve verificar se o ID da label corresponde ao aria-labelledby', () => {
     render(<RegisterCategory />);
 
-    const textoLabelGuia = 'guideLabel';
-    const textoLabelCategoria = 'categoryLabel';
-    const textoLabelDescricao = 'descriptionLabel';
+    const textLabelGuide = 'guideLabel';
+    const textoLabelCategory = 'categoryLabel';
+    const textoLabelDescription = 'descriptionLabel';
 
-    const idGuia = screen.getByTestId('guideTestId');
-    const idCategoria = screen.getByTestId('categoryTestId');
-    const idDescricao = screen.getByTestId('descriptionTestId');
+    const idGuide = screen.getByTestId('guideTestId');
+    const idCategory = screen.getByTestId('categoryTestId');
+    const idDescription = screen.getByTestId('descriptionTestId');
 
-    expect(idGuia).toHaveAttribute('aria-labelledby', textoLabelGuia);
-    expect(idCategoria).toHaveAttribute('aria-labelledby', textoLabelCategoria);
-    expect(idDescricao).toHaveAttribute('aria-labelledby', textoLabelDescricao);
+    expect(idGuide).toHaveAttribute('aria-labelledby', textLabelGuide);
+    expect(idCategory).toHaveAttribute('aria-labelledby', textoLabelCategory);
+    expect(idDescription).toHaveAttribute('aria-labelledby', textoLabelDescription);
   });
 
-  test("Deve verificar se o formulário foi enviado", () => {
+  test('Deve verificar se o formulário foi enviado', () => {
     render(<RegisterCategory />);
 
-    const botao = screen.getByTestId('submit');
-    fireEvent.click(botao);
-  })
+    const button = screen.getByTestId('submit');
+    fireEvent.click(button);
+  });
 });

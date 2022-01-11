@@ -5,7 +5,7 @@ import {
   Typography,
   Grid,
   InputLabel,
-  InputBase, 
+  InputBase,
   Select,
   MenuItem,
 } from '@mui/material';
@@ -133,7 +133,7 @@ export const RegisterCategory: React.FC<
                     variant="outlined"
                     type="submit"
                     role="button"
-                    data-testid='submit'
+                    data-testid="submit"
                   >
                     Salvar
                   </Button>
