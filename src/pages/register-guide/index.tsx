@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import validateInput from './validator';
 import {
   Button,
@@ -9,28 +9,29 @@ import {
   InputBase,
 } from '@mui/material';
 import styles from './styles';
-import { postGuides } from '@services/Guides';
+import { postGuides } from '@services/guides';
 import Notification from '@components/Notification';
 
 export interface RegisterGuideProps {}
 
 export const RegisterGuide: React.FC<RegisterGuideProps> = (): JSX.Element => {
-  const [title, setTitle] = useState('');
-  const [description, setDescription] = useState('');
+  const title = useRef<HTMLInputElement>();
+  const description = useRef<HTMLInputElement>();
   const [error, setError] = useState(false);
   const [success, setSuccess] = useState(false);
   const [errorMessage, setErrorMessage] = useState('');
 
   async function handleSubmit(event: React.FormEvent) {
     event.preventDefault();
+
+    const cardBody = {
+      title: title.current?.value || '',
+      content: description.current?.value || '',
+    }
+
     try {
-      await validateInput({
-        title,
-        description,
-      });
-      await postGuides(title, description);
-      setTitle('');
-      setDescription('');
+      await validateInput(cardBody);
+      await postGuides(cardBody);
       setSuccess(true);
     } catch (error: any) {
       setErrorMessage(error.message);
@@ -74,15 +75,14 @@ export const RegisterGuide: React.FC<RegisterGuideProps> = (): JSX.Element => {
                 Título:
               </InputLabel>
               <InputBase
+                inputRef={title}
                 type="text"
                 id="titulo"
                 name="titulo"
                 role="input"
                 required
                 aria-labelledby="tituloLabel"
-                value={title}
                 sx={styles.input}
-                onChange={(event) => setTitle(event.target.value)}
               />
               <InputLabel
                 htmlFor="descricao"
@@ -92,6 +92,7 @@ export const RegisterGuide: React.FC<RegisterGuideProps> = (): JSX.Element => {
                 Descrição:
               </InputLabel>
               <InputBase
+                inputRef={description}
                 multiline={true}
                 minRows={5}
                 role="input"
@@ -99,9 +100,7 @@ export const RegisterGuide: React.FC<RegisterGuideProps> = (): JSX.Element => {
                 name="descricao"
                 aria-labelledby="descricaoLabel"
                 required
-                value={description}
                 sx={styles.input}
-                onChange={(event) => setDescription(event.target.value)}
               />
               <Grid
                 container

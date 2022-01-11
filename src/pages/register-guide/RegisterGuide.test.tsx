@@ -4,11 +4,10 @@ import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import '@testing-library/jest-dom';
 import validateInput from './validator';
-import { postGuides } from '@services/Guides';
+import { postGuides } from '@services/guides';
 
 jest.mock('./validator');
-jest.mock('@services/Guides/guides');
-
+jest.mock('@services/guides');
 describe('Página de cadastro de nova guia', () => {
   test('Deve mostrar um formulário', () => {
     render(<RegisterGuide />);
@@ -77,4 +76,14 @@ describe('Página de cadastro de nova guia', () => {
 
     expect(postGuides).toBeCalled();
   });
+
+  test('Deve mostrar na tela o card de notificação quando o botão de submit for clicado', async () => {
+    render(<RegisterGuide />);
+      
+    validateInput.mockResolvedValue(true);
+    const textoNoBotaoSubmit = 'Salvar';
+    const botaoSubmit = screen.getByText(textoNoBotaoSubmit);
+
+    userEvent.click(botaoSubmit);
+  })
 });

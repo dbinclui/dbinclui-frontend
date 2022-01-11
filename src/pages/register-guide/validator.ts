@@ -2,7 +2,7 @@ import * as yup from 'yup';
 
 interface InputInterface {
   title: string;
-  description: string;
+  content: string;
 }
 
 export default async function validateInput(
@@ -14,7 +14,7 @@ export default async function validateInput(
       .required('O título é obrigatório')
       .min(1)
       .max(32, 'O título é muito grande'),
-    description: yup.string().required('A descrição é obrigatória'),
+    content: yup.string().required('A descrição é obrigatória'),
   });
 
   return await schema.validate(data);

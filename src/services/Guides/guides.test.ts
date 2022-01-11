@@ -1,5 +1,5 @@
 // import { AxiosInstance } from 'axios';
-import { getGuides, postGuides } from '@services/Guides';
+import { getGuides, postGuides } from '@services/guides';
 import api from '@services/api';
 
 jest.mock('@services/api');
@@ -45,7 +45,7 @@ describe('Testando o serviço "postGuides"', () => {
     const pathExpect = '/register';
     const resultExpect = true;
     apiMock.post.mockResolvedValue(resultExpect);
-    const result = await postGuides(title, content);
+    const result = await postGuides({title, content});
     expect(result).toBe(resultExpect);
     expect(apiMock.post).toBeCalledWith(pathExpect, { title, content });
   });
@@ -59,7 +59,7 @@ describe('Testando o serviço "postGuides"', () => {
       throw throwError;
     });
     try {
-      await postGuides(title, content);
+      await postGuides({title, content});
     } catch {}
     expect(apiMock.post).toBeCalledTimes(1);
     expect(apiMock.post).toThrow(Error);

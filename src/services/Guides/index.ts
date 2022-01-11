@@ -6,6 +6,11 @@ export interface CardGuidesResponse {
   content: string;
 }
 
+export interface CardBodyInterface {
+  title: string;
+  content: string;
+}
+
 export const getGuides = async () => {
   try {
     return api.get<{
@@ -16,12 +21,9 @@ export const getGuides = async () => {
   }
 };
 
-export const postGuides = async (title: string, content: string) => {
+export const postGuides = async (cardBody: CardBodyInterface) => {
   try {
-    return api.post('/register', {
-      title,
-      content,
-    });
+    return api.post('/register', cardBody);
   } catch {
     throw new Error('Serviço não disponível');
   }
