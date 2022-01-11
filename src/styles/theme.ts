@@ -61,6 +61,6 @@ const theme = (themeMode: string) => {
     },
     spacing: 8,
   });
-}
+};
 
 export default theme;

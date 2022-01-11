@@ -15,7 +15,6 @@ import { Link, useNavigate } from 'react-router-dom';
 import Logo from '../svgs/logo';
 import './styles.css';
 import AccessibilityTypography from '../../components/AccessibilityTypography';
-import { AccessibilityColors } from '../../styles/colorsAccessibility';
 
 export interface HeaderProps {}
 

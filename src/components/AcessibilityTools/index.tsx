@@ -1,4 +1,4 @@
-import React, { useState, useContext, useEffect } from 'react';
+import React, { useState, useContext } from 'react';
 import { Box, Button, Typography, Modal } from '@mui/material';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
@@ -7,34 +7,16 @@ import Counter from '../Counter';
 import { AccessibilityContext } from '../../contexts/AccessibilityContext';
 import './style.css';
 import UseCounter from '../../hooks/Counter';
-import DefaultTheme from '../../styles/theme';
-import AccessibilityTheme from '../../styles/AccessibilityTheme';
 
 export interface AccessibilityToolsProps {
-  handleClickContrastButton: () => void
+  handleClickContrastButton: () => void;
 }
 
-export const AccessibilityTools: React.FC<
-  AccessibilityToolsProps
-> = ({handleClickContrastButton}): JSX.Element => {
+export const AccessibilityTools: React.FC<AccessibilityToolsProps> = ({
+  handleClickContrastButton,
+}): JSX.Element => {
   const [modalOpen, setModalOpen] = useState(false);
   const contextAcessibility = useContext(AccessibilityContext);
-  const [theme, setTheme] = useState('DefaultTheme');
-
-  const ChangeContrast = () => {
-    if (theme === 'DefaultTheme') {
-      window.localStorage.setItem('theme', 'AccessibilityTheme');
-      setTheme('AccessibilityTheme');
-    } else {
-      window.localStorage.setItem('theme', 'DefaultTheme');
-      setTheme('DefaultTheme');
-    }
-  };
-
-  useEffect(() => {
-    const localTheme = window.localStorage.getItem('theme');
-    localTheme && setTheme(localTheme);
-  }, []);
 
   const renderArrowIcon = () =>
     modalOpen ? <KeyboardArrowUpIcon /> : <KeyboardArrowDownIcon />;
@@ -50,26 +32,6 @@ export const AccessibilityTools: React.FC<
     handleCounter,
     limiters: [1, 2],
   });
-
-  const themeAcess = useThemeAcess()
-
-  const handleChangeContrast = () => {
-    if (AccessibilityTheme) {
-      localStorage.removeItem('AccessibilityColors');
-      document.body.classList.remove('AccessibilityColors');
-    } else {
-      localStorage.setItem('AccessibilityColors', 'true');
-      document.body.classList.add('AccessibilityColors');
-    }
-  };
-
-  useEffect(() => {
-    if (localStorage.getItem('AccessibilityColors')) {
-      document.body.classList.add('AccessibilityColors');
-    } else {
-      document.body.classList.remove('AccessibilityColors');
-    }
-  }, []);
 
   return (
     <>
@@ -115,7 +77,3 @@ export const AccessibilityTools: React.FC<
 };
 
 export default AccessibilityTools;
-function useThemeAcess() {
-  throw new Error('Function not implemented.');
-}
-

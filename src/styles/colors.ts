@@ -1,4 +1,3 @@
-//eslint-disable-next-line no-shadow
 export enum ColorsDefault {
   LIGHT = '#FFF',
   DARK = '#000',
