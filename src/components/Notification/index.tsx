@@ -4,6 +4,7 @@ import { Snackbar, Alert, AlertTitle } from '@mui/material';
 export interface NotificationProps {
   variant: 'error' | 'success';
   message: string;
+  onClose?: Function;
   title?: string;
 }
 
@@ -11,10 +12,14 @@ export const Notification: React.FC<NotificationProps> = ({
   variant,
   message,
   title,
+  onClose,
 }): JSX.Element => {
   const [shouldOpen, setShouldOpen] = useState(true);
 
-  const handleClose = () => setShouldOpen(false);
+  const handleClose = () => {
+    setShouldOpen(false);
+    onClose && onClose();
+  };
 
   const getNotificationTitle = (title: string | undefined) => {
     if (!title) {
