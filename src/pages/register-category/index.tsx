@@ -5,7 +5,7 @@ import {
   Typography,
   Grid,
   InputLabel,
-  InputBase,
+  InputBase, 
   Select,
   MenuItem,
 } from '@mui/material';
@@ -16,17 +16,14 @@ export interface RegisterCategoryProps {}
 export const RegisterCategory: React.FC<
   RegisterCategoryProps
 > = (): JSX.Element => {
-  const formRef = useRef<HTMLFormElement | undefined>();
-  const category = useRef('');
-  const description = useRef('');
-  const guide = useRef('');
+  const category = useRef<HTMLInputElement>();
+  const description = useRef<HTMLInputElement>();
+  const guide = useRef<HTMLInputElement>();
 
   const categories = ['Guia de acessibilidade', 'Guia da Cultura Surda'];
 
   const handleClick = (event: React.FormEvent) => {
     event.preventDefault();
-    const formData = new FormData(formRef.current);
-    formData.forEach(console.log);
   };
 
   return (
@@ -52,7 +49,6 @@ export const RegisterCategory: React.FC<
               Buscar conteúdo digital
             </Button>
             <Box
-              ref={formRef}
               onSubmit={handleClick}
               component="form"
               flexDirection={'column'}
@@ -66,7 +62,7 @@ export const RegisterCategory: React.FC<
                 Guia:
               </InputLabel>
               <Select
-                ref={guide}
+                inputRef={guide}
                 labelId="guideLabel"
                 required
                 data-testid="guideTestId"
@@ -97,7 +93,7 @@ export const RegisterCategory: React.FC<
                 Categoria:
               </InputLabel>
               <InputBase
-                ref={category}
+                inputRef={category}
                 type="text"
                 id="category"
                 name="category"
@@ -115,7 +111,7 @@ export const RegisterCategory: React.FC<
                 Descrição:
               </InputLabel>
               <InputBase
-                ref={description}
+                inputRef={description}
                 multiline={true}
                 minRows={5}
                 role="input"
@@ -137,6 +133,7 @@ export const RegisterCategory: React.FC<
                     variant="outlined"
                     type="submit"
                     role="button"
+                    data-testid='submit'
                   >
                     Salvar
                   </Button>

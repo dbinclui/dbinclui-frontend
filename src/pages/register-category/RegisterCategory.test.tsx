@@ -2,6 +2,7 @@ import React from 'react';
 import { RegisterCategory } from '@pages/register-category';
 import { render, screen } from '@testing-library/react';
 import '@testing-library/jest-dom';
+import { fireEvent } from '@testing-library/dom';
 
 describe('Página de cadastro de categorias', () => {
   test('Deve mostrar um formulário', () => {
@@ -44,4 +45,11 @@ describe('Página de cadastro de categorias', () => {
     expect(idCategoria).toHaveAttribute('aria-labelledby', textoLabelCategoria);
     expect(idDescricao).toHaveAttribute('aria-labelledby', textoLabelDescricao);
   });
+
+  test("Deve verificar se o formulário foi enviado", () => {
+    render(<RegisterCategory />);
+
+    const botao = screen.getByTestId('submit');
+    fireEvent.click(botao);
+  })
 });
