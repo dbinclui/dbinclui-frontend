@@ -4,7 +4,7 @@ import Routers from './routes/routes';
 import { CssBaseline } from '@mui/material';
 import { ThemeProvider } from '@mui/material/styles';
 import theme from './styles/theme';
-import AccessibilityTools from './components/AcessibilityTools';
+import AccessibilityTools from '@components/AcessibilityTools';
 import GlobalContext from './contexts';
 
 function App() {

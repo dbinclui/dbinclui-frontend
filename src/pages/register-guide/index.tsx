@@ -133,8 +133,25 @@ export const RegisterGuide: React.FC<RegisterGuideProps> = (): JSX.Element => {
           </Box>
         </Grid>
       </Grid>
-      {error && <Notification message={`${errorMessage} 🤔`} variant='error'/>}
-      {success && <Notification message='Cadastro ralizado com sucesso! ✔' variant='success'/>}
+      {error && (
+        <Notification
+          message={`${errorMessage} 🤔`}
+          variant="error"
+          onClose={() => {
+            setError(false);
+            setErrorMessage('');
+          }}
+        />
+      )}
+      {success && (
+        <Notification
+          message="Cadastro ralizado com sucesso! ✔"
+          variant="success"
+          onClose={() => {
+            setSuccess(false);
+          }}
+        />
+      )}
     </>
   );
 };
