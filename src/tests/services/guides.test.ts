@@ -44,19 +44,33 @@ describe('Testando o serviço "postGuides"', () => {
     apiMock.post.mockClear();
   });
 
-  it(`${postGuides.name}: Postando conteúdo "postGuides"`, async () => {
-    const test: CardGuidesResponse = {
-      title: 'Test title',
-      content: 'Test content',
-    };
-
-    apiMock.post.mockResolvedValue({url: "/register", data: test});
-    const result = await postGuides(test.title, test.content);
-    expect(apiMock.post).toBeCalled();
-    expect(result).toStrictEqual(
-      JSON.parse(
-        '{"data":{"title":"Test title","content":"Test content","_id":"61dc9c435794caf1b38dae01","created_at":"2022-01-10T20:51:15.303Z","updated_at":"2022-01-10T20:51:15.303Z","__v":0}}',
-      ),
-    );
+  it(`Quando ${postGuides.name} é chamado, o resultado deve retornar true
+  `, async () => {
+    const title = 'Test title';
+    const content = 'Teste content';
+    const pathExpect = '/register';
+    const resultExpect = true
+    apiMock.post.mockResolvedValue(resultExpect);
+    const result = await postGuides(title, content);
+    expect(result).toBe(resultExpect);
+    expect(apiMock.post).toBeCalledWith(pathExpect, {title, content});
+    
   });
+
+  it(`${postGuides.name}: Tratamento de erro quando o serviço não estiver disponível`, async () => {
+    const title = 'Test title';
+    const content = 'Teste content';
+    const errorMessage = 'Serviço não disponível';
+    const throwError = new Error(errorMessage);
+    apiMock.post.mockImplementation(() => {
+      throw throwError;
+    });
+    try {
+      await postGuides(title, content);
+    } catch {}
+    expect(apiMock.post).toBeCalledTimes(1);
+    expect(apiMock.post).toThrow(Error);
+    expect(apiMock.post).toThrow(errorMessage);
+  });
+
 });

@@ -5,7 +5,7 @@ import { CardGuidesResponse, getGuides } from '@services/Guides/guides';
 import AcessibilityGuide from '@pages/acessibility-guide';
 import '@testing-library/jest-dom';
 
-jest.mock('@services/guides');
+jest.mock('@services/Guides/guides');
 
 const getGuidesMock = getGuides as jest.MockedFunction<typeof getGuides>;
 

@@ -7,7 +7,7 @@ import validateInput from './validator';
 import { postGuides } from '@services/Guides/guides';
 
 jest.mock('./validator');
-jest.mock('@services/guides');
+jest.mock('@services/Guides/guides');
 
 describe('Página de cadastro de nova guia', () => {
   test('Deve mostrar um formulário', () => {
