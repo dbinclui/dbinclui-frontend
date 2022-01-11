@@ -9,4 +9,5 @@ export enum Colors {
   WARNING = '#FFB400',
   SUCCESS = '#42CE95',
   INFO = '#14B6EF',
+  PINK = '#ED0973',
 }
