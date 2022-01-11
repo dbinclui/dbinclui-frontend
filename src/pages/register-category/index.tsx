@@ -28,12 +28,6 @@ export const RegisterCategory: React.FC<
 
   return (
     <Grid container alignItems={'center'} justifyContent={'center'} role="main">
-      <Grid
-        container
-        alignItems={'center'}
-        justifyContent={'center'}
-        role="main"
-      >
         <Grid item md={6} sx={styles.content} component="section">
           <Box sx={styles.header} component="header">
             <Typography sx={styles.headerTitle} variant="h1">
@@ -153,7 +147,6 @@ export const RegisterCategory: React.FC<
           </Box>
         </Grid>
       </Grid>
-    </Grid>
   );
 };
 
