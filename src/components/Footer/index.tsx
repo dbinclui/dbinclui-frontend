@@ -4,6 +4,7 @@ import InstagramIcon from '@mui/icons-material/Instagram';
 import TwitterIcon from '@mui/icons-material/Twitter';
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
 import './styles.css';
+import AccessibilityTypography from '../../components/AccessibilityTypography';
 
 let anoAtual = new Date().getFullYear();
 
@@ -41,9 +42,9 @@ export const Footer: React.FC<FooterProps> = (): JSX.Element => {
         >
           <LinkedInIcon style={{ color: 'white', fontSize: '32px' }} />
         </a>
-        <p className="copyright">
+        <AccessibilityTypography className="copyright">
           © {anoAtual} DBInclui - Todos os direitos reservados
-        </p>
+        </AccessibilityTypography>
       </footer>
     </>
   );

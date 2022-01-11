@@ -1,15 +1,9 @@
 import React from 'react';
-import {
-  Container,
-  IconButton,
-  TextField,
-  Typography,
-  Paper,
-  Grid,
-} from '@mui/material';
+import { Container, IconButton, TextField, Paper, Grid } from '@mui/material';
 import SearchIcon from '@mui/icons-material/Search';
 import './style.css';
 import CardHome, { CardHomeProps } from '@components/CardHome';
+import AccessibilityTypography from '../../components/AccessibilityTypography';
 
 export interface HomeProps {}
 
@@ -83,7 +77,7 @@ export const Home: React.FC<HomeProps> = (): JSX.Element => {
           </Grid>
           <Grid item md={12} py={'45px'} px={'20px'} justifyContent={'center'}>
             <Grid maxWidth={'800px'} m="auto">
-              <Typography textAlign={'center'}>
+              <AccessibilityTypography textAlign={'center'}>
                 Bem-vindo ao DB INCLUI, o DB INCLUI é um web app que dissemina a
                 cultura de inclusão dentro da DBserver, com foco na cultura
                 surda. O web app é destinado para todas as pessoas que desejam
@@ -92,7 +86,7 @@ export const Home: React.FC<HomeProps> = (): JSX.Element => {
                 Acessibilidade e a Apostila de Libras como fonte para informação
                 de inclusão, assim como, utiliza a API VLIBRAS para as
                 funcionalidades específicas.
-              </Typography>
+              </AccessibilityTypography>
             </Grid>
           </Grid>
         </Grid>

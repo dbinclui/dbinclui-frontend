@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import { Box, Button, Typography, Modal } from '@mui/material';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
@@ -7,6 +7,8 @@ import Counter from '../Counter';
 import { AccessibilityContext } from '../../contexts/AccessibilityContext';
 import './style.css';
 import UseCounter from '../../hooks/Counter';
+import DefaultTheme from '../../styles/theme';
+import AccessibilityTheme from '../../styles/AccessibilityTheme';
 
 export interface AccessibilityToolsProps {
   handleClickContrastButton: () => void
@@ -17,6 +19,22 @@ export const AccessibilityTools: React.FC<
 > = ({handleClickContrastButton}): JSX.Element => {
   const [modalOpen, setModalOpen] = useState(false);
   const contextAcessibility = useContext(AccessibilityContext);
+  const [theme, setTheme] = useState('DefaultTheme');
+
+  const ChangeContrast = () => {
+    if (theme === 'DefaultTheme') {
+      window.localStorage.setItem('theme', 'AccessibilityTheme');
+      setTheme('AccessibilityTheme');
+    } else {
+      window.localStorage.setItem('theme', 'DefaultTheme');
+      setTheme('DefaultTheme');
+    }
+  };
+
+  useEffect(() => {
+    const localTheme = window.localStorage.getItem('theme');
+    localTheme && setTheme(localTheme);
+  }, []);
 
   const renderArrowIcon = () =>
     modalOpen ? <KeyboardArrowUpIcon /> : <KeyboardArrowDownIcon />;
@@ -30,8 +48,28 @@ export const AccessibilityTools: React.FC<
 
   const useCounter = UseCounter({
     handleCounter,
-    limiters: [1, 3],
+    limiters: [1, 2],
   });
+
+  const themeAcess = useThemeAcess()
+
+  const handleChangeContrast = () => {
+    if (AccessibilityTheme) {
+      localStorage.removeItem('AccessibilityColors');
+      document.body.classList.remove('AccessibilityColors');
+    } else {
+      localStorage.setItem('AccessibilityColors', 'true');
+      document.body.classList.add('AccessibilityColors');
+    }
+  };
+
+  useEffect(() => {
+    if (localStorage.getItem('AccessibilityColors')) {
+      document.body.classList.add('AccessibilityColors');
+    } else {
+      document.body.classList.remove('AccessibilityColors');
+    }
+  }, []);
 
   return (
     <>
@@ -41,7 +79,9 @@ export const AccessibilityTools: React.FC<
             onClick={() => setModalOpen(!modalOpen)}
             startIcon={renderArrowIcon()}
           >
-            <Typography variant="body1">Acessibilidade</Typography>
+            <Typography variant="body1" aria-label="Acessibilidade">
+              Acessibilidade
+            </Typography>
           </Button>
         </Box>
       </Box>
@@ -55,15 +95,16 @@ export const AccessibilityTools: React.FC<
               <Button
                 onClick={() => handleClickContrastButton()}
                 variant="contained"
+                aria-label="Mudar contraste da tela"
                 sx={{
-                  left: '8px',
+                  left: '10px',
                   top: '10px',
                   width: '90%',
                   borderRadius: '20px',
                   fontSize: '14px',
                 }}
               >
-                Contraste
+                Contrastes
               </Button>
             </Box>
           </Fade>
@@ -74,3 +115,7 @@ export const AccessibilityTools: React.FC<
 };
 
 export default AccessibilityTools;
+function useThemeAcess() {
+  throw new Error('Function not implemented.');
+}
+

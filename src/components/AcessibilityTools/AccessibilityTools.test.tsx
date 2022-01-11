@@ -1,6 +1,6 @@
 import React from 'react';
 import { render, screen } from '@testing-library/react';
-import AccessibilityTools from '.';
+import AccessibilityTools from './index';
 import { fireEvent } from '@testing-library/dom';
 
 describe('AccessibilityTools Component', () => {
