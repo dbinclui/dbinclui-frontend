@@ -27,8 +27,9 @@ export const CardHome: React.FC<CardHomeProps> = ({
       <Grid item>
         <Typography
           sx={{
+            textDecoration: 'none',
             textTransform: 'uppercase',
-            color: 'white',
+            color: 'text',
             textAlign: 'center',
             display: 'flex',
             marginLeft: '15px',

@@ -41,9 +41,7 @@ export const AccessibilityTools: React.FC<AccessibilityToolsProps> = ({
             onClick={() => setModalOpen(!modalOpen)}
             startIcon={renderArrowIcon()}
           >
-            <Typography variant="body1" aria-label="Acessibilidade">
-              Acessibilidade
-            </Typography>
+            Acessibilidade
           </Button>
         </Box>
       </Box>

@@ -101,7 +101,6 @@ export const Header: React.FC<HeaderProps> = (): JSX.Element => {
               aria-controls="menu-appbar"
               aria-haspopup="true"
               onClick={handleOpenNavMenu}
-              color="inherit"
             >
               <MenuIcon />
             </IconButton>
@@ -164,7 +163,9 @@ export const Header: React.FC<HeaderProps> = (): JSX.Element => {
                   handleChangePage(currentTarget)
                 }
               >
-                <AccessibilityTypography>{item.title}</AccessibilityTypography>
+                <AccessibilityTypography color="">
+                  {item.title}
+                </AccessibilityTypography>
               </Button>
             ))}
           </Box>

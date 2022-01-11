@@ -50,6 +50,9 @@ const theme = (themeMode: string) => {
     components: {
       MuiButton: {
         styleOverrides: {
+          text: {
+            color: Colors.LIGHT,
+          },
           outlined: {
             '&:hover': {
               backgroundColor: Colors.LIGHT,
