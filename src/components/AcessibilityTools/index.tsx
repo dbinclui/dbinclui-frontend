@@ -44,7 +44,6 @@ export const AccessibilityTools: React.FC<
             ? styles.widgetAccessibilityTools
             : styles.widgetAccessibilityToolsonClick
         }
-        //backgroundColor={colorModalButton ? 'secondary' : 'primary'}
       >
         <Box>
           <Button
@@ -54,8 +53,6 @@ export const AccessibilityTools: React.FC<
               },
             }}
             color={colorModalButton ? 'primary' : 'secondary'}
-            //backgroundColor={colorModalButton ? 'secondary' : 'primary'}
-
             onClick={() => {
               setModalOpen(!modalOpen);
               handleClick();
