@@ -13,8 +13,6 @@ import styles from './styles';
 
 export interface RegisterCategoryProps {}
 
-const categories = ['Guia de acessibilidade', 'Guia da Cultura Surda'];
-
 export const RegisterCategory: React.FC<
   RegisterCategoryProps
 > = (): JSX.Element => {
@@ -23,13 +21,16 @@ export const RegisterCategory: React.FC<
   const description = useRef('');
   const guide = useRef('');
 
-  const handleClick = () => {
+  const categories = ['Guia de acessibilidade', 'Guia da Cultura Surda'];
+
+  const handleClick = (event: React.FormEvent) => {
+    event.preventDefault();
     const formData = new FormData(formRef.current);
     formData.forEach(console.log);
   };
 
   return (
-    <form ref={formRef} onSubmit={handleClick}>
+    <Grid container alignItems={'center'} justifyContent={'center'} role="main">
       <Grid
         container
         alignItems={'center'}
@@ -50,7 +51,13 @@ export const RegisterCategory: React.FC<
             >
               Buscar conteúdo digital
             </Button>
-            <Box component="form" flexDirection={'column'} display={'flex'}>
+            <Box
+              ref={formRef}
+              onSubmit={handleClick}
+              component="form"
+              flexDirection={'column'}
+              display={'flex'}
+            >
               <InputLabel
                 htmlFor="guide"
                 id="guideLabel"
@@ -59,6 +66,7 @@ export const RegisterCategory: React.FC<
                 Guia:
               </InputLabel>
               <Select
+                ref={guide}
                 labelId="guideLabel"
                 required
                 data-testid="guideTestId"
@@ -66,7 +74,6 @@ export const RegisterCategory: React.FC<
                 aria-labelledby="guideLabel"
                 name="guide"
                 id="guide"
-                value={guide.current}
                 sx={[styles.input, styles.select]}
               >
                 {categories.map((category) => (
@@ -90,6 +97,7 @@ export const RegisterCategory: React.FC<
                 Categoria:
               </InputLabel>
               <InputBase
+                ref={category}
                 type="text"
                 id="category"
                 name="category"
@@ -97,7 +105,6 @@ export const RegisterCategory: React.FC<
                 required
                 data-testid="categoryTestId"
                 aria-labelledby="categoryLabel"
-                value={category.current}
                 sx={styles.input}
               />
               <InputLabel
@@ -108,6 +115,7 @@ export const RegisterCategory: React.FC<
                 Descrição:
               </InputLabel>
               <InputBase
+                ref={description}
                 multiline={true}
                 minRows={5}
                 role="input"
@@ -115,7 +123,6 @@ export const RegisterCategory: React.FC<
                 name="description"
                 aria-labelledby="descriptionLabel"
                 data-testid="descriptionTestId"
-                value={description.current}
                 required
                 sx={styles.input}
               />
@@ -149,7 +156,7 @@ export const RegisterCategory: React.FC<
           </Box>
         </Grid>
       </Grid>
-    </form>
+    </Grid>
   );
 };
 
