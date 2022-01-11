@@ -1,5 +1,5 @@
 import React from 'react';
-import RegisterCategory from '@pages/register-category';
+import { RegisterCategory } from '@pages/register-category';
 import { render, screen } from '@testing-library/react';
 import '@testing-library/jest-dom';
 
