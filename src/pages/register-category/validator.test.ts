@@ -19,7 +19,7 @@ describe('Função de validação de dados de categoria', () => {
     };
 
     return expect(validateInput(data)).rejects.toThrow(
-      'O título é obrigatório',
+      'O título da categoria é obrigatório',
     );
   });
 
