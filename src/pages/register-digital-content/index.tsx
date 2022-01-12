@@ -26,13 +26,10 @@ export const RegisterDigitalContent: React.FC<
 
   const handleClick = (event: React.FormEvent) => {
     event.preventDefault();
-    // console.log(guide.current?.value);
-    // console.log(category.current?.value);
-    // console.log(title.current?.value);
-    // console.log(description.current?.value);
   };
 
   return (
+    
     <Grid container alignItems={'center'} justifyContent={'center'} role="main">
       <Grid item md={6} sx={styles.content} component="section">
         <Box sx={styles.header} component="header">
@@ -47,7 +44,7 @@ export const RegisterDigitalContent: React.FC<
             sx={styles.buttonDigitalContent}
           >
             Selecionar um ficheiro
-            <input type="file" hidden />
+            <input type="file" />
           </Button>
           <Box
             onSubmit={handleClick}
@@ -164,7 +161,7 @@ export const RegisterDigitalContent: React.FC<
               </Grid>
               <Grid item md={6} sx={styles.buttonWrapper}>
                 <Button
-                  sx={styles.button}
+                  sx={[styles.button, styles.buttonFechar]}
                   variant="contained"
                   type="reset"
                   role="button"
