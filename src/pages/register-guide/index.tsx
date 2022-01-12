@@ -37,6 +37,9 @@ export const RegisterGuide: React.FC<RegisterGuideProps> = (): JSX.Element => {
       setErrorMessage(error.message);
       setError(true);
     }
+    
+    title.current!.value = "";
+    description.current!.value = "";
   }
 
   return (
