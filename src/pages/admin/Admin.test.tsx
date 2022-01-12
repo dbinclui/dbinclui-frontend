@@ -16,7 +16,6 @@ jest.mock('react-router-dom', () => {
 
 describe('Página do Administrador', () => {
   test('Deve mostrar os botões de criação de guias', () => {
-
     render(<Admin />);
 
     const buttonRegisterGuideText = 'Cadastrar Guia';
@@ -33,7 +32,6 @@ describe('Página do Administrador', () => {
   });
 
   test('O botão Cadastrar Guia deve redirecionar o user para outra página', () => {
-
     render(<Admin />);
 
     const buttonRegisterGuideText = 'Cadastrar Guia';
@@ -45,7 +43,6 @@ describe('Página do Administrador', () => {
   });
 
   test('O botão Cadastro de Categorias deve redirecionar o user para outra página', () => {
-
     render(<Admin />);
 
     const buttonRegisterCategoryText = 'Cadastro de Categorias';
@@ -57,7 +54,6 @@ describe('Página do Administrador', () => {
   });
 
   test('O botão Cadastro de Conteúdo digital deve redirecionar o user para outra página', () => {
-    
     render(<Admin />);
 
     const buttonRegisterContentText = 'Cadastro de Conteúdo digital';
