@@ -24,10 +24,11 @@ const buttonDigitalContent: SxProps<Theme> = {
   mr: 0,
   ml: 'auto',
   mb: '0.8rem',
-  // display: 'block',
+  display: 'block',
   padding: '0.3rem 1rem',
   fontWeight: '700',
   textTransform: 'none',
+  width: '13.1rem',
 };
 
 const labelInput: SxProps<Theme> = {

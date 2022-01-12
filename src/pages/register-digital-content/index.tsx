@@ -47,7 +47,7 @@ export const RegisterDigitalContent: React.FC<
             sx={styles.buttonDigitalContent}
           >
             Selecionar um ficheiro
-            <input type="file" hidden/>
+            <input type="file" hidden />
           </Button>
           <Box
             onSubmit={handleClick}
