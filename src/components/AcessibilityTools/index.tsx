@@ -36,7 +36,7 @@ export const AccessibilityTools: React.FC<AccessibilityToolsProps> = ({
   return (
     <>
       <Box className="widget-accessibility-tools">
-        <Box className="widget-button">
+        <Box>
           <Button
             onClick={() => setModalOpen(!modalOpen)}
             startIcon={renderArrowIcon()}
