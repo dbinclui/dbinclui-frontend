@@ -7,7 +7,10 @@
   color: #221f52;
   display: block;
   text-align: center;
-  margin: 1rem;
+  /* margin: 1rem; */
+  align-items: center;
+  justify-content: center; 
+  padding: 20px;
 }
 .app-header .MuiButton-root {
 }
@@ -24,7 +27,11 @@
   max-width: 78%;
 }
 .box-admin {
-  margin: 1rem 0 1rem 1rem;
+  display: flex;
+  position: relative;
+  left: 5px;
+  top: 0px
+  /* margin: 1rem 0 1rem 1rem; */
 }
 
 .logo {

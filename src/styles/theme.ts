@@ -18,7 +18,7 @@ const theme = (themeMode: string) => {
         default: Colors.PRIMARY,
       },
       text: {
-        primary: Colors.LIGHT,
+        primary: Colors.SECONDARY,
       },
       primary: {
         light: Colors.PRIMARY_LIGHT,
