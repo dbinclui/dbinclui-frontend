@@ -9,7 +9,7 @@ import {
   InputBase,
 } from '@mui/material';
 import styles from './styles';
-import { postGuides } from '@services/guides';
+import { postGuides } from '@services/guides/index';
 import Notification from '@components/Notification';
 
 export interface RegisterGuideProps {}
@@ -140,7 +140,7 @@ export const RegisterGuide: React.FC<RegisterGuideProps> = (): JSX.Element => {
             setError(false);
             setErrorMessage('');
           }}
-        />
+        >erro</Notification>
       )}
       {success && (
         <Notification
@@ -149,7 +149,7 @@ export const RegisterGuide: React.FC<RegisterGuideProps> = (): JSX.Element => {
           onClose={() => {
             setSuccess(false);
           }}
-        />
+        >sucesso</Notification>
       )}
     </>
   );

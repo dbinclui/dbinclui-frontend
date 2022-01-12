@@ -1,6 +1,6 @@
 import * as yup from 'yup';
 
-interface InputInterface {
+export interface InputInterface {
   title: string;
   content: string;
 }

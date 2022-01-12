@@ -5,6 +5,7 @@
     "start": "react-app-rewired start",
     "build": "react-app-rewired build",
     "test": "npx jest -c jest.config.ts",
+    "test:target": "npx jest -c jest.config.ts -t",
     "eject": "react-scripts eject",
     "lint:check": "npx eslint -c .eslintrc.json ./src/**/*.tsx",
     "lint:fix": "npx eslint -c .eslintrc.json --fix ./src/**/*.tsx",
