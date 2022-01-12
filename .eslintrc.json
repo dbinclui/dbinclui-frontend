@@ -22,6 +22,7 @@
         "eslint-plugin-prettier"
     ],
     "rules": {
+      "testing-library/no-unnecessary-act": 0
     },
     "settings": {
       "import/resolver": {

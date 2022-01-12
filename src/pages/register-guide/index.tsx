@@ -29,6 +29,8 @@ export const RegisterGuide: React.FC<RegisterGuideProps> = (): JSX.Element => {
       content: description.current?.value || '',
     }
 
+    const clear = "";
+
     try {
       await validateInput(cardBody);
       await postGuides(cardBody);
@@ -37,6 +39,9 @@ export const RegisterGuide: React.FC<RegisterGuideProps> = (): JSX.Element => {
       setErrorMessage(error.message);
       setError(true);
     }
+    title.current!.value = "";
+    description.current!.value = "";
+
   }
 
   return (

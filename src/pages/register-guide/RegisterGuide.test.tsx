@@ -4,15 +4,16 @@ import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import '@testing-library/jest-dom';
 import validateInput, { InputInterface } from './validator';
-import { postGuides } from '@services/guides'; 
+import { postGuides } from '@services/guides';
 import { act } from 'react-dom/test-utils';
-import { AspectRatio } from '@mui/icons-material';
 import { AxiosResponse } from 'axios';
 
 jest.mock('./validator');
 jest.mock('@services/guides');
-const validateInputMock = validateInput as jest.MockedFunction<typeof validateInput>
-const postGuidesMock = postGuides as jest.MockedFunction<typeof postGuides>
+const validateInputMock = validateInput as jest.MockedFunction<
+  typeof validateInput
+>;
+const postGuidesMock = postGuides as jest.MockedFunction<typeof postGuides>;
 
 describe('Página de cadastro de nova guia', () => {
   test('Deve mostrar um formulário', () => {
@@ -62,46 +63,54 @@ describe('Página de cadastro de nova guia', () => {
   });
 
   test('Deve validar o input quando o botão de submit for clicado', () => {
-    render(<RegisterGuide />);
+    // eslint-disable-next-line testing-library/no-unnecessary-act
+    act(() => {
+      render(<RegisterGuide />);
+      });
 
     const textoBotaoSubmit = 'Salvar';
     const botaoSubmit = screen.getByText(textoBotaoSubmit);
 
-    userEvent.click(botaoSubmit);
+    // eslint-disable-next-line testing-library/no-unnecessary-act
+    act(() => {
+      userEvent.click(botaoSubmit);
+    });
 
     expect(validateInput).toBeCalled();
   });
 
   test('Deve chamar a função postGuides quando o botão do submit for clicado', () => {
+    // eslint-disable-next-line testing-library/no-unnecessary-act
+    act(() => {
     render(<RegisterGuide />);
-
+    });
     const textoNoBotaoSubmit = 'Salvar';
     const botaoSubmit = screen.getByText(textoNoBotaoSubmit);
-
-    userEvent.click(botaoSubmit);
-
+    // eslint-disable-next-line testing-library/no-unnecessary-act
+    act(() => {
+      userEvent.click(botaoSubmit);
+    });
     expect(postGuides).toBeCalled();
   });
 
   test('Deve mostrar na tela o card de notificação de sucesso quando o botão de submit for clicado', async () => {
     // eslint-disable-next-line testing-library/no-unnecessary-act
-    await act(() => {
+    act(() => {
       render(<RegisterGuide />);
-    });
-      
+      });
+
     validateInputMock.mockResolvedValue(true as unknown as InputInterface);
-    postGuidesMock.mockResolvedValue(true as unknown as Promise<AxiosResponse>)
+    postGuidesMock.mockResolvedValue(true as unknown as Promise<AxiosResponse>);
     const textoNoBotaoSubmit = 'Salvar';
-    const NotificationMessage = 'alert';
+    const NotificationMessage = 'Cadastro ralizado com sucesso! ✔';
     const botaoSubmit = screen.getByText(textoNoBotaoSubmit);
     // eslint-disable-next-line testing-library/no-unnecessary-act
-    await act(() => {
+    act(() => {
       userEvent.click(botaoSubmit);
-    }); 
-    const NotificationCard = screen.getByRole(NotificationMessage);
-    
-    screen.debug()
+    });
+
+    const NotificationCard = await screen.findByText(NotificationMessage);
+
     expect(NotificationCard).toBeVisible();
-  })
+  });
 });
-// await new Promise((r) => setTimeout(r, 2000));
