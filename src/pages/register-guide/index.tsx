@@ -27,9 +27,7 @@ export const RegisterGuide: React.FC<RegisterGuideProps> = (): JSX.Element => {
     const cardBody = {
       title: title.current?.value || '',
       content: description.current?.value || '',
-    }
-
-    const clear = "";
+    };
 
     try {
       await validateInput(cardBody);
@@ -39,9 +37,8 @@ export const RegisterGuide: React.FC<RegisterGuideProps> = (): JSX.Element => {
       setErrorMessage(error.message);
       setError(true);
     }
-    title.current!.value = "";
-    description.current!.value = "";
-
+    title.current!.value = '';
+    description.current!.value = '';
   }
 
   return (
@@ -145,7 +142,9 @@ export const RegisterGuide: React.FC<RegisterGuideProps> = (): JSX.Element => {
             setError(false);
             setErrorMessage('');
           }}
-        >erro</Notification>
+        >
+          erro
+        </Notification>
       )}
       {success && (
         <Notification
@@ -154,7 +153,9 @@ export const RegisterGuide: React.FC<RegisterGuideProps> = (): JSX.Element => {
           onClose={() => {
             setSuccess(false);
           }}
-        >sucesso</Notification>
+        >
+          sucesso
+        </Notification>
       )}
     </>
   );
