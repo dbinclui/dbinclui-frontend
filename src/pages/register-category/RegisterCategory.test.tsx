@@ -43,7 +43,10 @@ describe('Página de cadastro de categorias', () => {
 
     expect(idGuide).toHaveAttribute('aria-labelledby', textLabelGuide);
     expect(idCategory).toHaveAttribute('aria-labelledby', textoLabelCategory);
-    expect(idDescription).toHaveAttribute('aria-labelledby', textoLabelDescription);
+    expect(idDescription).toHaveAttribute(
+      'aria-labelledby',
+      textoLabelDescription,
+    );
   });
 
   test('Deve verificar se o formulário foi enviado', () => {
