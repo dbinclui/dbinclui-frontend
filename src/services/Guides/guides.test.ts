@@ -1,5 +1,5 @@
 // import { AxiosInstance } from 'axios';
-import { getGuides, postGuides } from '@services/guides';
+import { getGuides, postGuides } from '@services/Guides';
 import api from '@services/api';
 
 jest.mock('@services/api');

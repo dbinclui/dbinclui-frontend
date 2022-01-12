@@ -1,11 +1,11 @@
 import React from 'react';
 import { AxiosResponse } from 'axios';
 import { act, render, screen } from '@testing-library/react';
-import  CardGuidesResponse, { getGuides } from '@services/guides';
+import  CardGuidesResponse, { getGuides } from '@services/Guides';
 import AcessibilityGuide from '@pages/acessibility-guide';
 import '@testing-library/jest-dom';
 
-jest.mock('@services/guides');
+jest.mock('@services/Guides');
 
 const getGuidesMock = getGuides as jest.MockedFunction<typeof getGuides>;
 

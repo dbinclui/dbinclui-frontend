@@ -4,12 +4,12 @@ import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import '@testing-library/jest-dom';
 import validateInput, { InputInterface } from './validator';
-import { postGuides } from '@services/guides';
+import { postGuides } from '@services/Guides';
 import { act } from 'react-dom/test-utils';
 import { AxiosResponse } from 'axios';
 
 jest.mock('./validator');
-jest.mock('@services/guides');
+jest.mock('@services/Guides');
 const validateInputMock = validateInput as jest.MockedFunction<
   typeof validateInput
 >;
