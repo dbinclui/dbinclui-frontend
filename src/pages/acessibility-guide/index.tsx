@@ -1,9 +1,9 @@
 import React from 'react';
-import Card from '../../components/Card';
+import Card from '@components/Card';
 import './styles.css';
 import { useEffect, useState } from 'react';
-import { CardGuidesResponse, getGuides } from '../../services/Guides/guides';
-import AccessibilityTypography from '../../components/AccessibilityTypography';
+import { CardGuidesResponse, getGuides } from '@services/guides';
+import AccessibilityTypography from '@components/AccessibilityTypography';
 
 export default function AcessibilityGuide() {
   const [cards, setCards] = useState<CardGuidesResponse[]>([]);

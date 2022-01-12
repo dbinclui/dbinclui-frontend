@@ -4,9 +4,9 @@ import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
 import Fade from '@mui/material/Fade';
 import Counter from '../Counter';
-import { AccessibilityContext } from '../../contexts/AccessibilityContext';
+import { AccessibilityContext } from '@contexts/AccessibilityContext';
 import './style.css';
-import UseCounter from '../../hooks/Counter';
+import UseCounter from '@hooks/Counter';
 
 export interface AccessibilityToolsProps {}
 
