@@ -14,7 +14,7 @@ const theme = createTheme({
       default: Colors.PRIMARY,
     },
     text: {
-      primary: Colors.LIGHT,
+      primary: Colors.SECONDARY,
     },
     primary: {
       light: Colors.PRIMARY_LIGHT,
@@ -48,9 +48,9 @@ const theme = createTheme({
       styleOverrides: {
         outlined: {
           '&:hover': {
-            backgroundColor: Colors.LIGHT,
+            backgroundColor: Colors.SECONDARY,
           },
-          'backgroundColor': Colors.LIGHT,
+          'backgroundColor': Colors.SECONDARY,
         },
       },
     },

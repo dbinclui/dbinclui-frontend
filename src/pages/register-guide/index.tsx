@@ -1,16 +1,10 @@
 import React, { useState, useRef } from 'react';
 import validateInput from './validator';
-import {
-  Button,
-  Box,
-  Typography,
-  Grid,
-  InputLabel,
-  InputBase,
-} from '@mui/material';
+import { Button, Box, Grid, InputLabel, InputBase } from '@mui/material';
 import styles from './styles';
-import { postGuides } from '@services/guides';
+import { postGuides } from '@services/guides/index';
 import Notification from '@components/Notification';
+import AccessibilityTypography from '@components/AccessibilityTypography';
 
 export interface RegisterGuideProps {}
 
@@ -27,7 +21,7 @@ export const RegisterGuide: React.FC<RegisterGuideProps> = (): JSX.Element => {
     const cardBody = {
       title: title.current?.value || '',
       content: description.current?.value || '',
-    }
+    };
 
     try {
       await validateInput(cardBody);
@@ -52,9 +46,9 @@ export const RegisterGuide: React.FC<RegisterGuideProps> = (): JSX.Element => {
       >
         <Grid item md={6} sx={styles.content} component="section">
           <Box sx={styles.header} component="header">
-            <Typography sx={styles.headerTitle} variant="h1">
+            <AccessibilityTypography sx={styles.headerTitle} variant="h1">
               CADASTRO DE GUIA
-            </Typography>
+            </AccessibilityTypography>
           </Box>
           <Box padding={'1rem 3rem'} component="section">
             <Button
@@ -143,7 +137,9 @@ export const RegisterGuide: React.FC<RegisterGuideProps> = (): JSX.Element => {
             setError(false);
             setErrorMessage('');
           }}
-        />
+        >
+          erro
+        </Notification>
       )}
       {success && (
         <Notification
@@ -152,7 +148,9 @@ export const RegisterGuide: React.FC<RegisterGuideProps> = (): JSX.Element => {
           onClose={() => {
             setSuccess(false);
           }}
-        />
+        >
+          sucesso
+        </Notification>
       )}
     </>
   );
