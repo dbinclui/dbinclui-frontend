@@ -2,7 +2,7 @@ import React, { useState, useRef } from 'react';
 import validateInput from './validator';
 import { Button, Box, Grid, InputLabel, InputBase } from '@mui/material';
 import styles from './styles';
-import { postGuides } from '@services/Guides/index';
+import { postGuides } from '@services/guides/index';
 import Notification from '@components/Notification';
 import AccessibilityTypography from '@components/AccessibilityTypography';
 
