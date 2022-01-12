@@ -40,13 +40,7 @@ export const AccessibilityTools: React.FC<AccessibilityToolsProps> = ({
 
   return (
     <>
-      <Box
-        sx={
-          colorModalButton
-            ? styles.widgetAccessibilityTools
-            : styles.widgetAccessibilityToolsonClick
-        }
-      >
+      <Box className="widget-accessibility-tools">
         <Box>
           <Button
             sx={{

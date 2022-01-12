@@ -22,7 +22,7 @@ export const CardHome: React.FC<CardHomeProps> = ({
     component={Link}
     to={path}
     data-testid={'cardHome'}
-    sx={{ textDecoration: 'none' }}
+    style={{ textDecoration: 'none', color: 'inherit' }}
   >
     <Grid flexDirection={'column'} alignItems={'center'} container>
       <Grid item>
