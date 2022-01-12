@@ -7,13 +7,13 @@ const content: SxProps<Theme> = {
 };
 
 const header: SxProps<Theme> = {
-  background: (theme) => theme.palette.text.primary,
+  background: (theme) => theme.palette.secondary.main,
   borderTopLeftRadius: '20px',
   borderTopRightRadius: '20px',
 };
 
 const headerTitle: SxProps<Theme> = {
-  color: (theme) => theme.palette.primary.main,
+  color: 'white',
   fontSize: '1.3rem',
   fontWeight: 'bold',
   textAlign: 'center',
@@ -31,16 +31,16 @@ const buttonDigitalContent: SxProps<Theme> = {
 };
 
 const labelInput: SxProps<Theme> = {
-  color: (theme) => theme.palette.primary.main,
+  color: (theme) => theme.palette.secondary.main,
   fontWeight: 'bold',
   mb: '0.5rem',
 };
 
 const input: SxProps<Theme> = {
   width: '100%',
-  background: (theme) => theme.palette.text.primary,
+  background: (theme) => theme.palette.primary.main,
   borderRadius: '20px',
-  color: (theme) => theme.palette.primary.main,
+  color: (theme) => theme.palette.secondary.main,
   padding: '0.5rem 1rem',
   mb: '2.5rem',
 };

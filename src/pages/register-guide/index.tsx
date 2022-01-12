@@ -1,14 +1,8 @@
 import React, { useState } from 'react';
 import validateInput from './validator';
-import {
-  Button,
-  Box,
-  Typography,
-  Grid,
-  InputLabel,
-  InputBase,
-} from '@mui/material';
+import { Button, Box, Grid, InputLabel, InputBase } from '@mui/material';
 import styles from './styles';
+import AccessibilityTypography from '@components/AccessibilityTypography';
 
 export interface RegisterGuideProps {}
 
@@ -31,9 +25,9 @@ export const RegisterGuide: React.FC<RegisterGuideProps> = (): JSX.Element => {
     <Grid container alignItems={'center'} justifyContent={'center'} role="main">
       <Grid item md={6} sx={styles.content} component="section">
         <Box sx={styles.header} component="header">
-          <Typography sx={styles.headerTitle} variant="h1">
+          <AccessibilityTypography sx={styles.headerTitle} variant="h1">
             CADASTRO DE GUIA
-          </Typography>
+          </AccessibilityTypography>
         </Box>
         <Box padding={'1rem 3rem'} component="section">
           <Button
