@@ -2,7 +2,7 @@ import React from 'react';
 import Card from '@components/Card';
 import './styles.css';
 import { useEffect, useState } from 'react';
-import { CardGuidesResponse, getGuides } from '@services/guides/index';
+import { CardGuidesResponse, getGuides } from '@services/guides';
 import AccessibilityTypography from '@components/AccessibilityTypography';
 
 export default function AcessibilityGuide() {

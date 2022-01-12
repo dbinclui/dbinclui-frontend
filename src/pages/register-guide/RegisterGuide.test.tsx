@@ -113,4 +113,29 @@ describe('Página de cadastro de nova guia', () => {
 
     expect(NotificationCard).toBeVisible();
   });
+
+  test('Deve mostrar na tela o card de notificação de erro quando o botão de submit for clicado', async () => {
+    act(() => {
+      render(<RegisterGuide />);
+      });
+
+      const errorMessage = "Erro";
+      const throwError = new Error(errorMessage);
+
+    validateInputMock.mockImplementation(() => {
+      throw throwError;
+    });
+    postGuidesMock.mockResolvedValue(true as unknown as Promise<AxiosResponse>);
+    const textoNoBotaoSubmit = 'Salvar';
+    const NotificationMessage = errorMessage;
+    const botaoSubmit = screen.getByText(textoNoBotaoSubmit);
+    
+    act(() => {
+      userEvent.click(botaoSubmit);
+    });
+
+    const NotificationCard = await screen.findByText(NotificationMessage);
+
+    expect(NotificationCard).toBeVisible();
+  });
 });
