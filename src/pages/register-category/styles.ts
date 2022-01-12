@@ -7,13 +7,13 @@ const content: SxProps<Theme> = {
 };
 
 const header: SxProps<Theme> = {
-  background: (theme) => theme.palette.secondary.main,
+  background: (theme) => theme.palette.text.primary,
   borderTopLeftRadius: '20px',
   borderTopRightRadius: '20px',
 };
 
 const headerTitle: SxProps<Theme> = {
-  color: 'white',
+  color: (theme) => theme.palette.primary.main,
   fontSize: '1.3rem',
   fontWeight: 'bold',
   textAlign: 'center',
@@ -31,16 +31,16 @@ const buttonDigitalContent: SxProps<Theme> = {
 };
 
 const labelInput: SxProps<Theme> = {
-  color: (theme) => theme.palette.secondary.main,
+  color: (theme) => theme.palette.primary.main,
   fontWeight: 'bold',
   mb: '0.5rem',
 };
 
 const input: SxProps<Theme> = {
   width: '100%',
-  background: (theme) => theme.palette.primary.main,
+  background: (theme) => theme.palette.text.primary,
   borderRadius: '20px',
-  color: (theme) => theme.palette.secondary.main,
+  color: (theme) => theme.palette.primary.main,
   padding: '0.5rem 1rem',
   mb: '2.5rem',
 };
@@ -59,6 +59,18 @@ const button: SxProps<Theme> = {
   fontSize: '1.2rem',
 };
 
+const select: SxProps<Theme> = {
+  padding: 0,
+};
+
+const menuItem: SxProps<Theme> = {
+  'color': (theme) => theme.palette.primary.main,
+  'paddingTop': 0,
+  '.MuiList-root': {
+    backgroundColor: (theme) => theme.palette.text.primary,
+  },
+};
+
 const styles = {
   content,
   header,
@@ -68,6 +80,8 @@ const styles = {
   input,
   buttonWrapper,
   button,
+  select,
+  menuItem,
 };
 
 export default styles;

@@ -1,8 +1,10 @@
 .app-header a.MuiButton-root:hover {
-  /* text-decoration: underline; */
+  color: #221f52;
+  text-decoration: underline;
 }
 
 .app-header a.MuiButton-root {
+  color: #221f52;
   display: block;
   text-align: center;
   margin: 1rem;
@@ -29,7 +31,7 @@
   margin-top: 0.8rem;
 }
 
-.MuiList-root {
+.app-header .MuiList-root {
   background-color: #d5d6e6;
 }
 

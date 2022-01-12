@@ -1,7 +1,7 @@
 import React from 'react';
-import { Grid, Paper, Typography } from '@mui/material';
+import { Grid, Paper } from '@mui/material';
 import { Link } from 'react-router-dom';
-import AccessibilityTypography from '../../components/AccessibilityTypography';
+import AccessibilityTypography from '@components/AccessibilityTypography';
 
 export interface CardHomeProps {
   title: string;
@@ -22,31 +22,25 @@ export const CardHome: React.FC<CardHomeProps> = ({
     component={Link}
     to={path}
     data-testid={'cardHome'}
+    sx={{ textDecoration: 'none' }}
   >
     <Grid flexDirection={'column'} alignItems={'center'} container>
       <Grid item>
-        <Typography
+        <AccessibilityTypography
           sx={{
             textDecoration: 'none',
             textTransform: 'uppercase',
-            color: 'text',
-            textAlign: 'center',
-            display: 'flex',
-            marginLeft: '15px',
-            alignItems: 'center',
-            margin: '-15px',
-            mt: '8px',
           }}
           variant="h5"
           mb={'25px'}
         >
-          <AccessibilityTypography>{title}</AccessibilityTypography>
-        </Typography>
+          {title}
+        </AccessibilityTypography>
       </Grid>
       <Grid item>
         <Paper
-          variant="outlined"
           sx={{
+            backgroundColor: 'secondary.main',
             width: '14.25rem',
             height: '12rem',
             borderRadius: '1.25rem',

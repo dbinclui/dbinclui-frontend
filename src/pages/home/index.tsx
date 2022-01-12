@@ -3,7 +3,7 @@ import { Container, IconButton, TextField, Paper, Grid } from '@mui/material';
 import SearchIcon from '@mui/icons-material/Search';
 import './style.css';
 import CardHome, { CardHomeProps } from '@components/CardHome';
-import AccessibilityTypography from '../../components/AccessibilityTypography';
+import AccessibilityTypography from '@components/AccessibilityTypography';
 
 export interface HomeProps {}
 
@@ -31,6 +31,7 @@ export const Home: React.FC<HomeProps> = (): JSX.Element => {
             <Paper
               p={'5px'}
               borderRadius={'1.25rem'}
+              sx={{ borderColor: 'secondary.main' }}
               component={Grid}
               container
               flexDirection={'row'}
@@ -43,7 +44,7 @@ export const Home: React.FC<HomeProps> = (): JSX.Element => {
                   placeholder="Pesquise aqui"
                   sx={{
                     '&::placeholder': {
-                      color: '#222',
+                      color: 'secondary.main',
                     },
                   }}
                   inputProps={{ 'aria-label': 'pesquise aqui' }}

@@ -5,7 +5,7 @@ import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
 import Fade from '@mui/material/Fade';
 import Counter from '../Counter';
 import { AccessibilityContext } from '../../contexts/AccessibilityContext';
-import './style.css';
+import styles from './styles';
 import UseCounter from '../../hooks/Counter';
 
 export interface AccessibilityToolsProps {
@@ -16,7 +16,12 @@ export const AccessibilityTools: React.FC<AccessibilityToolsProps> = ({
   handleClickContrastButton,
 }): JSX.Element => {
   const [modalOpen, setModalOpen] = useState(false);
+  const [colorModalButton, setColorModalButton] = useState(true);
   const contextAcessibility = useContext(AccessibilityContext);
+
+  const handleClick = () => {
+    setColorModalButton(!colorModalButton);
+  };
 
   const renderArrowIcon = () =>
     modalOpen ? <KeyboardArrowUpIcon /> : <KeyboardArrowDownIcon />;
@@ -35,10 +40,25 @@ export const AccessibilityTools: React.FC<AccessibilityToolsProps> = ({
 
   return (
     <>
-      <Box className="widget-accessibility-tools">
-        <Box className="widget-button">
+      <Box
+        sx={
+          colorModalButton
+            ? styles.widgetAccessibilityTools
+            : styles.widgetAccessibilityToolsonClick
+        }
+      >
+        <Box>
           <Button
-            onClick={() => setModalOpen(!modalOpen)}
+            sx={{
+              '&:hover': {
+                color: 'secondary.main',
+              },
+            }}
+            color={colorModalButton ? 'primary' : 'secondary'}
+            onClick={() => {
+              setModalOpen(!modalOpen);
+              handleClick();
+            }}
             startIcon={renderArrowIcon()}
           >
             Acessibilidade
@@ -48,7 +68,7 @@ export const AccessibilityTools: React.FC<AccessibilityToolsProps> = ({
       {modalOpen && (
         <Modal open={modalOpen} onClose={() => setModalOpen(!modalOpen)}>
           <Fade in={modalOpen}>
-            <Box className="modal modal-accessibility-tools">
+            <Box sx={styles.modalAccessibilityTools}>
               <div>
                 <Counter {...useCounter} />
               </div>
