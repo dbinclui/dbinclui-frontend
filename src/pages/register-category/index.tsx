@@ -9,6 +9,8 @@ import {
   Select,
   MenuItem,
 } from '@mui/material';
+import AccessibilityTypography from '@components/AccessibilityTypography';
+
 import styles from './styles';
 
 export interface RegisterCategoryProps {}
@@ -31,7 +33,9 @@ export const RegisterCategory: React.FC<
       <Grid item md={6} sx={styles.content} component="section">
         <Box sx={styles.header} component="header">
           <Typography sx={styles.headerTitle} variant="h1">
-            CADASTRO DE CATEGORIA
+            <AccessibilityTypography>
+              CADASTRO DE CATEGORIA
+            </AccessibilityTypography>
           </Typography>
         </Box>
         <Box padding={'1rem 3rem'} component="section">
@@ -49,7 +53,7 @@ export const RegisterCategory: React.FC<
             display={'flex'}
           >
             <InputLabel htmlFor="guide" id="guideLabel" sx={styles.labelInput}>
-              Guia:
+              <AccessibilityTypography>Guia:</AccessibilityTypography>
             </InputLabel>
             <Select
               inputRef={guide}
@@ -80,7 +84,7 @@ export const RegisterCategory: React.FC<
               id="categoryLabel"
               sx={styles.labelInput}
             >
-              Categoria:
+              <AccessibilityTypography>Categoria:</AccessibilityTypography>
             </InputLabel>
             <InputBase
               inputRef={category}
@@ -98,7 +102,7 @@ export const RegisterCategory: React.FC<
               sx={styles.labelInput}
               id="descriptionLabel"
             >
-              Descrição:
+              <AccessibilityTypography>Descrição:</AccessibilityTypography>
             </InputLabel>
             <InputBase
               inputRef={description}
