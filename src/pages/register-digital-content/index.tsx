@@ -46,6 +46,7 @@ export const RegisterDigitalContent: React.FC<
           >
             Selecionar um ficheiro
             <input
+            data-testid="inputFile"
               accept="image/*,.pdf,.doc, .docx"
               type="file"
               hidden

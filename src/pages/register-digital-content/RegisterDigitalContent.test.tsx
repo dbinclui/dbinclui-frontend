@@ -3,7 +3,6 @@ import { RegisterDigitalContent } from '@pages/register-digital-content';
 import { render, screen } from '@testing-library/react';
 import '@testing-library/jest-dom';
 import { fireEvent } from '@testing-library/dom';
-import { execPath } from 'process';
 
 describe('Página de cadastro de categorias', () => {
   test('Deve mostrar um formulário', () => {
@@ -61,5 +60,21 @@ describe('Página de cadastro de categorias', () => {
 
     const button = screen.getByTestId('submit');
     fireEvent.click(button);
+  });
+
+  test('Deve verificar se o arquivo está sendo enviado', async () => {
+    const fileName = 'teste.pdf';
+
+    render(<RegisterDigitalContent />);
+
+    const noFile = screen.getByText('Nenhum arquivo selecionado');
+    expect(noFile).toBeVisible();
+
+    const input = screen.getByTestId('inputFile');
+    fireEvent.change(input, { target: { files: [{ name: fileName }] } });
+
+    const elementFileName = await screen.findByText(fileName);
+    expect(elementFileName).toBeVisible();
+    expect(noFile).not.toBeVisible();
   });
 });
