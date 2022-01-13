@@ -89,14 +89,14 @@ export const Header: React.FC<HeaderProps> = (): JSX.Element => {
             noWrap
             component={Link}
             to="/"
-            sx={{ mr: 2, display: { xs: 'none', md: 'flex'}}}
+            sx={{ mr: 2, display: { xs: 'none', md: 'flex' } }}
           >
             <Box sx={{ mt: '10px', mb: '10px' }}>
-
-              {
-                (theme.palette.background.default === ColorsDefault.PRIMARY) ?  <Logo/> : <LogoBranca/>
-              }
-            
+              {theme.palette.background.default === ColorsDefault.PRIMARY ? (
+                <Logo />
+              ) : (
+                <LogoBranca />
+              )}
             </Box>
           </Typography>
 
@@ -138,7 +138,7 @@ export const Header: React.FC<HeaderProps> = (): JSX.Element => {
                     className="menu-item-mobile"
                     component={Link}
                     to={item.href}
-                    sx={{ color: 'text.primary' }}
+                    sx={{ color: 'text.primary', textDecoration: 'none' }}
                   >
                     <AccessibilityTypography>
                       {item.title}
@@ -183,6 +183,7 @@ export const Header: React.FC<HeaderProps> = (): JSX.Element => {
           <Box className="box-admin" sx={{ flexGrow: 0 }}>
             <Tooltip title="Administrador">
               <IconButton
+                size="large"
                 sx={{ p: 0, m: '0 auto' }}
                 onClick={() => navigate('admin')}
               >

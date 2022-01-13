@@ -1,23 +1,34 @@
-import React from 'react';
+import * as React from 'react';
 import Error404 from '../../components/svgs/404';
+import Error404Contrast from '../../components/svgs/404Contrast';
 import './styles.css';
 import AccessibilityTypography from '../../components/AccessibilityTypography';
-import { Typography } from '@mui/material';
+import { ColorsDefault } from '@styles/colors';
+import { Box, Typography } from '@mui/material';
+import { useTheme } from '@emotion/react';
 
 export interface ErrorProps {}
 export const Error: React.FC<ErrorProps> = (): JSX.Element => {
+  const theme: any = useTheme();
   return (
     <>
       <div className="page-error">
         <div className="icon-error">
-          <Error404 />
+          <Box sx={{ mt: '-100px' }}>
+            {theme.palette.background.default === ColorsDefault.PRIMARY ? (
+              <Error404 />
+            ) : (
+              <Error404Contrast />
+            )}
+          </Box>
+
           <div />
-          <Typography variant="h2">
+          <Typography sx={{ mt: '30px' }}>
             <AccessibilityTypography
               tabIndex={0}
-              variant="h1"
               className="box-p"
               aria-label="DESCULPE, A PÁGINA NÃO FOI ENCONTRADA"
+              sx={{ fontSize: '30px' }}
             >
               Desculpe, a página não foi encontrada!
             </AccessibilityTypography>

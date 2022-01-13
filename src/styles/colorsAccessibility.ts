@@ -4,7 +4,7 @@ export enum AccessibilityColors {
   PRIMARY = '#000',
   INPUT_TEXT = '#FFF',
   CONTENT = '#000',
-  CONTENT__BORDER = '#FFFF00',
+  CONTENT_BORDER = '#FFFF00',
   PRIMARY_LIGHT = '#C5CAE9',
   SECONDARY = '#FFFF00',
   BUTTON_CONTRAST = '#000',
