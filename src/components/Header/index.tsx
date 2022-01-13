@@ -92,11 +92,9 @@ export const Header: React.FC<HeaderProps> = (): JSX.Element => {
             sx={{ mr: 2, display: { xs: 'none', md: 'flex'}}}
           >
             <Box sx={{ mt: '10px', mb: '10px' }}>
-
               {
                 (theme.palette.background.default === ColorsDefault.PRIMARY) ?  <Logo/> : <LogoBranca/>
               }
-            
             </Box>
           </Typography>
 
