@@ -25,7 +25,7 @@ export const CardItems: CardHomeProps[] = [
 export const Home: React.FC<HomeProps> = (): JSX.Element => {
   return (
     <>
-      <Container>
+      <Container >
         <Grid container justifyContent={'center'}>
           <Grid item py={'75px'} md={9}>
             <Paper
