@@ -30,15 +30,23 @@ export const CardHome: React.FC<CardHomeProps> = ({
           sx={{
             textDecoration: 'none',
             textTransform: 'uppercase',
+            color: 'text',
+            textAlign: 'center',
+            display: 'flex',
+            marginLeft: '15px',
+            alignItems: 'center',
+            margin: '-15px',
+            mt: '8px',
           }}
           variant="h5"
           mb={'25px'}
-        >
-          {title}
+          >
+            <AccessibilityTypography>{title}</AccessibilityTypography>
         </AccessibilityTypography>
       </Grid>
       <Grid item>
         <Paper
+          variant="outlined"
           sx={{
             backgroundColor: 'secondary.light',
             width: '14.25rem',
