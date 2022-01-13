@@ -40,8 +40,10 @@
   background-color: #44ff22;
 }
 
-a.menu-item-mobile {
-  color: #44ff22;
+a.menu-item-mobile ul {
   text-decoration: none;
   padding-top: 1rem;
 }
+
+
+
