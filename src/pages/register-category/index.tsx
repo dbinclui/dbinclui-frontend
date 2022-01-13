@@ -20,7 +20,7 @@ export const RegisterCategory: React.FC<
   const description = useRef<HTMLInputElement>();
   const guide = useRef<HTMLInputElement>();
 
-  const categories = ['Guia de acessibilidade', 'Guia da Cultura Surda'];
+  const guides = ['Guia de acessibilidade', 'Guia da Cultura Surda'];
 
   const handleClick = (event: React.FormEvent) => {
     event.preventDefault();
@@ -62,16 +62,16 @@ export const RegisterCategory: React.FC<
               id="guide"
               sx={[styles.input, styles.select]}
             >
-              {categories.map((category) => (
+              {guides.map((guide) => (
                 <MenuItem
-                  key={category}
-                  value={category}
+                  key={guide}
+                  value={guide}
                   data-testid="guideItensTestId"
                   role="option"
                   aria-labelledby="itensLabel"
                   sx={styles.menuItem}
                 >
-                  {category}
+                  {guide}
                 </MenuItem>
               ))}
             </Select>
