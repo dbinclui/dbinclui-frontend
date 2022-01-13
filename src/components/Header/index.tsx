@@ -15,9 +15,9 @@ import { Link, useNavigate } from 'react-router-dom';
 import Logo from '../svgs/logo';
 import './styles.css';
 import AccessibilityTypography from '../../components/AccessibilityTypography';
-import { useTheme } from '@emotion/react';
-import LogoBranca from '@components/svgs/logoBranca';
 import { ColorsDefault } from '@styles/colors';
+import LogoBranca from '@components/svgs/logoBranca';
+import { useTheme } from '@emotion/react';
 
 export interface HeaderProps {}
 
@@ -73,7 +73,6 @@ export const Header: React.FC<HeaderProps> = (): JSX.Element => {
   const handleCloseNavMenu = () => {
     setAnchorElNav(null);
   };
-
   const theme: any = useTheme();
 
   return (
@@ -93,11 +92,11 @@ export const Header: React.FC<HeaderProps> = (): JSX.Element => {
             sx={{ mr: 2, display: { xs: 'none', md: 'flex' } }}
           >
             <Box sx={{ mb: '20px' }}>
-
-              {
-                (theme.palette.background.default === ColorsDefault.PRIMARY) ?  <Logo/> : <LogoBranca/>
-              }
-            
+              {theme.palette.background.default === ColorsDefault.PRIMARY ? (
+                <Logo />
+              ) : (
+                <LogoBranca />
+              )}
             </Box>
           </Typography>
 
@@ -110,8 +109,9 @@ export const Header: React.FC<HeaderProps> = (): JSX.Element => {
               aria-controls="menu-appbar"
               aria-haspopup="true"
               onClick={handleOpenNavMenu}
+              sx={{ color: 'secondary.light' }}
             >
-              <MenuIcon sx={{ color: 'secondary.light' }} />
+              <MenuIcon />
             </IconButton>
             <Menu
               id="menu-appbar"
@@ -127,6 +127,9 @@ export const Header: React.FC<HeaderProps> = (): JSX.Element => {
               }}
               open={Boolean(anchorElNav)}
               onClose={handleCloseNavMenu}
+              sx={{
+                display: { xs: 'block', md: 'none' },
+              }}
             >
               {MenuItems.map((item, key) => (
                 <MenuItem key={key}>
@@ -135,12 +138,9 @@ export const Header: React.FC<HeaderProps> = (): JSX.Element => {
                     className="menu-item-mobile"
                     component={Link}
                     to={item.href}
+                    sx={{ color: 'text.primary' }}
                   >
-                    <AccessibilityTypography
-                      sx={{
-                        color: 'text.primary',
-                      }}
-                    >
+                    <AccessibilityTypography>
                       {item.title}
                     </AccessibilityTypography>
                   </Typography>

@@ -1,6 +1,13 @@
 import React, { useState } from 'react';
 import validateInput from './validator';
-import { Button, Box, Grid, InputLabel, InputBase } from '@mui/material';
+import {
+  Button,
+  Box,
+  Grid,
+  InputLabel,
+  InputBase,
+  Typography,
+} from '@mui/material';
 import styles from './styles';
 import AccessibilityTypography from '@components/AccessibilityTypography';
 
@@ -25,9 +32,9 @@ export const RegisterGuide: React.FC<RegisterGuideProps> = (): JSX.Element => {
     <Grid container alignItems={'center'} justifyContent={'center'} role="main">
       <Grid item md={6} sx={styles.content} component="section">
         <Box sx={styles.header} component="header">
-          <AccessibilityTypography sx={styles.headerTitle} variant="h1">
-            CADASTRO DE GUIA
-          </AccessibilityTypography>
+          <Typography sx={styles.headerTitle} variant="h1">
+            <AccessibilityTypography>CADASTRO DE GUIA</AccessibilityTypography>
+          </Typography>
         </Box>
         <Box
           className="contrastContainer"
