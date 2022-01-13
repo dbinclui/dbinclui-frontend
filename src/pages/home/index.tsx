@@ -31,14 +31,14 @@ export const Home: React.FC<HomeProps> = (): JSX.Element => {
             <Paper
               p={'5px'}
               borderRadius={'1.25rem'}
-              sx={{
-                border: '1px solid',
-                borderColor: 'secondary.contrastText',
-              }}
               component={Grid}
               container
               flexDirection={'row'}
               alignItems={'center'}
+              sx={{
+                border: '1px solid',
+                borderColor: 'secondary.contrastText',
+              }}
             >
               <Grid item md={11}>
                 <TextField
@@ -47,7 +47,7 @@ export const Home: React.FC<HomeProps> = (): JSX.Element => {
                   placeholder="Pesquise aqui"
                   sx={{
                     '&::placeholder': {
-                      backgroundColor: 'text.secondary',
+                      color: 'text.secondary',
                     },
                   }}
                   inputProps={{ 'aria-label': 'pesquise aqui' }}
