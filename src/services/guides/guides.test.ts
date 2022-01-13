@@ -42,7 +42,7 @@ describe('Testando o serviço "postGuides"', () => {
   `, async () => {
     const title = 'Test title';
     const content = 'Teste content';
-    const pathExpect = '/register';
+    const pathExpect = '/guides/register';
     const resultExpect = true;
     apiMock.post.mockResolvedValue(resultExpect);
     const result = await postGuides({title, content});
