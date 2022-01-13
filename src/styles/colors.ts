@@ -2,6 +2,7 @@ export enum ColorsDefault {
   LIGHT = '#FFF',
   DARK = '#000',
   PRIMARY = '#EFF0F6',
+  INPUT_TEXT = '#EFF0F6',
   CONTENT = '#C5CAE9',
   CONTENT__BORDER = '#C5CAE9',
   PRIMARY_LIGHT = '#C5CAE9',

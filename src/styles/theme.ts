@@ -24,6 +24,7 @@ const theme = (themeMode: string) => {
       },
       primary: {
         light: Colors.PRIMARY_LIGHT,
+        dark: Colors.INPUT_TEXT,
         main: Colors.PRIMARY,
         contrastText: Colors.BUTTON_CONTRAST,
       },

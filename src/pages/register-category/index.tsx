@@ -119,7 +119,7 @@ export const RegisterCategory: React.FC<
             >
               <Grid item md={6} sx={styles.buttonWrapper}>
                 <Button
-                  sx={styles.button}
+                  sx={styles.buttonSave}
                   variant="outlined"
                   type="submit"
                   role="button"
@@ -130,7 +130,7 @@ export const RegisterCategory: React.FC<
               </Grid>
               <Grid item md={6} sx={styles.buttonWrapper}>
                 <Button
-                  sx={styles.button}
+                  sx={styles.buttonClose}
                   variant="contained"
                   type="reset"
                   role="button"

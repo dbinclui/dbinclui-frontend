@@ -102,7 +102,7 @@ export const Header: React.FC<HeaderProps> = (): JSX.Element => {
               aria-haspopup="true"
               onClick={handleOpenNavMenu}
             >
-              <MenuIcon />
+              <MenuIcon sx={{ color: 'secondary.light' }} />
             </IconButton>
             <Menu
               id="menu-appbar"
@@ -118,9 +118,6 @@ export const Header: React.FC<HeaderProps> = (): JSX.Element => {
               }}
               open={Boolean(anchorElNav)}
               onClose={handleCloseNavMenu}
-              sx={{
-                display: { xs: 'block', md: 'none' },
-              }}
             >
               {MenuItems.map((item, key) => (
                 <MenuItem key={key}>
@@ -130,7 +127,11 @@ export const Header: React.FC<HeaderProps> = (): JSX.Element => {
                     component={Link}
                     to={item.href}
                   >
-                    <AccessibilityTypography>
+                    <AccessibilityTypography
+                      sx={{
+                        color: 'text.primary',
+                      }}
+                    >
                       {item.title}
                     </AccessibilityTypography>
                   </Typography>

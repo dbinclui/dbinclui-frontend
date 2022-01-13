@@ -30,6 +30,10 @@ const buttonDigitalContent: SxProps<Theme> = {
   padding: '0.3rem 1rem',
   fontWeight: '700',
   textTransform: 'none',
+  background: (theme) => theme.palette.primary.main,
+  color: (theme) => theme.palette.text.primary,
+  border: '1px solid',
+  borderColor: (theme) => theme.palette.secondary.contrastText,
 };
 
 const labelInput: SxProps<Theme> = {
@@ -40,7 +44,7 @@ const labelInput: SxProps<Theme> = {
 
 const input: SxProps<Theme> = {
   width: '100%',
-  background: (theme) => theme.palette.primary.main,
+  background: (theme) => theme.palette.primary.dark,
   borderRadius: '20px',
   color: (theme) => theme.palette.secondary.main,
   padding: '0.5rem 1rem',
@@ -54,11 +58,21 @@ const buttonWrapper: SxProps<Theme> = {
   mb: '0.5rem',
 };
 
-const button: SxProps<Theme> = {
+const buttonSave: SxProps<Theme> = {
   fontWeight: '700',
   padding: '0.5rem 1.5rem',
   textTransform: 'none',
   fontSize: '1.2rem',
+};
+const buttonClose: SxProps<Theme> = {
+  fontWeight: '700',
+  padding: '0.5rem 1.5rem',
+  textTransform: 'none',
+  fontSize: '1.2rem',
+  background: (theme) => theme.palette.primary.main,
+  color: (theme) => theme.palette.text.primary,
+  border: '1px solid',
+  borderColor: (theme) => theme.palette.secondary.contrastText,
 };
 
 const styles = {
@@ -69,7 +83,8 @@ const styles = {
   labelInput,
   input,
   buttonWrapper,
-  button,
+  buttonClose,
+  buttonSave,
 };
 
 export default styles;

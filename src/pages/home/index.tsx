@@ -32,7 +32,8 @@ export const Home: React.FC<HomeProps> = (): JSX.Element => {
               p={'5px'}
               borderRadius={'1.25rem'}
               sx={{
-                backgroundColor: 'secondary.light',
+                border: '1px solid',
+                borderColor: 'secondary.contrastText',
               }}
               component={Grid}
               container
@@ -56,7 +57,7 @@ export const Home: React.FC<HomeProps> = (): JSX.Element => {
                 <IconButton
                   type="submit"
                   sx={{
-                    color: 'text.secondary',
+                    color: 'secondary.main',
                     width: '100%',
                     borderRadius: '4px',
                   }}
