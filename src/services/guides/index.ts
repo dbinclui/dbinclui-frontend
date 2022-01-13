@@ -13,9 +13,7 @@ export interface CardBodyInterface {
 
 export const getGuides = async () => {
   try {
-    return api.get<{
-      data: CardGuidesResponse[];
-    }>(`accessibility-guide`);
+    return api.get<{ data: CardGuidesResponse[] }>(`/guides/list`);
   } catch {
     throw new Error('Serviço não disponível');
   }
@@ -23,7 +21,7 @@ export const getGuides = async () => {
 
 export const postGuides = async (cardBody: CardBodyInterface) => {
   try {
-    return api.post('/register', cardBody);
+    return api.post('/guides/register', cardBody);
   } catch {
     throw new Error('Serviço não disponível');
   }
