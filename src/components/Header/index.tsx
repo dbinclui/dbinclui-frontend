@@ -15,6 +15,9 @@ import { Link, useNavigate } from 'react-router-dom';
 import Logo from '../svgs/logo';
 import './styles.css';
 import AccessibilityTypography from '../../components/AccessibilityTypography';
+import { useTheme } from '@emotion/react';
+import LogoBranca from '@components/svgs/logoBranca';
+import { ColorsDefault } from '@styles/colors';
 
 export interface HeaderProps {}
 
@@ -71,6 +74,8 @@ export const Header: React.FC<HeaderProps> = (): JSX.Element => {
     setAnchorElNav(null);
   };
 
+  const theme: any = useTheme();
+
   return (
     <AppBar
       role="header"
@@ -88,7 +93,11 @@ export const Header: React.FC<HeaderProps> = (): JSX.Element => {
             sx={{ mr: 2, display: { xs: 'none', md: 'flex' } }}
           >
             <Box sx={{ mb: '20px' }}>
-              <Logo />
+
+              {
+                (theme.palette.background.default === ColorsDefault.PRIMARY) ?  <Logo/> : <LogoBranca/>
+              }
+            
             </Box>
           </Typography>
 
