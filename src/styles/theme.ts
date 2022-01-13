@@ -16,16 +16,21 @@ const theme = (themeMode: string) => {
     palette: {
       background: {
         default: Colors.PRIMARY,
+        paper: Colors.CONTENT,
       },
       text: {
-        primary: Colors.LIGHT,
+        primary: Colors.SECONDARY,
+        secondary: Colors.PRIMARY,
       },
       primary: {
         light: Colors.PRIMARY_LIGHT,
         main: Colors.PRIMARY,
+        contrastText: Colors.BUTTON_CONTRAST,
       },
       secondary: {
+        light: Colors.SECONDARY_CONTRAST,
         main: Colors.SECONDARY,
+        contrastText: Colors.CONTENT__BORDER,
       },
       error: {
         main: Colors.DANGER,
@@ -48,16 +53,16 @@ const theme = (themeMode: string) => {
       },
     },
     components: {
-      MuiButton: { 
+      MuiButton: {
         styleOverrides: {
           text: {
-            color: Colors.LIGHT,
+            color: Colors.BUTTON_CONTRAST,
           },
           outlined: {
             '&:hover': {
-              backgroundColor: Colors.PRIMARY,
+              backgroundColor: Colors.SECONDARY,
             },
-            'backgroundColor': Colors.PRIMARY,
+            'backgroundColor': Colors.SECONDARY,
           },
         },
       },

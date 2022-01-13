@@ -2,8 +2,10 @@ import { Theme, SxProps } from '@mui/material';
 
 const content: SxProps<Theme> = {
   borderRadius: '20px',
+  border: '1px solid',
+  borderColor: (theme) => theme.palette.secondary.contrastText,
   flexDirection: 'column',
-  background: (theme) => theme.palette.primary.light,
+  background: (theme) => theme.palette.background.paper,
 };
 
 const header: SxProps<Theme> = {
@@ -13,7 +15,7 @@ const header: SxProps<Theme> = {
 };
 
 const headerTitle: SxProps<Theme> = {
-  color: 'white',
+  color: (theme) => theme.palette.text.secondary,
   fontSize: '1.3rem',
   fontWeight: 'bold',
   textAlign: 'center',

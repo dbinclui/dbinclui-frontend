@@ -31,7 +31,9 @@ export const Home: React.FC<HomeProps> = (): JSX.Element => {
             <Paper
               p={'5px'}
               borderRadius={'1.25rem'}
-              sx={{ borderColor: 'secondary.main' }}
+              sx={{
+                backgroundColor: 'secondary.light',
+              }}
               component={Grid}
               container
               flexDirection={'row'}
@@ -44,7 +46,7 @@ export const Home: React.FC<HomeProps> = (): JSX.Element => {
                   placeholder="Pesquise aqui"
                   sx={{
                     '&::placeholder': {
-                      color: 'secondary.main',
+                      backgroundColor: 'text.secondary',
                     },
                   }}
                   inputProps={{ 'aria-label': 'pesquise aqui' }}
@@ -54,6 +56,7 @@ export const Home: React.FC<HomeProps> = (): JSX.Element => {
                 <IconButton
                   type="submit"
                   sx={{
+                    color: 'text.secondary',
                     width: '100%',
                     borderRadius: '4px',
                   }}

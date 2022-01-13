@@ -44,11 +44,11 @@ export const AccessibilityTools: React.FC<AccessibilityToolsProps> = ({
         <Box>
           <Button
             sx={{
+              'color': 'text.secundary',
               '&:hover': {
-                color: 'secondary.main',
+                color: 'text.secondary',
               },
             }}
-            color={colorModalButton ? 'primary' : 'secondary'}
             onClick={() => {
               setModalOpen(!modalOpen);
               handleClick();
@@ -76,6 +76,7 @@ export const AccessibilityTools: React.FC<AccessibilityToolsProps> = ({
                   width: '90%',
                   borderRadius: '20px',
                   fontSize: '14px',
+                  color: 'secondary.main',
                 }}
               >
                 Contrastes

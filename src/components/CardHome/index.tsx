@@ -40,7 +40,7 @@ export const CardHome: React.FC<CardHomeProps> = ({
       <Grid item>
         <Paper
           sx={{
-            backgroundColor: 'secondary.main',
+            backgroundColor: 'secondary.light',
             width: '14.25rem',
             height: '12rem',
             borderRadius: '1.25rem',

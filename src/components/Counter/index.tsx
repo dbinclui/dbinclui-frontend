@@ -20,6 +20,7 @@ export const Counter: React.FC<CounterProps> = ({
             aria-label="Diminuir fonte"
             onClick={() => remove(counter)}
             sx={{
+              color: 'secondary.main',
               margin: '0 0 0 -29px',
               borderRadius: '20px',
               backgroundColor: 'secondary',
@@ -37,6 +38,7 @@ export const Counter: React.FC<CounterProps> = ({
             aria-label="Aumentar fonte"
             onClick={() => add(counter)}
             sx={{
+              color: 'secondary.main',
               margin: '0 -30px 0 10px',
               borderRadius: '20px',
               backgroundColor: 'secondary',

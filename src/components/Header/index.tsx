@@ -163,7 +163,7 @@ export const Header: React.FC<HeaderProps> = (): JSX.Element => {
                   handleChangePage(currentTarget)
                 }
               >
-                <AccessibilityTypography color="">
+                <AccessibilityTypography color="secondary">
                   {item.title}
                 </AccessibilityTypography>
               </Button>
