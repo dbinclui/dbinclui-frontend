@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import React, { useRef, useState } from 'react';
 import {
   Button,
   Box,
@@ -24,12 +24,13 @@ export const RegisterDigitalContent: React.FC<
   const guides = ['Guia de acessibilidade', 'Guia da Cultura Surda'];
   const categories = ['Guia de acessibilidade', 'Guia da Cultura Surda'];
 
+  const [file, setFile] = useState<any[]>([]);
+
   const handleClick = (event: React.FormEvent) => {
     event.preventDefault();
   };
 
   return (
-    
     <Grid container alignItems={'center'} justifyContent={'center'} role="main">
       <Grid item md={6} sx={styles.content} component="section">
         <Box sx={styles.header} component="header">
@@ -44,8 +45,29 @@ export const RegisterDigitalContent: React.FC<
             sx={styles.buttonDigitalContent}
           >
             Selecionar um ficheiro
-            <input type="file" />
+            <input
+              accept="image/*,.pdf,.doc, .docx"
+              type="file"
+              hidden
+              multiple
+              onChange={(event: any) => {
+                file.push(
+                  <Typography sx={styles.fileName}>
+                    {event.target.files[0].name}
+                  </Typography>,
+                );
+                setFile([...file]);
+              }}
+            />
           </Button>
+          {file.length !== 0 ? (
+            file
+          ) : (
+            <Typography sx={styles.fileName}>
+              Nenhum arquivo selecionado
+            </Typography>
+          )}
+
           <Box
             onSubmit={handleClick}
             component="form"

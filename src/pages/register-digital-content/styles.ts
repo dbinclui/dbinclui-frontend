@@ -81,6 +81,13 @@ const menuItem: SxProps<Theme> = {
   },
 };
 
+const fileName: SxProps<Theme> = {
+  mr: 0,
+  ml: 'auto',
+  display: 'block',
+  textAlign: 'right'
+};
+
 const styles = {
   content,
   header,
@@ -93,6 +100,7 @@ const styles = {
   buttonFechar,
   select,
   menuItem,
+  fileName,
 };
 
 export default styles;
