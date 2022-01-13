@@ -1,7 +1,7 @@
-import api from "../api";
+import api from '../api';
 
 export default interface CardGuidesResponse {
-  _id?: number;
+  id?: number;
   title: string;
   content: string;
 }
