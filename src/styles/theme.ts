@@ -2,6 +2,7 @@ import { createTheme } from '@mui/material/styles';
 import { ColorsDefault } from './colors';
 import { AccessibilityColors } from './colorsAccessibility';
 
+
 const getTitleStyle = (size: string) => ({
   fontSize: size,
   fontFamily: 'verdana',
@@ -58,6 +59,7 @@ const theme = (themeMode: string) => {
           text: {
             color: Colors.BUTTON_CONTRAST,
           },
+          
           outlined: {
             '&:hover': {
               backgroundColor: Colors.SECONDARY,

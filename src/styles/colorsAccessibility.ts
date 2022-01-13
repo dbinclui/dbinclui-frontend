@@ -2,6 +2,7 @@ export enum AccessibilityColors {
   LIGHT = '#FFFF00',
   DARK = '#000',
   PRIMARY = '#000',
+  INPUT_TEXT = '#FFF',
   CONTENT = '#000',
   CONTENT__BORDER = '#FFFF00',
   PRIMARY_LIGHT = '#C5CAE9',

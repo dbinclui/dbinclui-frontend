@@ -8,6 +8,7 @@ import { AccessibilityContext } from '../../contexts/AccessibilityContext';
 import styles from './styles';
 import UseCounter from '../../hooks/Counter';
 
+
 export interface AccessibilityToolsProps {
   handleClickContrastButton: () => void;
 }
