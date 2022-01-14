@@ -7,13 +7,13 @@ const content: SxProps<Theme> = {
 };
 
 const header: SxProps<Theme> = {
-  background: (theme) => theme.palette.secondary.main,
+  background: (theme) => theme.palette.text.primary,
   borderTopLeftRadius: '20px',
   borderTopRightRadius: '20px',
 };
 
 const headerTitle: SxProps<Theme> = {
-  color: 'white',
+  color: (theme) => theme.palette.primary.main,
   fontSize: '1.3rem',
   fontWeight: 'bold',
   textAlign: 'center',
@@ -21,17 +21,23 @@ const headerTitle: SxProps<Theme> = {
 };
 
 const buttonDigitalContent: SxProps<Theme> = {
-  mr: 0,
-  ml: 'auto',
-  mb: '0.8rem',
-  display: 'block',
-  padding: '0.3rem 1rem',
-  fontWeight: '700',
-  textTransform: 'none',
+  'mr': 0,
+  'ml': 'auto',
+  'mb': '0.8rem',
+  'display': 'block',
+  'padding': '0.3rem 1rem',
+  'fontWeight': '700',
+  'textTransform': 'none',
+  'width': '13.1rem',
+  'backgroundColor': (theme) => theme.palette.text.primary,
+  '&:hover': {
+    background: (theme) => theme.palette.text.primary,
+  },
+  'color': (theme) => theme.palette.primary.main,
 };
 
 const labelInput: SxProps<Theme> = {
-  color: (theme) => theme.palette.secondary.main,
+  color: (theme) => theme.palette.text.primary,
   fontWeight: 'bold',
   mb: '0.5rem',
 };
@@ -40,7 +46,7 @@ const input: SxProps<Theme> = {
   width: '100%',
   background: (theme) => theme.palette.primary.main,
   borderRadius: '20px',
-  color: (theme) => theme.palette.secondary.main,
+  color: (theme) => theme.palette.text.primary,
   padding: '0.5rem 1rem',
   mb: '2.5rem',
 };
@@ -59,6 +65,29 @@ const button: SxProps<Theme> = {
   fontSize: '1.2rem',
 };
 
+const buttonFechar: SxProps<Theme> = {
+  color: (theme) => theme.palette.text.primary,
+}
+
+const select: SxProps<Theme> = {
+  padding: 0,
+};
+
+const menuItem: SxProps<Theme> = {
+  'color': '#000',
+  'paddingTop': 0,
+  '.MuiList-root': {
+    backgroundColor: (theme) => theme.palette.text.primary,
+  },
+};
+
+const fileName: SxProps<Theme> = {
+  mr: 0,
+  ml: 'auto',
+  display: 'block',
+  textAlign: 'right'
+};
+
 const styles = {
   content,
   header,
@@ -68,6 +97,10 @@ const styles = {
   input,
   buttonWrapper,
   button,
+  buttonFechar,
+  select,
+  menuItem,
+  fileName,
 };
 
 export default styles;

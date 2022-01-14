@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import React, { useRef, useState } from 'react';
 import {
   Button,
   Box,
@@ -11,16 +11,20 @@ import {
 } from '@mui/material';
 import styles from './styles';
 
-export interface RegisterCategoryProps {}
+export interface RegisterDigitalContentProps {}
 
-export const RegisterCategory: React.FC<
-  RegisterCategoryProps
+export const RegisterDigitalContent: React.FC<
+  RegisterDigitalContentProps
 > = (): JSX.Element => {
-  const category = useRef<HTMLInputElement>();
-  const description = useRef<HTMLInputElement>();
   const guide = useRef<HTMLInputElement>();
+  const category = useRef<HTMLInputElement>();
+  const title = useRef<HTMLInputElement>();
+  const description = useRef<HTMLInputElement>();
 
   const guides = ['Guia de acessibilidade', 'Guia da Cultura Surda'];
+  const categories = ['Guia de acessibilidade', 'Guia da Cultura Surda'];
+
+  const [file, setFile] = useState<any[]>([]);
 
   const handleClick = (event: React.FormEvent) => {
     event.preventDefault();
@@ -31,17 +35,40 @@ export const RegisterCategory: React.FC<
       <Grid item md={6} sx={styles.content} component="section">
         <Box sx={styles.header} component="header">
           <Typography sx={styles.headerTitle} variant="h1">
-            CADASTRO DE CATEGORIA
+            CADASTRO DE CONTEÚDO DIGITAL
           </Typography>
         </Box>
         <Box padding={'1rem 3rem'} component="section">
           <Button
             variant="contained"
+            component="label"
             sx={styles.buttonDigitalContent}
-            role="button"
           >
-            Buscar conteúdo digital
+            Selecionar um ficheiro
+            <input
+            data-testid="inputFile"
+              accept="image/*,.pdf,.doc, .docx"
+              type="file"
+              hidden
+              multiple
+              onChange={(event: any) => {
+                file.push(
+                  <Typography sx={styles.fileName}>
+                    {event.target.files[0].name}
+                  </Typography>,
+                );
+                setFile([...file]);
+              }}
+            />
           </Button>
+          {file.length !== 0 ? (
+            file
+          ) : (
+            <Typography sx={styles.fileName}>
+              Nenhum arquivo selecionado
+            </Typography>
+          )}
+
           <Box
             onSubmit={handleClick}
             component="form"
@@ -82,15 +109,42 @@ export const RegisterCategory: React.FC<
             >
               Categoria:
             </InputLabel>
-            <InputBase
+            <Select
               inputRef={category}
-              type="text"
-              id="category"
-              name="category"
-              role="input"
+              labelId="categoryLabel"
               required
               data-testid="categoryTestId"
+              role="select"
               aria-labelledby="categoryLabel"
+              name="category"
+              id="category"
+              sx={[styles.input, styles.select]}
+            >
+              {categories.map((category) => (
+                <MenuItem
+                  key={category}
+                  value={category}
+                  data-testid="categoryItensTestId"
+                  role="option"
+                  aria-labelledby="itensLabel"
+                  sx={styles.menuItem}
+                >
+                  {category}
+                </MenuItem>
+              ))}
+            </Select>
+            <InputLabel htmlFor="title" id="titleLabel" sx={styles.labelInput}>
+              Título:
+            </InputLabel>
+            <InputBase
+              inputRef={title}
+              type="text"
+              id="title"
+              name="title"
+              role="input"
+              required
+              data-testid="titleTestId"
+              aria-labelledby="titleLabel"
               sx={styles.input}
             />
             <InputLabel
@@ -130,7 +184,7 @@ export const RegisterCategory: React.FC<
               </Grid>
               <Grid item md={6} sx={styles.buttonWrapper}>
                 <Button
-                  sx={styles.button}
+                  sx={[styles.button, styles.buttonFechar]}
                   variant="contained"
                   type="reset"
                   role="button"
@@ -146,4 +200,4 @@ export const RegisterCategory: React.FC<
   );
 };
 
-export default RegisterCategory;
+export default RegisterDigitalContent;

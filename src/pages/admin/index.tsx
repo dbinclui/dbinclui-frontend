@@ -49,7 +49,7 @@ export const Admin: React.FC<AdminProps> = (): JSX.Element => {
             variant="outlined"
             size="large"
             onClick={() => {
-              navigate('cadastro-conteudo-digital');
+              navigate('cadastrar-conteudo-digital');
             }}
           >
             Cadastro de Conteúdo digital
