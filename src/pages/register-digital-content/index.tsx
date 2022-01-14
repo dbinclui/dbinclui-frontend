@@ -12,6 +12,7 @@ import {
 } from '@mui/material';
 import styles from './styles';
 import FileUploadRounded from '@mui/icons-material/FileUploadRounded';
+import ClearIcon from '@mui/icons-material/Clear';
 
 export interface RegisterDigitalContentProps {}
 
@@ -47,10 +48,10 @@ export const RegisterDigitalContent: React.FC<
             component="label"
             sx={styles.buttonDigitalContent}
           >
-          <Container sx={styles.containerUpload}>
-            <FileUploadRounded sx={styles.uploadIcon}/>
-            Selecionar um arquivo
-          </Container>
+            <Container sx={styles.containerUpload}>
+              <FileUploadRounded sx={styles.uploadIcon} />
+              Selecionar um arquivo
+            </Container>
             <input
               data-testid="inputFile"
               accept="image/*,.pdf,.doc, .docx, video/*"
@@ -60,13 +61,21 @@ export const RegisterDigitalContent: React.FC<
               onChange={(event: any) => {
                 for (let x of event.target.files) {
                   fileName.push(
-                    <Typography sx={styles.fileName}>{x.name}</Typography>,
-                    <Button></Button>
+                    <Box
+                      flexDirection={'row'}
+                      display={'flex'}
+                      alignItems={'center'}
+                    >
+                      <Typography sx={styles.fileName}>{x.name}</Typography>
+                      <Button sx={styles.clearButton}>
+                        <ClearIcon />{' '}
+                      </Button>
+                    </Box>,
                   );
                 }
 
                 setFileName([...fileName]);
-                
+
                 console.log(fileName);
 
                 for (let x of event.target.files) {

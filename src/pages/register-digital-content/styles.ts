@@ -104,6 +104,10 @@ const uploadIcon: SxProps<Theme> = {
   padding: 0,
 };
 
+const clearButton: SxProps<Theme> = {
+  color: '#FF0000'
+}
+
 const styles = {
   content,
   header,
@@ -119,6 +123,7 @@ const styles = {
   fileName,
   containerUpload,
   uploadIcon,
+  clearButton,
 };
 
 export default styles;
