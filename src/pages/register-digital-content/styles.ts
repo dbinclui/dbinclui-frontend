@@ -28,7 +28,7 @@ const buttonDigitalContent: SxProps<Theme> = {
   'padding': '0.3rem 1rem',
   'fontWeight': '700',
   'textTransform': 'none',
-  'width': '13.1rem',
+  'width': '18.1rem',
   'backgroundColor': (theme) => theme.palette.text.primary,
   '&:hover': {
     background: (theme) => theme.palette.text.primary,
@@ -88,6 +88,22 @@ const fileName: SxProps<Theme> = {
   textAlign: 'right'
 };
 
+const containerUpload: SxProps<Theme> = {
+  display: "flex",
+  alignItems: "center",
+  justifyContent: "center",
+  '.MuiContainer-root': {
+    padding: 0,
+  }
+}
+
+const uploadIcon: SxProps<Theme> = {
+  fontSize: '2rem',
+  textAlign: "center",
+  margin: 0,
+  padding: 0,
+};
+
 const styles = {
   content,
   header,
@@ -101,6 +117,8 @@ const styles = {
   select,
   menuItem,
   fileName,
+  containerUpload,
+  uploadIcon,
 };
 
 export default styles;
