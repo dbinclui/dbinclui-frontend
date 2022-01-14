@@ -2,6 +2,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import {
   Button,
   Box,
+  Container,
   Typography,
   Grid,
   InputLabel,
@@ -10,6 +11,7 @@ import {
   MenuItem,
 } from '@mui/material';
 import styles from './styles';
+import FileUploadRounded from '@mui/icons-material/FileUploadRounded';
 
 export interface RegisterDigitalContentProps {}
 
@@ -45,7 +47,10 @@ export const RegisterDigitalContent: React.FC<
             component="label"
             sx={styles.buttonDigitalContent}
           >
-            Selecionar um ficheiro
+          <Container sx={styles.containerUpload}>
+            <FileUploadRounded sx={styles.uploadIcon}/>
+            Selecionar um arquivo
+          </Container>
             <input
               data-testid="inputFile"
               accept="image/*,.pdf,.doc, .docx, video/*"
