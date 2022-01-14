@@ -92,17 +92,11 @@ export const Header: React.FC<HeaderProps> = (): JSX.Element => {
             sx={{ mr: 2, display: { xs: 'none', md: 'flex' } }}
           >
             <Box sx={{ mt: '10px', mb: '10px' }}>
-<<<<<<< HEAD
               {theme.palette.background.default === ColorsDefault.PRIMARY ? (
                 <Logo />
               ) : (
                 <LogoBranca />
               )}
-=======
-              {
-                (theme.palette.background.default === ColorsDefault.PRIMARY) ?  <Logo/> : <LogoBranca/>
-              }
->>>>>>> b39ebc62f128a0d7d17b95b4a29b05c97837bd6f
             </Box>
           </Typography>
 
@@ -179,7 +173,8 @@ export const Header: React.FC<HeaderProps> = (): JSX.Element => {
                   handleChangePage(currentTarget)
                 }
               >
-                <AccessibilityTypography color="secondary">
+                <AccessibilityTypography 
+                  color="secondary">
                   {item.title}
                 </AccessibilityTypography>
               </Button>
