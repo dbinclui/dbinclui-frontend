@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useRef, useState } from 'react';
 import {
   Button,
   Box,
@@ -56,10 +56,11 @@ export const RegisterDigitalContent: React.FC<
                 for (let x of event.target.files) {
                   fileName.push(
                     <Typography sx={styles.fileName}>{x.name}</Typography>,
+                    <Button></Button>
                   );
                 }
 
-                setFile([...fileName]);
+                setFileName([...fileName]);
                 
                 console.log(fileName);
 
