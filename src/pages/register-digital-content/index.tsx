@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import {
   Button,
   Box,
@@ -25,6 +25,7 @@ export const RegisterDigitalContent: React.FC<
   const categories = ['Guia de acessibilidade', 'Guia da Cultura Surda'];
 
   const [file, setFile] = useState<any[]>([]);
+  const [fileName, setFileName] = useState<any[]>([]);
 
   const handleClick = (event: React.FormEvent) => {
     event.preventDefault();
@@ -46,23 +47,34 @@ export const RegisterDigitalContent: React.FC<
           >
             Selecionar um ficheiro
             <input
-            data-testid="inputFile"
-              accept="image/*,.pdf,.doc, .docx"
+              data-testid="inputFile"
+              accept="image/*,.pdf,.doc, .docx, video/*"
               type="file"
               hidden
               multiple
               onChange={(event: any) => {
-                file.push(
-                  <Typography sx={styles.fileName}>
-                    {event.target.files[0].name}
-                  </Typography>,
-                );
+                for (let x of event.target.files) {
+                  fileName.push(
+                    <Typography sx={styles.fileName}>{x.name}</Typography>,
+                  );
+                }
+
+                setFile([...fileName]);
+                
+                console.log(fileName);
+
+                for (let x of event.target.files) {
+                  file.push(x);
+                }
+
                 setFile([...file]);
+
+                console.log(file);
               }}
             />
           </Button>
           {file.length !== 0 ? (
-            file
+            fileName
           ) : (
             <Typography sx={styles.fileName}>
               Nenhum arquivo selecionado

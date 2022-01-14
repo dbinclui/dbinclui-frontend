@@ -6,7 +6,10 @@ import { postGuides } from '@services/guides';
 import Notification from '@components/Notification';
 import AccessibilityTypography from '@components/AccessibilityTypography';
 
-export interface RegisterGuideProps {}
+
+export interface RegisterGuideProps {
+
+}
 
 export const RegisterGuide: React.FC<RegisterGuideProps> = (): JSX.Element => {
   const title = useRef<HTMLInputElement>();
@@ -14,6 +17,7 @@ export const RegisterGuide: React.FC<RegisterGuideProps> = (): JSX.Element => {
   const [error, setError] = useState(false);
   const [success, setSuccess] = useState(false);
   const [errorMessage, setErrorMessage] = useState('');
+
 
   async function handleSubmit(event: React.FormEvent) {
     event.preventDefault();
@@ -120,6 +124,9 @@ export const RegisterGuide: React.FC<RegisterGuideProps> = (): JSX.Element => {
                     variant="contained"
                     type="reset"
                     role="button"
+                    onClick={() => {
+                        
+                    }}
                   >
                     Fechar
                   </Button>
