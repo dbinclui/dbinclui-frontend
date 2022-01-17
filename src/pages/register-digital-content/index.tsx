@@ -25,10 +25,12 @@ export const RegisterDigitalContent: React.FC<
   const description = useRef<HTMLInputElement>();
 
   const guides = ['Guia de acessibilidade', 'Guia da Cultura Surda'];
-  const categories = ['Boas práticas para a inclusão', 'Acessibilidade em eventos'];
+  const categories = [
+    'Boas práticas para a inclusão',
+    'Acessibilidade em eventos',
+  ];
 
-  const [file, setFile] = useState<any[]>([]);
-  const [fileName, setFileName] = useState<any[]>([]);
+  const [files, setFiles] = useState<any[]>([]);
 
   const handleClick = (event: React.FormEvent) => {
     event.preventDefault();
@@ -59,39 +61,34 @@ export const RegisterDigitalContent: React.FC<
               hidden
               multiple
               onChange={(event: any) => {
-                for (let x of event.target.files) {
-                  console.log(x.index);
-                  fileName.push(
-                    <Box
-                      flexDirection={'row'}
-                      display={'flex'}
-                      alignItems={'center'}
-                    >
-                      <Typography sx={styles.fileName}>{x.name}</Typography>
-                      <Button sx={styles.clearButton}>
-                        <ClearIcon />{' '}
-                      </Button>
-                    </Box>,
-                  );
-                }
-
-                setFileName([...fileName]);
-
-                console.log(fileName);
-
-                for (let x of event.target.files) {
-                  file.push(x);
-                }
-
-                setFile([...file]);
-
-                console.log(file);
+                setFiles([...files, ...event.target.files]);
+                console.log(files);
               }}
             />
           </Button>
-          {file.length !== 0 ? (
-            fileName
-          ) : (
+          {files.map((file, index) => (
+            <Box
+              key={index}
+              flexDirection={'row'}
+              display={'flex'}
+              alignItems={'center'}
+            >
+              <Typography sx={styles.fileName}>{file.name}</Typography>
+              <Button
+                sx={styles.clearButton}
+                onClick={() => {
+                  const newFiles = files.filter((file2, index2) => {
+                    return index2 !== index;
+                  });
+
+                  setFiles([...newFiles]);
+                }}
+              >
+                <ClearIcon />{' '}
+              </Button>
+            </Box>
+          ))}
+          {!files.length && (
             <Typography sx={styles.fileName}>
               Nenhum arquivo selecionado
             </Typography>
