@@ -1,6 +1,5 @@
 import React from 'react';
-import { render, screen } from '@testing-library/react';
-import Error from './404';
+import { render } from '@testing-library/react';
 import Error404 from './404';
 import Error404Contrast from './404';
 import { ThemeProvider } from '@mui/material/styles';
@@ -36,13 +35,10 @@ describe('Component 404', () => {
   });
 
   test('deve mostrar mensagem de erro', async () => {
-     render(
-      <ThemeProvider theme ={theme('Error404')}>
-        <Error404 data-testid={"messageError"}/>
-      </ThemeProvider>
+    render(
+      <ThemeProvider theme={theme('Error404')}>
+        <Error404 data-testid={'messageError'} />
+      </ThemeProvider>,
     );
-     
-     })
-
-  
+  });
 });
