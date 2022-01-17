@@ -59,6 +59,10 @@ const button: SxProps<Theme> = {
   fontSize: '1.2rem',
 };
 
+const buttonFechar: SxProps<Theme> = {
+  color: (theme) => theme.palette.text.primary,
+}
+
 const styles = {
   content,
   header,
@@ -68,6 +72,7 @@ const styles = {
   input,
   buttonWrapper,
   button,
+  buttonFechar
 };
 
 export default styles;

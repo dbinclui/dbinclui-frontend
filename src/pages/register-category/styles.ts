@@ -31,16 +31,16 @@ const buttonDigitalContent: SxProps<Theme> = {
 };
 
 const labelInput: SxProps<Theme> = {
-  color: (theme) => theme.palette.primary.main,
+  color: (theme) => theme.palette.secondary.main,
   fontWeight: 'bold',
   mb: '0.5rem',
 };
 
 const input: SxProps<Theme> = {
   width: '100%',
-  background: (theme) => theme.palette.text.primary,
+  background: (theme) => theme.palette.primary.main,
   borderRadius: '20px',
-  color: (theme) => theme.palette.primary.main,
+  color: (theme) => theme.palette.text.primary,
   padding: '0.5rem 1rem',
   mb: '2.5rem',
 };
@@ -59,12 +59,16 @@ const button: SxProps<Theme> = {
   fontSize: '1.2rem',
 };
 
+const buttonFechar: SxProps<Theme> = {
+  color: (theme) => theme.palette.text.primary,
+}
+
 const select: SxProps<Theme> = {
   padding: 0,
 };
 
 const menuItem: SxProps<Theme> = {
-  'color': (theme) => theme.palette.primary.main,
+  'color': '#000',
   'paddingTop': 0,
   '.MuiList-root': {
     backgroundColor: (theme) => theme.palette.text.primary,
@@ -80,6 +84,7 @@ const styles = {
   input,
   buttonWrapper,
   button,
+  buttonFechar,
   select,
   menuItem,
 };

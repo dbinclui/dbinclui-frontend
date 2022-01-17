@@ -120,7 +120,7 @@ export const RegisterGuide: React.FC<RegisterGuideProps> = (): JSX.Element => {
                 </Grid>
                 <Grid item md={6} sx={styles.buttonWrapper}>
                   <Button
-                    sx={styles.button}
+                    sx={[styles.button, styles.buttonFechar]}
                     variant="contained"
                     type="reset"
                     role="button"
