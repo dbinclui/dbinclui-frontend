@@ -12,7 +12,7 @@ const widgetAccessibilityTools: SxProps<Theme> = {
   'width': '180px',
   '&:hover': {
     background: (theme) => theme.palette.primary.light,
-    color: (theme) => theme.palette.secondary.main,
+    color: ' #000',
   },
   '@media (max-width: 600px)': {
     top: '0',

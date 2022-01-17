@@ -26,9 +26,10 @@
 }
 .box-admin {
   display: flex;
+  flex-flow: row nowrap;
   position: relative;
-  left: 5px;
-  top: 0px;
+  left: 10px;
+  bottom: 10px;
   /* margin: 1rem 0 1rem 1rem; */
 }
 
@@ -44,6 +45,3 @@ a.menu-item-mobile ul {
   text-decoration: none;
   padding-top: 1rem;
 }
-
-
-

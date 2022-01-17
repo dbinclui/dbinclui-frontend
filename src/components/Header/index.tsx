@@ -148,14 +148,6 @@ export const Header: React.FC<HeaderProps> = (): JSX.Element => {
               ))}
             </Menu>
           </Box>
-          <Typography
-            variant="h6"
-            noWrap
-            component="div"
-            sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}
-          >
-            <Logo />
-          </Typography>
 
           {/*MENU DESKTOP*/}
 
@@ -173,16 +165,18 @@ export const Header: React.FC<HeaderProps> = (): JSX.Element => {
                   handleChangePage(currentTarget)
                 }
               >
-                <AccessibilityTypography 
-                  color="secondary">
+                <AccessibilityTypography color="secondary">
                   {item.title}
                 </AccessibilityTypography>
               </Button>
             ))}
           </Box>
 
-          <Box className="box-admin" sx={{ flexGrow: 0 }}>
-            <Tooltip title="Administrador">
+          <Box className="box-admin" sx={{ flexGrow: 0, mr: '10px' }}>
+            <Tooltip
+              title="Administrador"
+              sx={{ width: '30px', height: '30px' }}
+            >
               <IconButton
                 size="large"
                 sx={{ p: 0, m: '0 auto' }}

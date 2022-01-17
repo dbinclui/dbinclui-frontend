@@ -59,10 +59,10 @@ const theme = (themeMode: string) => {
           text: {
             color: Colors.BUTTON_CONTRAST,
           },
-
           outlined: {
             '&:hover': {
               backgroundColor: Colors.SECONDARY,
+              color: '#000',
             },
             'backgroundColor': Colors.SECONDARY,
           },
