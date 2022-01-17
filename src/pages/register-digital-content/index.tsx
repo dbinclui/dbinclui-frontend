@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react';
+import React, { useRef, useState, useEffect } from 'react';
 import {
   Button,
   Box,
@@ -13,6 +13,8 @@ import {
 import styles from './styles';
 import FileUploadRounded from '@mui/icons-material/FileUploadRounded';
 import ClearIcon from '@mui/icons-material/Clear';
+import CardGuidesResponse, { getGuides } from '@services/guides';
+import { CardCategoryResponse, getCategoriesByGuide } from '@services/digitalContent';
 
 export interface RegisterDigitalContentProps {}
 
@@ -25,19 +27,52 @@ export const RegisterDigitalContent: React.FC<
   const description = useRef<HTMLInputElement>();
   const fileRef = useRef<HTMLInputElement>(null);
 
-  const guides = ['Guia de acessibilidade', 'Guia da Cultura Surda'];
-  const categories = [
-    'Boas práticas para a inclusão',
-    'Acessibilidade em eventos',
-  ];
-
   const [files, setFiles] = useState<any[]>([]);
+  const [guides, setGuides] = useState<CardGuidesResponse[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [categories, setCategories] = useState<CardCategoryResponse[]>([]);
 
-  const handleClick = (event: React.FormEvent) => {
+
+  async function handleSubmit(event: React.FormEvent) {
     event.preventDefault();
-  };
+  }
 
-  return (
+  const getDigitalContentCategories = async (id:string) => {
+    await getCategoriesByGuide(id)
+      .then((response) => {
+        const { data } = response!.data;
+        setCategories(data);
+      })
+      .catch((error) => {
+
+      })
+      .finally(() => {
+        setLoading(false);
+      });
+  }
+
+  const getDigitalContentGuides = async () => {
+    await getGuides()
+      .then((response) => {
+        const { data } = response!.data;
+        setGuides(data);
+      })
+      .catch((error) => {
+        
+      })
+      .finally(() => {
+        setLoading(false);
+      });
+    }
+    
+    
+    
+  useEffect(() => {
+    getDigitalContentGuides();
+  }, []);
+  console.log(guides);
+  
+  return loading ? (<div>Carregando...</div>) : (
     <Grid container alignItems={'center'} justifyContent={'center'} role="main">
       <Grid item md={6} sx={styles.content} component="section">
         <Box sx={styles.header} component="header">
@@ -64,7 +99,6 @@ export const RegisterDigitalContent: React.FC<
               multiple
               onChange={(event: any) => {
                 setFiles([...files, ...event.target.files]);
-                console.log(files);
               }}
             />
           </Button>
@@ -85,8 +119,8 @@ export const RegisterDigitalContent: React.FC<
 
                   setFiles([...newFiles]);
 
-                  if(!newFiles.length && fileRef.current !== undefined) {
-                    fileRef.current.value = '';
+                  if (!newFiles.length && fileRef.current !== undefined) {
+                    fileRef.current!.value = '';
                   }
                 }}
               >
@@ -101,7 +135,7 @@ export const RegisterDigitalContent: React.FC<
           )}
 
           <Box
-            onSubmit={handleClick}
+            onSubmit={handleSubmit}
             component="form"
             flexDirection={'column'}
             display={'flex'}
@@ -121,16 +155,16 @@ export const RegisterDigitalContent: React.FC<
               id="guide"
               sx={[styles.input, styles.select]}
             >
-              {guides.map((guide) => (
+              {guides.map((guide, index) => (
                 <MenuItem
-                  key={guide}
-                  value={guide}
+                  key={index}
+                  value={guide.title}
                   data-testid="guideItensTestId"
                   role="option"
                   aria-labelledby="itensLabel"
                   sx={styles.menuItem}
                 >
-                  {guide}
+                  {guide.title}
                 </MenuItem>
               ))}
             </Select>
@@ -153,7 +187,7 @@ export const RegisterDigitalContent: React.FC<
               id="category"
               sx={[styles.input, styles.select]}
             >
-              {categories.map((category) => (
+              {/* {categories.map((category) => (
                 <MenuItem
                   key={category}
                   value={category}
@@ -164,7 +198,7 @@ export const RegisterDigitalContent: React.FC<
                 >
                   {category}
                 </MenuItem>
-              ))}
+              ))} */}
             </Select>
             <InputLabel htmlFor="title" id="titleLabel" sx={styles.labelInput}>
               Título:
