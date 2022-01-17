@@ -15,7 +15,7 @@ const header: SxProps<Theme> = {
 };
 
 const headerTitle: SxProps<Theme> = {
-  color: (theme) => theme.palette.text.secondary,
+  color: (theme) => theme.palette.primary.main,
   fontSize: '1.3rem',
   fontWeight: 'bold',
   textAlign: 'center',

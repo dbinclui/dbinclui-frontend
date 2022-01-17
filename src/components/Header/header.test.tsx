@@ -5,9 +5,6 @@ import Header, { MenuItems } from './index';
 import '@testing-library/jest-dom/extend-expect';
 import { ThemeProvider } from '@mui/material/styles';
 import theme from '@styles/theme';
-import Logo from '../svgs/logo';
-import LogoBranca from '@components/svgs/logoBranca';
-import { Box } from '@mui/system';
 
 const mockedNavigate = jest.fn();
 jest.mock('react-router-dom', () => {
@@ -69,30 +66,25 @@ describe('Componente Header', () => {
     expect(mockedNavigate).toBeCalledWith('admin');
   });
 
-    it('Exibir a logo default', () => {
-      const { getByTitle } = render(    
+  it('Exibir a logo default', () => {
+    const { getByTitle } = render(
       <ThemeProvider theme={theme('default')}>
         <Header />
-      </ThemeProvider>
-      );
+      </ThemeProvider>,
+    );
 
-      // eslint-disable-next-line testing-library/prefer-screen-queries
-      expect(getByTitle('Logo')).toBeInTheDocument()
-    })
+    // eslint-disable-next-line testing-library/prefer-screen-queries
+    expect(getByTitle('Logo')).toBeInTheDocument();
+  });
 
-    it('Exibir a logo com contrast', () => {
-      const { getByTitle } = render(    
-        <ThemeProvider theme={theme('contrast')}>
-          <Header />
-        </ThemeProvider>
-        );
+  it('Exibir a logo com contrast', () => {
+    const { getByTitle } = render(
+      <ThemeProvider theme={theme('contrast')}>
+        <Header />
+      </ThemeProvider>,
+    );
 
-        // eslint-disable-next-line testing-library/prefer-screen-queries
-        expect(getByTitle('Logo')).toBeInTheDocument()
-    })
-
-
-
+    // eslint-disable-next-line testing-library/prefer-screen-queries
+    expect(getByTitle('Logo')).toBeInTheDocument();
+  });
 });
-
-

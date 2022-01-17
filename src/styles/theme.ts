@@ -62,7 +62,7 @@ const theme = (themeMode: string) => {
           outlined: {
             '&:hover': {
               backgroundColor: Colors.SECONDARY,
-              color: '#000',
+              color: '#fff',
             },
             'backgroundColor': Colors.SECONDARY,
           },

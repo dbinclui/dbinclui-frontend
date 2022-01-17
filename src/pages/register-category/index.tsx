@@ -32,11 +32,9 @@ export const RegisterCategory: React.FC<
     <Grid container alignItems={'center'} justifyContent={'center'} role="main">
       <Grid item md={6} sx={styles.content} component="section">
         <Box sx={styles.header} component="header">
-          <Typography sx={styles.headerTitle} variant="h1">
-            <AccessibilityTypography>
-              CADASTRO DE CATEGORIA
-            </AccessibilityTypography>
-          </Typography>
+          <AccessibilityTypography sx={styles.headerTitle}>
+            CADASTRO DE CATEGORIA
+          </AccessibilityTypography>
         </Box>
         <Box padding={'1rem 3rem'} component="section">
           <Button

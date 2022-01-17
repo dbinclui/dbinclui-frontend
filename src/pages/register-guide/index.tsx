@@ -1,6 +1,13 @@
 import React, { useState, useRef } from 'react';
 import validateInput from './validator';
-import { Button, Box, Grid, InputLabel, InputBase } from '@mui/material';
+import {
+  Button,
+  Box,
+  Grid,
+  InputLabel,
+  InputBase,
+  Typography,
+} from '@mui/material';
 import styles from './styles';
 import { postGuides } from '@services/guides';
 import Notification from '@components/Notification';
@@ -46,7 +53,7 @@ export const RegisterGuide: React.FC<RegisterGuideProps> = (): JSX.Element => {
       >
         <Grid item md={6} sx={styles.content} component="section">
           <Box sx={styles.header} component="header">
-            <AccessibilityTypography sx={styles.headerTitle} variant="h1">
+            <AccessibilityTypography sx={styles.headerTitle}>
               CADASTRO DE GUIA
             </AccessibilityTypography>
           </Box>
