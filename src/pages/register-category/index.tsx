@@ -32,10 +32,14 @@ export const RegisterCategory: React.FC<
   const [errorMessage, setErrorMessage] = useState('');
 
   async function getGuidesService() {
-    const response = await getGuides();
-    console.log(response);
-    setGuides(response.data.data);
+    try {
+      const response = await getGuides();
+      setGuides(response.data.data);
+    } catch {
+      setErrorMessage('Não foram encontradas as guias');
+    }
   }
+
   useEffect(() => {
     getGuidesService();
   }, []);
@@ -53,19 +57,14 @@ export const RegisterCategory: React.FC<
       await validateInput(cardBody);
       await postCategories(cardBody);
       setSuccess(true);
+      title.current!.value = '';
+      description.current!.value = '';
+      guide.current!.value = '';
     } catch (error: any) {
       setErrorMessage(error.message);
       setError(true);
     }
-
-    title.current!.value = '';
-    description.current!.value = '';
-    guide.current!.value = '';
   }
-
-  const handleClick = (event: React.FormEvent) => {
-    event.preventDefault();
-  };
 
   return (
     <Grid container alignItems={'center'} justifyContent={'center'} role="main">
@@ -84,7 +83,7 @@ export const RegisterCategory: React.FC<
             Buscar conteúdo digital
           </Button>
           <Box
-            onSubmit={handleClick}
+            onSubmit={handleSubmit}
             component="form"
             flexDirection={'column'}
             display={'flex'}
@@ -108,12 +107,11 @@ export const RegisterCategory: React.FC<
                 <MenuItem
                   key={index}
                   value={guide._id}
-                  data-testid="guideItensTestId"
                   role="option"
                   aria-labelledby="itensLabel"
                   sx={styles.menuItem}
                 >
-                  {guide}
+                  {guide.title}
                 </MenuItem>
               ))}
             </Select>
@@ -140,113 +138,47 @@ export const RegisterCategory: React.FC<
               sx={styles.labelInput}
               id="descriptionLabel"
             >
-              Buscar conteúdo digital
+              Descrição:
             </InputLabel>
-            <Box
-              onSubmit={handleSubmit}
-              component="form"
-              flexDirection={'column'}
-              display={'flex'}
+            <InputBase
+              inputRef={description}
+              multiline={true}
+              minRows={5}
+              role="input"
+              id="description"
+              name="description"
+              aria-labelledby="descriptionLabel"
+              data-testid="descriptionTestId"
+              required
+              sx={styles.input}
+            />
+            <Grid
+              container
+              justifyContent={'space-evenly'}
+              alignItems={'center'}
             >
-              <InputLabel
-                htmlFor="guide"
-                id="guideLabel"
-                sx={styles.labelInput}
-              >
-                Guia:
-              </InputLabel>
-              <Select
-                inputRef={guide}
-                labelId="guideLabel"
-                required
-                // data-testid="guideTestId"
-                role="select"
-                aria-labelledby="guideLabel"
-                name="guide"
-                id="guide"
-                defaultValue=""
-                inputProps={{ 'data-testid': 'guideTestId' }}
-                sx={[styles.input, styles.select]}
-              >
-                {guides.map((guide) => (
-                  <MenuItem
-                    key={guide._id}
-                    value={guide._id}
-                    data-testid="guideItensTestId"
-                    role="option"
-                    aria-labelledby="itensLabel"
-                    sx={styles.menuItem}
-                  >
-                    {guide.title}
-                  </MenuItem>
-                ))}
-              </Select>
-              <InputLabel
-                htmlFor="title"
-                id="titleLabel"
-                sx={styles.labelInput}
-              >
-                Categoria:
-              </InputLabel>
-              <InputBase
-                inputRef={title}
-                type="text"
-                id="title"
-                name="title"
-                role="input"
-                required
-                data-testid="categoryTestId"
-                aria-labelledby="titleLabel"
-                sx={styles.input}
-              />
-
-              <InputLabel
-                htmlFor="description"
-                sx={styles.labelInput}
-                id="descriptionLabel"
-              >
-                Descrição:
-              </InputLabel>
-              <InputBase
-                inputRef={description}
-                multiline={true}
-                minRows={5}
-                role="input"
-                id="description"
-                name="description"
-                aria-labelledby="descriptionLabel"
-                data-testid="descriptionTestId"
-                required
-                sx={styles.input}
-              />
-              <Grid
-                container
-                justifyContent={'space-evenly'}
-                alignItems={'center'}
-              >
-                <Grid item md={6} sx={styles.buttonWrapper}>
-                  <Button
-                    sx={styles.button}
-                    variant="outlined"
-                    type="submit"
-                    role="button"
-                    data-testid="submit"
-                  >
-                    Salvar
-                  </Button>
-                </Grid>
-                <Grid item md={6} sx={styles.buttonWrapper}>
-                  <Button
-                    sx={styles.button}
-                    variant="contained"
-                    type="reset"
-                    role="button"
-                  >
-                    Fechar
-                  </Button>
-                </Grid>
+              <Grid item md={6} sx={styles.buttonWrapper}>
+                <Button
+                  sx={styles.button}
+                  variant="outlined"
+                  type="submit"
+                  role="button"
+                  data-testid="submit"
+                >
+                  Salvar
+                </Button>
               </Grid>
-            </Box>
+              <Grid item md={6} sx={styles.buttonWrapper}>
+                <Button
+                  sx={styles.button}
+                  variant="contained"
+                  type="reset"
+                  role="button"
+                >
+                  Fechar
+                </Button>
+              </Grid>
+            </Grid>
           </Box>
         </Box>
       </Grid>

@@ -1,8 +1,7 @@
 import React from 'react';
 import { RegisterCategory } from '@pages/register-category';
 import '@testing-library/jest-dom';
-import { fireEvent } from '@testing-library/dom';
-import { render, screen } from '@testing-library/react';
+import { render, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import '@testing-library/jest-dom';
 import validateInput, { InputInterface } from './validator';
@@ -24,81 +23,33 @@ const postCategoryMock = postCategories as jest.MockedFunction<
 const getGuidesServiceMock = getGuides as jest.MockedFunction<typeof getGuides>;
 
 describe('Página de cadastro de categorias', () => {
+  beforeEach(() => {
+    getGuidesServiceMock.mockClear();
+    postCategoryMock.mockClear();
+    validateInputMock.mockClear();
+  });
   test('Deve chamar os guias quando o componente for renderizado', async () => {
-    getGuidesServiceMock.mockImplementationOnce(
-      async () =>
-        ({
-          data: [],
-        } as unknown as AxiosResponse<{ data: CardGuidesResponse[] }>),
-    );
+    const dataMockMenuItem = [
+      {
+        _id: 1,
+        title: 'teste 1',
+        content: 'content 2',
+      },
+    ];
 
-    await act(() => {
-      render(<RegisterCategory />);
-    });
-  });
+    getGuidesServiceMock.mockResolvedValue({
+      data: {
+        data: dataMockMenuItem,
+      },
+    } as unknown as AxiosResponse<{ data: CardGuidesResponse[] }>);
 
-  test('Deve atualizar o valor dos campos de input quando o valor destes mudar', () => {
-    // eslint-disable-next-line react/react-in-jsx-scope
-    render(<RegisterCategory />);
-
-    const textLabelGuide = 'guideTestId';
-    const textLabelCategory = 'Categoria:';
-    const textLabelDescription = 'Descrição:';
-
-    const inputGuide = screen.getByTestId(textLabelGuide);
-    const inputCategory = screen.getByLabelText(textLabelCategory, {
-      selector: 'input',
-    });
-
-    const textArea = screen.getByLabelText(textLabelDescription, {
-      selector: 'textarea',
-    });
-
-    const inputSelection = 'es';
-    const inputText = 'Texto presente no elemento categoria';
-    const textAreaText =
-      'Esse é o texto presente no elemento textarea\n Ele aceita novas linhas';
-
-    userEvent.type(inputGuide, inputSelection);
-    userEvent.type(inputCategory, inputText);
-    userEvent.type(textArea, textAreaText);
-
-    expect(inputGuide).toHaveValue(inputSelection);
-    expect(inputCategory).toHaveValue(inputText);
-    expect(textArea).toHaveValue(textAreaText);
-  });
-
-  test('Deve validar o input quando o botão de submit for clicado', () => {
-    // eslint-disable-next-line testing-library/no-unnecessary-act
     act(() => {
-      // eslint-disable-next-line react/react-in-jsx-scope
       render(<RegisterCategory />);
     });
 
-    const textoBotaoSubmit = 'Salvar';
-    const botaoSubmit = screen.getByText(textoBotaoSubmit);
-
-    // eslint-disable-next-line testing-library/no-unnecessary-act
-    act(() => {
-      userEvent.click(botaoSubmit);
+    await waitFor(() => {
+      expect(getGuidesServiceMock).toBeCalled();
     });
-
-    expect(validateInput).toBeCalled();
-  });
-
-  test('Deve chamar a função postCategory quando o botão do submit for clicado', () => {
-    // eslint-disable-next-line testing-library/no-unnecessary-act
-    act(() => {
-      // eslint-disable-next-line react/react-in-jsx-scope
-      render(<RegisterCategory />);
-    });
-    const textoNoBotaoSubmit = 'Salvar';
-    const botaoSubmit = screen.getByText(textoNoBotaoSubmit);
-    // eslint-disable-next-line testing-library/no-unnecessary-act
-    act(() => {
-      userEvent.click(botaoSubmit);
-    });
-    expect(postCategories).toBeCalled();
   });
 
   test('Deve mostrar na tela o card de notificação de sucesso quando o botão de submit for clicado', async () => {
@@ -122,6 +73,8 @@ describe('Página de cadastro de categorias', () => {
     const NotificationCard = await screen.findByText(NotificationMessage);
 
     expect(NotificationCard).toBeVisible();
+    expect(validateInputMock).toBeCalled();
+    expect(postCategoryMock).toBeCalled();
   });
 
   test('Deve mostrar na tela o card de notificação de erro quando o botão de submit for clicado', async () => {
@@ -135,9 +88,7 @@ describe('Página de cadastro de categorias', () => {
     validateInputMock.mockImplementation(() => {
       throw throwError;
     });
-    postCategoryMock.mockResolvedValue(
-      true as unknown as Promise<AxiosResponse>,
-    );
+
     const textoNoBotaoSubmit = 'Salvar';
     const NotificationMessage = errorMessage;
     const botaoSubmit = screen.getByText(textoNoBotaoSubmit);
@@ -149,11 +100,6 @@ describe('Página de cadastro de categorias', () => {
     const NotificationCard = await screen.findByText(NotificationMessage);
 
     expect(NotificationCard).toBeVisible();
-  });
-  test('Deve verificar se o formulário foi enviado', () => {
-    render(<RegisterCategory />);
-
-    const button = screen.getByTestId('submit');
-    fireEvent.click(button);
+    expect(validateInputMock).toBeCalled();
   });
 });
