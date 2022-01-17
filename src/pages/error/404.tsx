@@ -14,26 +14,26 @@ export const Error: React.FC<ErrorProps> = (): JSX.Element => {
     <>
       <div className="page-error">
         <div className="icon-error">
-          <Box sx={{ mt: '-100px' }}>
+          <Box sx={{ mt: '-100px' }} title="Error-404">
             {theme.palette.background.default === ColorsDefault.PRIMARY ? (
               <Error404 />
             ) : (
               <Error404Contrast />
             )}
           </Box>
-
           <div />
-
-          <Typography sx={{ mt: '30px' }}>
-            <AccessibilityTypography
-              tabIndex={0}
-              className="box-p"
-              aria-label="DESCULPE, A PÁGINA NÃO FOI ENCONTRADA"
-              sx={{ fontSize: '30px' }}
-            >
-              Desculpe, a página não foi encontrada!
-            </AccessibilityTypography>
-          </Typography>
+          <Box>
+            <Typography sx={{ textAlign: 'center', mt: '20px' }}>
+              <AccessibilityTypography
+                data-testid="messageError"
+                tabIndex={0}
+                aria-label="DESCULPE, A PÁGINA NÃO FOI ENCONTRADA"
+                sx={{ fontSize: '36px' }}
+              >
+                Desculpe, a página não foi encontrada!
+              </AccessibilityTypography>
+            </Typography>
+          </Box>
         </div>
       </div>
     </>

@@ -3,32 +3,42 @@ import { render, screen } from '@testing-library/react';
 import Error from './404';
 import Error404 from './404';
 import Error404Contrast from './404';
-import { ThemeProvider } from '@emotion/react';
+import { ThemeProvider } from '@mui/material/styles';
+import '@testing-library/jest-dom';
 import theme from '@styles/theme';
 
-it('Exibir imagem 404 default', () => {
-  const { getByTitle } = render(
-    <ThemeProvider theme={theme('default')}>
-      <Error404 />
-    </ThemeProvider>,
-  );
+describe('Component 404', () => {
+  test('deve existir uma imagem 404', () => {
+    expect(Error404).toBeTruthy();
+    expect(Error404Contrast).toBeTruthy();
+  });
 
-  // eslint-disable-next-line testing-library/prefer-screen-queries
-  expect(getByTitle('Logo')).toBeInTheDocument();
-});
+  test('Exibir erro 404 padrão', () => {
+    const { getByTitle } = render(
+      <ThemeProvider theme={theme('Error404')}>
+        <Error404 />
+      </ThemeProvider>,
+    );
 
-it('Exibir imagem 404 com contrast', () => {
-  const { getByTitle } = render(
-    <ThemeProvider theme={theme('contrast')}>
-      <Error404Contrast />
-    </ThemeProvider>,
-  );
+    // eslint-disable-next-line testing-library/prefer-screen-queries
+    expect(getByTitle('Error-404')).toBeInTheDocument();
+  });
 
-  // eslint-disable-next-line testing-library/prefer-screen-queries
-  expect(getByTitle('Logo')).toBeInTheDocument();
-});
+  test('Exibir erro 404 com contraste', () => {
+    const { getByTitle } = render(
+      <ThemeProvider theme={theme('Error404Contrast')}>
+        <Error404Contrast />
+      </ThemeProvider>,
+    );
 
-test('deve mostrar mensagem de erro', () => {
-  render(<Error />);
-  screen.getByText(/desculpe, a página não foi encontrada!/i);
+    // eslint-disable-next-line testing-library/prefer-screen-queries
+    expect(getByTitle('Error-404')).toBeInTheDocument();
+  });
+  test('deve mostrar mensagem de erro', () => {
+    render(<Error />);
+
+    const errorMessage = 'Desculpe, a página não foi encontrada!';
+    const erroMessageElement = screen.getByText(errorMessage);
+    expect(erroMessageElement.textContent).toBe(errorMessage);
+  });
 });
