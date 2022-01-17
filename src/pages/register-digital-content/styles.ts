@@ -1,21 +1,24 @@
 import { Theme, SxProps } from '@mui/material';
 
 const content: SxProps<Theme> = {
-  borderRadius: '20px',
-  border: '1px solid',
+  borderBottomLeftRadius: '20px',
+  borderBottomRightRadius: '20px',
+  border: '2px solid',
   flexDirection: 'column',
   borderColor: (theme) => theme.palette.secondary.contrastText,
   background: (theme) => theme.palette.background.paper,
 };
 
 const header: SxProps<Theme> = {
-  background: (theme) => theme.palette.secondary.main,
+  border: '2px solid',
+  borderColor: (theme) => theme.palette.secondary.contrastText,
+  background: (theme) => theme.palette.primary.main,
   borderTopLeftRadius: '20px',
   borderTopRightRadius: '20px',
 };
 
 const headerTitle: SxProps<Theme> = {
-  color: (theme) => theme.palette.primary.main,
+  color: (theme) => theme.palette.text.primary,
   fontSize: '1.3rem',
   fontWeight: 'bold',
   textAlign: 'center',

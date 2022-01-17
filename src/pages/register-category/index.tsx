@@ -2,7 +2,6 @@ import React, { useRef } from 'react';
 import {
   Button,
   Box,
-  Typography,
   Grid,
   InputLabel,
   InputBase,
@@ -30,13 +29,13 @@ export const RegisterCategory: React.FC<
 
   return (
     <Grid container alignItems={'center'} justifyContent={'center'} role="main">
-      <Grid item md={6} sx={styles.content} component="section">
+      <Grid item md={6} component="section">
         <Box sx={styles.header} component="header">
           <AccessibilityTypography sx={styles.headerTitle}>
             CADASTRO DE CATEGORIA
           </AccessibilityTypography>
         </Box>
-        <Box padding={'1rem 3rem'} component="section">
+        <Box padding={'1rem 3rem'} sx={styles.content} component="section">
           <Button
             variant="contained"
             sx={styles.buttonDigitalContent}
