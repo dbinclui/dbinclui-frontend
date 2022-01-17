@@ -23,6 +23,7 @@ export const RegisterDigitalContent: React.FC<
   const category = useRef<HTMLInputElement>();
   const title = useRef<HTMLInputElement>();
   const description = useRef<HTMLInputElement>();
+  const fileRef = useRef<HTMLInputElement>(null);
 
   const guides = ['Guia de acessibilidade', 'Guia da Cultura Surda'];
   const categories = [
@@ -59,6 +60,7 @@ export const RegisterDigitalContent: React.FC<
               accept="image/*,.pdf,.doc, .docx, video/*"
               type="file"
               hidden
+              ref={fileRef}
               multiple
               onChange={(event: any) => {
                 setFiles([...files, ...event.target.files]);
@@ -82,6 +84,10 @@ export const RegisterDigitalContent: React.FC<
                   });
 
                   setFiles([...newFiles]);
+
+                  if(!newFiles.length && fileRef.current !== undefined) {
+                    fileRef.current.value = '';
+                  }
                 }}
               >
                 <ClearIcon />{' '}
