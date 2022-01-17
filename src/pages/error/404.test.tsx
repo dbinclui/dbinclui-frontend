@@ -37,8 +37,8 @@ describe('Component 404', () => {
   test('deve mostrar mensagem de erro', () => {
     render(<Error />);
 
-    const errorMessage = 'Desculpe, a página não foi encontrada!';
-    const erroMessageElement = screen.getByText(errorMessage);
+    const errorMessage = 'messageError';
+    const erroMessageElement = screen.getByTestId(errorMessage);
     expect(erroMessageElement.textContent).toBe(errorMessage);
   });
 });
