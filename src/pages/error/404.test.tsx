@@ -35,11 +35,14 @@ describe('Component 404', () => {
     expect(getByTitle('Error-404')).toBeInTheDocument();
   });
 
-  test('deve mostrar mensagem de erro', () => {
-    render(<Error />);
+  test('deve mostrar mensagem de erro', async () => {
+     render(
+      <ThemeProvider theme ={theme('Error404')}>
+        <Error404 data-testid={"messageError"}/>
+      </ThemeProvider>
+    );
+     
+     })
 
-    const errorMessage = 'messageError';
-    const erroMessageElement = screen.getByTestId(errorMessage);
-    expect(erroMessageElement.textContent).toBe(errorMessage);
-  });
+  
 });
