@@ -52,6 +52,7 @@ export const RegisterCategory: React.FC<
               Guia:
             </InputLabel>
             <Select
+              defaultValue=""
               inputRef={guide}
               labelId="guideLabel"
               required
