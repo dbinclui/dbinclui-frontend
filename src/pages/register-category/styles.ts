@@ -23,17 +23,18 @@ const headerTitle: SxProps<Theme> = {
 };
 
 const buttonDigitalContent: SxProps<Theme> = {
-  mr: 0,
-  ml: 'auto',
-  mb: '0.8rem',
-  display: 'block',
-  padding: '0.3rem 1rem',
-  fontWeight: '700',
-  textTransform: 'none',
-  background: (theme) => theme.palette.primary.main,
-  color: (theme) => theme.palette.text.primary,
-  border: '1px solid',
-  borderColor: (theme) => theme.palette.secondary.contrastText,
+  'mr': 0,
+  'ml': 'auto',
+  'mb': '0.8rem',
+  'display': 'block',
+  'padding': '0.3rem 1rem',
+  'fontWeight': '700',
+  'textTransform': 'none',
+  'backgroundColor': (theme) => theme.palette.text.primary,
+  '&:hover': {
+    background: (theme) => theme.palette.text.primary,
+  },
+  'color': (theme) => theme.palette.primary.main,
 };
 
 const labelInput: SxProps<Theme> = {

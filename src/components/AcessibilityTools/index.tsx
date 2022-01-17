@@ -1,5 +1,5 @@
 import React, { useState, useContext } from 'react';
-import { Box, Button, Typography, Modal } from '@mui/material';
+import { Box, Button, Modal } from '@mui/material';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
 import Fade from '@mui/material/Fade';

@@ -25,7 +25,7 @@ export const CardItems: CardHomeProps[] = [
 export const Home: React.FC<HomeProps> = (): JSX.Element => {
   return (
     <>
-      <Container >
+      <Container>
         <Grid container justifyContent={'center'}>
           <Grid item py={'75px'} md={9}>
             <Paper
@@ -37,7 +37,8 @@ export const Home: React.FC<HomeProps> = (): JSX.Element => {
               alignItems={'center'}
               sx={{
                 border: '1px solid',
-                borderColor: 'secondary.contrastText',
+                borderRadius: '20px',
+                borderColor: 'secondary.primary',
               }}
             >
               <Grid item md={11}>
@@ -46,6 +47,7 @@ export const Home: React.FC<HomeProps> = (): JSX.Element => {
                   fullWidth
                   placeholder="Pesquise aqui"
                   sx={{
+                    'ml': '10px',
                     '&::placeholder': {
                       color: 'text.secondary',
                     },

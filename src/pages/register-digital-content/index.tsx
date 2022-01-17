@@ -10,6 +10,7 @@ import {
   MenuItem,
 } from '@mui/material';
 import styles from './styles';
+import AccessibilityTypography from '@components/AccessibilityTypography';
 
 export interface RegisterDigitalContentProps {}
 
@@ -35,7 +36,9 @@ export const RegisterDigitalContent: React.FC<
       <Grid item md={6} sx={styles.content} component="section">
         <Box sx={styles.header} component="header">
           <Typography sx={styles.headerTitle} variant="h1">
-            CADASTRO DE CONTEÚDO DIGITAL
+            <AccessibilityTypography>
+              CADASTRO DE CONTEÚDO DIGITAL
+            </AccessibilityTypography>
           </Typography>
         </Box>
         <Box padding={'1rem 3rem'} component="section">
@@ -46,7 +49,7 @@ export const RegisterDigitalContent: React.FC<
           >
             Selecionar um ficheiro
             <input
-            data-testid="inputFile"
+              data-testid="inputFile"
               accept="image/*,.pdf,.doc, .docx"
               type="file"
               hidden
@@ -65,7 +68,9 @@ export const RegisterDigitalContent: React.FC<
             file
           ) : (
             <Typography sx={styles.fileName}>
-              Nenhum arquivo selecionado
+              <AccessibilityTypography>
+                Nenhum arquivo selecionado
+              </AccessibilityTypography>
             </Typography>
           )}
 
@@ -76,7 +81,7 @@ export const RegisterDigitalContent: React.FC<
             display={'flex'}
           >
             <InputLabel htmlFor="guide" id="guideLabel" sx={styles.labelInput}>
-              Guia:
+              <AccessibilityTypography>Guia:</AccessibilityTypography>
             </InputLabel>
             <Select
               inputRef={guide}
@@ -107,7 +112,7 @@ export const RegisterDigitalContent: React.FC<
               id="categoryLabel"
               sx={styles.labelInput}
             >
-              Categoria:
+              <AccessibilityTypography>Categoria:</AccessibilityTypography>
             </InputLabel>
             <Select
               inputRef={category}
@@ -134,7 +139,7 @@ export const RegisterDigitalContent: React.FC<
               ))}
             </Select>
             <InputLabel htmlFor="title" id="titleLabel" sx={styles.labelInput}>
-              Título:
+              <AccessibilityTypography>Título:</AccessibilityTypography>
             </InputLabel>
             <InputBase
               inputRef={title}
@@ -152,7 +157,7 @@ export const RegisterDigitalContent: React.FC<
               sx={styles.labelInput}
               id="descriptionLabel"
             >
-              Descrição:
+              <AccessibilityTypography>Descrição:</AccessibilityTypography>
             </InputLabel>
             <InputBase
               inputRef={description}
@@ -173,7 +178,7 @@ export const RegisterDigitalContent: React.FC<
             >
               <Grid item md={6} sx={styles.buttonWrapper}>
                 <Button
-                  sx={styles.button}
+                  sx={styles.buttonSave}
                   variant="outlined"
                   type="submit"
                   role="button"
@@ -184,7 +189,7 @@ export const RegisterDigitalContent: React.FC<
               </Grid>
               <Grid item md={6} sx={styles.buttonWrapper}>
                 <Button
-                  sx={[styles.button, styles.buttonFechar]}
+                  sx={[styles.buttonClose]}
                   variant="contained"
                   type="reset"
                   role="button"
