@@ -12,7 +12,7 @@ A Lib/Framework principal utilizada será ReactJS.
 | :-: | :-: | :-: |
 | Typescript | https://www.typescriptlang.org/docs/ | https://www.npmjs.com/package/typescript |
 | React | https://reactjs.org/docs/getting-started.html | https://www.npmjs.com/package/react |
-| React Bootstrap | https://react-bootstrap.github.io/getting-started/introduction | https://www.npmjs.com/package/react-bootstrap |
+| Material UI | https://mui.com/pt/getting-started/usage/ | https://www.npmjs.com/package/@mui/material |
 | Axios | https://axios-http.com/docs/intro | https://www.npmjs.com/package/axios |
 | Jest | https://jestjs.io/docs/getting-started | https://www.npmjs.com/package/jest |
 

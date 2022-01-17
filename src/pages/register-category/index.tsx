@@ -53,6 +53,7 @@ export const RegisterCategory: React.FC<
               <AccessibilityTypography>Guia:</AccessibilityTypography>
             </InputLabel>
             <Select
+              defaultValue=""
               inputRef={guide}
               labelId="guideLabel"
               required

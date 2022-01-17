@@ -23,7 +23,7 @@ export const RegisterDigitalContent: React.FC<
   const description = useRef<HTMLInputElement>();
 
   const guides = ['Guia de acessibilidade', 'Guia da Cultura Surda'];
-  const categories = ['Guia de acessibilidade', 'Guia da Cultura Surda'];
+  const categories = ['Boas práticas para a inclusão', 'Acessibilidade em eventos'];
 
   const [file, setFile] = useState<any[]>([]);
 
@@ -82,6 +82,7 @@ export const RegisterDigitalContent: React.FC<
               <AccessibilityTypography>Guia:</AccessibilityTypography>
             </InputLabel>
             <Select
+              defaultValue=""
               inputRef={guide}
               labelId="guideLabel"
               required
@@ -113,6 +114,7 @@ export const RegisterDigitalContent: React.FC<
               <AccessibilityTypography>Categoria:</AccessibilityTypography>
             </InputLabel>
             <Select
+              defaultValue=""
               inputRef={category}
               labelId="categoryLabel"
               required
