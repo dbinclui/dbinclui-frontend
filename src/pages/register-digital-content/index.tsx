@@ -60,6 +60,7 @@ export const RegisterDigitalContent: React.FC<
               multiple
               onChange={(event: any) => {
                 for (let x of event.target.files) {
+                  console.log(x.index);
                   fileName.push(
                     <Box
                       flexDirection={'row'}
