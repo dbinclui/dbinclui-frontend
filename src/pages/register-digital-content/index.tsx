@@ -79,7 +79,7 @@ export const RegisterDigitalContent: React.FC<
               Guia:
             </InputLabel>
             <Select
-              defaultValue={guides[0]}
+              defaultValue=""
               inputRef={guide}
               labelId="guideLabel"
               required
@@ -111,7 +111,7 @@ export const RegisterDigitalContent: React.FC<
               Categoria:
             </InputLabel>
             <Select
-              defaultValue={categories[0]}
+              defaultValue=""
               inputRef={category}
               labelId="categoryLabel"
               required
