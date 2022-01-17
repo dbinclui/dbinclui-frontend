@@ -1,7 +1,9 @@
 import React from 'react';
-import { render, screen } from '@testing-library/react';
+import { render, screen, waitFor } from '@testing-library/react';
 import AccessibilityTools from './index';
 import { fireEvent } from '@testing-library/dom';
+import { ThemeProvider } from '@mui/material/styles';
+import theme from '@styles/theme';
 
 describe('AccessibilityTools Component', () => {
   const handleClick = () => true;
@@ -24,4 +26,21 @@ describe('AccessibilityTools Component', () => {
     const contrastBtn = screen.queryAllByText('Contrastes');
     expect(contrastBtn).toBeTruthy();
   });
+  
+  it('Exibir a logo default', async () => {
+    const { getByLabelText, getByText } = render(    
+    <ThemeProvider theme={theme('default')}>
+      <AccessibilityTools handleClickContrastButton={handleClick}/>
+    </ThemeProvider>
+    );
+
+    // eslint-disable-next-line testing-library/prefer-screen-queries
+    const button = getByText('Acessibilidade')
+    await fireEvent.click(button)
+  
+    await waitFor(() => {
+      // eslint-disable-next-line testing-library/prefer-screen-queries
+      getByLabelText('Mudar contraste da tela');
+    }) 
+  })
 });
