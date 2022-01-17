@@ -37,7 +37,7 @@ export const Home: React.FC<HomeProps> = (): JSX.Element => {
               alignItems={'center'}
               sx={{
                 border: '1px solid',
-                borderRadius: '20px',
+                borderRadius: '15px',
                 borderColor: 'secondary.primary',
               }}
             >
@@ -47,7 +47,6 @@ export const Home: React.FC<HomeProps> = (): JSX.Element => {
                   fullWidth
                   placeholder="Pesquise aqui"
                   sx={{
-                    'ml': '10px',
                     '&::placeholder': {
                       color: 'text.secondary',
                     },

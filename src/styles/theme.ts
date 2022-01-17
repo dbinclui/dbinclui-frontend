@@ -21,6 +21,7 @@ const theme = (themeMode: string) => {
       text: {
         primary: Colors.SECONDARY,
         secondary: Colors.PRIMARY,
+        disabled: Colors.LIGHT,
       },
       primary: {
         light: Colors.PRIMARY_LIGHT,
@@ -30,6 +31,7 @@ const theme = (themeMode: string) => {
       },
       secondary: {
         light: Colors.SECONDARY_CONTRAST,
+        dark: Colors.SECONDARY_CONTENT,
         main: Colors.SECONDARY,
         contrastText: Colors.CONTENT_BORDER,
       },
@@ -62,7 +64,7 @@ const theme = (themeMode: string) => {
           outlined: {
             '&:hover': {
               backgroundColor: Colors.SECONDARY,
-              color: '#fff',
+              color: '#000',
             },
             'backgroundColor': Colors.SECONDARY,
           },

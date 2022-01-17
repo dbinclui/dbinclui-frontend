@@ -26,19 +26,16 @@ const headerTitle: SxProps<Theme> = {
 };
 
 const buttonDigitalContent: SxProps<Theme> = {
-  'mr': 0,
-  'ml': 'auto',
-  'mb': '0.8rem',
-  'display': 'block',
-  'padding': '0.3rem 1rem',
-  'fontWeight': '700',
-  'textTransform': 'none',
-  'width': '13.1rem',
-  'backgroundColor': (theme) => theme.palette.text.primary,
-  '&:hover': {
-    background: (theme) => theme.palette.text.primary,
-  },
-  'color': (theme) => theme.palette.primary.main,
+  mr: 0,
+  ml: 'auto',
+  mb: '0.8rem',
+  display: 'block',
+  padding: '0.3rem 1rem',
+  fontWeight: '700',
+  textTransform: 'none',
+  width: '13.1rem',
+  backgroundColor: (theme) => theme.palette.secondary.dark,
+  color: (theme) => theme.palette.text.disabled,
 };
 
 const labelInput: SxProps<Theme> = {
@@ -63,22 +60,13 @@ const buttonWrapper: SxProps<Theme> = {
   mb: '0.5rem',
 };
 
-const buttonSave: SxProps<Theme> = {
+const button: SxProps<Theme> = {
   fontWeight: '700',
   padding: '0.5rem 1.5rem',
   textTransform: 'none',
   fontSize: '1.2rem',
-};
-
-const buttonClose: SxProps<Theme> = {
-  fontWeight: '700',
-  padding: '0.5rem 1.5rem',
-  textTransform: 'none',
-  fontSize: '1.2rem',
-  background: (theme) => theme.palette.primary.main,
-  color: (theme) => theme.palette.text.primary,
-  border: '1px solid',
-  borderColor: (theme) => theme.palette.secondary.contrastText,
+  backgroundColor: (theme) => theme.palette.secondary.dark,
+  color: (theme) => theme.palette.text.disabled,
 };
 
 const select: SxProps<Theme> = {
@@ -108,8 +96,7 @@ const styles = {
   labelInput,
   input,
   buttonWrapper,
-  buttonClose,
-  buttonSave,
+  button,
   select,
   menuItem,
   fileName,

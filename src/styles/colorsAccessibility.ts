@@ -1,11 +1,12 @@
 export enum AccessibilityColors {
-  LIGHT = '#FFFF00',
+  LIGHT = '#000',
   DARK = '#000',
   PRIMARY = '#000',
   INPUT_TEXT = '#FFF',
   CONTENT = '#000',
   CONTENT_BORDER = '#FFFF00',
   PRIMARY_LIGHT = '#C5CAE9',
+  SECONDARY_CONTENT = '#FFFF00',
   SECONDARY = '#FFFF00',
   BUTTON_CONTRAST = '#000',
   SECONDARY_CONTRAST = '#FFF',

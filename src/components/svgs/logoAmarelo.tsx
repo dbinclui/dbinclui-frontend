@@ -13,7 +13,7 @@ export const LogoBranca = () => {
       <defs>
         <style>
           {
-            '.cls-7,.cls-8{fill:#fff}.cls-7{stroke:#fff;stroke-miterlimit:10;stroke-width:1.3px}'
+            '.cls-7,.cls-8{fill:#fff000}.cls-7{stroke:#fff000;stroke-miterlimit:10;stroke-width:1.3px}'
           }
         </style>
       </defs>
@@ -32,9 +32,9 @@ export const LogoBranca = () => {
         d="M935 581a2.9 2.9 0 0 1 .63 2.85c-.58 3.29-2.21 5.36-4.64 5.48-2.66.14-5.33 0-8 0a1.4 1.4 0 0 1 .12-.88q2.08-7.43 4.18-14.84c.15-.53.3-.85.73-.84 2.41.06 4.8 0 7.2.07s3 1.88 1.83 5.12A5.86 5.86 0 0 1 935 581Zm-7.56 6h1.64c1.36-.12 2.26-1.25 2.57-3.21.09-.52.15-1.13-.23-1.42-.79-.61-1.65-.36-2.49-.32-.07 0-.15.27-.2.43-.41 1.52-.82 2.94-1.29 4.52Zm2.06-7.23a6 6 0 0 0 2.24-.08c.83-.24 1.75-2.19 1.69-3.49a1.31 1.31 0 0 0-.18-.67.51.51 0 0 0-.42-.28c-.72 0-1.61-.69-2.1.34a28 28 0 0 0-1.23 4.22Z"
         transform="translate(-877 -540.43)"
         style={{
-          stroke: '#fff',
+          stroke: '#fff000',
           strokeMiterlimit: 10,
-          fill: '#fff',
+          fill: '#fff000',
         }}
       />
       <path

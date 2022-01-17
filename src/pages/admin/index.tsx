@@ -22,10 +22,16 @@ export const Admin: React.FC<AdminProps> = (): JSX.Element => {
       >
         <Grid item sx={{ m: 2 }}>
           <Button
-            variant="outlined"
+            variant="contained"
             size="large"
             onClick={() => {
               navigate('cadastrar-guia');
+            }}
+            sx={{
+              color: 'text.disabled',
+              backgroundColor: 'secondary.dark',
+              border: '2px solid',
+              borderColor: 'text.disabled',
             }}
           >
             Cadastrar Guia
@@ -34,10 +40,16 @@ export const Admin: React.FC<AdminProps> = (): JSX.Element => {
 
         <Grid item sx={{ m: 2 }}>
           <Button
-            variant="outlined"
+            variant="contained"
             size="large"
             onClick={() => {
               navigate('cadastrar-categoria');
+            }}
+            sx={{
+              color: 'text.disabled',
+              backgroundColor: 'secondary.dark',
+              border: '2px solid',
+              borderColor: 'text.disabled',
             }}
           >
             Cadastro de Categorias
@@ -46,10 +58,16 @@ export const Admin: React.FC<AdminProps> = (): JSX.Element => {
 
         <Grid item sx={{ m: 2 }}>
           <Button
-            variant="outlined"
+            variant="contained"
             size="large"
             onClick={() => {
               navigate('cadastrar-conteudo-digital');
+            }}
+            sx={{
+              color: 'text.disabled',
+              backgroundColor: 'secondary.dark',
+              border: '2px solid',
+              borderColor: 'text.disabled',
             }}
           >
             Cadastro de Conteúdo digital

@@ -16,7 +16,7 @@ import Logo from '../svgs/logo';
 import './styles.css';
 import AccessibilityTypography from '../../components/AccessibilityTypography';
 import { ColorsDefault } from '@styles/colors';
-import LogoBranca from '@components/svgs/logoBranca';
+import LogoAmarelo from '@components/svgs/logoAmarelo';
 import { useTheme } from '@emotion/react';
 
 export interface HeaderProps {}
@@ -96,7 +96,7 @@ export const Header: React.FC<HeaderProps> = (): JSX.Element => {
               {theme.palette.background.default === ColorsDefault.PRIMARY ? (
                 <Logo />
               ) : (
-                <LogoBranca />
+                <LogoAmarelo />
               )}
             </Box>
           </Typography>
