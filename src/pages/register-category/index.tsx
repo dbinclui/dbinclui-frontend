@@ -106,11 +106,12 @@ export const RegisterCategory: React.FC<
                 inputRef={guide}
                 labelId="guideLabel"
                 required
-                data-testid="guideTestId"
+                // data-testid="guideTestId"
                 role="select"
                 aria-labelledby="guideLabel"
                 name="guide"
                 id="guide"
+                inputProps={{ 'data-testid': 'guideTestId' }}
                 sx={[styles.input, styles.select]}
               >
                 {guides.map((guide) => (
@@ -136,14 +137,15 @@ export const RegisterCategory: React.FC<
               <InputBase
                 inputRef={title}
                 type="text"
-                id="category"
-                name="category"
+                id="title"
+                name="title"
                 role="input"
                 required
                 data-testid="categoryTestId"
-                aria-labelledby="categoryLabel"
+                aria-labelledby="titleLabel"
                 sx={styles.input}
               />
+
               <InputLabel
                 htmlFor="description"
                 sx={styles.labelInput}

@@ -1,4 +1,3 @@
-import React from 'react';
 import { RegisterCategory } from '@pages/register-category';
 import '@testing-library/jest-dom';
 import { fireEvent } from '@testing-library/dom';
@@ -7,11 +6,15 @@ import userEvent from '@testing-library/user-event';
 import '@testing-library/jest-dom';
 import validateInput, { InputInterface } from './validator';
 import { postCategories } from '@services/categories';
+import { getGuides } from '@services/guides';
 import { act } from 'react-dom/test-utils';
 import { AxiosResponse } from 'axios';
+import React from 'react';
 
 jest.mock('./validator');
 jest.mock('@services/categories');
+jest.mock('@services/guides');
+jest.mock('@components/SelectMongo');
 
 const validateInputMock = validateInput as jest.MockedFunction<
   typeof validateInput
@@ -19,64 +22,26 @@ const validateInputMock = validateInput as jest.MockedFunction<
 const postCategoryMock = postCategories as jest.MockedFunction<
   typeof postCategories
 >;
+const getGuidesServiceMock = getGuides as jest.MockedFunction<typeof getGuides>;
 
 describe('Página de cadastro de categorias', () => {
-  /* 
-  test('Deve mostrar um formulário', () => {
-    render(<RegisterCategory />);
+  test('Deve chamar os guias quando o componente for renderizado', () => {
+    getGuidesServiceMock.mockResolvedValue({ data: [] } as AxiosResponse);
 
-    const textLabelGuide = 'Guia:';
-    const textLabelCategory = 'Categoria:';
-    const textLabelDescription = 'Descrição:';
-
-    const labelGuide = screen.getByText(textLabelGuide);
-    const labelCategory = screen.getByText(textLabelCategory);
-    const labelDescription = screen.getByText(textLabelDescription);
-
-    const input = screen.getByLabelText(textLabelCategory, {
-      selector: 'input',
+    act(() => {
+      render(<RegisterCategory />);
     });
-    const textArea = screen.getByLabelText(textLabelDescription, {
-      selector: 'textarea',
-    });
-
-    expect(labelDescription).toBeVisible();
-    expect(labelCategory).toBeVisible();
-    expect(labelGuide).toBeVisible();
-    expect(input).toBeVisible();
-    expect(textArea).toBeVisible();
-  });
- */
-  test('Deve verificar se o ID da label corresponde ao aria-labelledby', () => {
-    render(<RegisterCategory />);
-
-    const textLabelGuide = 'guideLabel';
-    const textoLabelCategory = 'categoryLabel';
-    const textoLabelDescription = 'descriptionLabel';
-
-    const idGuide = screen.getByTestId('guideTestId');
-    const idCategory = screen.getByTestId('categoryTestId');
-    const idDescription = screen.getByTestId('descriptionTestId');
-
-    expect(idGuide).toHaveAttribute('aria-labelledby', textLabelGuide);
-    expect(idCategory).toHaveAttribute('aria-labelledby', textoLabelCategory);
-    expect(idDescription).toHaveAttribute(
-      'aria-labelledby',
-      textoLabelDescription,
-    );
   });
 
   test('Deve atualizar o valor dos campos de input quando o valor destes mudar', () => {
+    // eslint-disable-next-line react/react-in-jsx-scope
     render(<RegisterCategory />);
 
-    const textLabelGuide = 'Guia:';
+    const textLabelGuide = 'guideTestId';
     const textLabelCategory = 'Categoria:';
     const textLabelDescription = 'Descrição:';
 
-    const inputGuide = screen.getByLabelText(textLabelGuide, {
-      selector: 'input',
-    });
-
+    const inputGuide = screen.getByTestId(textLabelGuide);
     const inputCategory = screen.getByLabelText(textLabelCategory, {
       selector: 'input',
     });
@@ -85,15 +50,11 @@ describe('Página de cadastro de categorias', () => {
       selector: 'textarea',
     });
 
-    /*  const inputSelection = mount(
-       <RegisterCategory value="es" onChange={jest.fn()} />,
-     ); */
-    const inputSelection = 'teste';
+    const inputSelection = 'es';
     const inputText = 'Texto presente no elemento categoria';
     const textAreaText =
       'Esse é o texto presente no elemento textarea\n Ele aceita novas linhas';
 
-    //expect(wrapper.find('select').props().value).toBe('10:00');
     userEvent.type(inputGuide, inputSelection);
     userEvent.type(inputCategory, inputText);
     userEvent.type(textArea, textAreaText);
@@ -106,6 +67,7 @@ describe('Página de cadastro de categorias', () => {
   test('Deve validar o input quando o botão de submit for clicado', () => {
     // eslint-disable-next-line testing-library/no-unnecessary-act
     act(() => {
+      // eslint-disable-next-line react/react-in-jsx-scope
       render(<RegisterCategory />);
     });
 
@@ -123,6 +85,7 @@ describe('Página de cadastro de categorias', () => {
   test('Deve chamar a função postCategory quando o botão do submit for clicado', () => {
     // eslint-disable-next-line testing-library/no-unnecessary-act
     act(() => {
+      // eslint-disable-next-line react/react-in-jsx-scope
       render(<RegisterCategory />);
     });
     const textoNoBotaoSubmit = 'Salvar';
