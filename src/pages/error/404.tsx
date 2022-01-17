@@ -23,6 +23,7 @@ export const Error: React.FC<ErrorProps> = (): JSX.Element => {
           </Box>
 
           <div />
+
           <Typography sx={{ mt: '30px' }}>
             <AccessibilityTypography
               tabIndex={0}

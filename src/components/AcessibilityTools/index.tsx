@@ -4,10 +4,9 @@ import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
 import Fade from '@mui/material/Fade';
 import Counter from '../Counter';
-import { AccessibilityContext } from '../../contexts/AccessibilityContext';
+import { AccessibilityContext } from '@contexts/AccessibilityContext';
 import styles from './styles';
-import UseCounter from '../../hooks/Counter';
-
+import UseCounter from '@hooks/Counter';
 
 export interface AccessibilityToolsProps {
   handleClickContrastButton: () => void;
@@ -45,9 +44,10 @@ export const AccessibilityTools: React.FC<AccessibilityToolsProps> = ({
         <Box>
           <Button
             sx={{
+              'width': '100%',
               'color': 'text.secundary',
               '&:hover': {
-                color: 'text.secondary',
+                color: '#221f52',
               },
             }}
             onClick={() => {
