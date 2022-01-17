@@ -13,8 +13,8 @@ export const Error: React.FC<ErrorProps> = (): JSX.Element => {
   return (
     <>
       <div className="page-error">
-        <div className="icon-error">
-          <Box sx={{ mt: '-100px' }}>
+        <div className="icon-error" >
+          <Box sx={{ mt: '-100px' }} ='error 404'>
             {theme.palette.background.default === ColorsDefault.PRIMARY ? (
               <Error404 />
             ) : (

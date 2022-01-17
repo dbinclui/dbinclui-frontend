@@ -2,33 +2,40 @@ import React from 'react';
 import { render, screen } from '@testing-library/react';
 import Error from './404';
 import Error404 from './404';
-import Error404Contrast from './404';
+import Error404Contrast from '../../components/svgs/404Contrast';
 import { ThemeProvider } from '@emotion/react';
 import theme from '@styles/theme';
 
-it('Exibir imagem 404 default', () => {
-  const { getByTitle } = render(
-    <ThemeProvider theme={theme('default')}>
-      <Error404 />
-    </ThemeProvider>,
-  );
+describe('Componente 404', () => {
+  test('deve mostrar o 404 error', () => {
+    expect(Error404).toBeTruthy();
+  });
 
-  // eslint-disable-next-line testing-library/prefer-screen-queries
-  expect(getByTitle('Logo')).toBeInTheDocument();
-});
+  it('Exibir imagem 404 default', () => {
+    const { getByTestId } = render(
+      <ThemeProvider theme={theme('Error404')}>
+        <Error404 />
+      </ThemeProvider>,
+    );
 
-it('Exibir imagem 404 com contrast', () => {
-  const { getByTitle } = render(
-    <ThemeProvider theme={theme('contrast')}>
-      <Error404Contrast />
-    </ThemeProvider>,
-  );
+    // eslint-disable-next-line testing-library/prefer-screen-queries
+    expect(getByTestId('error 404')).toBeInTheDocument();
+  });
 
-  // eslint-disable-next-line testing-library/prefer-screen-queries
-  expect(getByTitle('Logo')).toBeInTheDocument();
-});
+  it('Exibir imagem 404 com contrast', () => {
+    const { getByTestId } = render(
+      <ThemeProvider theme={theme('contrast')}>
+        <Error404Contrast/>
+      </ThemeProvider>,
+    );
 
-test('deve mostrar mensagem de erro', () => {
-  render(<Error />);
-  screen.getByText(/desculpe, a página não foi encontrada!/i);
+    // eslint-disable-next-line testing-library/prefer-screen-queries
+    expect(getByTestId('error 404')).toBeInTheDocument();
+  });
+
+  test('deve mostrar mensagem de erro', () => {
+    render(<Error />);
+    screen.getByLabelText(/desculpe, a página não foi encontrada!/i);
+  });
+
 });
