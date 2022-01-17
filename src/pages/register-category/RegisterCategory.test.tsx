@@ -1,3 +1,4 @@
+import React from 'react';
 import { RegisterCategory } from '@pages/register-category';
 import '@testing-library/jest-dom';
 import { fireEvent } from '@testing-library/dom';
@@ -6,15 +7,13 @@ import userEvent from '@testing-library/user-event';
 import '@testing-library/jest-dom';
 import validateInput, { InputInterface } from './validator';
 import { postCategories } from '@services/categories';
-import { getGuides } from '@services/guides';
+import CardGuidesResponse, { getGuides } from '@services/guides';
 import { act } from 'react-dom/test-utils';
 import { AxiosResponse } from 'axios';
-import React from 'react';
 
 jest.mock('./validator');
 jest.mock('@services/categories');
 jest.mock('@services/guides');
-jest.mock('@components/SelectMongo');
 
 const validateInputMock = validateInput as jest.MockedFunction<
   typeof validateInput
@@ -25,10 +24,15 @@ const postCategoryMock = postCategories as jest.MockedFunction<
 const getGuidesServiceMock = getGuides as jest.MockedFunction<typeof getGuides>;
 
 describe('Página de cadastro de categorias', () => {
-  test('Deve chamar os guias quando o componente for renderizado', () => {
-    getGuidesServiceMock.mockResolvedValue({ data: [] } as AxiosResponse);
+  test('Deve chamar os guias quando o componente for renderizado', async () => {
+    getGuidesServiceMock.mockImplementationOnce(
+      async () =>
+        ({
+          data: [],
+        } as unknown as AxiosResponse<{ data: CardGuidesResponse[] }>),
+    );
 
-    act(() => {
+    await act(() => {
       render(<RegisterCategory />);
     });
   });

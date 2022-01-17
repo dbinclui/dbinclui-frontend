@@ -12,7 +12,6 @@ import {
 import styles from './styles';
 import Notification from '@components/Notification';
 import validateInput from './validator';
-import AccessibilityTypography from '@components/AccessibilityTypography';
 import CardGuidesResponse, { getGuides } from '@services/guides';
 import { postCategories } from '@services/categories';
 
@@ -34,6 +33,7 @@ export const RegisterCategory: React.FC<
 
   async function getGuidesService() {
     const response = await getGuides();
+    console.log(response);
     setGuides(response.data.data);
   }
   useEffect(() => {
@@ -68,27 +68,80 @@ export const RegisterCategory: React.FC<
   };
 
   return (
-    <>
-      <Grid
-        container
-        alignItems={'center'}
-        justifyContent={'center'}
-        role="main"
-      >
-        <Grid item md={6} sx={styles.content} component="section">
-          <Box sx={styles.header} component="header">
-            <Typography sx={styles.headerTitle} variant="h1">
-              CADASTRO DE CATEGORIA
-            </Typography>
-          </Box>
-          <Box padding={'1rem 3rem'} component="section">
-            <Button
-              variant="contained"
-              sx={styles.buttonDigitalContent}
-              role="button"
+    <Grid container alignItems={'center'} justifyContent={'center'} role="main">
+      <Grid item md={6} sx={styles.content} component="section">
+        <Box sx={styles.header} component="header">
+          <Typography sx={styles.headerTitle} variant="h1">
+            CADASTRO DE CATEGORIA
+          </Typography>
+        </Box>
+        <Box padding={'1rem 3rem'} component="section">
+          <Button
+            variant="contained"
+            sx={styles.buttonDigitalContent}
+            role="button"
+          >
+            Buscar conteúdo digital
+          </Button>
+          <Box
+            onSubmit={handleClick}
+            component="form"
+            flexDirection={'column'}
+            display={'flex'}
+          >
+            <InputLabel htmlFor="guide" id="guideLabel" sx={styles.labelInput}>
+              Guia:
+            </InputLabel>
+            <Select
+              defaultValue=""
+              inputRef={guide}
+              labelId="guideLabel"
+              required
+              data-testid="guideTestId"
+              role="select"
+              aria-labelledby="guideLabel"
+              name="guide"
+              id="guide"
+              sx={[styles.input, styles.select]}
+            >
+              {guides.map((guide, index) => (
+                <MenuItem
+                  key={index}
+                  value={guide._id}
+                  data-testid="guideItensTestId"
+                  role="option"
+                  aria-labelledby="itensLabel"
+                  sx={styles.menuItem}
+                >
+                  {guide}
+                </MenuItem>
+              ))}
+            </Select>
+            <InputLabel
+              htmlFor="category"
+              id="categoryLabel"
+              sx={styles.labelInput}
+            >
+              Categoria:
+            </InputLabel>
+            <InputBase
+              inputRef={category}
+              type="text"
+              id="category"
+              name="category"
+              role="input"
+              required
+              data-testid="categoryTestId"
+              aria-labelledby="categoryLabel"
+              sx={styles.input}
+            />
+            <InputLabel
+              htmlFor="description"
+              sx={styles.labelInput}
+              id="descriptionLabel"
             >
               Buscar conteúdo digital
-            </Button>
+            </InputLabel>
             <Box
               onSubmit={handleSubmit}
               component="form"
@@ -111,6 +164,7 @@ export const RegisterCategory: React.FC<
                 aria-labelledby="guideLabel"
                 name="guide"
                 id="guide"
+                defaultValue=""
                 inputProps={{ 'data-testid': 'guideTestId' }}
                 sx={[styles.input, styles.select]}
               >
@@ -194,7 +248,7 @@ export const RegisterCategory: React.FC<
               </Grid>
             </Box>
           </Box>
-        </Grid>
+        </Box>
       </Grid>
       {error && (
         <Notification
@@ -219,7 +273,7 @@ export const RegisterCategory: React.FC<
           sucesso
         </Notification>
       )}
-    </>
+    </Grid>
   );
 };
 
