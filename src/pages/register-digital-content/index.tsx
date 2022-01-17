@@ -33,13 +33,13 @@ export const RegisterDigitalContent: React.FC<
 
   return (
     <Grid container alignItems={'center'} justifyContent={'center'} role="main">
-      <Grid item md={6} sx={styles.content} component="section">
+      <Grid item md={6} component="section">
         <Box sx={styles.header} component="header">
           <AccessibilityTypography sx={styles.headerTitle}>
             CADASTRO DE CONTEÚDO DIGITAL
           </AccessibilityTypography>
         </Box>
-        <Box padding={'1rem 3rem'} component="section">
+        <Box padding={'1rem 3rem'} sx={styles.content} component="section">
           <Button
             variant="contained"
             component="label"
