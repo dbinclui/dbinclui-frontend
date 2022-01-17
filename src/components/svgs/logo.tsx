@@ -3,6 +3,8 @@ import React from 'react';
 export const Logo = () => {
   return (
     <svg
+      role="img"
+      aria-label="LOGO DB INCLUI"
       width="162"
       height="70"
       xmlns="http://www.w3.org/2000/svg"
