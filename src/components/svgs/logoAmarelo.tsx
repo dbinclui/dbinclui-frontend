@@ -1,6 +1,6 @@
 import React from 'react';
 
-export const LogoBranca = () => {
+export const LogoAmarelo = () => {
   return (
     <svg
       role="img"
@@ -51,4 +51,4 @@ export const LogoBranca = () => {
   );
 };
 
-export default LogoBranca;
+export default LogoAmarelo;

@@ -16,7 +16,7 @@ import Logo from '../svgs/logo';
 import './styles.css';
 import AccessibilityTypography from '../../components/AccessibilityTypography';
 import { ColorsDefault } from '@styles/colors';
-import LogoAmarelo from '@components/svgs/logoAmarelo';
+import LogoAmarelo from '../svgs/logoAmarelo';
 import { useTheme } from '@emotion/react';
 
 export interface HeaderProps {}
