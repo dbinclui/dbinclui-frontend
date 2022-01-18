@@ -69,9 +69,6 @@ describe('Componente Header', () => {
       </ThemeProvider>,
     );
 
-    // O label text nesse caso é o texto do tooltip
-    // O MUI define uma tag aria-label com o texto do tooltip no elemento
-    // que ele envolve
     const button = screen.getByLabelText('Administrador');
 
     fireEvent.click(button);
@@ -81,24 +78,22 @@ describe('Componente Header', () => {
   });
 
   it('Exibir a logo default', () => {
-    const { getByTitle } = render(
+   render(
       <ThemeProvider theme={theme('default')}>
         <Header />
       </ThemeProvider>,
     );
 
-    // eslint-disable-next-line testing-library/prefer-screen-queries
-    expect(getByTitle('Logo')).toBeInTheDocument();
+    expect(screen.getByTitle('Logo')).toBeInTheDocument();
   });
 
   it('Exibir a logo com contrast', () => {
-    const { getByTitle } = render(
+    render(
       <ThemeProvider theme={theme('contrast')}>
         <Header />
       </ThemeProvider>,
     );
 
-    // eslint-disable-next-line testing-library/prefer-screen-queries
-    expect(getByTitle('Logo')).toBeInTheDocument();
+    expect(screen.getByTitle('Logo')).toBeInTheDocument();
   });
 });

@@ -28,19 +28,17 @@ describe('AccessibilityTools Component', () => {
   });
   
   it('Exibir a logo default', async () => {
-    const { getByLabelText, getByText } = render(    
+    render(    
     <ThemeProvider theme={theme('default')}>
       <AccessibilityTools handleClickContrastButton={handleClick}/>
     </ThemeProvider>
     );
 
-    // eslint-disable-next-line testing-library/prefer-screen-queries
-    const button = getByText('Acessibilidade')
+    const button = screen.getByText('Acessibilidade')
     await fireEvent.click(button)
   
     await waitFor(() => {
-      // eslint-disable-next-line testing-library/prefer-screen-queries
-      getByLabelText('Mudar contraste da tela');
+      screen.getByLabelText('Mudar contraste da tela');
     }) 
   })
 });
