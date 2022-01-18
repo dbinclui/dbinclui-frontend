@@ -17,7 +17,9 @@ import CardGuidesResponse, { getGuides } from '@services/guides';
 import {
   CardCategoryResponse,
   getCategoriesByGuide,
+  postDigitalContent,
 } from '@services/digitalContent';
+import validateInput, { InputInterfaceProps } from './validator';
 
 export interface RegisterDigitalContentProps {}
 
@@ -30,37 +32,60 @@ export const RegisterDigitalContent: React.FC<
   const description = useRef<HTMLInputElement>();
   const fileRef = useRef<HTMLInputElement>(null);
 
-  const [files, setFiles] = useState<any[]>([]);
+  const [files, setFiles] = useState<File[]>([]);
   const [guides, setGuides] = useState<CardGuidesResponse[]>([]);
   const [loading, setLoading] = useState(true);
   const [categories, setCategories] = useState<CardCategoryResponse[]>([]);
 
   async function handleSubmit(event: React.FormEvent) {
-    event.preventDefault();
+      const cardBody = {
+      title: title.current?.value || '',
+      shortDescription: description.current?.value || '',
+      guide: guide.current?.value || '',
+      category: category.current?.value || '',
+    } as { [key: string]: any };
+
+    const formData = new FormData();
+
+    Object.keys(cardBody).forEach((key) => {
+      formData.append(key, cardBody[key]);
+    });
+
+    files.forEach((file) => {
+      formData.append('files', file);
+    });
+
+    try {
+      await validateInput({ ...cardBody, file: files } as InputInterfaceProps);
+      await postDigitalContent(formData);
+      setSuccess(true);
+      title.current!.value = "";
+      description.current!.value = "";
+      guide.current!.value = "";
+      category.current!.value = "";
+      setFiles([]);
+    } catch (error: any) {
+      setErrorMessage(error.message);
+      setError(true);
+    }
   }
 
   const getDigitalContentCategories = async (id: string) => {
-    await getCategoriesByGuide(id)
-      .then((response) => {
-        const { data } = response!.data;
-        setCategories(data);
-      })
-      .catch((error) => {})
-      .finally(() => {
-        setLoading(false);
-      });
+    try {
+      const { data } = await getCategoriesByGuide(id);
+      setCategories(data.data);
+    } finally {
+      setLoading(false);
+    }
   };
 
   const getDigitalContentGuides = async () => {
-    await getGuides()
-      .then((response) => {
-        const { data } = response!.data;
-        setGuides(data);
-      })
-      .catch((error) => {})
-      .finally(() => {
-        setLoading(false);
-      });
+    try {
+      const { data } = await getGuides();
+      setGuides(data.data);
+    } finally {
+      setLoading(false);
+    }
   };
 
   useEffect(() => {
@@ -151,9 +176,8 @@ export const RegisterDigitalContent: React.FC<
               name="guide"
               id="guide"
               sx={[styles.input, styles.select]}
-              onChange={async () => {
-                await getDigitalContentCategories(String(guide.current!.value));
-                console.log(categories);
+              onChange={(event) => {
+                getDigitalContentCategories(event.target.value);
               }}
             >
               {guides.map((guides, index) => (
@@ -188,7 +212,7 @@ export const RegisterDigitalContent: React.FC<
               id="category"
               sx={[styles.input, styles.select]}
             >
-              { categories.map((cat, index) => (
+              {categories.map((cat, index) => (
                 <MenuItem
                   key={index}
                   value={cat._id}
@@ -199,7 +223,7 @@ export const RegisterDigitalContent: React.FC<
                 >
                   {cat.title}
                 </MenuItem>
-              )) }
+              ))}
             </Select>
             <InputLabel htmlFor="title" id="titleLabel" sx={styles.labelInput}>
               Título:
@@ -246,10 +270,6 @@ export const RegisterDigitalContent: React.FC<
                   type="submit"
                   role="button"
                   data-testid="submit"
-                  onClick={() => {
-                    console.log(guide.current?.value);
-                    console.log(category.current?.value);
-                  }}
                 >
                   Salvar
                 </Button>
