@@ -58,15 +58,15 @@ export const RegisterDigitalContent: React.FC<
     try {
       await validateInput({ ...cardBody, file: files } as InputInterfaceProps);
       await postDigitalContent(formData);
-      setSuccess(true);
+     // setSuccess(true);
       title.current!.value = "";
       description.current!.value = "";
       guide.current!.value = "";
       category.current!.value = "";
       setFiles([]);
     } catch (error: any) {
-      setErrorMessage(error.message);
-      setError(true);
+    //setErrorMessage(error.message);
+     // setError(true);
     }
   }
 
