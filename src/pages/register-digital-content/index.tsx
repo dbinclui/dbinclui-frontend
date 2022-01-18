@@ -22,7 +22,10 @@ export const RegisterDigitalContent: React.FC<
   const description = useRef<HTMLInputElement>();
 
   const guides = ['Guia de acessibilidade', 'Guia da Cultura Surda'];
-  const categories = ['Boas práticas para a inclusão', 'Acessibilidade em eventos'];
+  const categories = [
+    'Boas práticas para a inclusão',
+    'Acessibilidade em eventos',
+  ];
 
   const [file, setFile] = useState<any[]>([]);
 
@@ -46,7 +49,7 @@ export const RegisterDigitalContent: React.FC<
           >
             Selecionar um ficheiro
             <input
-            data-testid="inputFile"
+              data-testid="inputFile"
               accept="image/*,.pdf,.doc, .docx"
               type="file"
               hidden
@@ -186,12 +189,14 @@ export const RegisterDigitalContent: React.FC<
               </Grid>
               <Grid item md={6} sx={styles.buttonWrapper}>
                 <Button
-                  sx={[styles.button, styles.buttonFechar]}
+                  sx={[styles.button, styles.buttonVoltar]}
                   variant="contained"
                   type="reset"
                   role="button"
+                  data-testid="back"
+                  href="/admin"
                 >
-                  Fechar
+                  Voltar
                 </Button>
               </Grid>
             </Grid>
