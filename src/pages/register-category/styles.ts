@@ -45,9 +45,10 @@ const labelInput: SxProps<Theme> = {
 
 const input: SxProps<Theme> = {
   width: '100%',
-  background: (theme) => theme.palette.primary.dark,
-  borderRadius: '20px',
-  color: (theme) => theme.palette.secondary.main,
+  border: '1px solid',
+  backgroundColor: (theme) => theme.palette.background.default,
+  borderRadius: '15px',
+  borderColor: 'secondary.primary',
   padding: '0.5rem 1rem',
   mb: '2.5rem',
 };
