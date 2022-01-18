@@ -65,9 +65,9 @@ const button: SxProps<Theme> = {
   fontSize: '1.2rem',
 };
 
-const buttonFechar: SxProps<Theme> = {
+const buttonVoltar: SxProps<Theme> = {
   color: (theme) => theme.palette.text.primary,
-}
+};
 
 const select: SxProps<Theme> = {
   padding: 0,
@@ -85,7 +85,7 @@ const fileName: SxProps<Theme> = {
   mr: 0,
   ml: 'auto',
   display: 'block',
-  textAlign: 'right'
+  textAlign: 'right',
 };
 
 const styles = {
@@ -97,7 +97,7 @@ const styles = {
   input,
   buttonWrapper,
   button,
-  buttonFechar,
+  buttonVoltar,
   select,
   menuItem,
   fileName,

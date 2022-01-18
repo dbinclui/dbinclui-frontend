@@ -9,6 +9,7 @@ import {
   Select,
   MenuItem,
 } from '@mui/material';
+import { Link } from 'react-router-dom';
 import styles from './styles';
 
 export interface RegisterCategoryProps {}
@@ -135,8 +136,10 @@ export const RegisterCategory: React.FC<
                   variant="contained"
                   type="reset"
                   role="button"
+                  component={Link}
+                  to="/admin"
                 >
-                  Fechar
+                  Voltar
                 </Button>
               </Grid>
             </Grid>
