@@ -31,9 +31,9 @@ export const RegisterGuide: React.FC<RegisterGuideProps> = (): JSX.Element => {
       setErrorMessage(error.message);
       setError(true);
     }
-    
-    title.current!.value = "";
-    description.current!.value = "";
+
+    title.current!.value = '';
+    description.current!.value = '';
   }
 
   return (
@@ -120,8 +120,10 @@ export const RegisterGuide: React.FC<RegisterGuideProps> = (): JSX.Element => {
                     variant="contained"
                     type="reset"
                     role="button"
+                    data-testid="back"
+                    href="/admin"
                   >
-                    Fechar
+                    Voltar
                   </Button>
                 </Grid>
               </Grid>
