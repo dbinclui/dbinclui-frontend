@@ -1,6 +1,5 @@
 import React from 'react';
-import { fireEvent, render } from '@testing-library/react';
-import { screen } from '@testing-library/dom';
+import { fireEvent, render, screen } from '@testing-library/react';
 import Header, { MenuItems } from './index';
 import '@testing-library/jest-dom/extend-expect';
 import { ThemeProvider } from '@mui/material/styles';
@@ -21,7 +20,12 @@ describe('Componente Header', () => {
   });
 
   test('Abrir/Fechar menu mobile', () => {
-    render(<Header />);
+    render(
+      <ThemeProvider theme={theme('default')}>
+        <Header />
+      </ThemeProvider>,
+    );
+
     const menuMobile = screen.getByTestId('MenuIcon');
     fireEvent.click(menuMobile);
     const layer = screen.getByRole('presentation');
@@ -31,29 +35,39 @@ describe('Componente Header', () => {
   });
 
   test.each(MenuItems)('Desktop menu itens: $title', ({ title, href }) => {
-    render(<Header />);
-    const button = screen.getByText(title, {
-      exact: true,
-      selector: 'a.menu-item-desktop',
-    });
+    render(
+      <ThemeProvider theme={theme('default')}>
+        <Header />
+      </ThemeProvider>,
+    );
+
+    const button = screen.getByTestId(`menu-item-mobile-testid:${title}`);
+
     expect(button).toHaveTextContent(title);
     expect(button.getAttribute('to')).toBe(href);
     fireEvent.click(button);
   });
 
   test.each(MenuItems)('Mobile item menu: $title', ({ title, href }) => {
-    render(<Header />);
+    render(
+      <ThemeProvider theme={theme('default')}>
+        <Header />
+      </ThemeProvider>,
+    );
 
-    const button = screen.getByText(title, {
-      selector: 'p.menu-item-mobile',
-    });
+    const button = screen.getByTestId(`menu-item-desktop-testid:${title}`);
+
     expect(button).toHaveTextContent(title);
     expect(button.getAttribute('to')).toBe(href);
     fireEvent.click(button);
   });
 
   test('Quando o avatar for clicado, o usuário deve ser levado para a página de administração', () => {
-    render(<Header />);
+    render(
+      <ThemeProvider theme={theme('default')}>
+        <Header />
+      </ThemeProvider>,
+    );
 
     // O label text nesse caso é o texto do tooltip
     // O MUI define uma tag aria-label com o texto do tooltip no elemento

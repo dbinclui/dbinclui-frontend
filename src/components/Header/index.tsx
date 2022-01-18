@@ -137,6 +137,7 @@ export const Header: React.FC<HeaderProps> = (): JSX.Element => {
                   <Typography
                     textAlign="center"
                     className="menu-item-mobile"
+                    data-testid={`menu-item-mobile-testid:${item.title}`}
                     component={Link}
                     to={item.href}
                     sx={{ color: 'text.primary', textDecoration: 'none' }}
@@ -160,6 +161,7 @@ export const Header: React.FC<HeaderProps> = (): JSX.Element => {
               <Button
                 key={key}
                 className="menu-item-desktop"
+                data-testid={`menu-item-desktop-testid:${item.title}`}
                 component={Link}
                 to={item.href}
                 onClick={({ currentTarget }: React.MouseEvent<HTMLElement>) =>
