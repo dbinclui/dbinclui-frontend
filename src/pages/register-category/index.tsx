@@ -11,7 +11,6 @@ import {
   Alert,
   Stack,
 } from '@mui/material';
-import { useNavigate } from 'react-router-dom';
 import styles from './styles';
 import Notification from '@components/Notification';
 import validateInput from './validator';
@@ -25,8 +24,6 @@ export const RegisterCategory: React.FC<
 > = (): JSX.Element => {
   const description = useRef<HTMLInputElement>();
   const guide = useRef<HTMLInputElement>();
-
-  /*const navigate = useNavigate();*/
 
   const [guides, setGuides] = useState<CardGuidesResponse[]>([]);
   const title = useRef<HTMLInputElement>();
@@ -191,7 +188,6 @@ export const RegisterCategory: React.FC<
                   variant="contained"
                   type="reset"
                   role="button"
-                  /*onClick={() => navigate('admin')}*/
                   data-testid="back"
                   href="/admin"
                 >

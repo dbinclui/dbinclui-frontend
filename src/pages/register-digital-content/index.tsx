@@ -9,7 +9,6 @@ import {
   Select,
   MenuItem,
 } from '@mui/material';
-import { useNavigate } from 'react-router-dom';
 import styles from './styles';
 
 export interface RegisterDigitalContentProps {}
@@ -21,8 +20,6 @@ export const RegisterDigitalContent: React.FC<
   const category = useRef<HTMLInputElement>();
   const title = useRef<HTMLInputElement>();
   const description = useRef<HTMLInputElement>();
-
-  const navigate = useNavigate();
 
   const guides = ['Guia de acessibilidade', 'Guia da Cultura Surda'];
   const categories = [
@@ -196,8 +193,8 @@ export const RegisterDigitalContent: React.FC<
                   variant="contained"
                   type="reset"
                   role="button"
-                  onClick={() => navigate('admin')}
                   data-testid="back"
+                  href="/admin"
                 >
                   Voltar
                 </Button>

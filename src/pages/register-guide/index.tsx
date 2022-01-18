@@ -4,7 +4,6 @@ import { Button, Box, Grid, InputLabel, InputBase } from '@mui/material';
 import styles from './styles';
 import { postGuides } from '@services/guides';
 import Notification from '@components/Notification';
-import { useNavigate } from 'react-router-dom';
 import AccessibilityTypography from '@components/AccessibilityTypography';
 
 export interface RegisterGuideProps {}
@@ -15,8 +14,6 @@ export const RegisterGuide: React.FC<RegisterGuideProps> = (): JSX.Element => {
   const [error, setError] = useState(false);
   const [success, setSuccess] = useState(false);
   const [errorMessage, setErrorMessage] = useState('');
-
-  const navigate = useNavigate();
 
   async function handleSubmit(event: React.FormEvent) {
     event.preventDefault();
@@ -123,8 +120,8 @@ export const RegisterGuide: React.FC<RegisterGuideProps> = (): JSX.Element => {
                     variant="contained"
                     type="reset"
                     role="button"
-                    onClick={() => navigate('admin')}
                     data-testid="back"
+                    href="/admin"
                   >
                     Voltar
                   </Button>

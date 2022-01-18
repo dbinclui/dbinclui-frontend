@@ -135,7 +135,6 @@ test('Botão Voltar deve redirecionar para admin', () => {
   const button = screen.getByTestId('back');
 
   fireEvent.click(button);
-
-  expect(mockedNavigate).toBeCalled();
-  expect(mockedNavigate).toBeCalledWith('admin');
+  
+  expect(button.getAttribute('href')).toBe('/admin');
 });
