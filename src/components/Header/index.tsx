@@ -84,9 +84,7 @@ export const Header: React.FC<HeaderProps> = (): JSX.Element => {
     >
       <Container>
         <Toolbar disableGutters className="toolbar">
-          <Typography
-            variant="h6"
-            noWrap
+          <Box
             component={Link}
             to="/"
             sx={{ mr: 2, display: { xs: 'none', md: 'flex' } }}
@@ -99,7 +97,7 @@ export const Header: React.FC<HeaderProps> = (): JSX.Element => {
                 <LogoAmarelo />
               )}
             </Box>
-          </Typography>
+          </Box>
 
           {/*MENU HAMBURGUER*/}
 
@@ -134,7 +132,7 @@ export const Header: React.FC<HeaderProps> = (): JSX.Element => {
             >
               {MenuItems.map((item, key) => (
                 <MenuItem key={key}>
-                  <Typography
+                  <Box
                     textAlign="center"
                     className="menu-item-mobile"
                     data-testid={`menu-item-mobile-testid:${item.title}`}
@@ -145,7 +143,7 @@ export const Header: React.FC<HeaderProps> = (): JSX.Element => {
                     <AccessibilityTypography>
                       {item.title}
                     </AccessibilityTypography>
-                  </Typography>
+                  </Box>
                 </MenuItem>
               ))}
             </Menu>

@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { ColorsDefault } from '@styles/colors';
+import { ColorsDefault } from '../../styles/colors';
 
 export const Error404Contrast = () => {
   return (

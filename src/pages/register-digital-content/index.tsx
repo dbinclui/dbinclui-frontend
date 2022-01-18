@@ -23,7 +23,10 @@ export const RegisterDigitalContent: React.FC<
   const description = useRef<HTMLInputElement>();
 
   const guides = ['Guia de acessibilidade', 'Guia da Cultura Surda'];
-  const categories = ['Boas práticas para a inclusão', 'Acessibilidade em eventos'];
+  const categories = [
+    'Boas práticas para a inclusão',
+    'Acessibilidade em eventos',
+  ];
 
   const [file, setFile] = useState<any[]>([]);
 
@@ -65,11 +68,9 @@ export const RegisterDigitalContent: React.FC<
           {file.length !== 0 ? (
             file
           ) : (
-            <Typography sx={styles.fileName}>
-              <AccessibilityTypography>
-                Nenhum arquivo selecionado
-              </AccessibilityTypography>
-            </Typography>
+            <AccessibilityTypography sx={styles.fileName}>
+              Nenhum arquivo selecionado
+            </AccessibilityTypography>
           )}
 
           <Box
