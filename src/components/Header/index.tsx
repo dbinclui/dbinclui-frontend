@@ -104,6 +104,7 @@ export const Header: React.FC<HeaderProps> = (): JSX.Element => {
             </IconButton>
             <Menu
               id="menu-appbar"
+              disableScrollLock={true}
               anchorEl={anchorElNav}
               anchorOrigin={{
                 vertical: 'bottom',
