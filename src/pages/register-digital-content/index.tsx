@@ -85,7 +85,7 @@ export const RegisterDigitalContent: React.FC<
 
                   setFiles([...newFiles]);
 
-                  if(!newFiles.length && fileRef.current !== undefined) {
+                  if(!newFiles.length && fileRef.current !== undefined && fileRef.current !== null) {
                     fileRef.current.value = '';
                   }
                 }}
