@@ -16,14 +16,12 @@ import Notification from '@components/Notification';
 import validateInput from './validator';
 import CardGuidesResponse, { getGuides } from '@services/guides';
 import { postCategories } from '@services/categories';
-import { Link } from 'react-router-dom';
 
 export interface RegisterCategoryProps {}
 
 export const RegisterCategory: React.FC<
   RegisterCategoryProps
 > = (): JSX.Element => {
-  const category = useRef<HTMLInputElement>();
   const description = useRef<HTMLInputElement>();
   const guide = useRef<HTMLInputElement>();
 
