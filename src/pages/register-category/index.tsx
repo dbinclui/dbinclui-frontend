@@ -205,9 +205,7 @@ export const RegisterCategory: React.FC<
             setError(false);
             setErrorMessage('');
           }}
-        >
-          erro
-        </Notification>
+        />
       )}
       {success && (
         <Notification
@@ -216,9 +214,7 @@ export const RegisterCategory: React.FC<
           onClose={() => {
             setSuccess(false);
           }}
-        >
-          sucesso
-        </Notification>
+        />
       )}
     </Grid>
   );
