@@ -10,6 +10,7 @@ import {
   MenuItem,
 } from '@mui/material';
 import styles from './styles';
+import AccessibilityTypography from '@components/AccessibilityTypography';
 
 export interface RegisterDigitalContentProps {}
 
@@ -22,7 +23,10 @@ export const RegisterDigitalContent: React.FC<
   const description = useRef<HTMLInputElement>();
 
   const guides = ['Guia de acessibilidade', 'Guia da Cultura Surda'];
-  const categories = ['Boas práticas para a inclusão', 'Acessibilidade em eventos'];
+  const categories = [
+    'Boas práticas para a inclusão',
+    'Acessibilidade em eventos',
+  ];
 
   const [file, setFile] = useState<any[]>([]);
 
@@ -32,13 +36,13 @@ export const RegisterDigitalContent: React.FC<
 
   return (
     <Grid container alignItems={'center'} justifyContent={'center'} role="main">
-      <Grid item md={6} sx={styles.content} component="section">
+      <Grid item md={6} component="section">
         <Box sx={styles.header} component="header">
-          <Typography sx={styles.headerTitle} variant="h1">
+          <AccessibilityTypography sx={styles.headerTitle}>
             CADASTRO DE CONTEÚDO DIGITAL
-          </Typography>
+          </AccessibilityTypography>
         </Box>
-        <Box padding={'1rem 3rem'} component="section">
+        <Box padding={'1rem 3rem'} sx={styles.content} component="section">
           <Button
             variant="contained"
             component="label"
@@ -46,7 +50,7 @@ export const RegisterDigitalContent: React.FC<
           >
             Selecionar um ficheiro
             <input
-            data-testid="inputFile"
+              data-testid="inputFile"
               accept="image/*,.pdf,.doc, .docx"
               type="file"
               hidden
@@ -64,9 +68,9 @@ export const RegisterDigitalContent: React.FC<
           {file.length !== 0 ? (
             file
           ) : (
-            <Typography sx={styles.fileName}>
+            <AccessibilityTypography sx={styles.fileName}>
               Nenhum arquivo selecionado
-            </Typography>
+            </AccessibilityTypography>
           )}
 
           <Box
@@ -76,7 +80,7 @@ export const RegisterDigitalContent: React.FC<
             display={'flex'}
           >
             <InputLabel htmlFor="guide" id="guideLabel" sx={styles.labelInput}>
-              Guia:
+              <AccessibilityTypography>Guia:</AccessibilityTypography>
             </InputLabel>
             <Select
               defaultValue=""
@@ -108,7 +112,7 @@ export const RegisterDigitalContent: React.FC<
               id="categoryLabel"
               sx={styles.labelInput}
             >
-              Categoria:
+              <AccessibilityTypography>Categoria:</AccessibilityTypography>
             </InputLabel>
             <Select
               defaultValue=""
@@ -136,7 +140,7 @@ export const RegisterDigitalContent: React.FC<
               ))}
             </Select>
             <InputLabel htmlFor="title" id="titleLabel" sx={styles.labelInput}>
-              Título:
+              <AccessibilityTypography>Título:</AccessibilityTypography>
             </InputLabel>
             <InputBase
               inputRef={title}
@@ -154,7 +158,7 @@ export const RegisterDigitalContent: React.FC<
               sx={styles.labelInput}
               id="descriptionLabel"
             >
-              Descrição:
+              <AccessibilityTypography>Descrição:</AccessibilityTypography>
             </InputLabel>
             <InputBase
               inputRef={description}
@@ -176,7 +180,7 @@ export const RegisterDigitalContent: React.FC<
               <Grid item md={6} sx={styles.buttonWrapper}>
                 <Button
                   sx={styles.button}
-                  variant="outlined"
+                  variant="contained"
                   type="submit"
                   role="button"
                   data-testid="submit"
@@ -186,7 +190,7 @@ export const RegisterDigitalContent: React.FC<
               </Grid>
               <Grid item md={6} sx={styles.buttonWrapper}>
                 <Button
-                  sx={[styles.button, styles.buttonFechar]}
+                  sx={[styles.button]}
                   variant="contained"
                   type="reset"
                   role="button"

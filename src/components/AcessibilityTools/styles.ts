@@ -5,13 +5,14 @@ const widgetAccessibilityTools: SxProps<Theme> = {
   'top': '50vh',
   'right': '-72px',
   'background': (theme) => theme.palette.secondary.main,
+  'color': (theme) => theme.palette.text.secondary,
   'borderRadius': '0 0 15px 15px',
   'transform': 'rotate(90deg)',
   'zIndex': '99999',
   'width': '180px',
   '&:hover': {
     background: (theme) => theme.palette.primary.light,
-    color: (theme) => theme.palette.secondary.main,
+    color: ' #000',
   },
   '@media (max-width: 600px)': {
     top: '0',

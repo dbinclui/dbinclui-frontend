@@ -22,13 +22,21 @@ export const CardHome: React.FC<CardHomeProps> = ({
     component={Link}
     to={path}
     data-testid={'cardHome'}
-    sx={{ textDecoration: 'none' }}
+    style={{ textDecoration: 'none', color: 'inherit' }}
   >
     <Grid flexDirection={'column'} alignItems={'center'} container>
       <Grid item>
         <AccessibilityTypography
           sx={{
+            textDecoration: 'none',
             textTransform: 'uppercase',
+            color: 'text',
+            textAlign: 'center',
+            display: 'flex',
+            marginLeft: '15px',
+            alignItems: 'center',
+            margin: '-15px',
+            mt: '8px',
           }}
           variant="h5"
           mb={'25px'}
@@ -38,12 +46,14 @@ export const CardHome: React.FC<CardHomeProps> = ({
       </Grid>
       <Grid item>
         <Paper
+          variant="outlined"
           sx={{
-            backgroundColor: 'secondary.main',
+            backgroundColor: 'secondary.light',
             width: '14.25rem',
             height: '12rem',
             borderRadius: '1.25rem',
             mb: 2,
+            mt: '30px',
           }}
           tabIndex={tabIndex}
           aria-label={title}

@@ -1,10 +1,15 @@
-//eslint-disable-next-line no-shadow
-export enum Colors {
-  LIGHT = '#FFF',
+export enum ColorsDefault {
+  LIGHT = '#221F52',
   DARK = '#000',
   PRIMARY = '#EFF0F6',
+  INPUT_TEXT = '#EFF0F6',
+  CONTENT = '#C5CAE9',
+  CONTENT_BORDER = '#C5CAE9',
   PRIMARY_LIGHT = '#C5CAE9',
+  SECONDARY_CONTENT = '#EFF0F6',
   SECONDARY = '#221F52',
+  BUTTON_CONTRAST = '#FFF',
+  SECONDARY_CONTRAST = '#221F52',
   DANGER = '#FF1229',
   WARNING = '#FFB400',
   SUCCESS = '#42CE95',

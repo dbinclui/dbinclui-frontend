@@ -1,11 +1,11 @@
 .footer {
   /* position: fixed; */
   bottom: 0;
-  color: white;
   padding: 2rem 0 1rem;
   text-align: center;
   width: 100%;
   height: 125px;
+  flex: 0 1 auto;
 }
 
 .titulo {
