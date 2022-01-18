@@ -40,8 +40,9 @@ export const CardHome: React.FC<CardHomeProps> = ({
           }}
           variant="h5"
           mb={'25px'}
-          >
-            <AccessibilityTypography>{title}</AccessibilityTypography>
+        >
+          {title}
+          {/* <AccessibilityTypography>{title}</AccessibilityTypography> */}
         </AccessibilityTypography>
       </Grid>
       <Grid item>

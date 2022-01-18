@@ -20,12 +20,13 @@ export const AccessibilityTypography: React.FC<
 
   return (
     <Typography
+      {...props}
       sx={{
+        ...props.sx,
         transition: '.3s ease',
         fontSize: (theme) =>
           fontSize(getDefaultFontSize({ variant: props.variant }, theme)),
       }}
-      {...props}
     >
       {children}
     </Typography>
