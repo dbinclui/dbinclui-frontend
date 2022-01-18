@@ -42,7 +42,6 @@ export const CardHome: React.FC<CardHomeProps> = ({
           mb={'25px'}
         >
           {title}
-          {/* <AccessibilityTypography>{title}</AccessibilityTypography> */}
         </AccessibilityTypography>
       </Grid>
       <Grid item>
