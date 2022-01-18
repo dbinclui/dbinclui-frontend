@@ -9,6 +9,8 @@ import {
   InputBase,
   Select,
   MenuItem,
+  Stack,
+  Alert,
 } from '@mui/material';
 import styles from './styles';
 import FileUploadRounded from '@mui/icons-material/FileUploadRounded';
@@ -20,6 +22,7 @@ import {
   postDigitalContent,
 } from '@services/digitalContent';
 import validateInput, { InputInterfaceProps } from './validator';
+import Notification from '@components/Notification';
 
 export interface RegisterDigitalContentProps {}
 
@@ -34,11 +37,21 @@ export const RegisterDigitalContent: React.FC<
 
   const [files, setFiles] = useState<File[]>([]);
   const [guides, setGuides] = useState<CardGuidesResponse[]>([]);
-  const [loading, setLoading] = useState(true);
   const [categories, setCategories] = useState<CardCategoryResponse[]>([]);
+  const [error, setError] = useState(false);
+  const [success, setSuccess] = useState(false);
+  const [errorMessage, setErrorMessage] = useState('');
+  const [successGetGuides, setSuccessGetGuides] = useState(false);
+  const [errorGetGuides, setErrorGetGuides] = useState(false);
+  const [errorMessageGetGuides, setErrorMessageGetGuides] = useState('');
+  const [successGetCategories, setSuccessGetCategories] = useState(false);
+  const [errorGetCategories, setErrorGetCategories] = useState(true);
+  const [errorMessageGetCategories, setErrorMessageGetCategories] = useState('');
 
   async function handleSubmit(event: React.FormEvent) {
-      const cardBody = {
+    event.preventDefault();
+
+    const cardBody = {
       title: title.current?.value || '',
       shortDescription: description.current?.value || '',
       guide: guide.current?.value || '',
@@ -58,15 +71,10 @@ export const RegisterDigitalContent: React.FC<
     try {
       await validateInput({ ...cardBody, file: files } as InputInterfaceProps);
       await postDigitalContent(formData);
-     // setSuccess(true);
-      title.current!.value = "";
-      description.current!.value = "";
-      guide.current!.value = "";
-      category.current!.value = "";
-      setFiles([]);
+      setSuccess(true);
     } catch (error: any) {
-    //setErrorMessage(error.message);
-     // setError(true);
+      setErrorMessage(error.message);
+      setError(true);
     }
   }
 
@@ -74,8 +82,11 @@ export const RegisterDigitalContent: React.FC<
     try {
       const { data } = await getCategoriesByGuide(id);
       setCategories(data.data);
+      setSuccessGetCategories(true);
+      setErrorGetCategories(false);
+    } catch {
+      setErrorGetCategories(true);
     } finally {
-      setLoading(false);
     }
   };
 
@@ -83,18 +94,20 @@ export const RegisterDigitalContent: React.FC<
     try {
       const { data } = await getGuides();
       setGuides(data.data);
+      setSuccessGetGuides(true);
+    } catch {
+      setErrorMessageGetGuides('Não foram encontradas as guias');
+      setErrorGetGuides(true);
     } finally {
-      setLoading(false);
     }
   };
 
   useEffect(() => {
     getDigitalContentGuides();
+    setErrorMessageGetCategories('Escolha o Guia');
   }, []);
 
-  return loading ? (
-    <div>Carregando...</div>
-  ) : (
+  return (
     <Grid container alignItems={'center'} justifyContent={'center'} role="main">
       <Grid item md={6} sx={styles.content} component="section">
         <Box sx={styles.header} component="header">
@@ -165,34 +178,42 @@ export const RegisterDigitalContent: React.FC<
             <InputLabel htmlFor="guide" id="guideLabel" sx={styles.labelInput}>
               Guia:
             </InputLabel>
-            <Select
-              defaultValue=""
-              inputRef={guide}
-              labelId="guideLabel"
-              required
-              data-testid="guideTestId"
-              role="select"
-              aria-labelledby="guideLabel"
-              name="guide"
-              id="guide"
-              sx={[styles.input, styles.select]}
-              onChange={(event) => {
-                getDigitalContentCategories(event.target.value);
-              }}
-            >
-              {guides.map((guides, index) => (
-                <MenuItem
-                  key={index}
-                  value={guides._id}
-                  data-testid="guideItensTestId"
-                  role="option"
-                  aria-labelledby="itensLabel"
-                  sx={styles.menuItem}
-                >
-                  {guides.title}
-                </MenuItem>
-              ))}
-            </Select>
+
+            {successGetGuides && (
+              <Select
+                defaultValue=""
+                inputRef={guide}
+                labelId="guideLabel"
+                required
+                data-testid="guideTestId"
+                role="select"
+                aria-labelledby="guideLabel"
+                name="guide"
+                id="guide"
+                sx={[styles.input, styles.select]}
+                onChange={(event) => {
+                  getDigitalContentCategories(event.target.value);
+                }}
+              >
+                {guides.map((guides, index) => (
+                  <MenuItem
+                    key={index}
+                    value={guides._id}
+                    data-testid="guideItensTestId"
+                    role="option"
+                    aria-labelledby="itensLabel"
+                    sx={styles.menuItem}
+                  >
+                    {guides.title}
+                  </MenuItem>
+                ))}
+              </Select>
+            )}
+            {errorGetGuides && (
+              <Stack spacing={2}>
+                <Alert severity="error">{errorMessageGetGuides}</Alert>
+              </Stack>
+            )}
             <InputLabel
               htmlFor="category"
               id="categoryLabel"
@@ -200,31 +221,38 @@ export const RegisterDigitalContent: React.FC<
             >
               Categoria:
             </InputLabel>
-            <Select
-              defaultValue=""
-              inputRef={category}
-              labelId="categoryLabel"
-              required
-              data-testid="categoryTestId"
-              role="select"
-              aria-labelledby="categoryLabel"
-              name="category"
-              id="category"
-              sx={[styles.input, styles.select]}
-            >
-              {categories.map((cat, index) => (
-                <MenuItem
-                  key={index}
-                  value={cat._id}
-                  data-testid="categoryItensTestId"
-                  role="option"
-                  aria-labelledby="itensLabel"
-                  sx={styles.menuItem}
-                >
-                  {cat.title}
-                </MenuItem>
-              ))}
-            </Select>
+            {successGetCategories && (
+              <Select
+                defaultValue=""
+                inputRef={category}
+                labelId="categoryLabel"
+                required
+                data-testid="categoryTestId"
+                role="select"
+                aria-labelledby="categoryLabel"
+                name="category"
+                id="category"
+                sx={[styles.input, styles.select]}
+              >
+                {categories.map((cat, index) => (
+                  <MenuItem
+                    key={index}
+                    value={cat._id}
+                    data-testid="categoryItensTestId"
+                    role="option"
+                    aria-labelledby="itensLabel"
+                    sx={styles.menuItem}
+                  >
+                    {cat.title}
+                  </MenuItem>
+                ))}
+              </Select>
+            )}
+            {errorGetCategories && (
+              <Stack spacing={2}>
+                <Alert severity="error">{errorMessageGetCategories}</Alert>
+              </Stack>
+            )}
             <InputLabel htmlFor="title" id="titleLabel" sx={styles.labelInput}>
               Título:
             </InputLabel>
@@ -288,6 +316,26 @@ export const RegisterDigitalContent: React.FC<
           </Box>
         </Box>
       </Grid>
+      {error && (
+        <Notification
+          message={`${errorMessage} 🤔`}
+          variant="error"
+          onClose={() => {
+            setError(false);
+            setErrorMessage('');
+          }}
+        />
+      )}
+      {success && (
+        <Notification
+          message="Cadastro ralizado com sucesso! ✔"
+          variant="success"
+          onClose={() => {
+            setSuccess(false);
+            window.location.reload();
+          }}
+        />
+      )}
     </Grid>
   );
 };
