@@ -18,7 +18,7 @@ describe('Componente CardHome', () => {
   test('Deve renderizar o título', () => {
     render(<CardHome title={title} path={path} key={key} />);
 
-    screen.getByText(title, { selector: 'h5' });
+    screen.getByText(title);
   });
 
   test('Deve ser renderizado o aria-label', () => {
