@@ -102,4 +102,20 @@ describe('Página de cadastro de categorias', () => {
     expect(NotificationCard).toBeVisible();
     expect(validateInputMock).toBeCalled();
   });
+
+  test('Deve exibir mensagem de erro ao não encontrar guias', async () => {
+    getGuidesServiceMock.mockImplementation(() => {
+      throw throwError;
+    });
+
+    act(() => {
+      render(<RegisterCategory />);
+    });
+
+    const errorMessage = 'Não foram encontradas as guias';
+    const throwError = new Error(errorMessage);
+
+    const ErrorMessage = await screen.findByText(errorMessage);
+    expect(ErrorMessage).toBeVisible();
+  });
 });
