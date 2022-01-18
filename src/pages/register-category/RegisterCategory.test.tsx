@@ -4,6 +4,14 @@ import { render, screen } from '@testing-library/react';
 import '@testing-library/jest-dom';
 import { fireEvent } from '@testing-library/dom';
 
+const mockedNavigate = jest.fn();
+jest.mock('react-router-dom', () => {
+  const useHref = jest.fn();
+  return {
+    useHref,
+    useNavigate: () => mockedNavigate,
+  };
+});
 describe('Página de cadastro de categorias', () => {
   test('Deve mostrar um formulário', () => {
     render(<RegisterCategory />);
@@ -55,4 +63,14 @@ describe('Página de cadastro de categorias', () => {
     const button = screen.getByTestId('submit');
     fireEvent.click(button);
   });
+});
+
+test('Botão Voltar deve redirecionar para admin', () => {
+  render(<RegisterCategory />);
+  const button = screen.getByTestId('back');
+
+  fireEvent.click(button);
+
+  expect(mockedNavigate).toBeCalled();
+  expect(mockedNavigate).toBeCalledWith('admin');
 });

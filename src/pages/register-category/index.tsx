@@ -9,7 +9,7 @@ import {
   Select,
   MenuItem,
 } from '@mui/material';
-import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import styles from './styles';
 
 export interface RegisterCategoryProps {}
@@ -20,6 +20,8 @@ export const RegisterCategory: React.FC<
   const category = useRef<HTMLInputElement>();
   const description = useRef<HTMLInputElement>();
   const guide = useRef<HTMLInputElement>();
+
+  const navigate = useNavigate();
 
   const guides = ['Guia de acessibilidade', 'Guia da Cultura Surda'];
 
@@ -136,8 +138,8 @@ export const RegisterCategory: React.FC<
                   variant="contained"
                   type="reset"
                   role="button"
-                  component={Link}
-                  to="/admin"
+                  onClick={() => navigate('admin')}
+                  data-testid="back"
                 >
                   Voltar
                 </Button>

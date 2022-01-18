@@ -7,6 +7,7 @@ import validateInput, { InputInterface } from './validator';
 import { postGuides } from '@services/guides';
 import { act } from 'react-dom/test-utils';
 import { AxiosResponse } from 'axios';
+import { fireEvent } from '@testing-library/dom';
 
 jest.mock('./validator');
 jest.mock('@services/guides');
@@ -14,6 +15,15 @@ const validateInputMock = validateInput as jest.MockedFunction<
   typeof validateInput
 >;
 const postGuidesMock = postGuides as jest.MockedFunction<typeof postGuides>;
+
+const mockedNavigate = jest.fn();
+jest.mock('react-router-dom', () => {
+  const useHref = jest.fn();
+  return {
+    useHref,
+    useNavigate: () => mockedNavigate,
+  };
+});
 
 describe('Página de cadastro de nova guia', () => {
   test('Deve mostrar um formulário', () => {
@@ -66,7 +76,7 @@ describe('Página de cadastro de nova guia', () => {
     // eslint-disable-next-line testing-library/no-unnecessary-act
     act(() => {
       render(<RegisterGuide />);
-      });
+    });
 
     const textoBotaoSubmit = 'Salvar';
     const botaoSubmit = screen.getByText(textoBotaoSubmit);
@@ -82,7 +92,7 @@ describe('Página de cadastro de nova guia', () => {
   test('Deve chamar a função postGuides quando o botão do submit for clicado', () => {
     // eslint-disable-next-line testing-library/no-unnecessary-act
     act(() => {
-    render(<RegisterGuide />);
+      render(<RegisterGuide />);
     });
     const textoNoBotaoSubmit = 'Salvar';
     const botaoSubmit = screen.getByText(textoNoBotaoSubmit);
@@ -97,7 +107,7 @@ describe('Página de cadastro de nova guia', () => {
     // eslint-disable-next-line testing-library/no-unnecessary-act
     act(() => {
       render(<RegisterGuide />);
-      });
+    });
 
     validateInputMock.mockResolvedValue(true as unknown as InputInterface);
     postGuidesMock.mockResolvedValue(true as unknown as Promise<AxiosResponse>);
@@ -117,10 +127,10 @@ describe('Página de cadastro de nova guia', () => {
   test('Deve mostrar na tela o card de notificação de erro quando o botão de submit for clicado', async () => {
     act(() => {
       render(<RegisterGuide />);
-      });
+    });
 
-      const errorMessage = "Erro";
-      const throwError = new Error(errorMessage);
+    const errorMessage = 'Erro';
+    const throwError = new Error(errorMessage);
 
     validateInputMock.mockImplementation(() => {
       throw throwError;
@@ -129,7 +139,7 @@ describe('Página de cadastro de nova guia', () => {
     const textoNoBotaoSubmit = 'Salvar';
     const NotificationMessage = errorMessage;
     const botaoSubmit = screen.getByText(textoNoBotaoSubmit);
-    
+
     act(() => {
       userEvent.click(botaoSubmit);
     });
@@ -138,4 +148,14 @@ describe('Página de cadastro de nova guia', () => {
 
     expect(NotificationCard).toBeVisible();
   });
+});
+
+test('Botão Voltar deve redirecionar para admin', () => {
+  render(<RegisterGuide />);
+  const button = screen.getByTestId('back');
+
+  fireEvent.click(button);
+
+  expect(mockedNavigate).toBeCalled();
+  expect(mockedNavigate).toBeCalledWith('admin');
 });
