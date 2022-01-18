@@ -24,6 +24,7 @@ describe('Página de cadastro de nova guia', () => {
 
     const labelTitulo = screen.getByText(textoLabelTitulo);
     const labelDescricao = screen.getByText(textoLabelDescricao);
+    //adicionar campos guides
 
     const input = screen.getByLabelText(textoLabelTitulo, {
       selector: 'input',
@@ -31,11 +32,15 @@ describe('Página de cadastro de nova guia', () => {
     const textArea = screen.getByLabelText(textoLabelDescricao, {
       selector: 'textarea',
     });
+    //adicionar mais um const para o guides como select
 
     expect(labelTitulo).toBeVisible();
     expect(labelDescricao).toBeVisible();
     expect(input).toBeVisible();
     expect(textArea).toBeVisible();
+
+    //label
+    //input
   });
 
   test('Deve atualizar o valor dos campos de input quando o valor destes mudar', () => {
@@ -66,7 +71,7 @@ describe('Página de cadastro de nova guia', () => {
     // eslint-disable-next-line testing-library/no-unnecessary-act
     act(() => {
       render(<RegisterGuide />);
-      });
+    });
 
     const textoBotaoSubmit = 'Salvar';
     const botaoSubmit = screen.getByText(textoBotaoSubmit);
@@ -82,7 +87,7 @@ describe('Página de cadastro de nova guia', () => {
   test('Deve chamar a função postGuides quando o botão do submit for clicado', () => {
     // eslint-disable-next-line testing-library/no-unnecessary-act
     act(() => {
-    render(<RegisterGuide />);
+      render(<RegisterGuide />);
     });
     const textoNoBotaoSubmit = 'Salvar';
     const botaoSubmit = screen.getByText(textoNoBotaoSubmit);
@@ -97,7 +102,7 @@ describe('Página de cadastro de nova guia', () => {
     // eslint-disable-next-line testing-library/no-unnecessary-act
     act(() => {
       render(<RegisterGuide />);
-      });
+    });
 
     validateInputMock.mockResolvedValue(true as unknown as InputInterface);
     postGuidesMock.mockResolvedValue(true as unknown as Promise<AxiosResponse>);
@@ -117,10 +122,10 @@ describe('Página de cadastro de nova guia', () => {
   test('Deve mostrar na tela o card de notificação de erro quando o botão de submit for clicado', async () => {
     act(() => {
       render(<RegisterGuide />);
-      });
+    });
 
-      const errorMessage = "Erro";
-      const throwError = new Error(errorMessage);
+    const errorMessage = 'Erro';
+    const throwError = new Error(errorMessage);
 
     validateInputMock.mockImplementation(() => {
       throw throwError;
@@ -129,7 +134,7 @@ describe('Página de cadastro de nova guia', () => {
     const textoNoBotaoSubmit = 'Salvar';
     const NotificationMessage = errorMessage;
     const botaoSubmit = screen.getByText(textoNoBotaoSubmit);
-    
+
     act(() => {
       userEvent.click(botaoSubmit);
     });
