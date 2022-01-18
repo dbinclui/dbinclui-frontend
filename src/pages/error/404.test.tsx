@@ -14,7 +14,7 @@ describe('Component 404', () => {
 
   test('Exibir erro 404 padrão', () => {
     const { getByTitle } = render(
-      <ThemeProvider theme={theme('Error404')}>
+      <ThemeProvider theme={theme('default')}>
         <Error404 />
       </ThemeProvider>,
     );
@@ -25,7 +25,7 @@ describe('Component 404', () => {
 
   test('Exibir erro 404 com contraste', () => {
     const { getByTitle } = render(
-      <ThemeProvider theme={theme('Error404Contrast')}>
+      <ThemeProvider theme={theme('contrast')}>
         <Error404Contrast />
       </ThemeProvider>,
     );
