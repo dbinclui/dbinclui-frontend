@@ -34,6 +34,7 @@ describe('Página de cadastro de nova guia', () => {
 
     const labelTitulo = screen.getByText(textoLabelTitulo);
     const labelDescricao = screen.getByText(textoLabelDescricao);
+    //adicionar campos guides
 
     const input = screen.getByLabelText(textoLabelTitulo, {
       selector: 'input',
@@ -41,11 +42,15 @@ describe('Página de cadastro de nova guia', () => {
     const textArea = screen.getByLabelText(textoLabelDescricao, {
       selector: 'textarea',
     });
+    //adicionar mais um const para o guides como select
 
     expect(labelTitulo).toBeVisible();
     expect(labelDescricao).toBeVisible();
     expect(input).toBeVisible();
     expect(textArea).toBeVisible();
+
+    //label
+    //input
   });
 
   test('Deve atualizar o valor dos campos de input quando o valor destes mudar', () => {

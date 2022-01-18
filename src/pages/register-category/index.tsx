@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import {
   Button,
   Box,
@@ -8,26 +8,72 @@ import {
   InputBase,
   Select,
   MenuItem,
+  Alert,
+  Stack,
 } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 import styles from './styles';
+import Notification from '@components/Notification';
+import validateInput from './validator';
+import CardGuidesResponse, { getGuides } from '@services/guides';
+import { postCategories } from '@services/categories';
 
 export interface RegisterCategoryProps {}
 
 export const RegisterCategory: React.FC<
   RegisterCategoryProps
 > = (): JSX.Element => {
-  const category = useRef<HTMLInputElement>();
   const description = useRef<HTMLInputElement>();
   const guide = useRef<HTMLInputElement>();
 
-  const navigate = useNavigate();
+  /*const navigate = useNavigate();*/
 
-  const guides = ['Guia de acessibilidade', 'Guia da Cultura Surda'];
+  const [guides, setGuides] = useState<CardGuidesResponse[]>([]);
+  const title = useRef<HTMLInputElement>();
 
-  const handleClick = (event: React.FormEvent) => {
+  const [error, setError] = useState(false);
+  const [success, setSuccess] = useState(false);
+  const [errorMessage, setErrorMessage] = useState('');
+  const [successGetGuides, setSuccessGetGuides] = useState(false);
+  const [errorGetGuides, setErrorGetGuides] = useState(false);
+  const [errorMessageGetGuides, setErrorMessageGetGuides] = useState('');
+
+  async function getGuidesService() {
+    try {
+      const response = await getGuides();
+      setGuides(response.data.data);
+      setSuccessGetGuides(true);
+    } catch {
+      setErrorMessageGetGuides('Não foram encontradas as guias');
+      setErrorGetGuides(true);
+    }
+  }
+
+  useEffect(() => {
+    getGuidesService();
+  }, []);
+
+  async function handleSubmit(event: React.FormEvent) {
     event.preventDefault();
-  };
+
+    const cardBody = {
+      title: title.current?.value || '',
+      shortDescription: description.current?.value || '',
+      guide: guide.current?.value || '',
+    };
+
+    try {
+      await validateInput(cardBody);
+      await postCategories(cardBody);
+      setSuccess(true);
+      title.current!.value = '';
+      description.current!.value = '';
+      guide.current!.value = '';
+    } catch (error: any) {
+      setErrorMessage(error.message);
+      setError(true);
+    }
+  }
 
   return (
     <Grid container alignItems={'center'} justifyContent={'center'} role="main">
@@ -46,7 +92,7 @@ export const RegisterCategory: React.FC<
             Buscar conteúdo digital
           </Button>
           <Box
-            onSubmit={handleClick}
+            onSubmit={handleSubmit}
             component="form"
             flexDirection={'column'}
             display={'flex'}
@@ -54,31 +100,38 @@ export const RegisterCategory: React.FC<
             <InputLabel htmlFor="guide" id="guideLabel" sx={styles.labelInput}>
               Guia:
             </InputLabel>
-            <Select
-              defaultValue=""
-              inputRef={guide}
-              labelId="guideLabel"
-              required
-              data-testid="guideTestId"
-              role="select"
-              aria-labelledby="guideLabel"
-              name="guide"
-              id="guide"
-              sx={[styles.input, styles.select]}
-            >
-              {guides.map((guide) => (
-                <MenuItem
-                  key={guide}
-                  value={guide}
-                  data-testid="guideItensTestId"
-                  role="option"
-                  aria-labelledby="itensLabel"
-                  sx={styles.menuItem}
-                >
-                  {guide}
-                </MenuItem>
-              ))}
-            </Select>
+
+            {successGetGuides && (
+              <Select
+                defaultValue=""
+                inputRef={guide}
+                labelId="guideLabel"
+                required
+                data-testid="guideTestId"
+                role="select"
+                aria-labelledby="guideLabel"
+                name="guide"
+                id="guide"
+                sx={[styles.input, styles.select]}
+              >
+                {guides.map((guide, index) => (
+                  <MenuItem
+                    key={index}
+                    value={guide._id}
+                    role="option"
+                    aria-labelledby="itensLabel"
+                    sx={styles.menuItem}
+                  >
+                    {guide.title}
+                  </MenuItem>
+                ))}
+              </Select>
+            )}
+            {errorGetGuides && (
+              <Stack spacing={2}>
+                <Alert severity="error">{errorMessageGetGuides}</Alert>
+              </Stack>
+            )}
             <InputLabel
               htmlFor="category"
               id="categoryLabel"
@@ -87,7 +140,7 @@ export const RegisterCategory: React.FC<
               Categoria:
             </InputLabel>
             <InputBase
-              inputRef={category}
+              inputRef={title}
               type="text"
               id="category"
               name="category"
@@ -138,8 +191,9 @@ export const RegisterCategory: React.FC<
                   variant="contained"
                   type="reset"
                   role="button"
-                  onClick={() => navigate('admin')}
+                  /*onClick={() => navigate('admin')}*/
                   data-testid="back"
+                  href="/admin"
                 >
                   Voltar
                 </Button>
@@ -148,6 +202,25 @@ export const RegisterCategory: React.FC<
           </Box>
         </Box>
       </Grid>
+      {error && (
+        <Notification
+          message={`${errorMessage} 🤔`}
+          variant="error"
+          onClose={() => {
+            setError(false);
+            setErrorMessage('');
+          }}
+        />
+      )}
+      {success && (
+        <Notification
+          message="Cadastro ralizado com sucesso! ✔"
+          variant="success"
+          onClose={() => {
+            setSuccess(false);
+          }}
+        />
+      )}
     </Grid>
   );
 };
