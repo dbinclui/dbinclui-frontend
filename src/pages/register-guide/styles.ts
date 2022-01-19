@@ -1,19 +1,24 @@
 import { Theme, SxProps } from '@mui/material';
 
 const content: SxProps<Theme> = {
-  borderRadius: '20px',
+  borderBottomLeftRadius: '20px',
+  borderBottomRightRadius: '20px',
+  border: '2px solid',
   flexDirection: 'column',
-  background: (theme) => theme.palette.primary.light,
+  borderColor: (theme) => theme.palette.secondary.contrastText,
+  background: (theme) => theme.palette.background.paper,
 };
 
 const header: SxProps<Theme> = {
-  background: (theme) => theme.palette.secondary.main,
+  border: '2px solid',
+  borderColor: (theme) => theme.palette.secondary.contrastText,
+  background: (theme) => theme.palette.primary.main,
   borderTopLeftRadius: '20px',
   borderTopRightRadius: '20px',
 };
 
 const headerTitle: SxProps<Theme> = {
-  color: 'white',
+  color: (theme) => theme.palette.text.primary,
   fontSize: '1.3rem',
   fontWeight: 'bold',
   textAlign: 'center',
@@ -28,6 +33,8 @@ const buttonDigitalContent: SxProps<Theme> = {
   padding: '0.3rem 1rem',
   fontWeight: '700',
   textTransform: 'none',
+  backgroundColor: (theme) => theme.palette.secondary.dark,
+  color: (theme) => theme.palette.text.disabled,
 };
 
 const labelInput: SxProps<Theme> = {
@@ -38,7 +45,7 @@ const labelInput: SxProps<Theme> = {
 
 const input: SxProps<Theme> = {
   width: '100%',
-  background: (theme) => theme.palette.primary.main,
+  background: (theme) => theme.palette.primary.dark,
   borderRadius: '20px',
   color: (theme) => theme.palette.secondary.main,
   padding: '0.5rem 1rem',
@@ -57,6 +64,8 @@ const button: SxProps<Theme> = {
   padding: '0.5rem 1.5rem',
   textTransform: 'none',
   fontSize: '1.2rem',
+  backgroundColor: (theme) => theme.palette.secondary.dark,
+  color: (theme) => theme.palette.text.disabled,
 };
 
 const styles = {

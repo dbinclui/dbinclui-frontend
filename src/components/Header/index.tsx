@@ -14,6 +14,10 @@ import MenuItem from '@mui/material/MenuItem';
 import { Link, useNavigate } from 'react-router-dom';
 import Logo from '../svgs/logo';
 import './styles.css';
+import AccessibilityTypography from '../../components/AccessibilityTypography';
+import { ColorsDefault } from '@styles/colors';
+import LogoAmarelo from '../svgs/logoAmarelo';
+import { useTheme } from '@emotion/react';
 
 export interface HeaderProps {}
 
@@ -69,6 +73,7 @@ export const Header: React.FC<HeaderProps> = (): JSX.Element => {
   const handleCloseNavMenu = () => {
     setAnchorElNav(null);
   };
+  const theme: any = useTheme();
 
   return (
     <AppBar
@@ -79,15 +84,20 @@ export const Header: React.FC<HeaderProps> = (): JSX.Element => {
     >
       <Container>
         <Toolbar disableGutters className="toolbar">
-          <Typography
-            variant="h6"
-            noWrap
+          <Box
             component={Link}
             to="/"
             sx={{ mr: 2, display: { xs: 'none', md: 'flex' } }}
+            title="Logo"
           >
-            <Logo />
-          </Typography>
+            <Box sx={{ mt: '10px', mb: '10px' }}>
+              {theme.palette.background.default === ColorsDefault.PRIMARY ? (
+                <Logo />
+              ) : (
+                <LogoAmarelo />
+              )}
+            </Box>
+          </Box>
 
           {/*MENU HAMBURGUER*/}
 
@@ -98,7 +108,7 @@ export const Header: React.FC<HeaderProps> = (): JSX.Element => {
               aria-controls="menu-appbar"
               aria-haspopup="true"
               onClick={handleOpenNavMenu}
-              color="inherit"
+              sx={{ color: 'secondary.light' }}
             >
               <MenuIcon />
             </IconButton>
@@ -123,27 +133,22 @@ export const Header: React.FC<HeaderProps> = (): JSX.Element => {
             >
               {MenuItems.map((item, key) => (
                 <MenuItem key={key}>
-                  <Typography
+                  <Box
                     textAlign="center"
-                    color="black"
                     className="menu-item-mobile"
+                    data-testid={`menu-item-mobile-testid:${item.title}`}
                     component={Link}
                     to={item.href}
+                    sx={{ color: 'text.primary', textDecoration: 'none' }}
                   >
-                    {item.title}
-                  </Typography>
+                    <AccessibilityTypography>
+                      {item.title}
+                    </AccessibilityTypography>
+                  </Box>
                 </MenuItem>
               ))}
             </Menu>
           </Box>
-          <Typography
-            variant="h6"
-            noWrap
-            component="div"
-            sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}
-          >
-            <Logo />
-          </Typography>
 
           {/*MENU DESKTOP*/}
 
@@ -155,23 +160,34 @@ export const Header: React.FC<HeaderProps> = (): JSX.Element => {
               <Button
                 key={key}
                 className="menu-item-desktop"
+                data-testid={`menu-item-desktop-testid:${item.title}`}
                 component={Link}
                 to={item.href}
                 onClick={({ currentTarget }: React.MouseEvent<HTMLElement>) =>
                   handleChangePage(currentTarget)
                 }
               >
-                {item.title}
+                <AccessibilityTypography color="secondary">
+                  {item.title}
+                </AccessibilityTypography>
               </Button>
             ))}
           </Box>
 
-          <Box sx={{ flexGrow: 0 }}>
-            <Tooltip title="Administrador">
-              <IconButton sx={{ p: 0 }} onClick={() => navigate('admin')}>
+          <Box className="box-admin" sx={{ flexGrow: 0, mr: '10px' }}>
+            <Tooltip
+              title="Administrador"
+              sx={{ width: '30px', height: '30px' }}
+            >
+              <IconButton
+                size="large"
+                sx={{ p: 0, m: '0 auto' }}
+                onClick={() => navigate('admin')}
+              >
                 <Avatar src="/broken-image.jpg" />
               </IconButton>
             </Tooltip>
+
             <Menu
               sx={{ mt: '45px' }}
               id="menu-appbar"

@@ -30,8 +30,15 @@ export const Admin: React.FC<AdminProps> = (): JSX.Element => {
         >
           <Box sx={{ m: 2, width: '100%' }}>
             <Button
-              sx={{ width: '100%', borderRadius: '10px' }}
-              variant="outlined"
+              sx={{
+                color: 'text.disabled',
+                backgroundColor: 'secondary.dark',
+                border: '2px solid',
+                borderColor: 'text.disabled',
+                borderRadius: '10px',
+              }}
+              fullWidth
+              variant="contained"
               size="large"
               onClick={() => {
                 navigate('cadastrar-guia');
@@ -43,8 +50,15 @@ export const Admin: React.FC<AdminProps> = (): JSX.Element => {
 
           <Box sx={{ m: 2, width: '100%' }}>
             <Button
-              sx={{ width: '100%', borderRadius: '10px' }}
-              variant="outlined"
+              sx={{
+                color: 'text.disabled',
+                backgroundColor: 'secondary.dark',
+                border: '2px solid',
+                borderColor: 'text.disabled',
+                borderRadius: '10px',
+              }}
+              fullWidth
+              variant="contained"
               size="large"
               onClick={() => {
                 navigate('cadastrar-categoria');
@@ -56,8 +70,15 @@ export const Admin: React.FC<AdminProps> = (): JSX.Element => {
 
           <Box sx={{ m: 2, width: '100%' }}>
             <Button
-              sx={{ width: '100%', borderRadius: '10px' }}
-              variant="outlined"
+              sx={{
+                color: 'text.disabled',
+                backgroundColor: 'secondary.dark',
+                border: '2px solid',
+                borderColor: 'text.disabled',
+                borderRadius: '10px',
+              }}
+              fullWidth
+              variant="contained"
               size="large"
               onClick={() => {
                 navigate('cadastrar-conteudo-digital');
