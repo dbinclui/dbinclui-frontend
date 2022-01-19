@@ -1,6 +1,6 @@
 import React from 'react';
 import { RegisterDigitalContent } from '@pages/register-digital-content';
-import { render, screen, waitFor } from '@testing-library/react';
+import { getByLabelText, render, screen, waitFor } from '@testing-library/react';
 import '@testing-library/jest-dom';
 import { fireEvent } from '@testing-library/dom';
 import validateInput, { InputInterfaceProps } from './validator';
@@ -59,7 +59,27 @@ describe('Página de cadastro de categorias', () => {
     });
   });
 
-  test('Deve chamar as cateogiras quando o componente for renderizado', async () => {
+  test('Deve chamar as categorias quando o componente for renderizado', async () => {
+
+    act(() => {
+      render(<RegisterDigitalContent />);
+    });
+
+    const dataMockMenuItem2 = [
+      {
+        _id: 1,
+        title: 'teste 1',
+        content: 'content 2',
+      },
+    ];
+
+    getGuidesServiceMock.mockResolvedValue({
+      data: {
+        data: dataMockMenuItem2,
+      },
+    } as unknown as AxiosResponse<{ data: CardGuidesResponse[] }>);
+    
+    
     const dataMockMenuItem = [
       {
         _id: 1,
@@ -69,15 +89,24 @@ describe('Página de cadastro de categorias', () => {
       },
     ];
 
-    getCategoryServiceMock.mockResolvedValue({
-      data: {
-        data: dataMockMenuItem,
-      },
-    } as unknown as AxiosResponse<{ data: CardCategoriesResponse[] }>);
+    const errorMessage = 'Não foram encontradas as categorias';
+    const throwError = new Error(errorMessage);
 
-    act(() => {
-      render(<RegisterDigitalContent />);
-    });
+    getCategoryServiceMock.mockImplementation(() => {
+      throw throwError;
+    })
+    
+
+    const labelText = 'select';
+    const guideSelect = await screen.findAllByRole(labelText);
+
+    fireEvent.change(guideSelect[0]);
+
+    const titleText = 'teste 1';
+    const guideSelected = screen.getByText(titleText);
+
+    fireEvent.click(guideSelected);
+    
 
     await waitFor(() => {
       expect(getCategoryServiceMock).toBeCalled();
@@ -196,7 +225,24 @@ describe('Página de cadastro de categorias', () => {
   });
 
   test('Deve verificar se o ID da label corresponde ao aria-labelledby', () => {
-    render(<RegisterDigitalContent />);
+    const dataMockMenuItem = [
+      {
+        _id: 1,
+        title: 'teste 1',
+        content: 'content 2',
+      },
+    ];
+    
+    act(() => {
+      render(<RegisterDigitalContent />);
+
+    })
+
+    getGuidesServiceMock.mockResolvedValue({
+      data: {
+        data: dataMockMenuItem,
+      },
+    } as unknown as AxiosResponse<{ data: CardGuidesResponse[] }>);
 
     const textLabelGuide = 'guideLabel';
     const textLabelCategory = 'categoryLabel';

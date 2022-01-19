@@ -85,6 +85,7 @@ export const RegisterDigitalContent: React.FC<
       setSuccessGetCategories(true);
       setErrorGetCategories(false);
     } catch {
+      setErrorMessageGetCategories('Não foram encontradas as categorias')
       setErrorGetCategories(true);
     } finally {
     }
@@ -103,6 +104,7 @@ export const RegisterDigitalContent: React.FC<
   };
 
   useEffect(() => {
+    getDigitalContentCategories('id');
     getDigitalContentGuides();
     setErrorMessageGetCategories('Escolha o Guia');
   }, []);
@@ -127,7 +129,7 @@ export const RegisterDigitalContent: React.FC<
             </Container>
             <input
               data-testid="inputFile"
-              accept="image/*,.pdf,.doc, .docx, video/*"
+              accept="image/*, video/*"
               type="file"
               hidden
               ref={fileRef}
