@@ -7,6 +7,7 @@ import validateInput, { InputInterface } from './validator';
 import { postGuides } from '@services/guides';
 import { act } from 'react-dom/test-utils';
 import { AxiosResponse } from 'axios';
+import { fireEvent } from '@testing-library/dom';
 
 jest.mock('./validator');
 jest.mock('@services/guides');
@@ -14,6 +15,15 @@ const validateInputMock = validateInput as jest.MockedFunction<
   typeof validateInput
 >;
 const postGuidesMock = postGuides as jest.MockedFunction<typeof postGuides>;
+
+const mockedNavigate = jest.fn();
+jest.mock('react-router-dom', () => {
+  const useHref = jest.fn();
+  return {
+    useHref,
+    useNavigate: () => mockedNavigate,
+  };
+});
 
 describe('Página de cadastro de nova guia', () => {
   test('Deve mostrar um formulário', () => {
@@ -147,4 +157,13 @@ describe('Página de cadastro de nova guia', () => {
 
     expect(NotificationCard).toBeVisible();
   });
+});
+
+test('Botão Voltar deve redirecionar para admin', () => {
+  render(<RegisterGuide />);
+  const button = screen.getByTestId('back');
+
+  fireEvent.click(button);
+
+  expect(button.getAttribute('href')).toBe('/admin');
 });

@@ -9,6 +9,8 @@ import { postCategories } from '@services/categories';
 import CardGuidesResponse, { getGuides } from '@services/guides';
 import { act } from 'react-dom/test-utils';
 import { AxiosResponse } from 'axios';
+import { fireEvent } from '@testing-library/dom';
+
 
 jest.mock('./validator');
 jest.mock('@services/categories');
@@ -22,6 +24,14 @@ const postCategoryMock = postCategories as jest.MockedFunction<
 >;
 const getGuidesServiceMock = getGuides as jest.MockedFunction<typeof getGuides>;
 
+const mockedNavigate = jest.fn();
+jest.mock('react-router-dom', () => {
+  const useHref = jest.fn();
+  return {
+    useHref,
+    useNavigate: () => mockedNavigate,
+  };
+});
 describe('Página de cadastro de categorias', () => {
   beforeEach(() => {
     getGuidesServiceMock.mockClear();
@@ -118,4 +128,13 @@ describe('Página de cadastro de categorias', () => {
     const ErrorMessage = await screen.findByText(errorMessage);
     expect(ErrorMessage).toBeVisible();
   });
+});
+
+test('Botão Voltar deve redirecionar para admin', () => {
+  render(<RegisterCategory />);
+  const button = screen.getByTestId('back');
+
+  fireEvent.click(button);
+  
+  expect(button.getAttribute('href')).toBe('/admin');
 });

@@ -4,7 +4,7 @@ import { AccessibilityColors } from './colorsAccessibility';
 
 const getTitleStyle = (size: string) => ({
   fontSize: size,
-  fontFamily: 'verdana',
+  fontFamily: 'verdana, roboto, sans-serif',
   fontStyle: 'bold',
 });
 
