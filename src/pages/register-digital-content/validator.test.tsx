@@ -6,7 +6,7 @@ describe('Função de validação de dados', () => {
     const data = {
       title: 'Categoria do Guia de Acessibilidade',
       guide: 'Guia de Acessibilidade',
-      description: 'Essa é a categoria do guia de acessibilidade',
+      shortDescription: 'Essa é a categoria do guia de acessibilidade',
       file: mockFiles,
     };
 
@@ -17,7 +17,7 @@ describe('Função de validação de dados', () => {
     const data = {
       title: 'Categoria do Guia de Acessibilidade',
       guide: 'Guia de Acessibilidade',
-      description: '',
+      shortDescription: '',
       file: mockFiles,
     };
 
@@ -30,7 +30,7 @@ describe('Função de validação de dados', () => {
     const data = {
       title: '',
       guide: 'Guia de Acessibilidade',
-      description: 'Essa é a categoria do guia de acessibilidade',
+      shortDescription: 'Essa é a categoria do guia de acessibilidade',
       file: mockFiles,
     };
 
@@ -43,7 +43,7 @@ describe('Função de validação de dados', () => {
     const data = {
       title: 'Categoria do Guia de Acessibilidade',
       guide: '',
-      description: 'Essa é a categoria do guia de acessibilidade',
+      shortDescription: 'Essa é a categoria do guia de acessibilidade',
       file: mockFiles,
     };
 
@@ -54,7 +54,7 @@ describe('Função de validação de dados', () => {
     const data = {
       title: 'Categoria do Guia de Acessibilidade',
       guide: 'Guia de Acessibilidade',
-      description: 'Essa é a categoria do guia de acessibilidade',
+      shortDescription: 'Essa é a categoria do guia de acessibilidade',
       file: mockFiles.null,
     };
 

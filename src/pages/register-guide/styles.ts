@@ -69,6 +69,10 @@ const button: SxProps<Theme> = {
   color: (theme) => theme.palette.text.disabled,
 };
 
+const buttonFechar: SxProps<Theme> = {
+  color: (theme) => theme.palette.text.primary,
+}
+
 const styles = {
   content,
   header,
@@ -78,6 +82,7 @@ const styles = {
   input,
   buttonWrapper,
   button,
+  buttonFechar
 };
 
 export default styles;

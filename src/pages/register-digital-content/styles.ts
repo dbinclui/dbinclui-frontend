@@ -70,9 +70,6 @@ const button: SxProps<Theme> = {
   color: (theme) => theme.palette.text.disabled,
 };
 
-const buttonVoltar: SxProps<Theme> = {
-  color: (theme) => theme.palette.text.primary,
-};
 
 const select: SxProps<Theme> = {
   padding: 0,
@@ -93,6 +90,26 @@ const fileName: SxProps<Theme> = {
   textAlign: 'right',
 };
 
+const containerUpload: SxProps<Theme> = {
+  display: "flex",
+  alignItems: "center",
+  justifyContent: "center",
+  '.MuiContainer-root': {
+    padding: 0,
+  }
+}
+
+const uploadIcon: SxProps<Theme> = {
+  fontSize: '2rem',
+  textAlign: "center",
+  margin: 0,
+  padding: 0,
+};
+
+const clearButton: SxProps<Theme> = {
+  color: '#FF0000'
+}
+
 const styles = {
   content,
   header,
@@ -102,10 +119,12 @@ const styles = {
   input,
   buttonWrapper,
   button,
-  buttonVoltar,
   select,
   menuItem,
   fileName,
+  containerUpload,
+  uploadIcon,
+  clearButton,
 };
 
 export default styles;
