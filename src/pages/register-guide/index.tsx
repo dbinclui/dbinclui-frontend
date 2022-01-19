@@ -44,13 +44,13 @@ export const RegisterGuide: React.FC<RegisterGuideProps> = (): JSX.Element => {
         justifyContent={'center'}
         role="main"
       >
-        <Grid item md={6} sx={styles.content} component="section">
+        <Grid item md={6} component="section">
           <Box sx={styles.header} component="header">
-            <AccessibilityTypography sx={styles.headerTitle} variant="h1">
+            <AccessibilityTypography sx={styles.headerTitle}>
               CADASTRO DE GUIA
             </AccessibilityTypography>
           </Box>
-          <Box padding={'1rem 3rem'} component="section">
+          <Box padding={'1rem 3rem'} sx={styles.content} component="section">
             <Button
               variant="contained"
               sx={styles.buttonDigitalContent}
@@ -69,7 +69,7 @@ export const RegisterGuide: React.FC<RegisterGuideProps> = (): JSX.Element => {
                 id="tituloLabel"
                 sx={styles.labelInput}
               >
-                Título:
+                <AccessibilityTypography>Título:</AccessibilityTypography>
               </InputLabel>
               <InputBase
                 inputRef={title}
@@ -86,7 +86,7 @@ export const RegisterGuide: React.FC<RegisterGuideProps> = (): JSX.Element => {
                 sx={styles.labelInput}
                 id="descricaoLabel"
               >
-                Descrição:
+                <AccessibilityTypography>Descrição:</AccessibilityTypography>
               </InputLabel>
               <InputBase
                 inputRef={description}
@@ -107,7 +107,7 @@ export const RegisterGuide: React.FC<RegisterGuideProps> = (): JSX.Element => {
                 <Grid item md={6} sx={styles.buttonWrapper}>
                   <Button
                     sx={styles.button}
-                    variant="outlined"
+                    variant="contained"
                     type="submit"
                     role="button"
                   >

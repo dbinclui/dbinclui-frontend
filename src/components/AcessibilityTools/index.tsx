@@ -1,5 +1,5 @@
 import React, { useState, useContext } from 'react';
-import { Box, Button, Typography, Modal } from '@mui/material';
+import { Box, Button, Modal } from '@mui/material';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
 import Fade from '@mui/material/Fade';
@@ -8,11 +8,13 @@ import { AccessibilityContext } from '@contexts/AccessibilityContext';
 import styles from './styles';
 import UseCounter from '@hooks/Counter';
 
-export interface AccessibilityToolsProps {}
+export interface AccessibilityToolsProps {
+  handleClickContrastButton: () => void;
+}
 
-export const AccessibilityTools: React.FC<
-  AccessibilityToolsProps
-> = (): JSX.Element => {
+export const AccessibilityTools: React.FC<AccessibilityToolsProps> = ({
+  handleClickContrastButton,
+}): JSX.Element => {
   const [modalOpen, setModalOpen] = useState(false);
   const [colorModalButton, setColorModalButton] = useState(true);
   const contextAcessibility = useContext(AccessibilityContext);
@@ -33,33 +35,28 @@ export const AccessibilityTools: React.FC<
 
   const useCounter = UseCounter({
     handleCounter,
-    limiters: [1, 3],
+    limiters: [1, 2],
   });
 
   return (
     <>
-      <Box
-        sx={
-          colorModalButton
-            ? styles.widgetAccessibilityTools
-            : styles.widgetAccessibilityToolsonClick
-        }
-      >
+      <Box sx={styles.widgetAccessibilityTools}>
         <Box>
           <Button
             sx={{
+              'width': '100%',
+              'color': 'text.secundary',
               '&:hover': {
-                color: 'secondary.main',
+                color: '#221f52',
               },
             }}
-            color={colorModalButton ? 'primary' : 'secondary'}
             onClick={() => {
               setModalOpen(!modalOpen);
               handleClick();
             }}
             startIcon={renderArrowIcon()}
           >
-            <Typography variant="body1">Acessibilidade</Typography>
+            Acessibilidade
           </Button>
         </Box>
       </Box>
@@ -71,16 +68,19 @@ export const AccessibilityTools: React.FC<
                 <Counter {...useCounter} />
               </div>
               <Button
+                onClick={() => handleClickContrastButton()}
                 variant="contained"
+                aria-label="Mudar contraste da tela"
                 sx={{
-                  left: '8px',
+                  left: '10px',
                   top: '10px',
                   width: '90%',
                   borderRadius: '20px',
                   fontSize: '14px',
+                  color: 'secondary.main',
                 }}
               >
-                Contraste
+                Contrastes
               </Button>
             </Box>
           </Fade>

@@ -31,11 +31,15 @@ export const Home: React.FC<HomeProps> = (): JSX.Element => {
             <Paper
               p={'5px'}
               borderRadius={'1.25rem'}
-              sx={{ borderColor: 'secondary.main' }}
               component={Grid}
               container
               flexDirection={'row'}
               alignItems={'center'}
+              sx={{
+                border: '1px solid',
+                borderRadius: '15px',
+                borderColor: 'secondary.primary',
+              }}
             >
               <Grid item md={11}>
                 <TextField
@@ -44,7 +48,7 @@ export const Home: React.FC<HomeProps> = (): JSX.Element => {
                   placeholder="Pesquise aqui"
                   sx={{
                     '&::placeholder': {
-                      color: 'secondary.main',
+                      color: 'text.secondary',
                     },
                   }}
                   inputProps={{ 'aria-label': 'pesquise aqui' }}
@@ -54,6 +58,7 @@ export const Home: React.FC<HomeProps> = (): JSX.Element => {
                 <IconButton
                   type="submit"
                   sx={{
+                    color: 'secondary.main',
                     width: '100%',
                     borderRadius: '4px',
                   }}

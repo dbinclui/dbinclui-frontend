@@ -1,6 +1,6 @@
 import React from 'react';
 import RegisterGuide from './index';
-import { render, screen } from '@testing-library/react';
+import { render, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import '@testing-library/jest-dom';
 import validateInput, { InputInterface } from './validator';
@@ -77,7 +77,7 @@ describe('Página de cadastro de nova guia', () => {
     expect(textArea).toHaveValue(textAreaText);
   });
 
-  test('Deve validar o input quando o botão de submit for clicado', () => {
+  test('Deve validar o input quando o botão de submit for clicado', async () => {
     // eslint-disable-next-line testing-library/no-unnecessary-act
     act(() => {
       render(<RegisterGuide />);
@@ -91,10 +91,12 @@ describe('Página de cadastro de nova guia', () => {
       userEvent.click(botaoSubmit);
     });
 
-    expect(validateInput).toBeCalled();
+    await waitFor(() => {
+      expect(validateInputMock).toBeCalled();
+    });
   });
 
-  test('Deve chamar a função postGuides quando o botão do submit for clicado', () => {
+  test('Deve chamar a função postGuides quando o botão do submit for clicado', async () => {
     // eslint-disable-next-line testing-library/no-unnecessary-act
     act(() => {
       render(<RegisterGuide />);
@@ -105,7 +107,9 @@ describe('Página de cadastro de nova guia', () => {
     act(() => {
       userEvent.click(botaoSubmit);
     });
-    expect(postGuides).toBeCalled();
+    await waitFor(() => {
+      expect(postGuidesMock).toBeCalled();
+    });
   });
 
   test('Deve mostrar na tela o card de notificação de sucesso quando o botão de submit for clicado', async () => {

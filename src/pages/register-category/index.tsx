@@ -2,7 +2,6 @@ import React, { useState, useRef, useEffect } from 'react';
 import {
   Button,
   Box,
-  Typography,
   Grid,
   InputLabel,
   InputBase,
@@ -11,6 +10,8 @@ import {
   Alert,
   Stack,
 } from '@mui/material';
+import AccessibilityTypography from '@components/AccessibilityTypography';
+
 import styles from './styles';
 import Notification from '@components/Notification';
 import validateInput from './validator';
@@ -74,13 +75,13 @@ export const RegisterCategory: React.FC<
 
   return (
     <Grid container alignItems={'center'} justifyContent={'center'} role="main">
-      <Grid item md={6} sx={styles.content} component="section">
+      <Grid item md={6} component="section">
         <Box sx={styles.header} component="header">
-          <Typography sx={styles.headerTitle} variant="h1">
+          <AccessibilityTypography sx={styles.headerTitle}>
             CADASTRO DE CATEGORIA
-          </Typography>
+          </AccessibilityTypography>
         </Box>
-        <Box padding={'1rem 3rem'} component="section">
+        <Box padding={'1rem 3rem'} sx={styles.content} component="section">
           <Button
             variant="contained"
             sx={styles.buttonDigitalContent}
@@ -95,7 +96,7 @@ export const RegisterCategory: React.FC<
             display={'flex'}
           >
             <InputLabel htmlFor="guide" id="guideLabel" sx={styles.labelInput}>
-              Guia:
+              <AccessibilityTypography>Guia:</AccessibilityTypography>
             </InputLabel>
 
             {successGetGuides && (
@@ -134,7 +135,7 @@ export const RegisterCategory: React.FC<
               id="categoryLabel"
               sx={styles.labelInput}
             >
-              Categoria:
+              <AccessibilityTypography>Categoria:</AccessibilityTypography>
             </InputLabel>
             <InputBase
               inputRef={title}
@@ -152,7 +153,7 @@ export const RegisterCategory: React.FC<
               sx={styles.labelInput}
               id="descriptionLabel"
             >
-              Descrição:
+              <AccessibilityTypography>Descrição:</AccessibilityTypography>
             </InputLabel>
             <InputBase
               inputRef={description}
@@ -174,7 +175,7 @@ export const RegisterCategory: React.FC<
               <Grid item md={6} sx={styles.buttonWrapper}>
                 <Button
                   sx={styles.button}
-                  variant="outlined"
+                  variant="contained"
                   type="submit"
                   role="button"
                   data-testid="submit"

@@ -1,10 +1,8 @@
 import React from 'react';
-import { fireEvent, render } from '@testing-library/react';
+import { render } from '@testing-library/react';
 import { screen } from '@testing-library/dom';
-import { useHref } from 'react-router-dom';
 import '@testing-library/jest-dom/extend-expect';
 import CardHome from '.';
-import Home, { CardItems } from '@pages/home';
 
 jest.mock('react-router-dom', () => {
   const useHref = jest.fn();
