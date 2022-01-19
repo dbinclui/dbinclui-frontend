@@ -211,7 +211,7 @@ export const RegisterCategory: React.FC<
       )}
       {success && (
         <Notification
-          message="Cadastro ralizado com sucesso! ✔"
+          message="Cadastro realizado com sucesso! ✔"
           variant="success"
           onClose={() => {
             setSuccess(false);

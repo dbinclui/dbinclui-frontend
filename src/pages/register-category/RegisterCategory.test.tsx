@@ -73,7 +73,7 @@ describe('Página de cadastro de categorias', () => {
       true as unknown as Promise<AxiosResponse>,
     );
     const textoNoBotaoSubmit = 'Salvar';
-    const NotificationMessage = 'Cadastro ralizado com sucesso! ✔';
+    const NotificationMessage = 'Cadastro realizado com sucesso! ✔';
     const botaoSubmit = screen.getByText(textoNoBotaoSubmit);
     // eslint-disable-next-line testing-library/no-unnecessary-act
     act(() => {

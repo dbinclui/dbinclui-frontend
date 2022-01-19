@@ -1,11 +1,10 @@
 import * as yup from 'yup';
 
-interface InputInterfaceProps {
+export interface InputInterfaceProps {
   guide: string;
   title: string;
-  description: string;
-  file: File;
-  
+  shortDescription: string;
+  file: File[];  
 }
 
 async function validateInput(
@@ -18,7 +17,7 @@ async function validateInput(
     title: yup
       .string()
       .required('O título é obrigatório'),
-    description: yup.string().required('A descrição é obrigatória'),
+    shortDescription: yup.string().required('A descrição é obrigatória'),
     file: yup
       .mixed()
       .required('O arquivo é obrigatório'),
