@@ -2,7 +2,7 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import Button from '@mui/material/Button';
 import Grid from '@mui/material/Grid';
-import { Box } from '@mui/material';
+import Box from '@mui/material/Box';
 
 export interface AdminProps {}
 
@@ -11,51 +11,84 @@ export const Admin: React.FC<AdminProps> = (): JSX.Element => {
 
   return (
     <>
-      <Box
+      <Grid
+        container
         sx={{
-          display: 'flex',
-          alignItems: 'center',
-          flexDirection: 'column',
+          justifyContent: 'center',
           p: 1,
-          m: 25,
+          mt: 5,
         }}
       >
-        <Grid item sx={{ m: 2 }}>
-          <Button
-            variant="outlined"
-            size="large"
-            onClick={() => {
-              navigate('cadastrar-guia');
-            }}
-          >
-            Cadastrar Guia
-          </Button>
-        </Grid>
+        <Grid
+          item
+          md={6}
+          sx={{
+            display: 'flex',
+            alignItems: 'center',
+            flexDirection: 'column',
+          }}
+        >
+          <Box sx={{ m: 2, width: '100%' }}>
+            <Button
+              sx={{
+                color: 'text.disabled',
+                backgroundColor: 'secondary.dark',
+                border: '2px solid',
+                borderColor: 'text.disabled',
+                borderRadius: '10px',
+              }}
+              fullWidth
+              variant="contained"
+              size="large"
+              onClick={() => {
+                navigate('cadastrar-guia');
+              }}
+            >
+              Cadastrar Guia
+            </Button>
+          </Box>
 
-        <Grid item sx={{ m: 2 }}>
-          <Button
-            variant="outlined"
-            size="large"
-            onClick={() => {
-              navigate('cadastrar-categoria');
-            }}
-          >
-            Cadastro de Categorias
-          </Button>
-        </Grid>
+          <Box sx={{ m: 2, width: '100%' }}>
+            <Button
+              sx={{
+                color: 'text.disabled',
+                backgroundColor: 'secondary.dark',
+                border: '2px solid',
+                borderColor: 'text.disabled',
+                borderRadius: '10px',
+              }}
+              fullWidth
+              variant="contained"
+              size="large"
+              onClick={() => {
+                navigate('cadastrar-categoria');
+              }}
+            >
+              Cadastro de Categorias
+            </Button>
+          </Box>
 
-        <Grid item sx={{ m: 2 }}>
-          <Button
-            variant="outlined"
-            size="large"
-            onClick={() => {
-              navigate('cadastrar-conteudo-digital');
-            }}
-          >
-            Cadastro de Conteúdo digital
-          </Button>
+          <Box sx={{ m: 2, width: '100%' }}>
+            <Button
+              sx={{
+                color: 'text.disabled',
+                backgroundColor: 'secondary.dark',
+                border: '2px solid',
+                borderColor: 'text.disabled',
+                borderRadius: '10px',
+              }}
+              fullWidth
+              variant="contained"
+              size="large"
+              onClick={() => {
+                navigate('cadastrar-conteudo-digital');
+              }}
+            >
+              Cadastro de Conteúdo digital
+            </Button>
+          </Box>
         </Grid>
-      </Box>
+      </Grid>
     </>
   );
 };
