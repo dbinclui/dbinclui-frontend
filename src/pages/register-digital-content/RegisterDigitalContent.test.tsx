@@ -4,6 +4,15 @@ import { render, screen } from '@testing-library/react';
 import '@testing-library/jest-dom';
 import { fireEvent } from '@testing-library/dom';
 
+const mockedNavigate = jest.fn();
+jest.mock('react-router-dom', () => {
+  const useHref = jest.fn();
+  return {
+    useHref,
+    useNavigate: () => mockedNavigate,
+  };
+});
+
 describe('Página de cadastro de categorias', () => {
   test('Deve mostrar um formulário', () => {
     render(<RegisterDigitalContent />);
@@ -77,4 +86,13 @@ describe('Página de cadastro de categorias', () => {
     expect(elementFileName).toBeVisible();
     expect(noFile).not.toBeVisible();
   });
+});
+
+test('Botão Voltar deve redirecionar para admin', () => {
+  render(<RegisterDigitalContent />);
+  const button = screen.getByTestId('back');
+
+  fireEvent.click(button);
+
+  expect(button.getAttribute('href')).toBe('/admin');
 });

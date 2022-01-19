@@ -189,6 +189,7 @@ export const RegisterCategory: React.FC<
                   variant="contained"
                   type="reset"
                   role="button"
+                  data-testid="back"
                   href="/admin"
                 >
                   Voltar

@@ -70,6 +70,10 @@ const button: SxProps<Theme> = {
   color: (theme) => theme.palette.text.disabled,
 };
 
+const buttonVoltar: SxProps<Theme> = {
+  color: (theme) => theme.palette.text.primary,
+};
+
 const select: SxProps<Theme> = {
   padding: 0,
 };
@@ -98,6 +102,7 @@ const styles = {
   input,
   buttonWrapper,
   button,
+  buttonVoltar,
   select,
   menuItem,
   fileName,

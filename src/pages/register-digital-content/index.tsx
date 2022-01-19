@@ -190,12 +190,14 @@ export const RegisterDigitalContent: React.FC<
               </Grid>
               <Grid item md={6} sx={styles.buttonWrapper}>
                 <Button
-                  sx={[styles.button]}
+                  sx={[styles.button, styles.buttonVoltar]}
                   variant="contained"
                   type="reset"
                   role="button"
+                  data-testid="back"
+                  href="/admin"
                 >
-                  Fechar
+                  Voltar
                 </Button>
               </Grid>
             </Grid>
