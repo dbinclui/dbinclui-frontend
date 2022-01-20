@@ -1,19 +1,25 @@
-import React from 'react';
+import React, { useState } from 'react';
 import VLibras from '@djpfs/react-vlibras';
-import Routers from './routes/routes';
+import Routers from '@routes/routes';
 import { CssBaseline } from '@mui/material';
 import { ThemeProvider } from '@mui/material/styles';
-import theme from './styles/theme';
-import AccessibilityTools from './components/AcessibilityTools';
+import theme from '@styles/theme';
+import AccessibilityTools from '@components/AcessibilityTools';
 import GlobalContext from './contexts';
 
 function App() {
+  const [themeMode, setThemeMode] = useState('default');
+  const toggleTheme = () => (themeMode === 'default' ? 'contrast' : 'default');
   return (
-    <ThemeProvider theme={theme}>
+    <ThemeProvider theme={theme(themeMode)}>
       <GlobalContext>
         <CssBaseline />
         <VLibras />
-        <AccessibilityTools />
+        <AccessibilityTools
+          handleClickContrastButton={() => {
+            setThemeMode(toggleTheme());
+          }}
+        />
         <React.StrictMode>
           <Routers />
         </React.StrictMode>

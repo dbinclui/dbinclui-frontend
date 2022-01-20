@@ -4,6 +4,7 @@ import InstagramIcon from '@mui/icons-material/Instagram';
 import TwitterIcon from '@mui/icons-material/Twitter';
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
 import './styles.css';
+import AccessibilityTypography from '@components/AccessibilityTypography';
 
 let anoAtual = new Date().getFullYear();
 
@@ -18,32 +19,32 @@ export const Footer: React.FC<FooterProps> = (): JSX.Element => {
           target={'_blank'}
           rel="noopener noreferrer"
         >
-          <FacebookIcon style={{ color: 'white', fontSize: '32px' }} />
+          <FacebookIcon color="secondary" style={{ fontSize: '32px' }} />
         </a>
         <a
           href="https://www.instagram.com/dbserver_ti/"
           target={'_blank'}
           rel="noopener noreferrer"
         >
-          <InstagramIcon style={{ color: 'white', fontSize: '32px' }} />
+          <InstagramIcon color="secondary" style={{ fontSize: '32px' }} />
         </a>
         <a
           href="https://twitter.com/dbserver_ti"
           target={'_blank'}
           rel="noopener noreferrer"
         >
-          <TwitterIcon style={{ color: 'white', fontSize: '32px' }} />
+          <TwitterIcon color="secondary" style={{ fontSize: '32px' }} />
         </a>
         <a
           href="https://br.linkedin.com/company/dbserver"
           target={'_blank'}
           rel="noopener noreferrer"
         >
-          <LinkedInIcon style={{ color: 'white', fontSize: '32px' }} />
+          <LinkedInIcon color="secondary" style={{ fontSize: '32px' }} />
         </a>
-        <p className="copyright">
+        <AccessibilityTypography className="copyright" color="secondary" >
           © {anoAtual} DBInclui - Todos os direitos reservados
-        </p>
+        </AccessibilityTypography>
       </footer>
     </>
   );

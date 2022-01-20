@@ -17,11 +17,13 @@ export const Counter: React.FC<CounterProps> = ({
         <Grid item lg={3}>
           <Button
             variant="contained"
+            aria-label="Diminuir fonte"
             onClick={() => remove(counter)}
             sx={{
-              margin: '0 0 0 -34px',
+              color: 'secondary.main',
+              margin: '0 0 0 -29px',
               borderRadius: '20px',
-              backgroundColor: 'primary',
+              backgroundColor: 'secondary',
               fontSize: '15px',
             }}
           >
@@ -33,11 +35,13 @@ export const Counter: React.FC<CounterProps> = ({
         <Grid item lg={3}>
           <Button
             variant="contained"
+            aria-label="Aumentar fonte"
             onClick={() => add(counter)}
             sx={{
-              margin: '0 0 0 10px',
+              color: 'secondary.main',
+              margin: '0 -30px 0 10px',
               borderRadius: '20px',
-              backgroundColor: 'primary',
+              backgroundColor: 'secondary',
               fontSize: '15px',
             }}
           >
