@@ -1,20 +1,24 @@
-import { Theme } from '@mui/material';
-import { SxProps } from '@mui/material';
+import { Theme, SxProps } from '@mui/material';
 
 const content: SxProps<Theme> = {
-  borderRadius: '20px',
+  borderBottomLeftRadius: '20px',
+  borderBottomRightRadius: '20px',
+  border: '2px solid',
   flexDirection: 'column',
-  background: (theme) => theme.palette.primary.light,
+  borderColor: (theme) => theme.palette.secondary.contrastText,
+  background: (theme) => theme.palette.background.paper,
 };
 
 const header: SxProps<Theme> = {
-  background: (theme) => theme.palette.text.primary,
+  border: '2px solid',
+  borderColor: (theme) => theme.palette.secondary.contrastText,
+  background: (theme) => theme.palette.primary.main,
   borderTopLeftRadius: '20px',
   borderTopRightRadius: '20px',
 };
 
 const headerTitle: SxProps<Theme> = {
-  color: (theme) => theme.palette.primary.main,
+  color: (theme) => theme.palette.text.primary,
   fontSize: '1.3rem',
   fontWeight: 'bold',
   textAlign: 'center',
@@ -29,19 +33,22 @@ const buttonDigitalContent: SxProps<Theme> = {
   padding: '0.3rem 1rem',
   fontWeight: '700',
   textTransform: 'none',
+  backgroundColor: (theme) => theme.palette.secondary.dark,
+  color: (theme) => theme.palette.text.disabled,
 };
 
 const labelInput: SxProps<Theme> = {
-  color: (theme) => theme.palette.primary.main,
+  color: (theme) => theme.palette.secondary.main,
   fontWeight: 'bold',
   mb: '0.5rem',
 };
 
 const input: SxProps<Theme> = {
   width: '100%',
-  background: (theme) => theme.palette.text.primary,
-  borderRadius: '20px',
-  color: (theme) => theme.palette.primary.main,
+  border: '1px solid',
+  backgroundColor: (theme) => theme.palette.background.default,
+  borderRadius: '15px',
+  borderColor: 'secondary.primary',
   padding: '0.5rem 1rem',
   mb: '2.5rem',
 };
@@ -58,7 +65,13 @@ const button: SxProps<Theme> = {
   padding: '0.5rem 1.5rem',
   textTransform: 'none',
   fontSize: '1.2rem',
+  backgroundColor: (theme) => theme.palette.secondary.dark,
+  color: (theme) => theme.palette.text.disabled,
 };
+
+const buttonFechar: SxProps<Theme> = {
+  color: (theme) => theme.palette.text.primary,
+}
 
 const styles = {
   content,
@@ -69,6 +82,7 @@ const styles = {
   input,
   buttonWrapper,
   button,
+  buttonFechar
 };
 
 export default styles;
