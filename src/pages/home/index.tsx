@@ -1,27 +1,19 @@
 import React, { useEffect, useState } from 'react';
-import { Container, IconButton, TextField, Paper, Grid } from '@mui/material';
+import {
+  Container,
+  IconButton,
+  TextField,
+  Paper,
+  Grid,
+  CircularProgress,
+} from '@mui/material';
 import SearchIcon from '@mui/icons-material/Search';
 import './style.css';
-import CardHome, { CardHomeProps } from '@components/CardHome';
+import CardHome from '@components/CardHome';
 import AccessibilityTypography from '@components/AccessibilityTypography';
 import CardGuidesResponse, { getGuides } from '@services/guides';
 
 export interface HomeProps {}
-
-export const CardItems: CardHomeProps[] = [
-  // {
-  //   title: 'Tradutor de libras',
-  //   path: '/tradutor',
-  // },
-  // {
-  //   title: 'Guia de acessibilidade',
-  //   path: '/guia-acessibilidade',
-  // },
-  // {
-  //   title: 'Guia da cultura surda',
-  //   path: '/guia-cultura-surda',
-  // },
-];
 
 export const Home: React.FC<HomeProps> = (): JSX.Element => {
   const [cards, setCards] = useState<CardGuidesResponse[]>([]);
@@ -44,7 +36,13 @@ export const Home: React.FC<HomeProps> = (): JSX.Element => {
     getGuidesService();
   }, []);
 
-  return (
+  return loading ? (
+    <CircularProgress />
+  ) : error ? (
+    <AccessibilityTypography variant="h1" className="error">
+      Desculpe, ocorreu um erro ao carregar a página!
+    </AccessibilityTypography>
+  ) : (
     <>
       <Container>
         <Grid container justifyContent={'center'}>
@@ -95,7 +93,7 @@ export const Home: React.FC<HomeProps> = (): JSX.Element => {
               {cards.map((item, key) => (
                 <CardHome
                   title={item.title}
-                  path={item.title}
+                  path={item.title.toLowerCase().replace(/[- ]+/g, '-')}
                   key={key}
                   tabIndex={key}
                 />
