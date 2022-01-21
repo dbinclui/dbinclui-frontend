@@ -99,7 +99,7 @@ describe('Página de cadastro de categorias', () => {
       throw throwError;
     });
 
-    const textoNoBotaoSubmit = 'Atulizar';
+    const textoNoBotaoSubmit = 'Atualizar';
     const NotificationMessage = errorMessage;
     const botaoSubmit = screen.getByText(textoNoBotaoSubmit);
 

@@ -15,7 +15,7 @@ import AccessibilityTypography from '@components/AccessibilityTypography';
 import styles from './styles';
 import Notification from '@components/Notification';
 import CardGuidesResponse, { getGuides } from '@services/guides';
-import validateInput from '@pages/register-guide/validator';
+import validateInput from '@pages/update-category/validator';
 import { postCategories } from '@services/categories';
 
 export interface UpdateCategoryProps {}
@@ -78,7 +78,7 @@ UpdateCategoryProps
       <Grid item md={6} component="section">
         <Box sx={styles.header} component="header">
           <AccessibilityTypography sx={styles.headerTitle}>
-            ATULIZAR CATEGORIA
+            ATUALIZAR CATEGORIA
           </AccessibilityTypography>
         </Box>
         <Box padding={'1rem 3rem'} sx={styles.content} component="section">
