@@ -1,6 +1,5 @@
 import React from 'react';
-import { Container, IconButton, TextField, Paper, Grid } from '@mui/material';
-import SearchIcon from '@mui/icons-material/Search';
+import { Container, Grid } from '@mui/material';
 import './style.css';
 import CardHome, { CardHomeProps } from '@components/CardHome';
 import AccessibilityTypography from '@components/AccessibilityTypography';
@@ -41,7 +40,7 @@ export const Home: React.FC<HomeProps> = (): JSX.Element => {
               </AccessibilityTypography>
             </Grid>
           </Grid>
-          <Grid item pt={'75px'} md={12}>
+          <Grid item py={'75px'} md={12}>
             <Grid container justifyContent={'center'}>
               {CardItems.map((item, key) => (
                 <CardHome
