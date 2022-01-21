@@ -36,13 +36,7 @@ export const Home: React.FC<HomeProps> = (): JSX.Element => {
     getGuidesService();
   }, []);
 
-  return loading ? (
-    <CircularProgress />
-  ) : error ? (
-    <AccessibilityTypography variant="h1" className="error">
-      Desculpe, ocorreu um erro ao carregar a página!
-    </AccessibilityTypography>
-  ) : (
+  return (
     <>
       <Container>
         <Grid container justifyContent={'center'}>
@@ -90,14 +84,25 @@ export const Home: React.FC<HomeProps> = (): JSX.Element => {
           </Grid>
           <Grid item md={12}>
             <Grid container justifyContent={'center'}>
-              {cards.map((item, key) => (
-                <CardHome
-                  title={item.title}
-                  path={item.title.toLowerCase().replace(/[- ]+/g, '-')}
-                  key={key}
-                  tabIndex={key}
-                />
-              ))}
+              {loading ? (
+                <>
+                  <CircularProgress />
+                  <p>Olá </p>
+                </>
+              ) : error ? (
+                <AccessibilityTypography variant="h1" className="error">
+                  Desculpe, ocorreu um erro ao carregar a página!
+                </AccessibilityTypography>
+              ) : (
+                cards.map((item, key) => (
+                  <CardHome
+                    title={item.title}
+                    path={item.title.toLowerCase().replace(/[- ]+/g, '-')}
+                    key={key}
+                    tabIndex={key}
+                  />
+                ))
+              )}
             </Grid>
           </Grid>
           <Grid item md={12} py={'45px'} px={'20px'} justifyContent={'center'}>
