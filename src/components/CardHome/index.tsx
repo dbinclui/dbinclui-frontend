@@ -20,7 +20,7 @@ export const CardHome: React.FC<CardHomeProps> = ({
     xs={12}
     lg={3}
     component={Link}
-    to={path}
+    to={`guia/${path}`}
     data-testid={'cardHome'}
     style={{ textDecoration: 'none', color: 'inherit' }}
   >
