@@ -111,6 +111,8 @@ export const RegisterDigitalContent: React.FC<
     setErrorMessageGetCategories('Escolha o Guia');
   }, []);
 
+  console.log(categories);
+
   return (
     <Grid container alignItems={'center'} justifyContent={'center'} role="main">
       <Grid item md={6} component="section">
