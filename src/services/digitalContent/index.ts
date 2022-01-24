@@ -1,5 +1,5 @@
 import api from '@services/api';
-import CardGuidesResponse from '@services/';
+import CardGuidesResponse from '@services/guides';
 
 export interface CardCategoryResponse {
   _id?: string;
@@ -27,7 +27,6 @@ export interface CardDigitalContentResponse {
   filePaths: string[];
 }
 
-
 export const getCategoriesByGuide = async (id: string) => {
   try {
     return api.get<{ data: CardCategoryResponse[] }>(
@@ -41,11 +40,13 @@ export const getCategoriesByGuide = async (id: string) => {
 export const postDigitalContent = async (cardBody: FormData) => {
   try {
     return api.post<{ data: CardDigitalContentBody[] }>(
-      `/digital-contents/register`, cardBody, {
+      `/digital-contents/register`,
+      cardBody,
+      {
         headers: {
-          'Content-Type': 'multipart/form-data'
-        }
-      }
+          'Content-Type': 'multipart/form-data',
+        },
+      },
     );
   } catch {
     throw new Error('Serviço não disponível');

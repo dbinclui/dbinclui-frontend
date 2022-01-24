@@ -18,7 +18,7 @@ export const Routers: React.FC<RoutersProps> = (): JSX.Element => {
         <Routes>
           <Route path="/" element={<Layout />}>
             <Route index element={<Home />} />
-            <Route path="guia/:id" element={<GuidePage />} />
+            <Route path="guia/:title" element={<GuidePage />} />
             <Route path="admin" element={<Admin />} />
             <Route path="admin/cadastrar-guia" element={<RegisterGuide />} />
             <Route
