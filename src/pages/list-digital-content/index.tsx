@@ -1,6 +1,7 @@
 import React from 'react';
 import { DataGrid } from '@mui/x-data-grid';
 import { Button, Grid } from '@mui/material';
+import AccessibilityTypography from '@components/AccessibilityTypography';
 
 import styles from './styles';
 
@@ -11,22 +12,27 @@ const columns = [
   { field: 'category', headerName: 'Categoria' },
   { field: 'description', headerName: 'Descrição' },
   { field: 'files', headerName: 'Arquivos' },
-  /* { field: 'action',
-    headerName: 'Ação',
-    valueGetter: (params) =>
-      `${params.row.firstName || ''} ${params.row.lastName || ''}`,
-},*/
 ];
 
-const rows = [{ id: 1, lastName: 'Snow', firstName: 'Jon', age: 35 }];
+const rows = [
+  {
+    id: 1,
+    guide: 'Guia de Acessibilida',
+    category: 'O que é acessibilidade?',
+    description: 'Descrição do conteúdo',
+    files: '35',
+  },
+];
 
 export const ListDigitalContent: React.FC<
   DigitalContentInterfaceProps
 > = (): JSX.Element => {
   return (
-    <>
-      <h2>LISTAGEM DE CONTEÚDO DIGITAL </h2>
-      <div style={{ height: 400, width: '100%' }}>
+    <Grid container alignItems={'center'} justifyContent={'center'} role="main">
+      <AccessibilityTypography sx={styles.headerTitle}>
+        LISTAGEM DE CONTEÚDO DIGITAL
+      </AccessibilityTypography>
+      <Grid item md={6} sx={styles.dataGrid}>
         <DataGrid
           rows={rows}
           columns={columns}
@@ -35,7 +41,7 @@ export const ListDigitalContent: React.FC<
           checkboxSelection
           disableSelectionOnClick
         />
-      </div>
+      </Grid>
       <Grid item md={6} sx={styles.buttonWrapper}>
         <Button
           sx={styles.button}
@@ -60,7 +66,7 @@ export const ListDigitalContent: React.FC<
           Voltar
         </Button>
       </Grid>
-    </>
+    </Grid>
   );
 };
 export default ListDigitalContent;

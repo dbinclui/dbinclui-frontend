@@ -1,5 +1,18 @@
 import { Theme, SxProps } from '@mui/material';
 
+const headerTitle: SxProps<Theme> = {
+  color: (theme) => theme.palette.text.primary,
+  fontSize: '1.3rem',
+  fontWeight: 'bold',
+  textAlign: 'center',
+  padding: '2rem 0',
+};
+
+const dataGrid: SxProps<Theme> = {
+  height: 400,
+  width: '50%',
+};
+
 const buttonWrapper: SxProps<Theme> = {
   display: 'flex',
   alignItems: 'center',
@@ -17,6 +30,8 @@ const button: SxProps<Theme> = {
 };
 
 const styles = {
+  headerTitle,
+  dataGrid,
   buttonWrapper,
   button,
 };
