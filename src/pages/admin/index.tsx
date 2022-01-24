@@ -61,7 +61,7 @@ export const Admin: React.FC<AdminProps> = (): JSX.Element => {
               variant="contained"
               size="large"
               onClick={() => {
-                navigate('cadastrar-categoria');
+                navigate('listar-categorias');
               }}
             >
               Cadastro de Categorias

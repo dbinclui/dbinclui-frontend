@@ -50,7 +50,7 @@ describe('Página do Administrador', () => {
 
     userEvent.click(buttonRegisterCategory);
     expect(mockedNavigate).toBeCalled();
-    expect(mockedNavigate).toBeCalledWith('cadastrar-categoria');
+    expect(mockedNavigate).toBeCalledWith('listar-categorias');
   });
 
   test('O botão Cadastro de Conteúdo digital deve redirecionar o user para outra página', () => {
