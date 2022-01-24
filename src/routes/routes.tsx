@@ -1,7 +1,5 @@
 import React from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import AcessibilityGuide from '@pages/acessibility-guide';
-import DeafCultureGuide from '@pages/deaf-culture-guide';
 import Home from '@pages/home';
 import RegisterGuide from '@pages/register-guide';
 import Error from '@pages/error/404';
@@ -10,6 +8,7 @@ import Admin from '@pages/admin';
 import RegisterCategory from '@pages/register-category';
 import RegisterDigitalContent from '@pages/register-digital-content';
 import UpdateGuide from '@pages/update-guide';
+import Guide from '@pages/guides';
 
 export interface RoutersProps {}
 
@@ -20,8 +19,7 @@ export const Routers: React.FC<RoutersProps> = (): JSX.Element => {
         <Routes>
           <Route path="/" element={<Layout />}>
             <Route index element={<Home />} />
-            <Route path="guia-acessibilidade" element={<AcessibilityGuide />} />
-            <Route path="guia-cultura-surda" element={<DeafCultureGuide />} />
+            <Route path="guia/:id" element={<Guide />} />
             <Route path="admin" element={<Admin />} />
             <Route path="admin/cadastrar-guia" element={<RegisterGuide />} />
             <Route path="admin/atualizar-guia" element={<UpdateGuide />} />

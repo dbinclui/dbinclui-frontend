@@ -33,6 +33,6 @@ describe('Componente CardHome', () => {
     render(<CardHome title={title} path={path} tabIndex={key} />);
 
     const link = screen.getByTestId('cardHome');
-    expect(link.getAttribute('to')).toBe(path);
+    expect(link.getAttribute('to')).toBe(`guia/${path}`);
   });
 });
