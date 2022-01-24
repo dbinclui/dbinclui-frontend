@@ -7,7 +7,7 @@ export interface GuideListProps {}
 export const GuideList: React.FC<GuideListProps> = (): JSX.Element => {
   return (
     <>
-      <Typography variant="h1" sx={styles.listTitle}>
+      <Typography variant="h2" sx={styles.listTitle}>
         LISTAGEM DE GUIAS
       </Typography>
     </>
