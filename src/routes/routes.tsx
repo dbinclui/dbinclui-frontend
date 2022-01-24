@@ -9,6 +9,7 @@ import Layout from '@pages/layout';
 import Admin from '@pages/admin';
 import RegisterCategory from '@pages/register-category';
 import RegisterDigitalContent from '@pages/register-digital-content';
+import ListDigitalContent from '@pages/list-digital-content';
 
 export interface RoutersProps {}
 
@@ -30,6 +31,10 @@ export const Routers: React.FC<RoutersProps> = (): JSX.Element => {
             <Route
               path="admin/cadastrar-conteudo-digital"
               element={<RegisterDigitalContent />}
+            />
+            <Route
+              path="admin/listar-conteudo-digital"
+              element={<ListDigitalContent />}
             />
             <Route path="*" element={<Error />} />
           </Route>
