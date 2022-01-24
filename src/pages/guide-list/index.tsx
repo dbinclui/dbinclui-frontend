@@ -1,12 +1,15 @@
 import React from 'react';
-import AccessibilityTypography from '@components/AccessibilityTypography';
+import { Typography } from '@mui/material';
+import styles from './styles';
 
 export interface GuideListProps {}
 
 export const GuideList: React.FC<GuideListProps> = (): JSX.Element => {
   return (
     <>
-      <h1>abulebule</h1>
+      <Typography variant="h1" sx={styles.listTitle}>
+        LISTAGEM DE GUIAS
+      </Typography>
     </>
   );
 };
