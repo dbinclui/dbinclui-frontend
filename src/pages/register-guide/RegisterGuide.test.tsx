@@ -4,7 +4,7 @@ import { render, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import '@testing-library/jest-dom';
 import validateInput, { InputInterface } from './validator';
-import { postGuides } from '@services/guides';
+import { postGuides } from '@services/';
 import { act } from 'react-dom/test-utils';
 import { AxiosResponse } from 'axios';
 import { fireEvent } from '@testing-library/dom';

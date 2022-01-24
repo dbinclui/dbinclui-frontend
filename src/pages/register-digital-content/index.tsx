@@ -15,7 +15,7 @@ import {
 import styles from './styles';
 import FileUploadRounded from '@mui/icons-material/FileUploadRounded';
 import ClearIcon from '@mui/icons-material/Clear';
-import CardGuidesResponse, { getGuides } from '@services/guides';
+import CardGuidesResponse, { getGuides } from '@services/';
 import {
   CardCategoryResponse,
   getCategoriesByGuide,

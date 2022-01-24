@@ -6,7 +6,7 @@ import { fireEvent } from '@testing-library/dom';
 import validateInput, { InputInterfaceProps } from './validator';
 import { postDigitalContent } from '@services/digitalContent';
 import { getCategories, CardCategoriesResponse } from '@services/categories';
-import CardGuidesResponse, { getGuides } from '@services/guides';
+import CardGuidesResponse, { getGuides } from '@services/';
 import { act } from 'react-dom/test-utils';
 import { AxiosResponse } from 'axios';
 import userEvent from '@testing-library/user-event';

@@ -1,5 +1,5 @@
 import api from '@services/api';
-import CardGuidesResponse from '@services/guides';
+import CardGuidesResponse from '@services/';
 
 export interface CardCategoryResponse {
   _id?: string;

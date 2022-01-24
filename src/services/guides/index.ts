@@ -36,3 +36,12 @@ export const postGuides = async (cardBody: CardBodyInterface) => {
     throw new Error('Serviço não disponível');
   }
 };
+
+export const getGuideWithCategoriesAndContent = async (id: string) => {
+  try {
+    return api.get<{ data: GuideContent }>(`guides/getGuideWithCategoriesAndContent/${id}`);
+  } catch {
+    throw new Error('Serviço não disponível');
+  }
+};
+

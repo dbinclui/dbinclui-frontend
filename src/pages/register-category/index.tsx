@@ -15,7 +15,7 @@ import AccessibilityTypography from '@components/AccessibilityTypography';
 import styles from './styles';
 import Notification from '@components/Notification';
 import validateInput from './validator';
-import CardGuidesResponse, { getGuides } from '@services/guides';
+import CardGuidesResponse, { getGuides } from '@services/';
 import { postCategories } from '@services/categories';
 
 export interface RegisterCategoryProps {}
