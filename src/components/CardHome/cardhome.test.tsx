@@ -3,7 +3,6 @@ import { render } from '@testing-library/react';
 import { screen } from '@testing-library/dom';
 import '@testing-library/jest-dom/extend-expect';
 import CardHome from '.';
-import { TimeToLeave } from '@mui/icons-material';
 
 jest.mock('react-router-dom', () => {
   const useHref = jest.fn();
