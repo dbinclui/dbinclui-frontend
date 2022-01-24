@@ -47,7 +47,7 @@ export const UpdateGuide: React.FC<UpdateGuideProps> = (): JSX.Element => {
         <Grid item md={6} component="section">
           <Box sx={styles.header} component="header">
             <AccessibilityTypography sx={styles.headerTitle}>
-              ATUALIZAR GUIA 
+              ATUALIZAR GUIA
             </AccessibilityTypography>
           </Box>
           <Box padding={'1rem 3rem'} sx={styles.content} component="section">
