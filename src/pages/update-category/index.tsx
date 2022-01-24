@@ -180,7 +180,7 @@ UpdateCategoryProps
                   role="button"
                   data-testid="submit"
                 >
-                  Atualizar
+                  Atualizar 
                 </Button>
               </Grid>
               <Grid item md={6} sx={styles.buttonWrapper}>
