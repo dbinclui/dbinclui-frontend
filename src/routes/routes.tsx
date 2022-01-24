@@ -24,10 +24,7 @@ export const Routers: React.FC<RoutersProps> = (): JSX.Element => {
             <Route path="guia-cultura-surda" element={<DeafCultureGuide />} />
             <Route path="admin" element={<Admin />} />
             <Route path="admin/cadastrar-guia" element={<RegisterGuide />} />
-            <Route
-              path="admin/atualizar-guia"
-              element={<UpdateGuide />}
-            />
+            <Route path="admin/atualizar-guia" element={<UpdateGuide />} />
             <Route
               path="admin/cadastrar-categoria"
               element={<RegisterCategory />}
