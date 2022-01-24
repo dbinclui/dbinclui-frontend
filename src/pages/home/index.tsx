@@ -85,10 +85,7 @@ export const Home: React.FC<HomeProps> = (): JSX.Element => {
           <Grid item md={12}>
             <Grid container justifyContent={'center'}>
               {loading ? (
-                <>
-                  <CircularProgress />
-                  <p>Olá </p>
-                </>
+                <CircularProgress color="secondary" />
               ) : error ? (
                 <AccessibilityTypography variant="h1" className="error">
                   Desculpe, ocorreu um erro ao carregar a página!
