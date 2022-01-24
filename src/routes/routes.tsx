@@ -9,6 +9,7 @@ import Layout from '@pages/layout';
 import Admin from '@pages/admin';
 import RegisterCategory from '@pages/register-category';
 import RegisterDigitalContent from '@pages/register-digital-content';
+import GuideList from '@pages/guide-list';
 
 export interface RoutersProps {}
 
@@ -22,6 +23,7 @@ export const Routers: React.FC<RoutersProps> = (): JSX.Element => {
             <Route path="guia-acessibilidade" element={<AcessibilityGuide />} />
             <Route path="guia-cultura-surda" element={<DeafCultureGuide />} />
             <Route path="admin" element={<Admin />} />
+            <Route path="admin/listar-guias" element={<GuideList/>} />
             <Route path="admin/cadastrar-guia" element={<RegisterGuide />} />
             <Route
               path="admin/cadastrar-categoria"
