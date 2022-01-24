@@ -94,7 +94,7 @@ export const Home: React.FC<HomeProps> = (): JSX.Element => {
                 cards.map((item, key) => (
                   <CardHome
                     title={item.title}
-                    path={item.title.toLowerCase().replace(/[- ]+/g, '-')}
+                    path={item._id!}
                     key={key}
                     tabIndex={key}
                   />
