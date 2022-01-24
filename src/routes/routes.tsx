@@ -9,6 +9,7 @@ import Layout from '@pages/layout';
 import Admin from '@pages/admin';
 import RegisterCategory from '@pages/register-category';
 import RegisterDigitalContent from '@pages/register-digital-content';
+import GuidePage from '@pages/guide-page';
 
 export interface RoutersProps {}
 
@@ -31,6 +32,7 @@ export const Routers: React.FC<RoutersProps> = (): JSX.Element => {
               path="admin/cadastrar-conteudo-digital"
               element={<RegisterDigitalContent />}
             />
+            <Route path="testeGuide" element={<GuidePage />} />
             <Route path="*" element={<Error />} />
           </Route>
         </Routes>

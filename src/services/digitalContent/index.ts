@@ -18,6 +18,16 @@ export interface CardDigitalContentBody {
   filePaths?: File[];
 }
 
+export interface CardDigitalContentResponse {
+  _id?: string;
+  guide: string;
+  category?: string;
+  title: string;
+  shortDescription: string;
+  filePaths: string[];
+}
+
+
 export const getCategoriesByGuide = async (id: string) => {
   try {
     return api.get<{ data: CardCategoryResponse[] }>(
