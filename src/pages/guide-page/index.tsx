@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import CategorySection from './category-section';
-import { CategoryContent } from '@services/categories';
 import { GuideContent } from '@services/guides';
 import { useLocation } from 'react-router-dom';
 import { getGuideWithCategoriesAndContent } from '@services/guides';
