@@ -84,8 +84,6 @@ export const CategoriesList: React.FC<
           columns={columns}
           pageSize={5}
           rowsPerPageOptions={[5]}
-          checkboxSelection
-          disableSelectionOnClick
           sx={styles.table}
         />
       </div>
