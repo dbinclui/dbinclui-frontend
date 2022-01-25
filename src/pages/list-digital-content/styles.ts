@@ -1,6 +1,6 @@
 import { Theme, SxProps } from '@mui/material';
 
-const headerTitle: SxProps<Theme> = {
+const listTitle: SxProps<Theme> = {
   color: (theme) => theme.palette.text.primary,
   fontSize: '1.3rem',
   fontWeight: 'bold',
@@ -8,16 +8,27 @@ const headerTitle: SxProps<Theme> = {
   padding: '2rem 0',
 };
 
-const dataGrid: SxProps<Theme> = {
-  height: 400,
-  width: '50%',
+const table: SxProps<Theme> = {
+  backgroundColor: (theme) => theme.palette.background.paper,
+  color: (theme) => theme.palette.text.disabled,
+  borderColor: (theme) => theme.palette.secondary.contrastText,
+  borderRadius: '1.5rem',
+  border: 'ButtonHighlight',
+  width: '1000px',
+  mt: '25px',
+  ml: 'auto',
+  mr: 'auto',
+  pl: '15px',
+  pr: '15px',
 };
 
 const buttonWrapper: SxProps<Theme> = {
   display: 'flex',
   alignItems: 'center',
   justifyContent: 'center',
-  mb: '0.5rem',
+  mt: '2rem',
+  ml: '-3rem',
+  mr: '5rem',
 };
 
 const button: SxProps<Theme> = {
@@ -30,8 +41,8 @@ const button: SxProps<Theme> = {
 };
 
 const styles = {
-  headerTitle,
-  dataGrid,
+  listTitle,
+  table,
   buttonWrapper,
   button,
 };
