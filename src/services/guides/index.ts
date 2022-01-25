@@ -9,6 +9,7 @@ export default interface CardGuidesResponse {
 export interface CardBodyInterface {
   title: string;
   content: string;
+  id: string;
 }
 
 export const getGuides = async () => {
@@ -22,6 +23,13 @@ export const getGuides = async () => {
 export const postGuides = async (cardBody: CardBodyInterface) => {
   try {
     return api.post('/guides/register', cardBody);
+  } catch {
+    throw new Error('Serviço não disponível');
+  }
+};
+export const putGuides = async (cardBody: CardBodyInterface) => {
+  try {
+    return api.put('/:id', cardBody);
   } catch {
     throw new Error('Serviço não disponível');
   }

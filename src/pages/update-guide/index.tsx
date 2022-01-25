@@ -2,15 +2,23 @@ import React, { useState, useRef } from 'react';
 import validateInput from './validator';
 import { Button, Box, Grid, InputLabel, InputBase } from '@mui/material';
 import styles from './styles';
-import { postGuides } from '@services/guides';
+import { postGuides, putGuides } from '@services/guides';
 import Notification from '@components/Notification';
 import AccessibilityTypography from '@components/AccessibilityTypography';
 
-export interface UpdateGuideProps {}
+export interface UpdateGuideProps {
+}
+
+export interface UpdateGuideInterface {
+  title: string;
+  content: string;
+  id: string;
+}
 
 export const UpdateGuide: React.FC<UpdateGuideProps> = (): JSX.Element => {
   const title = useRef<HTMLInputElement>();
   const description = useRef<HTMLInputElement>();
+  const id = useRef<HTMLInputElement>();
   const [error, setError] = useState(false);
   const [success, setSuccess] = useState(false);
   const [errorMessage, setErrorMessage] = useState('');
@@ -21,11 +29,12 @@ export const UpdateGuide: React.FC<UpdateGuideProps> = (): JSX.Element => {
     const cardBody = {
       title: title.current?.value || '',
       content: description.current?.value || '',
+      id: id.current?.value || '',
     };
 
     try {
       await validateInput(cardBody);
-      await postGuides(cardBody);
+      await putGuides(cardBody);
       setSuccess(true);
     } catch (error: any) {
       setErrorMessage(error.message);

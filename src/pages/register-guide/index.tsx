@@ -8,7 +8,7 @@ import AccessibilityTypography from '@components/AccessibilityTypography';
 
 
 export interface RegisterGuideProps {
-
+  
 }
 
 export const RegisterGuide: React.FC<RegisterGuideProps> = (): JSX.Element => {
