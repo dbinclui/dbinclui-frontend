@@ -5,17 +5,20 @@ const listTitle: SxProps<Theme> = {
 };
 
 const table: SxProps<Theme> = {
-  color: (theme) => theme.palette.text.primary,
-  width: '1000px',
-  mt: '25px',
-  ml: 'auto',
-  mr: 'auto',
-  pl: '15px',
-  pr: '15px',
-  border: '2px solid',
-  borderRadius: '20px',
-  borderColor: (theme) => theme.palette.secondary.contrastText,
-  background: (theme) => theme.palette.background.paper,
+  'color': (theme) => theme.palette.text.primary,
+  'width': '1000px',
+  'mt': '25px',
+  'ml': 'auto',
+  'mr': 'auto',
+  'pl': '15px',
+  'pr': '15px',
+  'border': '2px solid',
+  'borderRadius': '20px',
+  'borderColor': (theme) => theme.palette.secondary.contrastText,
+  'background': (theme) => theme.palette.background.paper,
+  '@media (max-width:780px)': {
+    width: '70%',
+  },
 };
 
 const buttonWrapper: SxProps<Theme> = {

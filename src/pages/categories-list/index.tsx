@@ -1,58 +1,31 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { DataGrid, GridColDef, GridValueGetterParams } from '@mui/x-data-grid';
-import CardGuidesResponse, { getGuides } from '@services/guides';
 import AccessibilityTypography from '@components/AccessibilityTypography';
 import styles from './styles';
 import { Button, Grid } from '@mui/material';
+import { Link } from 'react-router-dom';
 
 export interface CategoriesListProps {}
 
 export const CategoriesList: React.FC<
   CategoriesListProps
 > = (): JSX.Element => {
-  const [successGetGuides, setSuccessGetGuides] = useState(false);
-  const [errorGetGuides, setErrorGetGuides] = useState(false);
-  const [errorMessageGetGuides, setErrorMessageGetGuides] = useState('');
-  const [guides, setGuides] = useState<CardGuidesResponse[]>([]);
-
-  async function getGuidesService() {
-    try {
-      const response = await getGuides();
-      setGuides(response.data.data);
-      setSuccessGetGuides(true);
-    } catch {
-      setErrorMessageGetGuides('Não foram encontradas as guias');
-      setErrorGetGuides(true);
-    }
-  }
-
-  useEffect(() => {
-    getGuidesService();
-  }, []);
-
   const columns: GridColDef[] = [
     {
-      field: 'firstName',
+      field: 'guide',
       headerName: 'Guia',
       width: 500,
       editable: false,
-
-      valueGetter: (getGuidesService) => {
-        return guides.map((guide) => {
-          return guide.title;
-        });
-      },
     },
     {
-      field: 'lastName',
+      field: 'title',
       headerName: 'Categoria',
       width: 150,
       editable: false,
     },
     {
-      field: 'age',
+      field: 'shortDescription',
       headerName: 'Descrição',
-      type: 'number',
       width: 110,
       editable: false,
     },
@@ -68,9 +41,24 @@ export const CategoriesList: React.FC<
   ];
 
   const rows = [
-    { id: 1, lastName: 'Snow', age: 35 },
-    { id: 2, lastName: 'Lannister', age: 42 },
-    { id: 3, lastName: 'Lannister', age: 45 },
+    {
+      id: 1,
+      guide: 'Guia de Acessibilidade',
+      title: 'Categoria 1',
+      shortDescription: 'Descrição da categoria',
+    },
+    {
+      id: 2,
+      guide: 'Guia de Acessibilidade',
+      title: 'Categoria 2',
+      shortDescription: 'Descrição da categoria',
+    },
+    {
+      id: 3,
+      guide: 'Guia de Acessibilidade',
+      title: 'Categoria 3',
+      shortDescription: 'Descrição da categoria',
+    },
   ];
 
   return (
@@ -82,16 +70,17 @@ export const CategoriesList: React.FC<
         <DataGrid
           rows={rows}
           columns={columns}
-          pageSize={5}
+          hideFooter={true}
+          autoHeight={true}
           rowsPerPageOptions={[5]}
-          checkboxSelection
-          disableSelectionOnClick
           sx={styles.table}
         />
       </div>
       <Grid container justifyContent={'flex-end'} alignItems={'center'}>
         <Grid sx={styles.buttonWrapper}>
           <Button
+            component={Link}
+            to="/admin/cadastrar-guia"
             sx={styles.button}
             variant="contained"
             type="submit"
@@ -102,6 +91,8 @@ export const CategoriesList: React.FC<
         </Grid>
         <Grid item md={2} sx={styles.buttonWrapper}>
           <Button
+            component={Link}
+            to="/admin"
             sx={styles.button}
             variant="contained"
             type="reset"
