@@ -7,11 +7,8 @@ import Layout from '@pages/layout';
 import Admin from '@pages/admin';
 import RegisterCategory from '@pages/register-category';
 import RegisterDigitalContent from '@pages/register-digital-content';
-<<<<<<< HEAD
 import UpdateCategory from '@pages/update-category';
-=======
 import UpdateGuide from '@pages/update-guide';
->>>>>>> 0297cec6d7f79c6bd8a844248de869219acb3b94
 import Guide from '@pages/guides';
 
 export interface RoutersProps {}
