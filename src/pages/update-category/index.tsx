@@ -37,7 +37,7 @@ UpdateCategoryProps
   const [errorMessageGetGuides, setErrorMessageGetGuides] = useState('');
 
   async function getGuidesService() {
-    try {
+    try { 
       const response = await getGuides();
       setGuides(response.data.data);
       setSuccessGetGuides(true);
