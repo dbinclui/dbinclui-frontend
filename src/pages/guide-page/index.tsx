@@ -3,8 +3,8 @@ import CategorySection from './category-section';
 import { GuideContent } from '@services/guides';
 import { useLocation } from 'react-router-dom';
 import { getGuideWithCategoriesAndContent } from '@services/guides';
-// import AccessibilityTypography from '@components/AccessibilityTypography';
-import { Box, Grid, Typography, MobileStepper, Button } from '@mui/material';
+import AccessibilityTypography from '@components/AccessibilityTypography';
+import { Box, Grid, Typography } from '@mui/material';
 import styles from './styles';
 
 export interface GuidePageProps {}
@@ -27,13 +27,6 @@ export const GuidePage: React.FC<GuidePageProps> = (): JSX.Element => {
     !guide && getGuide();
   }, [id, guide]);
 
-  const stepper = [
-    {
-      title: guide?.digitalContents[0].title,
-      image: guide?.digitalContents[0].filePaths[0],
-    },
-  ];
-
   return (
     <Grid container component="main">
       {/* Indíce */}
@@ -52,18 +45,6 @@ export const GuidePage: React.FC<GuidePageProps> = (): JSX.Element => {
           <Typography component="h2" sx={styles.guideContent}>
             {guide?.content}
           </Typography>
-          <MobileStepper
-            variant="text"
-            steps={stepper.length}
-            position="static"
-            activeStep={0}
-            nextButton={
-              <Button></Button>
-            }
-            backButton={
-              <Button></Button>
-            }
-          />
         </Box>
 
         {guide?.categories.map((category, index) => {
