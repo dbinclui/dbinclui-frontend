@@ -13,9 +13,7 @@ export const CategorySection: React.FC<
 > = (): JSX.Element => {
   return (
     <>
-      <Box component="section" width={"100%"} sx={styles.content}>
-          
-      </Box>
+      <Box component="section" width={'100%'} sx={styles.content}></Box>
     </>
   );
 };
