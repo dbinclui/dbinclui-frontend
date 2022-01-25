@@ -7,6 +7,7 @@ import Layout from '@pages/layout';
 import Admin from '@pages/admin';
 import RegisterCategory from '@pages/register-category';
 import RegisterDigitalContent from '@pages/register-digital-content';
+import UpdateCategory from '@pages/update-category';
 import UpdateGuide from '@pages/update-guide';
 import Guide from '@pages/guides';
 
@@ -26,6 +27,10 @@ export const Routers: React.FC<RoutersProps> = (): JSX.Element => {
             <Route
               path="admin/cadastrar-categoria"
               element={<RegisterCategory />}
+            />
+            <Route
+              path="admin/atualizar-categoria"
+              element={<UpdateCategory />}
             />
             <Route
               path="admin/cadastrar-conteudo-digital"
