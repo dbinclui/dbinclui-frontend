@@ -1,8 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import CategorySection from './category-section';
-import { GuideContent } from '@services/guides';
+import ImageCarroussel from '@components/ImageCarroussel';
+import {
+  GuideContent,
+  getGuideWithCategoriesAndContent,
+} from '@services/guides';
 import { useLocation } from 'react-router-dom';
-import { getGuideWithCategoriesAndContent } from '@services/guides';
 import AccessibilityTypography from '@components/AccessibilityTypography';
 import { Box, Grid, Typography } from '@mui/material';
 import styles from './styles';
