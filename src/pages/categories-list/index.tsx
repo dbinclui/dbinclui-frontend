@@ -1,6 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { DataGrid, GridColDef, GridValueGetterParams } from '@mui/x-data-grid';
 import CardGuidesResponse, { getGuides } from '@services/guides';
+import AccessibilityTypography from '@components/AccessibilityTypography';
+import styles from './styles';
+import { Button, Grid } from '@mui/material';
 
 export interface CategoriesListProps {}
 
@@ -72,6 +75,9 @@ export const CategoriesList: React.FC<
 
   return (
     <>
+      <AccessibilityTypography sx={styles.listTitle}>
+        LISTAGEM DE CATEGORIAS
+      </AccessibilityTypography>
       <div style={{ height: 400, width: '100%' }}>
         <DataGrid
           rows={rows}
@@ -80,8 +86,33 @@ export const CategoriesList: React.FC<
           rowsPerPageOptions={[5]}
           checkboxSelection
           disableSelectionOnClick
+          sx={styles.table}
         />
       </div>
+      <Grid container justifyContent={'flex-end'} alignItems={'center'}>
+        <Grid sx={styles.buttonWrapper}>
+          <Button
+            sx={styles.button}
+            variant="contained"
+            type="submit"
+            role="button"
+          >
+            Novo
+          </Button>
+        </Grid>
+        <Grid item md={2} sx={styles.buttonWrapper}>
+          <Button
+            sx={styles.button}
+            variant="contained"
+            type="reset"
+            role="button"
+            data-testid="back"
+            href="/admin"
+          >
+            Voltar
+          </Button>
+        </Grid>
+      </Grid>
     </>
   );
 };
