@@ -1,3 +1,4 @@
+import { CardDigitalContentResponse } from '@services/digitalContent';
 import api from '../api';
 
 export interface Guides {
@@ -7,6 +8,10 @@ export interface Guides {
   categories?: CardCategoriesResponse[];
 }
 
+export interface CategoryContent extends CardCategoriesResponse {
+  digitalContents: CardDigitalContentResponse[]
+}
+
 export interface CardCategoriesResponse {
   _id?: number;
   title: string;
@@ -14,8 +19,8 @@ export interface CardCategoriesResponse {
   guide: Guides;
   parentCategory?: CardCategoriesResponse;
 }
-export interface CardBodyInterface {
-  
+
+export interface CardBodyInterface {  
   title: string;
   shortDescription: string;
   guide: Guides["_id"];
