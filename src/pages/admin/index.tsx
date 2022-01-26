@@ -64,7 +64,7 @@ export const Admin: React.FC<AdminProps> = (): JSX.Element => {
                 navigate('listar-categorias');
               }}
             >
-              Cadastro de Categorias
+              Administrar Categorias
             </Button>
           </Box>
 

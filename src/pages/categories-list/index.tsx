@@ -2,7 +2,7 @@ import React from 'react';
 import { DataGrid, GridColDef } from '@mui/x-data-grid';
 import AccessibilityTypography from '@components/AccessibilityTypography';
 import styles from './styles';
-import { Box, Button, Grid } from '@mui/material';
+import { Box, Button } from '@mui/material';
 import { Link } from 'react-router-dom';
 
 export interface CategoriesListProps {}
@@ -41,7 +41,12 @@ export const CategoriesList: React.FC<
 
         return (
           <>
-            <Button sx={styles.buttonTable} onClick={onClick}>
+            <Button
+              component={Link}
+              to="/admin/atualizar-categoria"
+              sx={styles.buttonTable}
+              onClick={onClick}
+            >
               Editar
             </Button>
             <Button sx={styles.buttonTable} onClick={onClick}>
@@ -112,7 +117,7 @@ export const CategoriesList: React.FC<
       <Box sx={styles.boxButton}>
         <Button
           component={Link}
-          to="/admin/cadastrar-guia"
+          to="/admin/cadastrar-categoria"
           sx={styles.button}
           variant="contained"
           type="submit"
