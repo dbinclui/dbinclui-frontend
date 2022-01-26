@@ -18,6 +18,15 @@ export interface CardDigitalContentBody {
   filePaths?: File[];
 }
 
+export interface CardDigitalContentResponse {
+  _id?: string;
+  guide: string;
+  category?: string;
+  title: string;
+  shortDescription: string;
+  filePaths: string[];
+}
+
 export const getCategoriesByGuide = async (id: string) => {
   try {
     return api.get<{ data: CardCategoryResponse[] }>(
@@ -31,11 +40,13 @@ export const getCategoriesByGuide = async (id: string) => {
 export const postDigitalContent = async (cardBody: FormData) => {
   try {
     return api.post<{ data: CardDigitalContentBody[] }>(
-      `/digital-contents/register`, cardBody, {
+      `/digital-contents/register`,
+      cardBody,
+      {
         headers: {
-          'Content-Type': 'multipart/form-data'
-        }
-      }
+          'Content-Type': 'multipart/form-data',
+        },
+      },
     );
   } catch {
     throw new Error('Serviço não disponível');

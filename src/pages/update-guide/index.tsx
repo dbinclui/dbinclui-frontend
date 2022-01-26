@@ -6,9 +6,9 @@ import { postGuides } from '@services/guides';
 import Notification from '@components/Notification';
 import AccessibilityTypography from '@components/AccessibilityTypography';
 
-export interface RegisterGuideProps {}
+export interface UpdateGuideProps {}
 
-export const RegisterGuide: React.FC<RegisterGuideProps> = (): JSX.Element => {
+export const UpdateGuide: React.FC<UpdateGuideProps> = (): JSX.Element => {
   const title = useRef<HTMLInputElement>();
   const description = useRef<HTMLInputElement>();
   const [error, setError] = useState(false);
@@ -47,7 +47,7 @@ export const RegisterGuide: React.FC<RegisterGuideProps> = (): JSX.Element => {
         <Grid item md={6} component="section">
           <Box sx={styles.header} component="header">
             <AccessibilityTypography sx={styles.headerTitle}>
-              CADASTRO DE GUIA
+              ATUALIZAR GUIA
             </AccessibilityTypography>
           </Box>
           <Box padding={'1rem 3rem'} sx={styles.content} component="section">
@@ -111,7 +111,7 @@ export const RegisterGuide: React.FC<RegisterGuideProps> = (): JSX.Element => {
                     type="submit"
                     role="button"
                   >
-                    Salvar
+                    Atualizar
                   </Button>
                 </Grid>
                 <Grid item md={6} sx={styles.buttonWrapper}>
@@ -158,4 +158,4 @@ export const RegisterGuide: React.FC<RegisterGuideProps> = (): JSX.Element => {
   );
 };
 
-export default RegisterGuide;
+export default UpdateGuide;

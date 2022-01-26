@@ -1,6 +1,11 @@
 import React from 'react';
 import { RegisterDigitalContent } from '@pages/register-digital-content';
-import { getByLabelText, render, screen, waitFor } from '@testing-library/react';
+import {
+  getByLabelText,
+  render,
+  screen,
+  waitFor,
+} from '@testing-library/react';
 import '@testing-library/jest-dom';
 import { fireEvent } from '@testing-library/dom';
 import validateInput, { InputInterfaceProps } from './validator';
@@ -87,8 +92,7 @@ describe('Página de cadastro de categorias', () => {
   //       data: dataMockMenuItem2,
   //     },
   //   } as unknown as AxiosResponse<{ data: CardGuidesResponse[] }>);
-    
-    
+
   //   const dataMockMenuItem = [
   //     {
   //       _id: 1,
@@ -104,7 +108,6 @@ describe('Página de cadastro de categorias', () => {
   //   getCategoryServiceMock.mockImplementation(() => {
   //     throw throwError;
   //   })
-    
 
   //   const labelText = 'select';
   //   const guideSelect = await screen.findAllByRole(labelText);
@@ -115,7 +118,6 @@ describe('Página de cadastro de categorias', () => {
   //   const guideSelected = screen.getByText(titleText);
 
   //   fireEvent.click(guideSelected);
-    
 
   //   await waitFor(() => {
   //     expect(getCategoryServiceMock).toBeCalled();
@@ -241,7 +243,7 @@ describe('Página de cadastro de categorias', () => {
   //       content: 'content 2',
   //     },
   //   ];
-    
+
   //   act(() => {
   //     render(<RegisterDigitalContent />);
 
