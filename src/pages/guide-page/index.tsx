@@ -35,7 +35,9 @@ export const GuidePage: React.FC<GuidePageProps> = (): JSX.Element => {
   return (
     <Grid container component="main">
       {/* Indíce */}
-      <AccessibilityTypography sx={styles.indexFirst}>Categorias:</AccessibilityTypography>
+      <AccessibilityTypography sx={styles.indexFirst}>
+        Categorias:
+      </AccessibilityTypography>
       <Grid item md={4} sx={styles.indexWrapper}>
         {guide?.categories.map((category, index) => {
           return (
@@ -44,14 +46,13 @@ export const GuidePage: React.FC<GuidePageProps> = (): JSX.Element => {
                 component="aside"
                 sx={styles.index}
                 onClick={() => {
-                  const scroll_to = document.getElementById(`${category._id}`);
-                  scroll_to?.scrollIntoView();
+                  const scrollTo = document.getElementById(`${category._id}`);
+                  scrollTo?.scrollIntoView();
                 }}
-              > 
-              <AccessibilityTypography>
-              {`•  ${category.title}`}
-              </AccessibilityTypography>
-                
+              >
+                <AccessibilityTypography>
+                  {`•  ${category.title}`}
+                </AccessibilityTypography>
               </Link>
             </Grid>
           );
@@ -63,7 +64,11 @@ export const GuidePage: React.FC<GuidePageProps> = (): JSX.Element => {
           <Typography component="h1" sx={styles.guideTitle}>
             {guide?.title}
           </Typography>
-          <AccessibilityTypography component="h2" sx={styles.guideContent} id={guide?._id}>
+          <AccessibilityTypography
+            component="h2"
+            sx={styles.guideContent}
+            id={guide?._id}
+          >
             {guide?.content}
           </AccessibilityTypography>
 
