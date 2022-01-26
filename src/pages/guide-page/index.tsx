@@ -6,7 +6,6 @@ import {
   getGuideWithCategoriesAndContent,
 } from '@services/guides';
 import { useLocation } from 'react-router-dom';
-import AccessibilityTypography from '@components/AccessibilityTypography';
 import { Box, Grid, Typography } from '@mui/material';
 import styles from './styles';
 
@@ -48,6 +47,14 @@ export const GuidePage: React.FC<GuidePageProps> = (): JSX.Element => {
           <Typography component="h2" sx={styles.guideContent}>
             {guide?.content}
           </Typography>
+
+          {guide?.digitalContents && !!guide?.digitalContents.length && (
+            <ImageCarroussel
+              contents={guide?.digitalContents}
+              height="40rem"
+              width="40rem"
+            />
+          )}
         </Box>
 
         {guide?.categories.map((category, index) => {
