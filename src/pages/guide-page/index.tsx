@@ -6,8 +6,9 @@ import {
   getGuideWithCategoriesAndContent,
 } from '@services/guides';
 import { useLocation } from 'react-router-dom';
-import { Box, Grid, Typography } from '@mui/material';
+import { Box, Grid, Typography, Button } from '@mui/material';
 import styles from './styles';
+import AccessibilityTypography from '@components/AccessibilityTypography';
 
 export interface GuidePageProps {}
 
@@ -29,40 +30,59 @@ export const GuidePage: React.FC<GuidePageProps> = (): JSX.Element => {
     !guide && getGuide();
   }, [id, guide]);
 
+  console.log(guide);
+
   return (
     <Grid container component="main">
       {/* Indíce */}
+      <Typography sx={styles.indexFirst}>
+        Índice
+      </Typography>
       <Grid item md={4} sx={styles.indexWrapper}>
-        <Box component="aside" sx={styles.index}>
-          Indice
-        </Box>
+        {guide?.categories.map((category, index) => {
+          return (
+            <Grid item md={4} sx={styles.buttonWrapper} key={category._id}>
+              <Button
+                component="aside"
+                sx={styles.index}
+                onClick={() => {
+                  const scroll_to = document.getElementById(`${category._id}`);
+                  scroll_to?.scrollIntoView();
+                }}
+              >
+                {`•  ${category.title}`}
+              </Button>
+            </Grid>
+          );
+        })}
       </Grid>
-
       {/* Conteúdo */}
       <Grid item md={8} width={'100%'}>
         <Box component="header" sx={styles.header}>
           <Typography component="h1" sx={styles.guideTitle}>
             {guide?.title}
           </Typography>
-          <Typography component="h2" sx={styles.guideContent}>
+          <AccessibilityTypography component="h2" sx={styles.guideContent}>
             {guide?.content}
-          </Typography>
+          </AccessibilityTypography>
 
           {guide?.digitalContents && !!guide?.digitalContents.length && (
-            <ImageCarroussel
-              contents={guide?.digitalContents}
-              height="40rem"
-              width="40rem"
-            />
+            <Box sx={styles.digitalContent}>
+              <ImageCarroussel
+                contents={guide?.digitalContents}
+                height="20rem"
+                width="100%"
+              />
+            </Box>
           )}
         </Box>
 
         {guide?.categories.map((category, index) => {
           return (
             <CategorySection
-              index={index}
               category={category}
               key={category._id}
+              index={`#${index}`}
             />
           );
         })}

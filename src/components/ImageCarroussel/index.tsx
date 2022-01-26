@@ -3,6 +3,7 @@ import { Box, Button, MobileStepper, Paper, Typography } from '@mui/material';
 import SwipeableViews from 'react-swipeable-views';
 import styles from './styles';
 import { KeyboardArrowLeft, KeyboardArrowRight } from '@mui/icons-material';
+import AccessibilityTypography from '@components/AccessibilityTypography';
 
 interface Content {
   title: string;
@@ -67,12 +68,12 @@ export const ImageCarroussel: React.FC<ImageCarrousselProps> = ({
           {contents[arrayOfContents[currentIndex]?.digitalContentIndex]?.title}
         </Typography>
 
-        <Typography sx={styles.description}>
+        <AccessibilityTypography sx={styles.description}>
           {
             contents[arrayOfContents[currentIndex]?.digitalContentIndex]
               ?.shortDescription
           }
-        </Typography>
+        </AccessibilityTypography>
       </Paper>
 
       <SwipeableViews index={currentIndex} enableMouseEvents>
@@ -113,6 +114,7 @@ export const ImageCarroussel: React.FC<ImageCarrousselProps> = ({
             size="small"
             onClick={handleNext}
             disabled={currentIndex === arrayOfContents.length - 1}
+            sx={styles.nextButton}
           >
             Próximo
             <KeyboardArrowRight />
@@ -123,9 +125,10 @@ export const ImageCarroussel: React.FC<ImageCarrousselProps> = ({
             size="small"
             onClick={handleBack}
             disabled={currentIndex === 0}
+            sx={styles.nextButton}
           >
-            Anterior
             <KeyboardArrowLeft />
+            Anterior
           </Button>
         }
       />

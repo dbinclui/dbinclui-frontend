@@ -15,32 +15,35 @@ const headerContainer: SxProps<Theme> = {
 
   padding: '0.75rem 0.2rem',
 
-  background: (theme) => theme.palette.text.primary,
+  background: (theme) => theme.palette.background.paper,
 
-  color: (theme) => theme.palette.background.paper,
+  color: (theme) => theme.palette.text.primary,
 
-  borderTopLeftRadius: '5px',
-  borderTopRightRadius: '5px',
+  borderTopLeftRadius: '15px',
+  borderTopRightRadius: '15px',
 };
 
 const title: SxProps<Theme> = {
-  fontSize: '1.2rem',
+  fontSize: '1.4rem',
   fontWeight: 600,
 };
 
 const description: SxProps<Theme> = {
-  fontSize: '1.2rem',
+  fontSize: '1rem',
   fontWeight: 400,
+  textAlign: 'center',
+  m: '1rem',
 };
 
 const imageWrapper: SxProps<Theme> = {
   display: 'flex',
   justifyContent: 'center',
   alignItems: 'center',
+  pb: '1rem',
 
   overflow: 'hidden',
 
-  background: '#4d4d4d',
+  background: (theme) => theme.palette.background.paper,
 };
 
 const image: SxProps<Theme> = {
@@ -57,12 +60,18 @@ const stepper: SxProps<Theme> = {
   minHeight: '3rem',
   overflow: 'hidden',
 
-  background: (theme) => theme.palette.text.primary,
+  background: (theme) => theme.palette.background.paper,
 
-  color: (theme) => theme.palette.background.paper,
+  color: (theme) => theme.palette.text.primary,
 
-  borderBottomLeftRadius: '5px',
-  borderBottomRightRadius: '5px',
+  borderBottomLeftRadius: '15px',
+  borderBottomRightRadius: '15px',
+
+  mb: '3rem',
+};
+
+const nextButton: SxProps<Theme> = {
+  color: (theme) => theme.palette.text.primary,
 };
 
 const styles = {
@@ -73,6 +82,7 @@ const styles = {
   imageWrapper,
   image,
   stepper,
+  nextButton
 };
 
 export default styles;

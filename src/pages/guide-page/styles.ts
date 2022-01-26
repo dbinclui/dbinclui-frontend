@@ -1,4 +1,5 @@
 import { Theme, SxProps } from '@mui/material';
+import { fontWeight } from '@mui/system';
 
 const indexWrapper: SxProps<Theme> = {
   alignItems: 'center',
@@ -7,25 +8,46 @@ const indexWrapper: SxProps<Theme> = {
   minHeight: '4rem',
 };
 
+const buttonWrapper: SxProps<Theme> = {
+  alignItems: 'center',
+  justifyContent: 'center',
+  minHeight: '2rem',
+};
+
 const index: SxProps<Theme> = {
   position: 'fixed',
-  background: (theme) => theme.palette.background.paper,
+  color: (theme) => theme.palette.text.primary,
+  mb: '2rem',
+};
+
+const indexFirst: SxProps<Theme> = {
+  position: 'fixed',
+  color: (theme) => theme.palette.text.primary,
+  ml: '3rem',
+  fontWeight: 'bold',
 };
 
 const header: SxProps<Theme> = {
   flexDirection: 'column',
   width: '100%',
-  //background: (theme) => theme.palette.background.paper,
 };
 
 const guideTitle: SxProps<Theme> = {
   fontSize: '2rem',
   fontWeight: 'bold',
-  mb: '1rem'
+  mb: '1rem',
 };
 
 const guideContent: SxProps<Theme> = {
-  fontSize: '1.12rem',
+  fontSize: '1.14rem',
+  width: '70%',
+  mb: '3rem'
+};
+
+const digitalContent: SxProps<Theme> = {
+  fontSize: '1.14rem',
+  width: '70%',
+  mb: '1rem'
 };
 
 const styles = {
@@ -33,7 +55,10 @@ const styles = {
   index,
   header,
   guideTitle,
-  guideContent
+  guideContent,
+  digitalContent,
+  buttonWrapper,
+  indexFirst
 };
 
 export default styles;

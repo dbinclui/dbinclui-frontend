@@ -6,8 +6,22 @@ const content: SxProps<Theme> = {
   background: (theme) => theme.palette.background.paper,
 };
 
+const categoryTitle: SxProps<Theme> = {
+  fontSize: '1.6rem',
+  fontWeight: 'bold',
+  mb: '1rem'
+};
+
+const categoryContent: SxProps<Theme> = {
+  fontSize: '1.14rem',
+  mb: '3rem',
+};
+
 const styles = {
   content,
+  categoryTitle,
+  categoryContent,
+
 };
 
 export default styles;
