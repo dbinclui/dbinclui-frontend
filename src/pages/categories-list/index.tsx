@@ -1,8 +1,8 @@
 import React from 'react';
-import { DataGrid, GridColDef, GridValueGetterParams } from '@mui/x-data-grid';
+import { DataGrid, GridColDef } from '@mui/x-data-grid';
 import AccessibilityTypography from '@components/AccessibilityTypography';
 import styles from './styles';
-import { Button, Grid } from '@mui/material';
+import { Box, Button, Grid } from '@mui/material';
 import { Link } from 'react-router-dom';
 
 export interface CategoriesListProps {}
@@ -14,29 +14,42 @@ export const CategoriesList: React.FC<
     {
       field: 'guide',
       headerName: 'Guia',
-      width: 500,
+      width: 300,
       editable: false,
     },
     {
       field: 'title',
       headerName: 'Categoria',
-      width: 150,
+      width: 200,
       editable: false,
     },
     {
       field: 'shortDescription',
       headerName: 'Descrição',
-      width: 110,
+      width: 300,
       editable: false,
     },
     {
-      field: 'fullName',
+      field: 'action',
       headerName: 'Ação',
-      description: 'This column has a value getter and is not sortable.',
-      sortable: false,
       width: 160,
-      valueGetter: (params: GridValueGetterParams) =>
-        `${params.row.firstName || ''} ${params.row.lastName || ''}`,
+      sortable: false,
+      renderCell: () => {
+        const onClick = (e: { stopPropagation: () => void }) => {
+          e.stopPropagation();
+        };
+
+        return (
+          <>
+            <Button sx={styles.buttonTable} onClick={onClick}>
+              Editar
+            </Button>
+            <Button sx={styles.buttonTable} onClick={onClick}>
+              Excluir
+            </Button>
+          </>
+        );
+      },
     },
   ];
 
@@ -59,6 +72,24 @@ export const CategoriesList: React.FC<
       title: 'Categoria 3',
       shortDescription: 'Descrição da categoria',
     },
+    {
+      id: 4,
+      guide: 'Guia de Acessibilidade',
+      title: 'Categoria 4',
+      shortDescription: 'Descrição da categoria',
+    },
+    {
+      id: 5,
+      guide: 'Guia de Acessibilidade',
+      title: 'Categoria 5',
+      shortDescription: 'Descrição da categoria',
+    },
+    {
+      id: 6,
+      guide: 'Guia de Acessibilidade',
+      title: 'Categoria 6',
+      shortDescription: 'Descrição da categoria',
+    },
   ];
 
   return (
@@ -66,44 +97,43 @@ export const CategoriesList: React.FC<
       <AccessibilityTypography sx={styles.listTitle}>
         LISTAGEM DE CATEGORIAS
       </AccessibilityTypography>
-      <div style={{ height: 400, width: '100%' }}>
+      <Box style={{ width: '100%' }}>
         <DataGrid
+          data-testid="dataGrid"
+          autoHeight
+          disableExtendRowFullWidth={true}
           rows={rows}
           columns={columns}
-          hideFooter={true}
-          autoHeight={true}
-          rowsPerPageOptions={[5]}
           sx={styles.table}
+          pageSize={10}
+          rowsPerPageOptions={[10]}
         />
-      </div>
-      <Grid container justifyContent={'flex-end'} alignItems={'center'}>
-        <Grid sx={styles.buttonWrapper}>
-          <Button
-            component={Link}
-            to="/admin/cadastrar-guia"
-            sx={styles.button}
-            variant="contained"
-            type="submit"
-            role="button"
-          >
-            Novo
-          </Button>
-        </Grid>
-        <Grid item md={2} sx={styles.buttonWrapper}>
-          <Button
-            component={Link}
-            to="/admin"
-            sx={styles.button}
-            variant="contained"
-            type="reset"
-            role="button"
-            data-testid="back"
-            href="/admin"
-          >
-            Voltar
-          </Button>
-        </Grid>
-      </Grid>
+      </Box>
+      <Box sx={styles.boxButton}>
+        <Button
+          component={Link}
+          to="/admin/cadastrar-guia"
+          sx={styles.button}
+          variant="contained"
+          type="submit"
+          role="button"
+        >
+          Novo
+        </Button>
+
+        <Button
+          component={Link}
+          to="/admin"
+          sx={styles.button}
+          variant="contained"
+          type="reset"
+          role="button"
+          data-testid="back"
+          href="/admin"
+        >
+          Voltar
+        </Button>
+      </Box>
     </>
   );
 };
