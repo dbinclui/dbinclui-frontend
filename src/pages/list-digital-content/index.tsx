@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { DataGrid, GridColDef } from '@mui/x-data-grid';
-import { Button, Grid } from '@mui/material';
+import { Button, Box } from '@mui/material';
 import AccessibilityTypography from '@components/AccessibilityTypography';
 
 import styles from './styles';
@@ -12,10 +12,37 @@ const columns: GridColDef[] = [
   { field: 'guide', headerName: 'Guia', width: 200 },
   { field: 'category', headerName: 'Categoria', width: 200 },
   { field: 'description', headerName: 'Descrição', width: 250 },
-  { field: 'files', headerName: 'Arquivos', width: 200 },
+  {
+    field: 'files',
+    headerName: 'Arquivos',
+    width: 150,
+    renderCell: (params) => <img src={params.value} width={50} height={50} />,
+  },
   {
     field: 'actions',
     headerName: 'Ação',
+    width: 150,
+    renderCell: () => {
+      const onClick = (e: { stopPropagation: () => void }) => {
+        e.stopPropagation();
+      };
+
+      return (
+        <>
+          <Button
+            component={Link}
+            to="/admin/atualizar-categoria"
+            sx={styles.buttonTable}
+            onClick={onClick}
+          >
+            Editar
+          </Button>
+          <Button sx={styles.buttonTable} onClick={onClick}>
+            Excluir
+          </Button>
+        </>
+      );
+    },
   },
 ];
 
@@ -25,7 +52,8 @@ const rows = [
     guide: 'Guia de Acessibilidade',
     category: 'O que é acessibilidade?',
     description: 'Descrição do conteúdo digital',
-    files: '35',
+    files:
+      'http://2.bp.blogspot.com/-u8DXzfyQ2zo/UmVIMwaabUI/AAAAAAAA8j8/_eR_7WpYXrg/s1600/guiavidente.jpg',
     action: 'Editar  Excluir',
   },
   {
@@ -78,42 +106,37 @@ export const ListDigitalContent: React.FC<
       <AccessibilityTypography variant="h2" sx={styles.listTitle}>
         LISTAGEM DE CONTEÚDO DIGITAL
       </AccessibilityTypography>
-      <div style={{ width: '100%' }}>
+      <Box style={{ height: 400, width: '100%' }}>
         <DataGrid
-          hideFooter={true}
-          autoHeight={true}
           rows={rows}
           columns={columns}
           sx={styles.table}
-          rowsPerPageOptions={[10]}
+          pageSize={5}
         />
-      </div>
-      <Grid container justifyContent={'flex-end'} alignItems={'center'}>
-        <Grid item md={3} sx={styles.buttonWrapper}>
-          <Button
-            sx={styles.button}
-            component={Link}
-            to="/admin/cadastrar-conteudo/digital"
-            variant="contained"
-            type="submit"
-            role="button"
-          >
-            Novo
-          </Button>
-        </Grid>
-        <Grid sx={styles.buttonWrapper}>
-          <Button
-            sx={styles.button}
-            component={Link}
-            to="/admin"
-            variant="contained"
-            type="reset"
-            role="button"
-          >
-            Voltar
-          </Button>
-        </Grid>
-      </Grid>
+      </Box>
+      <Box sx={styles.buttonBox}>
+        <Button
+          sx={styles.button}
+          component={Link}
+          to="/admin/cadastrar-conteudo-digital"
+          variant="contained"
+          type="submit"
+          role="button"
+        >
+          Novo
+        </Button>
+
+        <Button
+          sx={styles.button}
+          component={Link}
+          to="/admin"
+          variant="contained"
+          type="reset"
+          role="button"
+        >
+          Voltar
+        </Button>
+      </Box>
     </>
   );
 };
