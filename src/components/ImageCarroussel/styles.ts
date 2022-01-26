@@ -1,9 +1,5 @@
 import { Theme, SxProps } from '@mui/material';
 
-const carrousselContainer: SxProps<Theme> = {
-  // flexGrow: 1,
-};
-
 const headerContainer: SxProps<Theme> = {
   display: 'flex',
   flexDirection: 'column',
@@ -75,14 +71,13 @@ const nextButton: SxProps<Theme> = {
 };
 
 const styles = {
-  carrousselContainer,
   headerContainer,
   title,
   description,
   imageWrapper,
   image,
   stepper,
-  nextButton
+  nextButton,
 };
 
 export default styles;
