@@ -148,7 +148,8 @@ export const CategoriesList: React.FC<
           rows={rows}
           columns={columns}
           sx={styles.table}
-          pageSize={5}
+          pageSize={10}
+          rowsPerPageOptions={[10]}
         />
       </Box>
       <Box sx={styles.boxButton}>
