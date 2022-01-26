@@ -1,6 +1,5 @@
 import React from 'react';
 import { Outlet } from 'react-router-dom';
-import Footer from '@components/Footer';
 import AccessibilityTypography from '@components/AccessibilityTypography';
 import './style.css';
 
@@ -42,7 +41,6 @@ export const About: React.FC<AboutProps> = (): JSX.Element => {
           Sed condimentum nibh feugiat placerat congue.
         </AccessibilityTypography>
       </main>
-      <Footer />
     </>
   );
 };
