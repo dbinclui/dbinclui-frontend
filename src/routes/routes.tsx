@@ -10,6 +10,7 @@ import RegisterDigitalContent from '@pages/register-digital-content';
 import GuidePage from '@pages/guide-page';
 import UpdateCategory from '@pages/update-category';
 import UpdateGuide from '@pages/update-guide';
+import About from '@pages/about';
 
 export interface RoutersProps {}
 
@@ -20,6 +21,7 @@ export const Routers: React.FC<RoutersProps> = (): JSX.Element => {
         <Routes>
           <Route path="/" element={<Layout />}>
             <Route index element={<Home />} />
+            <Route path="sobre" element={<About/>}/>
             <Route path="guia/:title" element={<GuidePage />} />
             <Route path="admin" element={<Admin />} />
             <Route path="admin/cadastrar-guia" element={<RegisterGuide />} />
