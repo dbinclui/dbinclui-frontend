@@ -14,6 +14,7 @@ const buttonWrapper: SxProps<Theme> = {
 };
 
 const index: SxProps<Theme> = {
+  cursor: 'pointer',
   position: 'fixed',
   color: (theme) => theme.palette.text.primary,
   ml: '2rem',
@@ -40,13 +41,13 @@ const guideTitle: SxProps<Theme> = {
 const guideContent: SxProps<Theme> = {
   fontSize: '1.14rem',
   width: '70%',
-  mb: '3rem'
+  mb: '3rem',
 };
 
 const digitalContent: SxProps<Theme> = {
   fontSize: '1.14rem',
   width: '70%',
-  mb: '1rem'
+  mb: '1rem',
 };
 
 const styles = {
@@ -57,7 +58,7 @@ const styles = {
   guideContent,
   digitalContent,
   buttonWrapper,
-  indexFirst
+  indexFirst,
 };
 
 export default styles;
