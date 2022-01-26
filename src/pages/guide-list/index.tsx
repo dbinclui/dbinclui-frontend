@@ -9,70 +9,86 @@ export interface GuideListProps {}
 const rows: GridRowsProp = [
   {
     id: 1,
-    col1: 'Guia de Acessibilidade',
-    col2: 'Descrição para o guia de Acessibilidade',
-    col3: 'Editar   Excluir',
+    title: 'Guia de Acessibilidade',
+    shortDescription: 'Descrição para o guia de Acessibilidade',
   },
   {
     id: 2,
-    col1: 'Boas Práticas para Acessibilidade',
-    col2: 'Descrição para o guia de Boas Práticas para Acessibilidade',
-    col3: 'Editar   Excluir',
+    title: 'Boas Práticas para Acessibilidade',
+    shortDescription:
+      'Descrição para o guia de Boas Práticas para Acessibilidade',
   },
   {
     id: 3,
-    col1: 'Guia de Inclusão Digital',
-    col2: 'Descrição para o guia de Inclusão Digital',
-    col3: 'Editar   Excluir',
+    title: 'Guia de Inclusão Digital',
+    shortDescription: 'Descrição para o guia de Inclusão Digital',
   },
   {
     id: 4,
-    col1: 'Guia de Acessibilidade',
-    col2: 'Descrição para o guia de Acessibilidade',
-    col3: 'Editar   Excluir',
+    title: 'Guia de Acessibilidade',
+    shortDescription: 'Descrição para o guia de Acessibilidade',
   },
   {
     id: 5,
-    col1: 'Guia de Acessibilidade',
-    col2: 'Descrição para o guia de Acessibilidade',
-    col3: 'Editar   Excluir',
+    title: 'Guia de Acessibilidade',
+    shortDescription: 'Descrição para o guia de Acessibilidade',
   },
   {
     id: 6,
-    col1: 'Guia de Acessibilidade',
-    col2: 'Descrição para o guia de Acessibilidade',
-    col3: 'Editar   Excluir',
+    title: 'Guia de Acessibilidade',
+    shortDescription: 'Descrição para o guia de Acessibilidade',
   },
   {
     id: 7,
-    col1: 'Guia de Acessibilidade',
-    col2: 'Descrição para o guia de Acessibilidade',
-    col3: 'Editar   Excluir',
+    title: 'Guia de Acessibilidade',
+    shortDescription: 'Descrição para o guia de Acessibilidade',
   },
   {
     id: 8,
-    col1: 'Guia de Acessibilidade',
-    col2: 'Descrição para o guia de Acessibilidade',
-    col3: 'Editar   Excluir',
+    title: 'Guia de Acessibilidade',
+    shortDescription: 'Descrição para o guia de Acessibilidade',
   },
   {
     id: 9,
-    col1: 'Guia de Acessibilidade',
-    col2: 'Descrição para o guia de Acessibilidade',
-    col3: 'Editar   Excluir',
+    title: 'Guia de Acessibilidade',
+    shortDescription: 'Descrição para o guia de Acessibilidade',
   },
   {
     id: 10,
-    col1: 'Guia de Acessibilidade',
-    col2: 'Descrição para o guia de Acessibilidade',
-    col3: 'Editar   Excluir',
+    title: 'Guia de Acessibilidade',
+    shortDescription: 'Descrição para o guia de Acessibilidade',
   },
 ];
 
 const columns: GridColDef[] = [
-  { field: 'col1', headerName: 'Título', width: 250 },
-  { field: 'col2', headerName: 'Descrição', width: 560 },
-  { field: 'col3', headerName: 'Ação', width: 190 },
+  { field: 'title', headerName: 'Título', width: 250 },
+  { field: 'shortDescription', headerName: 'Descrição', width: 560 },
+  {
+    field: 'action',
+    headerName: 'Ação',
+    width: 190,
+    sortable: false,
+    renderCell: () => {
+      const onClick = (e: { stopPropagation: () => void }) => {
+        e.stopPropagation();
+      };
+      return (
+        <>
+          <Button
+            component={Link}
+            to="/admin/atualizar-guia"
+            sx={styles.buttonTable}
+            onClick={onClick}
+          >
+            Editar
+          </Button>
+          <Button sx={styles.buttonTable} onClick={onClick}>
+            Excluir
+          </Button>
+        </>
+      );
+    },
+  },
 ];
 
 export const GuideList: React.FC<GuideListProps> = (): JSX.Element => {

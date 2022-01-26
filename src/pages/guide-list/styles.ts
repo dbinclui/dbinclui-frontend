@@ -29,10 +29,19 @@ const button: SxProps<Theme> = {
   color: (theme) => theme.palette.text.disabled,
 };
 
+const buttonTable: SxProps<Theme> = {
+  'color': (theme) => theme.palette.text.primary,
+  '&:hover': {
+    border: '1px solid',
+    borderColor: (theme) => theme.palette.primary.dark,
+  },
+};
+
 const styles = {
   listTitle,
   table,
   button,
+  buttonTable,
 };
 
 export default styles;
