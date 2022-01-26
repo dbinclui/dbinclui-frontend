@@ -1,5 +1,4 @@
 import { Theme, SxProps } from '@mui/material';
-import { fontWeight } from '@mui/system';
 
 const indexWrapper: SxProps<Theme> = {
   alignItems: 'center',
@@ -17,13 +16,13 @@ const buttonWrapper: SxProps<Theme> = {
 const index: SxProps<Theme> = {
   position: 'fixed',
   color: (theme) => theme.palette.text.primary,
-  mb: '2rem',
+  ml: '2rem',
 };
 
 const indexFirst: SxProps<Theme> = {
   position: 'fixed',
   color: (theme) => theme.palette.text.primary,
-  ml: '3rem',
+  ml: '4rem',
   fontWeight: 'bold',
 };
 
