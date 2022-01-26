@@ -2,20 +2,23 @@ import { Theme, SxProps } from '@mui/material';
 
 const listTitle: SxProps<Theme> = {
   textAlign: 'center',
+  fontWeight: 'bold',
 };
 
 const table: SxProps<Theme> = {
   'color': (theme) => theme.palette.text.primary,
-  'backgroundColor': (theme) => theme.palette.background.default,
   'width': '1000px',
   'mt': '25px',
   'ml': 'auto',
   'mr': 'auto',
   'pl': '15px',
   'pr': '15px',
-  'borderRadius': '1.5rem',
+  'border': '2px solid',
+  'borderRadius': '20px',
+  'borderColor': (theme) => theme.palette.text.primary,
   '@media (max-width:780px)': {
-    width: '70%',
+    width: '90%',
+    fontSize: '18px',
   },
 };
 

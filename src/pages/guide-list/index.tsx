@@ -1,7 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { DataGrid, GridRowsProp, GridColDef } from '@mui/x-data-grid';
-import { autocompleteClasses, Button, Typography } from '@mui/material';
+import { Button, Box } from '@mui/material';
+import AccessibilityTypography from '@components/AccessibilityTypography';
 import styles from './styles';
 
 export interface GuideListProps {}
@@ -75,6 +76,7 @@ const columns: GridColDef[] = [
       return (
         <>
           <Button
+            data-testid="buttonEdit"
             component={Link}
             to="/admin/atualizar-guia"
             sx={styles.buttonTable}
@@ -94,10 +96,10 @@ const columns: GridColDef[] = [
 export const GuideList: React.FC<GuideListProps> = (): JSX.Element => {
   return (
     <>
-      <Typography variant="h2" sx={styles.listTitle}>
+      <AccessibilityTypography sx={styles.listTitle}>
         LISTAGEM DE GUIAS
-      </Typography>
-      <div style={{ width: '100%' }}>
+      </AccessibilityTypography>
+      <Box style={{ width: '100%' }}>
         <DataGrid
           data-testid="dataGrid"
           autoHeight
@@ -108,7 +110,7 @@ export const GuideList: React.FC<GuideListProps> = (): JSX.Element => {
           pageSize={10}
           rowsPerPageOptions={[10]}
         />
-        <div
+        <Box
           style={{
             display: 'flex',
             justifyContent: 'center',
@@ -136,8 +138,8 @@ export const GuideList: React.FC<GuideListProps> = (): JSX.Element => {
           >
             Voltar
           </Button>
-        </div>
-      </div>
+        </Box>
+      </Box>
     </>
   );
 };
