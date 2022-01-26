@@ -2,6 +2,7 @@ import { Theme, SxProps } from '@mui/material';
 
 const listTitle: SxProps<Theme> = {
   textAlign: 'center',
+  fontWeight: 'bold',
 };
 
 const table: SxProps<Theme> = {
@@ -14,8 +15,7 @@ const table: SxProps<Theme> = {
   'pr': '15px',
   'border': '2px solid',
   'borderRadius': '20px',
-  'borderColor': (theme) => theme.palette.secondary.contrastText,
-  'background': (theme) => theme.palette.background.paper,
+  'borderColor': (theme) => theme.palette.text.primary,
   '@media (max-width:780px)': {
     width: '90%',
     fontSize: '18px',

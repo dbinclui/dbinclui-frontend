@@ -32,6 +32,7 @@ export const CategoriesList: React.FC<
     {
       field: 'action',
       headerName: 'Ação',
+      headerAlign: 'center',
       width: 160,
       sortable: false,
       renderCell: () => {
