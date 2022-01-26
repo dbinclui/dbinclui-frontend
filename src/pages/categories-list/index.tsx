@@ -42,6 +42,7 @@ export const CategoriesList: React.FC<
         return (
           <>
             <Button
+              data-testid={'button-edit'}
               component={Link}
               to="/admin/atualizar-categoria"
               sx={styles.buttonTable}
@@ -95,6 +96,42 @@ export const CategoriesList: React.FC<
       title: 'Categoria 6',
       shortDescription: 'Descrição da categoria',
     },
+    {
+      id: 7,
+      guide: 'Guia de Acessibilidade',
+      title: 'Categoria 7',
+      shortDescription: 'Descrição da categoria',
+    },
+    {
+      id: 8,
+      guide: 'Guia de Acessibilidade',
+      title: 'Categoria 8',
+      shortDescription: 'Descrição da categoria',
+    },
+    {
+      id: 9,
+      guide: 'Guia de Acessibilidade',
+      title: 'Categoria 9',
+      shortDescription: 'Descrição da categoria',
+    },
+    {
+      id: 10,
+      guide: 'Guia de Acessibilidade',
+      title: 'Categoria 10',
+      shortDescription: 'Descrição da categoria',
+    },
+    {
+      id: 11,
+      guide: 'Guia de Acessibilidade',
+      title: 'Categoria 11',
+      shortDescription: 'Descrição da categoria',
+    },
+    {
+      id: 12,
+      guide: 'Guia de Acessibilidade',
+      title: 'Categoria 12',
+      shortDescription: 'Descrição da categoria',
+    },
   ];
 
   return (
@@ -110,8 +147,7 @@ export const CategoriesList: React.FC<
           rows={rows}
           columns={columns}
           sx={styles.table}
-          pageSize={10}
-          rowsPerPageOptions={[10]}
+          pageSize={5}
         />
       </Box>
       <Box sx={styles.boxButton}>
