@@ -5,19 +5,20 @@ const listTitle: SxProps<Theme> = {
 };
 
 const table: SxProps<Theme> = {
-  'color': 'black',
+  'color': (theme) => theme.palette.text.primary,
+  'backgroundColor': (theme) => theme.palette.background.default,
   'width': '1000px',
   'mt': '25px',
   'ml': 'auto',
   'mr': 'auto',
   'pl': '15px',
   'pr': '15px',
-  'backgroundColor': 'white',
   'borderRadius': '1.5rem',
   '@media (max-width:780px)': {
-    'width': '70%',
+    width: '70%',
   },
 };
+
 const button: SxProps<Theme> = {
   fontWeight: '700',
   padding: '0.5rem 1.5rem',

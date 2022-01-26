@@ -96,8 +96,8 @@ export const GuideList: React.FC<GuideListProps> = (): JSX.Element => {
           style={{
             display: 'flex',
             justifyContent: 'center',
-            margin: "0 auto",
-            marginTop: '20px'
+            margin: '0 auto',
+            marginTop: '20px',
           }}
         >
           <Button
