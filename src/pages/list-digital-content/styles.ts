@@ -1,17 +1,13 @@
 import { Theme, SxProps } from '@mui/material';
 
 const listTitle: SxProps<Theme> = {
-  color: (theme) => theme.palette.text.primary,
-  fontSize: '1.3rem',
-  fontWeight: 'bold',
   textAlign: 'center',
-  padding: '2rem 0',
+  fontWeight: 'bold',
 };
 
 const table: SxProps<Theme> = {
-  'backgroundColor': (theme) => theme.palette.background.paper,
   'color': (theme) => theme.palette.text.primary,
-  'borderColor': (theme) => theme.palette.secondary.contrastText,
+  'borderColor': (theme) => theme.palette.text.primary,
   'borderRadius': '1.5rem',
   'border': '2px solid',
   'width': '1000px',
@@ -20,7 +16,7 @@ const table: SxProps<Theme> = {
   'mr': 'auto',
   'pl': '15px',
   'pr': '15px',
-  'fontSize': '16px',
+
   '@media (max-width:780px)': {
     width: '90%',
     fontSize: '18px',
@@ -53,7 +49,7 @@ const button: SxProps<Theme> = {
   'margin': '30px 80px 30px -40px',
   'textTransform': 'none',
   'fontSize': '1.2rem',
-  'border': '1px solid',
+  'border': '2px solid',
   'borderColor': (theme) => theme.palette.secondary.contrastText,
   'backgroundColor': (theme) => theme.palette.secondary.dark,
   'color': (theme) => theme.palette.text.disabled,

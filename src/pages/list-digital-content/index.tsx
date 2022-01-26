@@ -9,8 +9,8 @@ import styles from './styles';
 export interface DigitalContentInterfaceProps {}
 
 const columns: GridColDef[] = [
-  { field: 'guide', headerName: 'Guia', width: 200 },
-  { field: 'category', headerName: 'Categoria', width: 200 },
+  { field: 'guide', headerName: 'Guia', width: 250 },
+  { field: 'category', headerName: 'Categoria', width: 250 },
   { field: 'description', headerName: 'Descrição', width: 250 },
   {
     field: 'files',
@@ -108,10 +108,14 @@ export const ListDigitalContent: React.FC<
       </AccessibilityTypography>
       <Box style={{ height: 400, width: '100%' }}>
         <DataGrid
+          data-testid="dataGrid"
+          autoHeight
+          disableExtendRowFullWidth={true}
           rows={rows}
           columns={columns}
           sx={styles.table}
-          pageSize={5}
+          pageSize={10}
+          rowsPerPageOptions={[10]}
         />
       </Box>
       <Box sx={styles.buttonBox}>
