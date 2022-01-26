@@ -1,3 +1,4 @@
+import { Directions } from '@mui/icons-material';
 import { Theme, SxProps } from '@mui/material';
 
 const listTitle: SxProps<Theme> = {
@@ -27,8 +28,8 @@ const buttonWrapper: SxProps<Theme> = {
   alignItems: 'center',
   justifyContent: 'center',
   mt: '2rem',
-  ml: '-3rem',
-  mr: '5rem',
+  ml: '0.1rem',
+  mr: '2rem',
 };
 
 const button: SxProps<Theme> = {
@@ -36,6 +37,8 @@ const button: SxProps<Theme> = {
   padding: '0.5rem 1.5rem',
   textTransform: 'none',
   fontSize: '1.2rem',
+  border: '2px solid',
+  borderColor: (theme) => theme.palette.secondary.contrastText,
   backgroundColor: (theme) => theme.palette.secondary.dark,
   color: (theme) => theme.palette.text.disabled,
 };

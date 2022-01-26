@@ -1,5 +1,6 @@
 import React from 'react';
-import { DataGrid } from '@mui/x-data-grid';
+import { Link } from 'react-router-dom';
+import { DataGrid, GridColDef } from '@mui/x-data-grid';
 import { Button, Grid } from '@mui/material';
 import AccessibilityTypography from '@components/AccessibilityTypography';
 
@@ -7,11 +8,11 @@ import styles from './styles';
 
 export interface DigitalContentInterfaceProps {}
 
-const columns = [
-  { field: 'guide', headerName: 'Guia' },
-  { field: 'category', headerName: 'Categoria' },
-  { field: 'description', headerName: 'Descrição' },
-  { field: 'files', headerName: 'Arquivos' },
+const columns: GridColDef[] = [
+  { field: 'guide', headerName: 'Guia', width: 200 },
+  { field: 'category', headerName: 'Categoria', width: 200 },
+  { field: 'description', headerName: 'Descrição', width: 250 },
+  { field: 'files', headerName: 'Arquivos', width: 200 },
   {
     field: 'actions',
     headerName: 'Ação',
@@ -80,35 +81,34 @@ export const ListDigitalContent: React.FC<
       <div style={{ width: '100%' }}>
         <DataGrid
           hideFooter={true}
+          autoHeight={true}
           rows={rows}
           columns={columns}
           sx={styles.table}
-          autoHeight={true}
-          autoPageSize
-          rowsPerPageOptions={[5]}
+          rowsPerPageOptions={[10]}
         />
       </div>
-      <Grid container alignItems={'center'} justifyContent={'flex-end'}>
-        <Grid sx={styles.buttonWrapper}>
+      <Grid container justifyContent={'flex-end'} alignItems={'center'}>
+        <Grid item md={3} sx={styles.buttonWrapper}>
           <Button
             sx={styles.button}
+            component={Link}
+            to="/admin/cadastrar-conteudo/digital"
             variant="contained"
-            type="reset"
+            type="submit"
             role="button"
-            data-testid="back"
-            href="/cadastrar-conteudo-digital"
           >
             Novo
           </Button>
         </Grid>
-        <Grid item md={3} sx={styles.buttonWrapper}>
+        <Grid sx={styles.buttonWrapper}>
           <Button
             sx={styles.button}
+            component={Link}
+            to="/admin"
             variant="contained"
             type="reset"
             role="button"
-            data-testid="back"
-            href="/admin"
           >
             Voltar
           </Button>
