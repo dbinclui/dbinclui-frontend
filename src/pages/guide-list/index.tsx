@@ -110,15 +110,9 @@ export const GuideList: React.FC<GuideListProps> = (): JSX.Element => {
           pageSize={10}
           rowsPerPageOptions={[10]}
         />
-        <Box
-          style={{
-            display: 'flex',
-            justifyContent: 'center',
-            margin: '0 auto',
-            marginTop: '20px',
-          }}
-        >
+        <Box sx={styles.boxButton}>
           <Button
+            data-testid="submit"
             component={Link}
             to="/admin/cadastrar-guia"
             sx={styles.button}
@@ -129,6 +123,7 @@ export const GuideList: React.FC<GuideListProps> = (): JSX.Element => {
             Novo
           </Button>
           <Button
+            data-testid="back"
             component={Link}
             to="/admin"
             sx={styles.button}

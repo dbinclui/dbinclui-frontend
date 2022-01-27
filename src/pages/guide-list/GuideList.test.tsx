@@ -28,4 +28,30 @@ describe('Teste do componente', () => {
     expect(button.getAttribute('to')).toBe('/admin/atualizar-guia');
     fireEvent.click(button);
   });
+
+  test("Deve ler o título da página", () => {
+    render(<GuideList />);
+
+    const title = screen.getByText('LISTAGEM DE GUIAS');
+    expect(title).toBeInTheDocument();
+  });
+
+  test('Botão Novo deve redirecionar para cadastro de guias', () => {
+    render(<GuideList />);
+    const button = screen.getByTestId('submit');
+   
+    fireEvent.click(button);
+   
+    expect(button.getAttribute('to')).toBe('/admin/cadastrar-guia');
+   });
+   
+   
+   test('Botão Voltar deve redirecionar para admin', () => {
+     render(<GuideList />); 
+     const button = screen.getByTestId('back');
+   
+     fireEvent.click(button);
+   
+     expect(button.getAttribute('to')).toBe('/admin');
+   });
 });

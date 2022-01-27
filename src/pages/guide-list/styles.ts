@@ -40,11 +40,19 @@ const buttonTable: SxProps<Theme> = {
   },
 };
 
+const boxButton: SxProps<Theme> = {
+  display: 'flex',
+  justifyContent: 'center',
+  margin: '0 auto',
+  marginTop: '20px',
+};
+
 const styles = {
   listTitle,
   table,
   button,
   buttonTable,
+  boxButton
 };
 
 export default styles;
