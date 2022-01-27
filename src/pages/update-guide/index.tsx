@@ -1,10 +1,11 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import validateInput from './validator';
 import { Button, Box, Grid, InputLabel, InputBase } from '@mui/material';
 import styles from './styles';
 import { postGuides, putGuides } from '@services/guides';
 import Notification from '@components/Notification';
 import AccessibilityTypography from '@components/AccessibilityTypography';
+import { useParams } from 'react-router-dom';
 
 export interface UpdateGuideProps {
 }
@@ -22,6 +23,22 @@ export const UpdateGuide: React.FC<UpdateGuideProps> = (): JSX.Element => {
   const [error, setError] = useState(false);
   const [success, setSuccess] = useState(false);
   const [errorMessage, setErrorMessage] = useState('');
+  const [editar, setEditar] = useState<UpdateGuideInterface>({
+    title: '',
+    content: '',
+    id: '',
+  });
+
+  // const { state_id } = useParams();
+
+  // useEffect
+  const editar(({routeParams}) => {
+    const id = routeParams.UpdateGuideInterface;
+    Meteor.subscribe('id');
+    return {
+        id: id.findOne({id: id}), 
+    };
+}, id);
 
   async function handleSubmit(event: React.FormEvent) {
     event.preventDefault();
@@ -31,6 +48,7 @@ export const UpdateGuide: React.FC<UpdateGuideProps> = (): JSX.Element => {
       content: description.current?.value || '',
       id: id.current?.value || '',
     };
+
 
     try {
       await validateInput(cardBody);
