@@ -15,7 +15,7 @@ describe('Componente de notificação', () => {
     {
       title: 'Conteúdo Digital 2',
       shortDescription: 'Descrição 2',
-      filePaths: ['arquivo2/img.png', 'arquivo2/img.jpeg'],
+      filePaths: ['arquivo2/video.mp4', 'arquivo2/img.jpeg'],
     },
   ];
 
@@ -31,7 +31,7 @@ describe('Componente de notificação', () => {
     },
     {
       digitalContentIndex: 1,
-      filePath: 'arquivo2/img.png',
+      filePath: 'arquivo2/video.mp4',
     },
     {
       digitalContentIndex: 1,
@@ -52,7 +52,9 @@ describe('Componente de notificação', () => {
     const mediaDescription = screen.getByText(
       mockDigitalContents[0].shortDescription,
     );
-    const media = screen.getByAltText(mockDigitalContents[0].shortDescription);
+    const media = screen.getByLabelText(
+      mockDigitalContents[0].shortDescription,
+    );
 
     expect(mediaTitle).toBeVisible();
 
@@ -74,7 +76,9 @@ describe('Componente de notificação', () => {
     const nextButton = screen.getByText('Próximo');
     userEvent.click(nextButton);
 
-    const media = screen.getByAltText(mockDigitalContents[0].shortDescription);
+    const media = screen.getByLabelText(
+      mockDigitalContents[0].shortDescription,
+    );
 
     expect(media).toBeVisible();
     expect(media).toHaveAttribute('src', mockDigitalContents[0].filePaths[1]);
@@ -96,7 +100,9 @@ describe('Componente de notificação', () => {
     const backButton = screen.getByText('Anterior');
     userEvent.click(backButton);
 
-    const media = screen.getByAltText(mockDigitalContents[0].shortDescription);
+    const media = screen.getByLabelText(
+      mockDigitalContents[0].shortDescription,
+    );
 
     expect(media).toBeVisible();
     expect(media).toHaveAttribute('src', mockDigitalContents[0].filePaths[0]);
@@ -145,7 +151,7 @@ describe('Componente de notificação', () => {
     const nextButton = screen.getByText('Próximo');
 
     for (const mediaContent of mockArrayOfContents) {
-      const media = screen.getByAltText(
+      const media = screen.getByLabelText(
         mockDigitalContents[mediaContent.digitalContentIndex].shortDescription,
       );
 

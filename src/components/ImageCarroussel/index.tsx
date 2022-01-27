@@ -95,6 +95,10 @@ export const ImageCarroussel: React.FC<ImageCarrousselProps> = ({
                   contents[arrayOfContents[currentIndex]?.digitalContentIndex]
                     ?.shortDescription
                 }
+                aria-label={
+                  contents[arrayOfContents[currentIndex]?.digitalContentIndex]
+                    ?.shortDescription
+                }
               />
             </Box>
           ) : (
