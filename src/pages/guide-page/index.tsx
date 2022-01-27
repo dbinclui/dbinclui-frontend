@@ -23,22 +23,26 @@ export const GuidePage: React.FC<GuidePageProps> = (): JSX.Element => {
       try {
         const response = await getGuideWithCategoriesAndContent(id);
         setGuide(response.data.data);
-      } catch {
-        throw new Error('Um erro ocorreu!');
+        // console.log(response.data.data);
+      } catch (error) {
+        setGuide(undefined);
       }
     }
+
     !guide && getGuide();
+
+    //console.log(guide);
   }, [id, guide]);
 
-  console.log(guide);
-
-  return (
+  return !guide ? (
+    <Box sx={styles.errorMessage}>Erro na busca do guia!</Box>
+  ) : (
     <Grid container component="main">
       {/* Indíce */}
       <AccessibilityTypography sx={styles.indexFirst}>
         Categorias:
       </AccessibilityTypography>
-      <Grid item md={4} sx={styles.indexWrapper}>
+      <Grid item md={4} sx={styles.indexWrapper} >
         {guide?.categories.map((category, index) => {
           return (
             <Grid item md={4} sx={styles.buttonWrapper} key={category._id}>
@@ -48,9 +52,10 @@ export const GuidePage: React.FC<GuidePageProps> = (): JSX.Element => {
                 onClick={() => {
                   const scrollTo = document.getElementById(`${category._id}`);
                   scrollTo?.scrollIntoView();
+                  console.log(window.scrollY);
                 }}
               >
-                <AccessibilityTypography>
+                <AccessibilityTypography data-testid="IndexTitleTest">
                   {`•  ${category.title}`}
                 </AccessibilityTypography>
               </Link>

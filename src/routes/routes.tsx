@@ -36,7 +36,6 @@ export const Routers: React.FC<RoutersProps> = (): JSX.Element => {
               path="admin/cadastrar-conteudo-digital"
               element={<RegisterDigitalContent />}
             />
-            <Route path="testeGuide" element={<GuidePage />} />
             <Route path="*" element={<Error />} />
           </Route>
         </Routes>

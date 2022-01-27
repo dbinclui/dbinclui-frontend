@@ -50,6 +50,17 @@ const digitalContent: SxProps<Theme> = {
   mb: '1rem',
 };
 
+const errorMessage: SxProps<Theme> = {
+  width: '100%',
+  height: '100%',
+  display: 'flex',
+  flexGrow: '1',
+  justifyContent: 'center',
+  alignItems: 'center',
+  fontWeight: 'bold',
+  fontSize: '3rem'
+};
+
 const styles = {
   indexWrapper,
   index,
@@ -59,6 +70,7 @@ const styles = {
   digitalContent,
   buttonWrapper,
   indexFirst,
+  errorMessage
 };
 
 export default styles;
