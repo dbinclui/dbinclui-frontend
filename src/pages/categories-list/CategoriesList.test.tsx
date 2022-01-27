@@ -3,6 +3,7 @@ import { fireEvent, render, screen } from '@testing-library/react';
 import '@testing-library/jest-dom';
 import { CategoriesList } from './index';
 import '@testing-library/jest-dom/extend-expect';
+import { DataGrid } from '@mui/x-data-grid';
 
 const mockedNavigate = jest.fn();
 jest.mock('react-router-dom', () => {
@@ -29,28 +30,30 @@ describe('Teste do componente', () => {
   });
 
   test('Deve ir para a tela de edição de categoria ao clicar no botão "editar"', () => {
-    render(<CategoriesList />);
+    render(<DataGrid columns={[]} rows={[]} />);
+    const button = screen.getByTestId('edit');
 
-    const button = screen.getByTestId('button-edit');
     fireEvent.click(button);
-    expect(button.getAttribute('href')).toBe('/');
+
+    expect(mockedNavigate).toBeCalled();
+    expect(mockedNavigate).toBeCalledWith('/');
   });
-});
 
-test('Botão Novo deve redirecionar para cadastro de categoria', () => {
-  render(<CategoriesList />);
-  const button = screen.getByTestId('new');
+  test('Botão Novo deve redirecionar para cadastro de categoria', () => {
+    render(<CategoriesList />);
+    const button = screen.getByTestId('new');
 
-  fireEvent.click(button);
+    fireEvent.click(button);
 
-  expect(button.getAttribute('to')).toBe('/admin/cadastrar-categoria');
-});
+    expect(button.getAttribute('to')).toBe('/admin/cadastrar-categoria');
+  });
 
-test('Botão Voltar deve redirecionar para admin', () => {
-  render(<CategoriesList />);
-  const button = screen.getByTestId('back');
+  test('Botão Voltar deve redirecionar para admin', () => {
+    render(<CategoriesList />);
+    const button = screen.getByTestId('back');
 
-  fireEvent.click(button);
+    fireEvent.click(button);
 
-  expect(button.getAttribute('to')).toBe('/admin');
+    expect(button.getAttribute('to')).toBe('/admin');
+  });
 });

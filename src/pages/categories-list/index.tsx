@@ -2,7 +2,7 @@ import React from 'react';
 import { DataGrid, GridColDef, GridColumnHeaderParams } from '@mui/x-data-grid';
 import AccessibilityTypography from '@components/AccessibilityTypography';
 import styles from './styles';
-import { Box, Button, IconButton } from '@mui/material';
+import { Box, Button } from '@mui/material';
 import { Link } from 'react-router-dom';
 import DeleteIcon from '@mui/icons-material/Delete';
 import { CreateSharp } from '@mui/icons-material';
@@ -47,6 +47,7 @@ export const CategoriesList: React.FC<
       renderCell: (params) => (
         <Button
           href={params.value}
+          data-testid="edit"
           startIcon={<CreateSharp />}
           sx={{ color: 'text.primary' }}
         ></Button>
@@ -62,6 +63,7 @@ export const CategoriesList: React.FC<
       renderCell: (params) => (
         <Button
           href={params.value}
+          data-testid="delete"
           startIcon={<DeleteIcon />}
           sx={{ color: 'text.primary' }}
         ></Button>
