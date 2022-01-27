@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { DataGrid, GridColDef } from '@mui/x-data-grid';
+import { DataGrid, GridColDef, GridColumnHeaderParams } from '@mui/x-data-grid';
 import { Button, Box } from '@mui/material';
 import AccessibilityTypography from '@components/AccessibilityTypography';
 
@@ -9,13 +9,31 @@ import styles from './styles';
 export interface DigitalContentInterfaceProps {}
 
 const columns: GridColDef[] = [
-  { field: 'guide', headerName: 'Guia', width: 250 },
-  { field: 'category', headerName: 'Categoria', width: 250 },
-  { field: 'description', headerName: 'Descrição', width: 250 },
+  {
+    field: 'guide',
+    width: 250,
+    renderHeader: (params: GridColumnHeaderParams) => <strong>{'Guia'}</strong>,
+  },
+  {
+    field: 'category',
+    width: 250,
+    renderHeader: (params: GridColumnHeaderParams) => (
+      <strong>{'Categoria'}</strong>
+    ),
+  },
+  {
+    field: 'description',
+    width: 250,
+    renderHeader: (params: GridColumnHeaderParams) => (
+      <strong>{'Descrição'}</strong>
+    ),
+  },
   {
     field: 'files',
-    headerName: 'Arquivos',
     width: 150,
+    renderHeader: (params: GridColumnHeaderParams) => (
+      <strong>{'Arquivos'}</strong>
+    ),
     renderCell: (params) => <img src={params.value} width={60} height={50} />,
   },
   {
@@ -51,7 +69,8 @@ const rows = [
     id: 1,
     guide: 'Guia de Acessibilidade',
     category: 'O que é acessibilidade?',
-    description: 'Descrição do conteúdo digital',
+    description:
+      'Descrição do conteúdo digital dhdfjkdhfsdhfkjsfhskdjfhsdjkfhs',
     files:
       'http://2.bp.blogspot.com/-u8DXzfyQ2zo/UmVIMwaabUI/AAAAAAAA8j8/_eR_7WpYXrg/s1600/guiavidente.jpg',
     action: 'Editar  Excluir',
