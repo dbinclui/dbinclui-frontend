@@ -28,11 +28,11 @@ test('Deve ser possível visualizar a tabela', () => {
 
 test('Botão Novo deve redirecionar para cadastro de conteúdo digital', () => {
  render(<ListDigitalContent />);
- const button = screen.getByTestId('submit');
+ const button = screen.getByTestId('new');
 
  fireEvent.click(button);
  
- expect(button.getAttribute('to')).toBe('/admin/cadastrar-conteudo-digital');
+ expect(button.getAttribute('to')).toBe('/admin/editar-conteudo-digital');
 });
 
 
