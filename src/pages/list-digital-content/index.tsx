@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { DataGrid, GridColDef, GridColumnHeaderParams } from '@mui/x-data-grid';
+import { DataGrid, GridColDef } from '@mui/x-data-grid';
 import { Button, Box } from '@mui/material';
 import AccessibilityTypography from '@components/AccessibilityTypography';
 
@@ -11,53 +11,38 @@ export interface DigitalContentInterfaceProps {}
 const columns: GridColDef[] = [
   {
     field: 'guide',
-    width: 250,
-    renderHeader: (params: GridColumnHeaderParams) => <strong>{'Guia'}</strong>,
+    flex: 300,
+    headerName: 'Guia',
   },
   {
     field: 'category',
-    width: 250,
-    renderHeader: (params: GridColumnHeaderParams) => (
-      <strong>{'Categoria'}</strong>
-    ),
+    flex: 300,
+    headerName: 'Categoria',
   },
   {
     field: 'description',
-    width: 250,
-    renderHeader: (params: GridColumnHeaderParams) => (
-      <strong>{'Descrição'}</strong>
-    ),
+    flex: 300,
+    headerName: 'Descrição',
   },
   {
     field: 'files',
-    width: 150,
-    renderHeader: (params: GridColumnHeaderParams) => (
-      <strong>{'Arquivos'}</strong>
-    ),
-    renderCell: (params) => <img src={params.value} width={60} height={50} />,
+    flex: 100,
+    headerName: 'Arquivos',
   },
   {
     field: 'edit',
-
-    width: 100,
-    renderHeader: (params: GridColumnHeaderParams) => (
-      <strong>{'Edição'}</strong>
-    ),
-    renderCell: (params) => <a href={params.value}>Editar</a>,
+    flex: 100,
+    headerName: 'Edição',
   },
   {
     field: 'delete',
-
-    width: 100,
-    renderHeader: (params: GridColumnHeaderParams) => (
-      <strong>{'Exclusão'}</strong>
-    ),
-    renderCell: (params) => <a href={params.value}>Excluir</a>,
+    flex: 100,
+    headerName: 'Exclusão',
   },
 ];
 
 const rows = [
-  {
+  { 
     id: 1,
     guide: 'Guia de Acessibilidade',
     category: 'O que é acessibilidade?',
@@ -65,8 +50,8 @@ const rows = [
       'Descrição do conteúdo digital dhdfjkdhfsdhfkjsfhskdjfhsdjkfhs',
     files:
       'http://2.bp.blogspot.com/-u8DXzfyQ2zo/UmVIMwaabUI/AAAAAAAA8j8/_eR_7WpYXrg/s1600/guiavidente.jpg',
-    edit: '/admin/editar-conteudo-digital?id=1',
-    delete: '/admin/excluir-conteudo-digital?id=1',
+    edit: 'Editar',
+    delete: 'Excluir',
   },
   {
     id: 2,
@@ -75,8 +60,8 @@ const rows = [
     description: 'Descrição do conteúdo digital',
     files:
       'https://cdn.pixabay.com/photo/2017/05/20/13/10/handicap-parking-2328893_1280.jpg',
-    edit: '/admin/editar-conteudo-digital?id=2',
-    delete: '/admin/excluir-conteudo-digital?id=2',
+    edit: 'Editar',
+    delete: 'Excluir',
   },
   {
     id: 3,
@@ -85,8 +70,8 @@ const rows = [
     description: 'Descrição do conteúdo digital',
     files:
       'https://cdn.pixabay.com/photo/2018/01/17/20/43/wheelchair-3088991_1280.jpg',
-    edit: '/admin/editar-conteudo-digital?id=3',
-    delete: '/admin/excluir-conteudo-digital?id=3',
+    edit: 'Editar',
+    delete: 'Excluir',
   },
   {
     id: 4,
@@ -95,8 +80,8 @@ const rows = [
     description: 'Descrição do conteúdo digital',
     files:
       'http://2.bp.blogspot.com/-u8DXzfyQ2zo/UmVIMwaabUI/AAAAAAAA8j8/_eR_7WpYXrg/s1600/guiavidente.jpg',
-    edit: '/admin/editar-conteudo-digital?id=4',
-    delete: '/admin/excluir-conteudo-digital?id=4',
+    edit: 'Editar',
+    delete: 'Excluir',
   },
   {
     id: 5,
@@ -105,8 +90,8 @@ const rows = [
     description: 'Descrição do conteúdo digital',
     files:
       'https://cdn.pixabay.com/photo/2017/05/20/13/10/handicap-parking-2328893_1280.jpg',
-    edit: '/admin/editar-conteudo-digital?id=5',
-    delete: '/admin/excluir-conteudo-digital?id=5',
+    edit: 'Editar',
+    delete: 'Excluir',
   },
   {
     id: 6,
@@ -115,8 +100,8 @@ const rows = [
     description: 'Descrição do conteúdo digital',
     files:
       'http://2.bp.blogspot.com/-u8DXzfyQ2zo/UmVIMwaabUI/AAAAAAAA8j8/_eR_7WpYXrg/s1600/guiavidente.jpg',
-    edit: '/admin/editar-conteudo-digital?id=6',
-    delete: '/admin/excluir-conteudo-digital?id=6',
+    edit: 'Editar',
+    delete: 'Excluir',
   },
 ];
 
