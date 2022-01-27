@@ -57,7 +57,7 @@ export const ImageCarroussel: React.FC<ImageCarrousselProps> = ({
   }, [contents]);
 
   return (
-    <Box width={width}>
+    <Box width={width} sx={styles.carrousselBox}>
       <Paper
         component="header"
         square

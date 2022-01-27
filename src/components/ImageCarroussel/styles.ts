@@ -1,5 +1,11 @@
 import { Theme, SxProps } from '@mui/material';
 
+const carrousselBox: SxProps<Theme> = {
+  background: (theme) => theme.palette.background.paper,
+  borderRadius: '15px',
+};
+
+
 const headerContainer: SxProps<Theme> = {
   display: 'flex',
   flexDirection: 'column',
@@ -49,6 +55,7 @@ const image: SxProps<Theme> = {
   objectFit: 'contain',
   width: '100%',
   height: '100%',
+  p: '0.00px 1.49px',
 };
 
 const stepper: SxProps<Theme> = {
@@ -78,6 +85,7 @@ const styles = {
   image,
   stepper,
   nextButton,
+  carrousselBox
 };
 
 export default styles;
