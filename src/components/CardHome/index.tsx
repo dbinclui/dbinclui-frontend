@@ -7,12 +7,14 @@ export interface CardHomeProps {
   title: string;
   path: string;
   tabIndex?: number;
+  guideId: string;
 }
 
 export const CardHome: React.FC<CardHomeProps> = ({
   title,
   path,
   tabIndex,
+  guideId,
 }): JSX.Element => (
   <Grid
     item
@@ -21,6 +23,7 @@ export const CardHome: React.FC<CardHomeProps> = ({
     lg={3}
     component={Link}
     to={`guia/${path}`}
+    state={{id: guideId}}
     data-testid={'cardHome'}
     style={{ textDecoration: 'none', color: 'inherit' }}
   >

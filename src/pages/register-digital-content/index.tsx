@@ -47,7 +47,8 @@ export const RegisterDigitalContent: React.FC<
   const [errorMessageGetGuides, setErrorMessageGetGuides] = useState('');
   const [successGetCategories, setSuccessGetCategories] = useState(false);
   const [errorGetCategories, setErrorGetCategories] = useState(true);
-  const [errorMessageGetCategories, setErrorMessageGetCategories] = useState('');
+  const [errorMessageGetCategories, setErrorMessageGetCategories] =
+    useState('');
 
   async function handleSubmit(event: React.FormEvent) {
     event.preventDefault();
@@ -86,7 +87,7 @@ export const RegisterDigitalContent: React.FC<
       setSuccessGetCategories(true);
       setErrorGetCategories(false);
     } catch {
-      setErrorMessageGetCategories('Não foram encontradas as categorias')
+      setErrorMessageGetCategories('Não foram encontradas as categorias');
       setErrorGetCategories(true);
     } finally {
     }
@@ -109,6 +110,8 @@ export const RegisterDigitalContent: React.FC<
     getDigitalContentGuides();
     setErrorMessageGetCategories('Escolha o Guia');
   }, []);
+
+  console.log(categories);
 
   return (
     <Grid container alignItems={'center'} justifyContent={'center'} role="main">
