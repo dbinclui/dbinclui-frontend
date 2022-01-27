@@ -28,29 +28,21 @@ describe('Teste do componente', () => {
     expect(table).toBeInTheDocument();
   });
 
-  test('Deve ir para a tela de edição de categoria ao clicar no botão "editar"', () => {
+  test('Botão Novo deve redirecionar para cadastro de categoria', () => {
     render(<CategoriesList />);
+    const button = screen.getByTestId('new');
 
-    const button = screen.getByTestId('button-edit');
     fireEvent.click(button);
-    expect(button.getAttribute('href')).toBe('/');
+
+    expect(button.getAttribute('to')).toBe('/admin/cadastrar-categoria');
   });
-});
 
-test('Botão Novo deve redirecionar para cadastro de categoria', () => {
-  render(<CategoriesList />);
-  const button = screen.getByTestId('new');
+  test('Botão Voltar deve redirecionar para admin', () => {
+    render(<CategoriesList />);
+    const button = screen.getByTestId('back');
 
-  fireEvent.click(button);
+    fireEvent.click(button);
 
-  expect(button.getAttribute('to')).toBe('/admin/cadastrar-categoria');
-});
-
-test('Botão Voltar deve redirecionar para admin', () => {
-  render(<CategoriesList />);
-  const button = screen.getByTestId('back');
-
-  fireEvent.click(button);
-
-  expect(button.getAttribute('to')).toBe('/admin');
+    expect(button.getAttribute('to')).toBe('/admin');
+  });
 });
