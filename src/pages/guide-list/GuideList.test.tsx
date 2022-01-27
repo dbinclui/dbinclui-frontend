@@ -11,7 +11,7 @@ jest.mock('react-router-dom', () => {
   };
 });
 
-describe('Teste do componente', () => {
+describe('Teste da página de listagens de guias', () => {
   test('Deve renderizar a tabela com as guias', () => {
     render(<GuideList />);
 
@@ -19,17 +19,7 @@ describe('Teste do componente', () => {
     expect(table).toBeInTheDocument();
   });
 
-  test('Deve ir para a tela de edição de guia ao clicar no botão "editar"', () => {
-    render(<GuideList />);
-
-    const button = screen.getAllByTestId('buttonEdit')[0];
-
-    expect(button).toHaveTextContent('Editar');
-    expect(button.getAttribute('to')).toBe('/admin/atualizar-guia');
-    fireEvent.click(button);
-  });
-
-  test("Deve ler o título da página", () => {
+  test('Deve ler o título da página', () => {
     render(<GuideList />);
 
     const title = screen.getByText('LISTAGEM DE GUIAS');
@@ -39,19 +29,26 @@ describe('Teste do componente', () => {
   test('Botão Novo deve redirecionar para cadastro de guias', () => {
     render(<GuideList />);
     const button = screen.getByTestId('submit');
-   
+
     fireEvent.click(button);
-   
+
     expect(button.getAttribute('to')).toBe('/admin/cadastrar-guia');
-   });
-   
-   
-   test('Botão Voltar deve redirecionar para admin', () => {
-     render(<GuideList />); 
-     const button = screen.getByTestId('back');
-   
-     fireEvent.click(button);
-   
-     expect(button.getAttribute('to')).toBe('/admin');
-   });
+  });
+
+  test('Botão Voltar deve redirecionar para admin', () => {
+    render(<GuideList />);
+    const button = screen.getByTestId('back');
+
+    fireEvent.click(button);
+
+    expect(button.getAttribute('to')).toBe('/admin');
+  });
+
+  // test('O botão excluir deve ir para a página de exclusão', () => {
+  //   render(<GuideList />);
+  //   const buttonDelete = screen.getByTestId('delete');
+
+  //   fireEvent.click(buttonDelete);
+
+  // });
 });

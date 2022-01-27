@@ -1,7 +1,14 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { DataGrid, GridRowsProp, GridColDef } from '@mui/x-data-grid';
+import {
+  DataGrid,
+  GridRowsProp,
+  GridColDef,
+  GridColumnHeaderParams,
+} from '@mui/x-data-grid';
 import { Button, Box } from '@mui/material';
+import { CreateSharp } from '@mui/icons-material';
+import DeleteIcon from '@mui/icons-material/Delete';
 import AccessibilityTypography from '@components/AccessibilityTypography';
 import styles from './styles';
 
@@ -86,15 +93,33 @@ const columns: GridColDef[] = [
   { field: 'shortDescription', headerName: 'Descrição', width: 560 },
   {
     field: 'edit',
-    headerName: 'Edição',
-    width: 150,
-    renderCell: (params) => <a href={params.value}>Editar</a>,
+    width: 100,
+    sortable: false,
+    renderHeader: (params: GridColumnHeaderParams) => (
+      <strong>{'Editar'}</strong>
+    ),
+    renderCell: (params) => (
+      <Button
+        href={params.value}
+        startIcon={<CreateSharp />}
+        sx={{ color: 'text.primary' }}
+      ></Button>
+    ),
   },
   {
     field: 'delete',
-    headerName: 'Exclusão',
-    width: 150,
-    renderCell: (params) => <a href={params.value}>Excluir</a>,
+    width: 100,
+    sortable: false,
+    renderHeader: (params: GridColumnHeaderParams) => (
+      <strong>{'Excluir'}</strong>
+    ),
+    renderCell: (params) => (
+      <Button
+        href={params.value}
+        startIcon={<DeleteIcon />}
+        sx={{ color: 'text.primary' }}
+      ></Button>
+    ),
   },
 ];
 
