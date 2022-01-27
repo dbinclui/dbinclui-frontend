@@ -9,7 +9,6 @@ export default interface CardGuidesResponse {
 export interface CardBodyInterface {
   title: string;
   content: string;
-  id: string;
 }
 
 export const getGuides = async () => {
@@ -34,3 +33,5 @@ export const putGuides = async (cardBody: CardBodyInterface) => {
     throw new Error('Serviço não disponível');
   }
 };
+
+
