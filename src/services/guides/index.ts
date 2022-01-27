@@ -51,6 +51,21 @@ export const putGuides = async (cardBody: CardBodyInterface) => {
     } catch {
       throw new Error('Serviço não disponível');
     }
-  } 
+  }
 
+  export const updateGuides = async (id: string) => {
+    try {
+      return api.put('/guides/:id');
+    } catch {
+      throw new Error('Serviço não disponível');
+    }
+  };
   
+  export const getGuideById = async (id: string) => {
+    try {
+      return api.get< { data: CardGuidesResponse }> (`guides/consult/${id}`);
+    } catch {
+      throw new Error('Serviço não disponível');
+    }
+  };
+
