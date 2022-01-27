@@ -29,16 +29,6 @@ describe('Teste do componente', () => {
     expect(table).toBeInTheDocument();
   });
 
-  test('Deve ir para a tela de edição de categoria ao clicar no botão "editar"', () => {
-    render(<DataGrid columns={[]} rows={[]} />);
-    const button = screen.getByTestId('edit');
-
-    fireEvent.click(button);
-
-    expect(mockedNavigate).toBeCalled();
-    expect(mockedNavigate).toBeCalledWith('/');
-  });
-
   test('Botão Novo deve redirecionar para cadastro de categoria', () => {
     render(<CategoriesList />);
     const button = screen.getByTestId('new');
