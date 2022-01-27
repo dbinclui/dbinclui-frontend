@@ -11,7 +11,6 @@ export default interface CardGuidesResponse {
 export interface CardBodyInterface {
   title: string;
   content: string;
-  id: string;
 }
 
 export interface GuideContent {

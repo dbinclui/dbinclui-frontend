@@ -6,14 +6,14 @@ import { postGuides } from '@services/guides';
 import Notification from '@components/Notification';
 import AccessibilityTypography from '@components/AccessibilityTypography';
 
-<<<<<<< HEAD
+
 
 export interface RegisterGuideProps {
   
 }
-=======
-export interface RegisterGuideProps {}
->>>>>>> f2b870adcdfa5368ae93614570077c258648a87f
+
+
+
 
 export const RegisterGuide: React.FC<RegisterGuideProps> = (): JSX.Element => {
   const title = useRef<HTMLInputElement>();
