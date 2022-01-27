@@ -10,7 +10,7 @@ const table: SxProps<Theme> = {
   'borderColor': (theme) => theme.palette.text.primary,
   'borderRadius': '1.5rem',
   'border': '2px solid',
-  'width': '1084px',
+  'width': '1134px',
   'mt': '25px',
   'ml': 'auto',
   'mr': 'auto',
@@ -33,9 +33,9 @@ const buttonTable: SxProps<Theme> = {
 
 const buttonBox: SxProps<Theme> = {
   'display': 'flex',
-  'justifyContent': 'flex-end',
-  'margin': '290px',
-  'marginTop': '50px',
+  'justifyContent': 'center',
+  'margin': '0 auto',
+  'marginTop': '70px',
   '@media (max-width:780px)': {
     justifyContent: 'center',
     margin: '0 auto',
@@ -46,11 +46,9 @@ const buttonBox: SxProps<Theme> = {
 const button: SxProps<Theme> = {
   'fontWeight': '700',
   'padding': '0.5rem 1.5rem',
-  'margin': '30px 80px 30px -40px',
+  'margin': '0 20px',
   'textTransform': 'none',
   'fontSize': '1.2rem',
-  'border': '2px solid',
-  'borderColor': (theme) => theme.palette.secondary.contrastText,
   'backgroundColor': (theme) => theme.palette.secondary.dark,
   'color': (theme) => theme.palette.text.disabled,
   '@media (max-width:780px)': {

@@ -38,15 +38,21 @@ const columns: GridColDef[] = [
   },
   {
     field: 'edit',
-    headerName: 'Edição',
-    width: 150,
-    renderCell: (params) => <a href={params.value}>Editar</a>
+
+    width: 100,
+    renderHeader: (params: GridColumnHeaderParams) => (
+      <strong>{'Edição'}</strong>
+    ),
+    renderCell: (params) => <a href={params.value}>Editar</a>,
   },
   {
     field: 'delete',
-    headerName: 'Exclusão',
-    width: 150,
-    renderCell: (params) => <a href={params.value}>Excluir</a>
+
+    width: 100,
+    renderHeader: (params: GridColumnHeaderParams) => (
+      <strong>{'Exclusão'}</strong>
+    ),
+    renderCell: (params) => <a href={params.value}>Excluir</a>,
   },
 ];
 
@@ -67,7 +73,8 @@ const rows = [
     guide: 'Guia de Acessibilidade',
     category: 'O que é acessibilidade?',
     description: 'Descrição do conteúdo digital',
-    files: 'https://cdn.pixabay.com/photo/2017/05/20/13/10/handicap-parking-2328893_1280.jpg',
+    files:
+      'https://cdn.pixabay.com/photo/2017/05/20/13/10/handicap-parking-2328893_1280.jpg',
     edit: '/admin/editar-conteudo-digital?id=2',
     delete: '/admin/excluir-conteudo-digital?id=2',
   },
@@ -76,7 +83,8 @@ const rows = [
     guide: 'Guia de Acessibilidade',
     category: 'O que é acessibilidade?',
     description: 'Descrição do conteúdo digital',
-    files: 'https://cdn.pixabay.com/photo/2018/01/17/20/43/wheelchair-3088991_1280.jpg',
+    files:
+      'https://cdn.pixabay.com/photo/2018/01/17/20/43/wheelchair-3088991_1280.jpg',
     edit: '/admin/editar-conteudo-digital?id=3',
     delete: '/admin/excluir-conteudo-digital?id=3',
   },
@@ -85,7 +93,8 @@ const rows = [
     guide: 'Guia do deficiente visual',
     category: 'Introdução à LIBRAS',
     description: 'Descrição do conteúdo digital',
-    files: 'http://2.bp.blogspot.com/-u8DXzfyQ2zo/UmVIMwaabUI/AAAAAAAA8j8/_eR_7WpYXrg/s1600/guiavidente.jpg',
+    files:
+      'http://2.bp.blogspot.com/-u8DXzfyQ2zo/UmVIMwaabUI/AAAAAAAA8j8/_eR_7WpYXrg/s1600/guiavidente.jpg',
     edit: '/admin/editar-conteudo-digital?id=4',
     delete: '/admin/excluir-conteudo-digital?id=4',
   },
@@ -94,7 +103,8 @@ const rows = [
     guide: 'Guia do deficiente visual',
     category: 'Números em LIBRAS',
     description: 'Descrição do conteúdo digital',
-    files: 'https://cdn.pixabay.com/photo/2017/05/20/13/10/handicap-parking-2328893_1280.jpg',
+    files:
+      'https://cdn.pixabay.com/photo/2017/05/20/13/10/handicap-parking-2328893_1280.jpg',
     edit: '/admin/editar-conteudo-digital?id=5',
     delete: '/admin/excluir-conteudo-digital?id=5',
   },
@@ -132,25 +142,24 @@ export const ListDigitalContent: React.FC<
       </Box>
       <Box sx={styles.buttonBox}>
         <Button
-          sx={styles.button}
+          data-testid="new"
           component={Link}
           to="/admin/cadastrar-conteudo-digital"
+          sx={styles.button}
           variant="contained"
           type="submit"
           role="button"
-          data-testid = "new"
         >
           Novo
         </Button>
-
         <Button
-          sx={styles.button}
+          data-testid="back"
           component={Link}
           to="/admin"
+          sx={styles.button}
           variant="contained"
           type="reset"
           role="button"
-          data-testid="back"
         >
           Voltar
         </Button>
