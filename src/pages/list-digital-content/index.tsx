@@ -16,7 +16,7 @@ const columns: GridColDef[] = [
     field: 'files',
     headerName: 'Arquivos',
     width: 150,
-    renderCell: (params) => <img src={params.value} width={50} height={50} />,
+    renderCell: (params) => <img src={params.value} width={60} height={50} />,
   },
   {
     field: 'actions',

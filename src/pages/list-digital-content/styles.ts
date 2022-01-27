@@ -10,7 +10,7 @@ const table: SxProps<Theme> = {
   'borderColor': (theme) => theme.palette.text.primary,
   'borderRadius': '1.5rem',
   'border': '2px solid',
-  'width': '1000px',
+  'width': '1084px',
   'mt': '25px',
   'ml': 'auto',
   'mr': 'auto',
@@ -34,12 +34,12 @@ const buttonTable: SxProps<Theme> = {
 const buttonBox: SxProps<Theme> = {
   'display': 'flex',
   'justifyContent': 'flex-end',
-  'margin': '50px',
+  'margin': '290px',
   'marginTop': '50px',
   '@media (max-width:780px)': {
     justifyContent: 'center',
     margin: '0 auto',
-    marginTop: '20px',
+    marginTop: '40px',
   },
 };
 
