@@ -44,6 +44,9 @@ export const CategoriesList: React.FC<
           data-testid="edit"
           startIcon={<CreateSharp />}
           sx={{ color: 'text.primary' }}
+          aria-label="EDITAR"
+          role="button"
+          tabIndex={3}
         ></Button>
       ),
     },
@@ -60,6 +63,9 @@ export const CategoriesList: React.FC<
           data-testid="delete"
           startIcon={<DeleteIcon />}
           sx={{ color: 'text.primary' }}
+          aria-label="EXCLUIR"
+          role="button"
+          tabIndex={4}
         ></Button>
       ),
     },
@@ -166,10 +172,20 @@ export const CategoriesList: React.FC<
 
   return (
     <>
-      <AccessibilityTypography sx={styles.listTitle}>
+      <AccessibilityTypography
+        role="heading"
+        tabIndex={1}
+        aria-label="LISTAGEM DE CATEGORIAS"
+        sx={styles.listTitle}
+      >
         LISTAGEM DE CATEGORIAS
       </AccessibilityTypography>
-      <Box style={{ width: '100%' }}>
+      <Box
+        style={{ width: '100%' }}
+        role="list"
+        tabIndex={2}
+        aria-label="LISTA DE CATEGORIAS"
+      >
         <DataGrid
           data-testid="dataGrid"
           autoHeight
@@ -178,7 +194,7 @@ export const CategoriesList: React.FC<
           columns={columns}
           sx={styles.table}
           pageSize={10}
-          rowsPerPageOptions={[10]}
+          rowsPerPageOptions={[4]}
         />
       </Box>
       <Box sx={styles.boxButton}>
@@ -189,6 +205,8 @@ export const CategoriesList: React.FC<
           variant="contained"
           type="submit"
           role="button"
+          area-label="BOTÃO NOVO"
+          tabIndex={16}
           data-testid="new"
         >
           Novo
@@ -201,6 +219,8 @@ export const CategoriesList: React.FC<
           variant="contained"
           type="reset"
           role="button"
+          area-label="BOTÃO VOLTAR"
+          tabIndex={17}
           data-testid="back"
         >
           Voltar
