@@ -1,9 +1,11 @@
 import React from 'react';
-import { DataGrid, GridColDef } from '@mui/x-data-grid';
+import { DataGrid, GridColDef, GridColumnHeaderParams } from '@mui/x-data-grid';
 import AccessibilityTypography from '@components/AccessibilityTypography';
 import styles from './styles';
-import { Box, Button } from '@mui/material';
+import { Box, Button, IconButton } from '@mui/material';
 import { Link } from 'react-router-dom';
+import DeleteIcon from '@mui/icons-material/Delete';
+import { CreateSharp } from '@mui/icons-material';
 
 export interface CategoriesListProps {}
 
@@ -13,50 +15,57 @@ export const CategoriesList: React.FC<
   const columns: GridColDef[] = [
     {
       field: 'guide',
-      headerName: 'Guia',
       width: 300,
       editable: false,
+      renderHeader: (params: GridColumnHeaderParams) => (
+        <strong>{'Guia'}</strong>
+      ),
     },
     {
       field: 'title',
-      headerName: 'Categoria',
       width: 200,
       editable: false,
+      renderHeader: (params: GridColumnHeaderParams) => (
+        <strong>{'Categoria'}</strong>
+      ),
     },
     {
       field: 'shortDescription',
-      headerName: 'Descrição',
-      width: 300,
+      width: 250,
       editable: false,
+      renderHeader: (params: GridColumnHeaderParams) => (
+        <strong>{'Descrição'}</strong>
+      ),
     },
     {
-      field: 'action',
-      headerName: 'Ação',
-      headerAlign: 'center',
-      width: 160,
+      field: 'edit',
+      width: 100,
       sortable: false,
-      renderCell: () => {
-        const onClick = (e: { stopPropagation: () => void }) => {
-          e.stopPropagation();
-        };
-
-        return (
-          <>
-            <Button
-              data-testid={'button-edit'}
-              component={Link}
-              to="/admin/atualizar-categoria"
-              sx={styles.buttonTable}
-              onClick={onClick}
-            >
-              Editar
-            </Button>
-            <Button sx={styles.buttonTable} onClick={onClick}>
-              Excluir
-            </Button>
-          </>
-        );
-      },
+      renderHeader: (params: GridColumnHeaderParams) => (
+        <strong>{'Editar'}</strong>
+      ),
+      renderCell: (params) => (
+        <Button
+          href={params.value}
+          startIcon={<CreateSharp />}
+          sx={{ color: 'text.primary' }}
+        ></Button>
+      ),
+    },
+    {
+      field: 'delete',
+      width: 100,
+      sortable: false,
+      renderHeader: (params: GridColumnHeaderParams) => (
+        <strong>{'Excluir'}</strong>
+      ),
+      renderCell: (params) => (
+        <Button
+          href={params.value}
+          startIcon={<DeleteIcon />}
+          sx={{ color: 'text.primary' }}
+        ></Button>
+      ),
     },
   ];
 
@@ -66,6 +75,8 @@ export const CategoriesList: React.FC<
       guide: 'Guia de Acessibilidade',
       title: 'Categoria 1',
       shortDescription: 'Descrição da categoria',
+      edit: 'admin/excluir-categoria?id=1',
+      delete: 'admin/atualizar-categoria?id=1',
     },
     {
       id: 2,
@@ -160,6 +171,7 @@ export const CategoriesList: React.FC<
           variant="contained"
           type="submit"
           role="button"
+          data-testid="new"
         >
           Novo
         </Button>
@@ -172,7 +184,6 @@ export const CategoriesList: React.FC<
           type="reset"
           role="button"
           data-testid="back"
-          href="/admin"
         >
           Voltar
         </Button>
