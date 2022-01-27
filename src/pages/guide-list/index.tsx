@@ -12,52 +12,72 @@ const rows: GridRowsProp = [
     id: 1,
     title: 'Guia de Acessibilidade',
     shortDescription: 'Descrição para o guia de Acessibilidade',
+    edit: '/admin/editar-guia?id=1',
+    delete: '/admin/excluir-guia?id=1',
   },
   {
     id: 2,
     title: 'Boas Práticas para Acessibilidade',
     shortDescription:
       'Descrição para o guia de Boas Práticas para Acessibilidade',
+    edit: '/admin/editar-guia?id=2',
+    delete: '/admin/excluir-guia?id=2',
   },
   {
     id: 3,
     title: 'Guia de Inclusão Digital',
     shortDescription: 'Descrição para o guia de Inclusão Digital',
+    edit: '/admin/editar-guia?id=3',
+    delete: '/admin/excluir-guia?id=3',
   },
   {
     id: 4,
     title: 'Guia de Acessibilidade',
     shortDescription: 'Descrição para o guia de Acessibilidade',
+    edit: '/admin/editar-guia?id=4',
+    delete: '/admin/excluir-guia?id=4',
   },
   {
     id: 5,
     title: 'Guia de Acessibilidade',
     shortDescription: 'Descrição para o guia de Acessibilidade',
+    edit: '/admin/editar-guia?id=5',
+    delete: '/admin/excluir-guia?id=5',
   },
   {
     id: 6,
     title: 'Guia de Acessibilidade',
     shortDescription: 'Descrição para o guia de Acessibilidade',
+    edit: '/admin/editar-guia?id=6',
+    delete: '/admin/excluir-guia?id=6',
   },
   {
     id: 7,
     title: 'Guia de Acessibilidade',
     shortDescription: 'Descrição para o guia de Acessibilidade',
+    edit: '/admin/editar-guia?id=7',
+    delete: '/admin/excluir-guia?id=7',
   },
   {
     id: 8,
     title: 'Guia de Acessibilidade',
     shortDescription: 'Descrição para o guia de Acessibilidade',
+    edit: '/admin/editar-guia?id=8',
+    delete: '/admin/excluir-guia?id=8',
   },
   {
     id: 9,
     title: 'Guia de Acessibilidade',
     shortDescription: 'Descrição para o guia de Acessibilidade',
+    edit: '/admin/editar-guia?id=9',
+    delete: '/admin/excluir-guia?id=9',
   },
   {
     id: 10,
     title: 'Guia de Acessibilidade',
     shortDescription: 'Descrição para o guia de Acessibilidade',
+    edit: '/admin/editar-guia?id=10',
+    delete: '/admin/excluir-guia?id=10',
   },
 ];
 
@@ -65,31 +85,16 @@ const columns: GridColDef[] = [
   { field: 'title', headerName: 'Título', width: 250 },
   { field: 'shortDescription', headerName: 'Descrição', width: 560 },
   {
-    field: 'action',
-    headerName: 'Ação',
-    width: 190,
-    sortable: false,
-    renderCell: () => {
-      const onClick = (e: { stopPropagation: () => void }) => {
-        e.stopPropagation();
-      };
-      return (
-        <>
-          <Button
-            data-testid="buttonEdit"
-            component={Link}
-            to="/admin/atualizar-guia"
-            sx={styles.buttonTable}
-            onClick={onClick}
-          >
-            Editar
-          </Button>
-          <Button sx={styles.buttonTable} onClick={onClick}>
-            Excluir
-          </Button>
-        </>
-      );
-    },
+    field: 'edit',
+    headerName: 'Edição',
+    width: 150,
+    renderCell: (params) => <a href={params.value}>Editar</a>,
+  },
+  {
+    field: 'delete',
+    headerName: 'Exclusão',
+    width: 150,
+    renderCell: (params) => <a href={params.value}>Excluir</a>,
   },
 ];
 
