@@ -8,7 +8,7 @@ import Admin from '@pages/admin';
 import RegisterCategory from '@pages/register-category';
 import RegisterDigitalContent from '@pages/register-digital-content';
 import ListDigitalContent from '@pages/list-digital-content';
-import GuideList from '@pages/guide-list';
+
 import GuidePage from '@pages/guide-page';
 import UpdateCategory from '@pages/update-category';
 import UpdateGuide from '@pages/update-guide';
