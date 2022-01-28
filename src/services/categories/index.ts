@@ -9,7 +9,7 @@ export interface Guides {
 }
 
 export interface CategoryContent extends CardCategoriesResponse {
-  digitalContents: CardDigitalContentResponse[]
+  digitalContents: CardDigitalContentResponse[];
 }
 
 export interface CardCategoriesResponse {
@@ -20,10 +20,10 @@ export interface CardCategoriesResponse {
   parentCategory?: CardCategoriesResponse;
 }
 
-export interface CardBodyInterface {  
+export interface CardBodyInterface {
   title: string;
   shortDescription: string;
-  guide: Guides["_id"];
+  guide: Guides['_id'];
 }
 
 export const getCategories = async () => {
@@ -34,7 +34,7 @@ export const getCategories = async () => {
   }
 };
 
-export const postCategories= async (cardBody: CardBodyInterface) => {
+export const postCategories = async (cardBody: CardBodyInterface) => {
   try {
     return api.post('/categories/register', cardBody);
   } catch {

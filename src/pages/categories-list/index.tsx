@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { DataGrid, GridColDef, GridColumnHeaderParams } from '@mui/x-data-grid';
 import AccessibilityTypography from '@components/AccessibilityTypography';
 import styles from './styles';
@@ -6,12 +6,36 @@ import { Box, Button } from '@mui/material';
 import { Link } from 'react-router-dom';
 import DeleteIcon from '@mui/icons-material/Delete';
 import { CreateSharp } from '@mui/icons-material';
+import { CardCategoriesResponse, getCategories } from '@services/categories';
 
 export interface CategoriesListProps {}
 
 export const CategoriesList: React.FC<
   CategoriesListProps
 > = (): JSX.Element => {
+  const [categories, setCategories] = useState<CardCategoriesResponse[]>([]);
+  const [successGetCategories, setSuccessGetCategories] = useState(false);
+  const [errorGetCategories, setErrorGetCategories] = useState(true);
+  const [errorMessageGetCategories, setErrorMessageGetCategories] =
+    useState('');
+
+  async function getDigitalContentCategories() {
+    try {
+      const response = await getCategories();
+      setCategories(response.data.data);
+      setSuccessGetCategories(true);
+    } catch {
+      setErrorMessageGetCategories('Não foram encontradas as guias');
+      setErrorGetCategories(true);
+    }
+  }
+
+  useEffect(() => {
+    getDigitalContentCategories();
+  }, []);
+
+  console.log(categories);
+
   const columns: GridColDef[] = [
     {
       field: 'guide',
@@ -31,118 +55,31 @@ export const CategoriesList: React.FC<
       editable: false,
       headerName: 'Descrição',
     },
-    {
-      field: 'edit',
-      width: 100,
-      sortable: false,
-      headerName: 'Editar',
-    },
-    {
-      field: 'delete',
-      width: 100,
-      sortable: false,
-      headerName: 'Excluir',
-    },
+    // {
+    //   field: 'edit',
+    //   width: 100,
+    //   sortable: false,
+    //   headerName: 'Editar',
+    // },
+    // {
+    //   field: 'delete',
+    //   width: 100,
+    //   sortable: false,
+    //   headerName: 'Excluir',
+    // },
   ];
 
-  const rows = [
-    {
-      id: 1,
-      guide: 'Guia de Acessibilidade',
-      title: 'Categoria 1',
-      shortDescription: 'Descrição da categoria',
-      edit: 'Editar',
-      delete: 'Excluir',
-    },
-    {
-      id: 2,
-      guide: 'Guia de Acessibilidade',
-      title: 'Categoria 2',
-      shortDescription: 'Descrição da categoria',
-      edit: 'Editar',
-      delete: 'Excluir',
-    },
-    {
-      id: 3,
-      guide: 'Guia de Acessibilidade',
-      title: 'Categoria 3',
-      shortDescription: 'Descrição da categoria',
-      edit: 'Editar',
-      delete: 'Excluir',
-    },
-    {
-      id: 4,
-      guide: 'Guia de Acessibilidade',
-      title: 'Categoria 4',
-      shortDescription: 'Descrição da categoria',
-      edit: 'Editar',
-      delete: 'Excluir',
-    },
-    {
-      id: 5,
-      guide: 'Guia de Acessibilidade',
-      title: 'Categoria 5',
-      shortDescription: 'Descrição da categoria',
-      edit: 'Editar',
-      delete: 'Excluir',
-    },
-    {
-      id: 6,
-      guide: 'Guia de Acessibilidade',
-      title: 'Categoria 6',
-      shortDescription: 'Descrição da categoria',
-      edit: 'Editar',
-      delete: 'Excluir',
-    },
-    {
-      id: 7,
-      guide: 'Guia de Acessibilidade',
-      title: 'Categoria 7',
-      shortDescription: 'Descrição da categoria',
-      edit: 'Editar',
-      delete: 'Excluir',
-    },
-    {
-      id: 8,
-      guide: 'Guia de Acessibilidade',
-      title: 'Categoria 8',
-      shortDescription: 'Descrição da categoria',
-      edit: 'Editar',
-      delete: 'Excluir',
-    },
-    {
-      id: 9,
-      guide: 'Guia de Acessibilidade',
-      title: 'Categoria 9',
-      shortDescription: 'Descrição da categoria',
-      edit: 'Editar',
-      delete: 'Excluir',
-    },
-    {
-      id: 10,
-      guide: 'Guia de Acessibilidade',
-      title: 'Categoria 10',
-      shortDescription: 'Descrição da categoria',
-      edit: 'Editar',
-      delete: 'Excluir',
-    },
-    {
-      id: 11,
-      guide: 'Guia de Acessibilidade',
-      title: 'Categoria 11',
-      shortDescription: 'Descrição da categoria',
-      edit: 'Editar',
-      delete: 'Excluir',
-    },
-    {
-      id: 12,
-      guide: 'Guia de Acessibilidade',
-      title: 'Categoria 12',
-      shortDescription: 'Descrição da categoria',
-      edit: 'Editar',
-      delete: 'Excluir',
-    },
-  ];
+  let i = 0;
+  // const rows = [
+  //   categories.map((category) => ({
+  //     id: ++i,
+  //     guide: category.guide,
+  //     title: category.title,
+  //     shortDescription: category.shortDescription,
+  //     edit: 'Editar',
+  //     delete: 'Excluir',
+  //   })),
+  // ];
 
   return (
     <>
@@ -164,7 +101,7 @@ export const CategoriesList: React.FC<
           data-testid="dataGrid"
           autoHeight
           disableExtendRowFullWidth={true}
-          rows={rows}
+          rows={categories}
           columns={columns}
           sx={styles.table}
           pageSize={10}
