@@ -19,7 +19,7 @@ describe('Página do Administrador', () => {
     render(<Admin />);
 
     const buttonRegisterGuideText = 'Cadastrar Guia';
-    const buttonRegisterCategoryText = 'Cadastro de Categorias';
+    const buttonRegisterCategoryText = 'Administrar Categorias';
     const buttonRegisterContentText = 'Cadastro de Conteúdo digital';
 
     const buttonRegisterGuide = screen.getByText(buttonRegisterGuideText);
@@ -42,15 +42,15 @@ describe('Página do Administrador', () => {
     expect(mockedNavigate).toBeCalledWith('cadastrar-guia');
   });
 
-  test('O botão Cadastro de Categorias deve redirecionar o user para outra página', () => {
+  test('O botão Administrar Categorias deve redirecionar o user para outra página', () => {
     render(<Admin />);
 
-    const buttonRegisterCategoryText = 'Cadastro de Categorias';
+    const buttonRegisterCategoryText = 'Administrar Categorias';
     const buttonRegisterCategory = screen.getByText(buttonRegisterCategoryText);
 
     userEvent.click(buttonRegisterCategory);
     expect(mockedNavigate).toBeCalled();
-    expect(mockedNavigate).toBeCalledWith('cadastrar-categoria');
+    expect(mockedNavigate).toBeCalledWith('listar-categorias');
   });
 
   test('O botão Cadastro de Conteúdo digital deve redirecionar o user para outra página', () => {
