@@ -36,9 +36,9 @@ export const postGuides = async (cardBody: CardBodyInterface) => {
     throw new Error('Serviço não disponível');
   }
 };
-export const putGuides = async (cardBody: CardBodyInterface) => {
+export const putGuides = async (id: string, cardBody: CardBodyInterface) => {
   try {
-    return api.put('/:id', cardBody);
+    return api.put(`/guides/register/${id}`, cardBody);
 
 
   }catch{

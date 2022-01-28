@@ -10,28 +10,24 @@ import { useParams } from 'react-router-dom';
 export interface UpdateGuideProps {
 }
 
-export interface UpdateGuideInterface {
-  title: string;
-  content: string;
-  id: string;
+export interface UpdateGuideInterface { 
+  title?: string | undefined;
+  content?: string | undefined;
+  id?: string | undefined; 
 }
 
 export const UpdateGuide: React.FC<UpdateGuideProps> = (): JSX.Element => {
-  const title = useRef<HTMLInputElement>();
-  const description = useRef<HTMLInputElement>();
+  const title = useRef<HTMLInputElement | undefined>();
+  const description = useRef<HTMLInputElement | undefined>();
+  // const inputRef = useRef(null);
   let parametros = useParams();   
   let id: string = parametros.id!;
-  //id = '61e81cc731b050d6bd6362d2';
+  id = '61f1ad3f3deccc50b44b9e58';
   //const id = useRef<HTMLInputElement>();
   const [error, setError] = useState(false);
   const [success, setSuccess] = useState(false);
   const [errorMessage, setErrorMessage] = useState('');
-  // const [editar, setEditar] = useState<UpdateGuideInterface>({
-  //   title: '',
-  //   content: '',
-  //   id: '',
-  // });
-  const [cards, setCards] = useState<CardGuidesResponse>();
+  const [cards, setCards] = useState<UpdateGuideInterface>();
   const [loading, setLoading] = useState(true);
   
 
@@ -39,6 +35,8 @@ export const UpdateGuide: React.FC<UpdateGuideProps> = (): JSX.Element => {
     try {
       const { data } = await getGuideById(id);
       setCards(data.data);
+      title.current!.value = data.data.title;
+      description.current!.value = data.data.content;
       setError(false);
     } catch (error) {
       setError(true);
@@ -49,10 +47,7 @@ export const UpdateGuide: React.FC<UpdateGuideProps> = (): JSX.Element => {
 
   useEffect(() => {
     getGuidesService(id);
-  }, );
-
-
-  
+  }, [id]);
 
   
 //   const editar(({routeParams}) => {
@@ -67,14 +62,15 @@ export const UpdateGuide: React.FC<UpdateGuideProps> = (): JSX.Element => {
     event.preventDefault();
 
     const cardBody = {
-      title: title.current?.value || '',
-      content: description.current?.value || '',
+      title: cards?.title || '',
+      content: cards?.content || '',
     };
 
+
     try{
-      await validateInput(cardBody);
-      await updateGuides('id');
-      await postGuides(cardBody)
+      // await validateInput(cardBody);
+      // await updateGuides('id');
+      await putGuides(id, cardBody)
       setSuccess(true)
 
     }catch{
@@ -82,17 +78,6 @@ export const UpdateGuide: React.FC<UpdateGuideProps> = (): JSX.Element => {
       setError(true);
     }
 
-    
-
-
-    // try {
-    //   await validateInput(cardBody);
-    //   await putGuides(cardBody);
-    //   setSuccess(true);
-    // } catch (error: any) {
-    //   setErrorMessage(error.message);
-    //   setError(true);
-    // }
 
     // title.current!.value = '';
     // description.current!.value = '';
@@ -135,8 +120,9 @@ export const UpdateGuide: React.FC<UpdateGuideProps> = (): JSX.Element => {
               </InputLabel>
               <InputBase
                 inputRef={title}
+                // onChange={(e) => setCards({...cards, title: e.target.value})}
                 type="text"
-                value={cards?.title}
+                // value={cards?.title}
                 id="titulo"
                 name="titulo"
                 role="input"
@@ -153,7 +139,8 @@ export const UpdateGuide: React.FC<UpdateGuideProps> = (): JSX.Element => {
               </InputLabel>
               <InputBase
                 inputRef={description}
-                value={cards?.content}
+                // onChange={(e) => setCards({...cards, content: e.target.value})}
+                // value={cards?.content}
                 multiline={true}
                 minRows={5}
                 role="input"
