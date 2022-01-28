@@ -19,108 +19,80 @@ const rows: GridRowsProp = [
     id: 1,
     title: 'Guia de Acessibilidade',
     shortDescription: 'Descrição para o guia de Acessibilidade',
-    edit: '/admin/editar-guia?id=1',
-    delete: '/admin/excluir-guia?id=1',
+    edit: 'Editar',
+    delete: 'Excluir',
   },
   {
     id: 2,
     title: 'Boas Práticas para Acessibilidade',
     shortDescription:
       'Descrição para o guia de Boas Práticas para Acessibilidade',
-    edit: '/admin/editar-guia?id=2',
-    delete: '/admin/excluir-guia?id=2',
+    edit: 'Editar',
+    delete: 'Excluir',
   },
   {
     id: 3,
     title: 'Guia de Inclusão Digital',
     shortDescription: 'Descrição para o guia de Inclusão Digital',
-    edit: '/admin/editar-guia?id=3',
-    delete: '/admin/excluir-guia?id=3',
+    edit: 'Editar',
+    delete: 'Excluir',
   },
   {
     id: 4,
     title: 'Guia de Acessibilidade',
     shortDescription: 'Descrição para o guia de Acessibilidade',
-    edit: '/admin/editar-guia?id=4',
-    delete: '/admin/excluir-guia?id=4',
+    edit: 'Editar',
+    delete: 'Excluir',
   },
   {
     id: 5,
     title: 'Guia de Acessibilidade',
     shortDescription: 'Descrição para o guia de Acessibilidade',
-    edit: '/admin/editar-guia?id=5',
-    delete: '/admin/excluir-guia?id=5',
+    edit: 'Editar',
+    delete: 'Excluir',
   },
   {
     id: 6,
     title: 'Guia de Acessibilidade',
     shortDescription: 'Descrição para o guia de Acessibilidade',
-    edit: '/admin/editar-guia?id=6',
-    delete: '/admin/excluir-guia?id=6',
+    edit: 'Editar',
+    delete: 'Excluir',
   },
   {
     id: 7,
     title: 'Guia de Acessibilidade',
     shortDescription: 'Descrição para o guia de Acessibilidade',
-    edit: '/admin/editar-guia?id=7',
-    delete: '/admin/excluir-guia?id=7',
+    edit: 'Editar',
+    delete: 'Excluir',
   },
   {
     id: 8,
     title: 'Guia de Acessibilidade',
     shortDescription: 'Descrição para o guia de Acessibilidade',
-    edit: '/admin/editar-guia?id=8',
-    delete: '/admin/excluir-guia?id=8',
+    edit: 'Editar',
+    delete: 'Excluir',
   },
   {
     id: 9,
     title: 'Guia de Acessibilidade',
     shortDescription: 'Descrição para o guia de Acessibilidade',
-    edit: '/admin/editar-guia?id=9',
-    delete: '/admin/excluir-guia?id=9',
+    edit: 'Editar',
+    delete: 'Excluir',
   },
   {
     id: 10,
     title: 'Guia de Acessibilidade',
     shortDescription: 'Descrição para o guia de Acessibilidade',
-    edit: '/admin/editar-guia?id=10',
-    delete: '/admin/excluir-guia?id=10',
+    edit: 'Editar',
+    delete: 'Excluir',
   },
 ];
 
 const columns: GridColDef[] = [
   { field: 'title', headerName: 'Título', width: 250 },
   { field: 'shortDescription', headerName: 'Descrição', width: 560 },
-  {
-    field: 'edit',
-    width: 100,
-    sortable: false,
-    renderHeader: (params: GridColumnHeaderParams) => (
-      <strong>{'Editar'}</strong>
-    ),
-    renderCell: (params) => (
-      <Button
-        href={params.value}
-        startIcon={<CreateSharp />}
-        sx={{ color: 'text.primary' }}
-      ></Button>
-    ),
-  },
-  {
-    field: 'delete',
-    width: 100,
-    sortable: false,
-    renderHeader: (params: GridColumnHeaderParams) => (
-      <strong>{'Excluir'}</strong>
-    ),
-    renderCell: (params) => (
-      <Button
-        href={params.value}
-        startIcon={<DeleteIcon />}
-        sx={{ color: 'text.primary' }}
-      ></Button>
-    ),
-  },
+  { field: 'edit', headerName: 'Edição', width: 100 },
+  { field: 'delete', headerName: 'Exclusão', width: 100 },
 ];
 
 export const GuideList: React.FC<GuideListProps> = (): JSX.Element => {

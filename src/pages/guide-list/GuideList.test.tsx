@@ -43,12 +43,4 @@ describe('Teste da página de listagens de guias', () => {
 
     expect(button.getAttribute('to')).toBe('/admin');
   });
-
-  // test('O botão excluir deve ir para a página de exclusão', () => {
-  //   render(<GuideList />);
-  //   const buttonDelete = screen.getByTestId('delete');
-
-  //   fireEvent.click(buttonDelete);
-
-  // });
 });

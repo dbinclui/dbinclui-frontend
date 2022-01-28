@@ -7,7 +7,7 @@ const listTitle: SxProps<Theme> = {
 
 const table: SxProps<Theme> = {
   'color': (theme) => theme.palette.text.primary,
-  'width': '1100px',
+  'width': '1040px',
   'mt': '25px',
   'ml': 'auto',
   'mr': 'auto',
