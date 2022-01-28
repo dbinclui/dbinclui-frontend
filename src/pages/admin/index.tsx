@@ -87,6 +87,25 @@ export const Admin: React.FC<AdminProps> = (): JSX.Element => {
               Cadastro de Conteúdo digital
             </Button>
           </Box>
+          <Box sx={{ m: 2, width: '100%' }}>
+            <Button
+              sx={{
+                color: 'text.disabled',
+                backgroundColor: 'secondary.dark',
+                border: '2px solid',
+                borderColor: 'text.disabled',
+                borderRadius: '10px',
+              }}
+              fullWidth
+              variant="contained"
+              size="large"
+              onClick={() => {
+                navigate('listar-guias');
+              }}
+            >
+              LISTAGEM DE GUIAS
+            </Button>
+          </Box>
         </Grid>
       </Grid>
     </>
