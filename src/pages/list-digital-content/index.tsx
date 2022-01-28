@@ -2,6 +2,8 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { DataGrid, GridColDef, GridColumnHeaderParams } from '@mui/x-data-grid';
 import { Button, Box } from '@mui/material';
+import DeleteIcon from '@mui/icons-material/Delete';
+import { CreateSharp } from '@mui/icons-material';
 import AccessibilityTypography from '@components/AccessibilityTypography';
 
 import styles from './styles';
@@ -38,21 +40,33 @@ const columns: GridColDef[] = [
   },
   {
     field: 'edit',
-
     width: 100,
+    sortable: false,
     renderHeader: (params: GridColumnHeaderParams) => (
-      <strong>{'Edição'}</strong>
+      <strong>{'Editar'}</strong>
     ),
-    renderCell: (params) => <a href={params.value}>Editar</a>,
+    renderCell: (params) => (
+      <Button
+        href={params.value}
+        startIcon={<CreateSharp />}
+        sx={{ color: 'text.primary' }}
+      ></Button>
+    ),
   },
   {
     field: 'delete',
-
     width: 100,
+    sortable: false,
     renderHeader: (params: GridColumnHeaderParams) => (
-      <strong>{'Exclusão'}</strong>
+      <strong>{'Excluir'}</strong>
     ),
-    renderCell: (params) => <a href={params.value}>Excluir</a>,
+    renderCell: (params) => (
+      <Button
+        href={params.value}
+        startIcon={<DeleteIcon />}
+        sx={{ color: 'text.primary' }}
+      ></Button>
+    ),
   },
 ];
 
