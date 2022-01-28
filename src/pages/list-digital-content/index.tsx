@@ -6,11 +6,14 @@ import { Button, Box } from '@mui/material';
 import AccessibilityTypography from '@components/AccessibilityTypography';
 
 import styles from './styles';
-import { CardDigitalContentResponse } from '@services/digitalContent';
+import { CardDigitalContentResponse, getDigitalContent } from '@services/digitalContent';
+import { CreateSharp } from '@mui/icons-material';
+import DeleteIcon from '@mui/icons-material/Delete';
 
 export interface DigitalContentInterfaceProps {}
 
 const columns: GridColDef[] = [
+  { field: '_id', headerName: 'ID', width: 50, hide: true },
   {
     field: 'guide',
     width: 300,
@@ -34,87 +37,31 @@ const columns: GridColDef[] = [
   {
     field: 'edit',
     width: 100,
-    headerName: 'Edição',
+    sortable: false,
+    headerName: 'Editar',
+    renderCell: (params) => (
+      <Button
+        href={params.value}
+        startIcon={<CreateSharp />}
+        sx={{ color: 'text.primary' }}
+      ></Button>
+    ),
   },
   {
-    field: 'erase',
+    field: 'delete',
     width: 100,
-    headerName: 'Exclusão',
+    sortable: false,
+    headerName: 'Excluir',
+    renderCell: (params) => (
+      <Button
+        href={params.value}
+        startIcon={<DeleteIcon />}
+        sx={{ color: 'text.primary' }}
+      ></Button>
+    ),
   },
 ];
 
-const rows = [
-  {
-    id: 1,
-    guide: 'Guia de Acessibilidade',
-    category: 'O que é acessibilidade?',
-    description: 'Descrição do conteúdo digital',
-    files:
-      'http://2.bp.blogspot.com/-u8DXzfyQ2zo/UmVIMwaabUI/AAAAAAAA8j8/_eR_7WpYXrg/s1600/guiavidente.jpg',
-    edit: 'Editar',
-    erase: 'Excluir',
-  },
-  {
-    id: 2,
-    guide: 'Guia de Acessibilidade',
-    category: 'O que é acessibilidade?',
-    description: 'Descrição do conteúdo digital',
-    files:
-      'https://cdn.pixabay.com/photo/2017/05/20/13/10/handicap-parking-2328893_1280.jpg',
-    edit: 'Editar',
-    erase: 'Excluir',
-  },
-  {
-    id: 3,
-    guide: 'Guia de Acessibilidade',
-    category: 'O que é acessibilidade?',
-    description: 'Descrição do conteúdo digital',
-    files:
-      'https://cdn.pixabay.com/photo/2018/01/17/20/43/wheelchair-3088991_1280.jpg',
-    edit: 'Editar',
-    erase: 'Excluir',
-  },
-  {
-    id: 4,
-    guide: 'Guia do deficiente visual',
-    category: 'Introdução à LIBRAS',
-    description: 'Descrição do conteúdo digital',
-    files:
-      'http://2.bp.blogspot.com/-u8DXzfyQ2zo/UmVIMwaabUI/AAAAAAAA8j8/_eR_7WpYXrg/s1600/guiavidente.jpg',
-    edit: 'Editar',
-    erase: 'Excluir',
-  },
-  {
-    id: 5,
-    guide: 'Guia do deficiente visual',
-    category: 'Números em LIBRAS',
-    description: 'Descrição do conteúdo digital',
-    files:
-      'https://cdn.pixabay.com/photo/2017/05/20/13/10/handicap-parking-2328893_1280.jpg',
-    edit: 'Editar',
-    erase: 'Excluir',
-  },
-  {
-    id: 6,
-    guide: 'Guia do deficiente visual',
-    category: 'Iniciativas inclusivas',
-    description: 'Descrição do conteúdo digital',
-    files:
-      'http://2.bp.blogspot.com/-u8DXzfyQ2zo/UmVIMwaabUI/AAAAAAAA8j8/_eR_7WpYXrg/s1600/guiavidente.jpg',
-    edit: 'Editar',
-    delete: 'Excluir',
-  },
-  {
-    id: 7,
-    guide: 'Guia do deficiente visual',
-    category: 'Números em LIBRAS',
-    description: 'Descrição do conteúdo digital',
-    files:
-      'https://cdn.pixabay.com/photo/2017/05/20/13/10/handicap-parking-2328893_1280.jpg',
-    edit: 'Editar',
-    delete: 'Excluir',
-  },
-];
 
 export const ListDigitalContent: React.FC<
   DigitalContentInterfaceProps
@@ -123,30 +70,21 @@ export const ListDigitalContent: React.FC<
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
 
-  const [tableData, setTableData] = useState([]);
+  async function getDigitalContentsService() {
+    try {
+      const { data } = await getDigitalContent();
+      setCards(data.data);
+      setError(false);
+    } catch (error) {
+      setError(true);
+    } finally {
+      setLoading(false);
+    }
+  }
 
   useEffect(() => {
-    fetch('http://localhost:5000/digital-contents/list')
-      .then((data) => data.json())
-      .then((data) => setTableData(data));
-  });
-
-  /*    async function getDigitalContentsService() {
-     try {
-       const { data } = await getDigitalContent();
-       setCards(data.data);
-       setError(false);
-     } catch (error) {
-       setError(true);
-     } finally {
-       setLoading(false);
-     }
-   } */
-
-  /*  useEffect(() => {
-     getDigitalContentsService();
-     setTableData(cards)
-   }, []); */
+    getDigitalContentsService();
+  }, []);
 
   return (
     <>
@@ -157,8 +95,9 @@ export const ListDigitalContent: React.FC<
         <DataGrid
           data-testid="dataGrid"
           autoHeight
+          getRowId={(row) => row._id}
           disableExtendRowFullWidth={true}
-          rows={tableData}
+          rows={cards}
           columns={columns}
           sx={styles.table}
           pageSize={10}
@@ -174,6 +113,8 @@ export const ListDigitalContent: React.FC<
           variant="contained"
           type="submit"
           role="button"
+          area-label="BOTÃO NOVO"
+          tabIndex={16}
         >
           Novo
         </Button>
@@ -185,6 +126,8 @@ export const ListDigitalContent: React.FC<
           variant="contained"
           type="reset"
           role="button"
+          area-label="BOTÃO VOLTAR"
+          tabIndex={17}
         >
           Voltar
         </Button>
