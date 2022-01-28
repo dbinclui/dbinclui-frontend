@@ -103,6 +103,16 @@ const rows = [
     edit: 'Editar',
     delete: 'Excluir',
   },
+  {
+    id: 7,
+    guide: 'Guia do deficiente visual',
+    category: 'Números em LIBRAS',
+    description: 'Descrição do conteúdo digital',
+    files:
+      'https://cdn.pixabay.com/photo/2017/05/20/13/10/handicap-parking-2328893_1280.jpg',
+    edit: 'Editar',
+    delete: 'Excluir',
+  },
 ];
 
 export const ListDigitalContent: React.FC<
