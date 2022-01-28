@@ -35,39 +35,13 @@ export const CategoriesList: React.FC<
       field: 'edit',
       width: 100,
       sortable: false,
-      renderHeader: (params: GridColumnHeaderParams) => (
-        <strong>{'Editar'}</strong>
-      ),
-      renderCell: (params) => (
-        <Button
-          href={params.value}
-          data-testid="edit"
-          startIcon={<CreateSharp />}
-          sx={{ color: 'text.primary' }}
-          aria-label="EDITAR"
-          role="button"
-          tabIndex={3}
-        ></Button>
-      ),
+      headerName: 'Editar',
     },
     {
       field: 'delete',
       width: 100,
       sortable: false,
-      renderHeader: (params: GridColumnHeaderParams) => (
-        <strong>{'Excluir'}</strong>
-      ),
-      renderCell: (params) => (
-        <Button
-          href={params.value}
-          data-testid="delete"
-          startIcon={<DeleteIcon />}
-          sx={{ color: 'text.primary' }}
-          aria-label="EXCLUIR"
-          role="button"
-          tabIndex={4}
-        ></Button>
-      ),
+      headerName: 'Excluir',
     },
   ];
 
