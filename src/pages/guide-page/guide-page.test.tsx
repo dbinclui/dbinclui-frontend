@@ -121,7 +121,7 @@ describe('Componente do Home', () => {
 
     render(<GuidePage />);
 
-    const failMessage = await screen.findByText('Erro na busca do guia!');
+    const failMessage = await screen.findByText('Erro na busca do Guia!');
 
     expect(failMessage).toBeVisible();
   });
