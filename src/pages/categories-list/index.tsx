@@ -1,11 +1,9 @@
-import React, { useState, useEffect } from 'react';
-import { DataGrid, GridColDef, GridColumnHeaderParams } from '@mui/x-data-grid';
+import React, { useEffect, useState } from 'react';
+import { DataGrid, GridColDef } from '@mui/x-data-grid';
 import AccessibilityTypography from '@components/AccessibilityTypography';
 import styles from './styles';
 import { Box, Button } from '@mui/material';
 import { Link } from 'react-router-dom';
-import DeleteIcon from '@mui/icons-material/Delete';
-import { CreateSharp } from '@mui/icons-material';
 import { CardCategoriesResponse, getCategories } from '@services/categories';
 
 export interface CategoriesListProps {}
