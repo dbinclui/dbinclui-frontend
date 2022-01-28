@@ -2,8 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { DataGrid, GridColDef } from '@mui/x-data-grid';
 import { Button, Box } from '@mui/material';
-import DeleteIcon from '@mui/icons-material/Delete';
-import { CreateSharp } from '@mui/icons-material';
+
 import AccessibilityTypography from '@components/AccessibilityTypography';
 
 import styles from './styles';
