@@ -37,6 +37,16 @@ export const getCategoriesByGuide = async (id: string) => {
   }
 };
 
+
+export const getDigitalContent = async () => {
+  try {
+    return api.get<{ data: CardDigitalContentResponse[] }>(`/digital-contents/list`);
+     //return api.get<{ data: CardDigitalContentResponse[] }>(`/digital-contents`);
+  } catch {
+    throw new Error('Serviço não disponível');
+  }
+};
+
 export const postDigitalContent = async (cardBody: FormData) => {
   try {
     return api.post<{ data: CardDigitalContentBody[] }>(

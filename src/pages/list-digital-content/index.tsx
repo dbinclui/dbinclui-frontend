@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { DataGrid, GridColDef } from '@mui/x-data-grid';
 import { Button, Box } from '@mui/material';
@@ -6,6 +6,7 @@ import { Button, Box } from '@mui/material';
 import AccessibilityTypography from '@components/AccessibilityTypography';
 
 import styles from './styles';
+import { CardDigitalContentResponse } from '@services/digitalContent';
 
 export interface DigitalContentInterfaceProps {}
 
@@ -36,7 +37,7 @@ const columns: GridColDef[] = [
     headerName: 'Edição',
   },
   {
-    field: 'delete',
+    field: 'erase',
     width: 100,
     headerName: 'Exclusão',
   },
@@ -51,7 +52,7 @@ const rows = [
     files:
       'http://2.bp.blogspot.com/-u8DXzfyQ2zo/UmVIMwaabUI/AAAAAAAA8j8/_eR_7WpYXrg/s1600/guiavidente.jpg',
     edit: 'Editar',
-    delete: 'Excluir',
+    erase: 'Excluir',
   },
   {
     id: 2,
@@ -61,7 +62,7 @@ const rows = [
     files:
       'https://cdn.pixabay.com/photo/2017/05/20/13/10/handicap-parking-2328893_1280.jpg',
     edit: 'Editar',
-    delete: 'Excluir',
+    erase: 'Excluir',
   },
   {
     id: 3,
@@ -71,7 +72,7 @@ const rows = [
     files:
       'https://cdn.pixabay.com/photo/2018/01/17/20/43/wheelchair-3088991_1280.jpg',
     edit: 'Editar',
-    delete: 'Excluir',
+    erase: 'Excluir',
   },
   {
     id: 4,
@@ -81,7 +82,7 @@ const rows = [
     files:
       'http://2.bp.blogspot.com/-u8DXzfyQ2zo/UmVIMwaabUI/AAAAAAAA8j8/_eR_7WpYXrg/s1600/guiavidente.jpg',
     edit: 'Editar',
-    delete: 'Excluir',
+    erase: 'Excluir',
   },
   {
     id: 5,
@@ -91,7 +92,7 @@ const rows = [
     files:
       'https://cdn.pixabay.com/photo/2017/05/20/13/10/handicap-parking-2328893_1280.jpg',
     edit: 'Editar',
-    delete: 'Excluir',
+    erase: 'Excluir',
   },
   {
     id: 6,
@@ -118,6 +119,35 @@ const rows = [
 export const ListDigitalContent: React.FC<
   DigitalContentInterfaceProps
 > = (): JSX.Element => {
+  const [cards, setCards] = useState<CardDigitalContentResponse[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(false);
+
+  const [tableData, setTableData] = useState([]);
+
+  useEffect(() => {
+    fetch('http://localhost:5000/digital-contents/list')
+      .then((data) => data.json())
+      .then((data) => setTableData(data));
+  });
+
+  /*    async function getDigitalContentsService() {
+     try {
+       const { data } = await getDigitalContent();
+       setCards(data.data);
+       setError(false);
+     } catch (error) {
+       setError(true);
+     } finally {
+       setLoading(false);
+     }
+   } */
+
+  /*  useEffect(() => {
+     getDigitalContentsService();
+     setTableData(cards)
+   }, []); */
+
   return (
     <>
       <AccessibilityTypography variant="h2" sx={styles.listTitle}>
@@ -128,7 +158,7 @@ export const ListDigitalContent: React.FC<
           data-testid="dataGrid"
           autoHeight
           disableExtendRowFullWidth={true}
-          rows={rows}
+          rows={tableData}
           columns={columns}
           sx={styles.table}
           pageSize={10}
