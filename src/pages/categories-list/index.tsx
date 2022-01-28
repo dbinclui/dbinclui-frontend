@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from 'react';
-import { DataGrid, GridColDef } from '@mui/x-data-grid';
+import { DataGrid, GridColDef, GridColumnHeaderParams } from '@mui/x-data-grid';
 import AccessibilityTypography from '@components/AccessibilityTypography';
 import styles from './styles';
 import { Box, Button } from '@mui/material';
 import { Link } from 'react-router-dom';
 import { CardCategoriesResponse, getCategories } from '@services/categories';
+import { CreateSharp, DeleteIcon } from '@mui/icons-material';
 
 export interface CategoriesListProps {}
 
@@ -53,20 +54,38 @@ export const CategoriesList: React.FC<
       editable: false,
       headerName: 'Descrição',
     },
-    // {
-    //   field: 'edit',
-    //   width: 100,
-    //   sortable: false,
-    //   headerName: 'Editar',
-    // },
-    // {
-    //   field: 'delete',
-    //   width: 100,
-    //   sortable: false,
-    //   headerName: 'Excluir',
-    // },
+    {
+      field: 'edit',
+      width: 250,
+      editable: false,
+      headerName: 'Editar',
+      renderHeader: (params: GridColumnHeaderParams) => (
+        <strong>{'Editar'}</strong>
+      ),
+      renderCell: (params) => (
+        <Button
+          href={params.value}
+          startIcon={<CreateSharp />}
+          sx={{ color: 'text.primary' }}
+        ></Button>
+      ),
+    },
+    {
+      field: 'delete',
+      width: 100,
+      sortable: false,
+      renderHeader: (params: GridColumnHeaderParams) => (
+        <strong>{'Excluir'}</strong>
+      ),
+      renderCell: (params) => (
+        <Button
+          href={params.value}
+          startIcon={<DeleteIcon />}
+          sx={{ color: 'text.primary' }}
+        ></Button>
+      ),
+    },
   ];
-
   let i = 0;
   // const rows = [
   //   categories.map((category) => ({

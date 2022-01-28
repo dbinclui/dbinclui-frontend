@@ -16,6 +16,9 @@ const table: SxProps<Theme> = {
   'border': '2px solid',
   'borderRadius': '20px',
   'borderColor': (theme) => theme.palette.text.primary,
+  '& .MuiDataGrid-cell:focus': {
+    outline: 'inherit',
+  },
   '@media (max-width:780px)': {
     width: '90%',
     fontSize: '18px',
