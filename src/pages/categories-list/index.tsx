@@ -5,6 +5,8 @@ import styles from './styles';
 import { Box, Button } from '@mui/material';
 import { Link } from 'react-router-dom';
 import { CardCategoriesResponse, getCategories } from '@services/categories';
+import DeleteIcon from '@mui/icons-material/Delete';
+import { CreateSharp } from '@mui/icons-material';
 
 export interface CategoriesListProps {}
 
@@ -35,6 +37,7 @@ export const CategoriesList: React.FC<
   console.log(categories);
 
   const columns: GridColDef[] = [
+    { field: '_id', headerName: 'ID', width: 300, hide: true },
     {
       field: 'guide',
       width: 300,
@@ -53,31 +56,33 @@ export const CategoriesList: React.FC<
       editable: false,
       headerName: 'Descrição',
     },
-    // {
-    //   field: 'edit',
-    //   width: 100,
-    //   sortable: false,
-    //   headerName: 'Editar',
-    // },
-    // {
-    //   field: 'delete',
-    //   width: 100,
-    //   sortable: false,
-    //   headerName: 'Excluir',
-    // },
+    {
+      field: 'edit',
+      width: 100,
+      sortable: false,
+      headerName: 'Editar',
+      renderCell: (params) => (
+        <Button
+          href={params.value}
+          startIcon={<CreateSharp />}
+          sx={{ color: 'text.primary' }}
+        ></Button>
+      ),
+    },
+    {
+      field: 'delete',
+      width: 100,
+      sortable: false,
+      headerName: 'Excluir',
+      renderCell: (params) => (
+        <Button
+          href={params.value}
+          startIcon={<DeleteIcon />}
+          sx={{ color: 'text.primary' }}
+        ></Button>
+      ),
+    },
   ];
-
-  let i = 0;
-  // const rows = [
-  //   categories.map((category) => ({
-  //     id: ++i,
-  //     guide: category.guide,
-  //     title: category.title,
-  //     shortDescription: category.shortDescription,
-  //     edit: 'Editar',
-  //     delete: 'Excluir',
-  //   })),
-  // ];
 
   return (
     <>
@@ -98,6 +103,7 @@ export const CategoriesList: React.FC<
         <DataGrid
           data-testid="dataGrid"
           autoHeight
+          getRowId={(row) => row._id}
           disableExtendRowFullWidth={true}
           rows={categories}
           columns={columns}
