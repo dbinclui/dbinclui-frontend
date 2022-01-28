@@ -11,32 +11,32 @@ export interface DigitalContentInterfaceProps {}
 const columns: GridColDef[] = [
   {
     field: 'guide',
-    flex: 300,
+    width: 300,
     headerName: 'Guia',
   },
   {
     field: 'category',
-    flex: 300,
+    width: 300,
     headerName: 'Categoria',
   },
   {
     field: 'description',
-    flex: 300,
+    width: 300,
     headerName: 'Descrição',
   },
   {
     field: 'files',
-    flex: 100,
+    width: 100,
     headerName: 'Arquivos',
   },
   {
     field: 'edit',
-    flex: 100,
+    width: 100,
     headerName: 'Edição',
   },
   {
     field: 'delete',
-    flex: 100,
+    width: 100,
     headerName: 'Exclusão',
   },
 ];
@@ -47,7 +47,7 @@ const rows = [
     guide: 'Guia de Acessibilidade',
     category: 'O que é acessibilidade?',
     description:
-      'Descrição do conteúdo digital dhdfjkdhfsdhfkjsfhskdjfhsdjkfhs',
+      'Descrição do conteúdo digital',
     files:
       'http://2.bp.blogspot.com/-u8DXzfyQ2zo/UmVIMwaabUI/AAAAAAAA8j8/_eR_7WpYXrg/s1600/guiavidente.jpg',
     edit: 'Editar',
