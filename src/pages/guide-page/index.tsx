@@ -39,6 +39,7 @@ export const GuidePage: React.FC<GuidePageProps> = (): JSX.Element => {
   ) : (
     <Grid container component="main">
       {/* Indíce */}
+      
       <AccessibilityTypography sx={styles.indexFirst}>
         Categorias:
       </AccessibilityTypography>
@@ -63,9 +64,11 @@ export const GuidePage: React.FC<GuidePageProps> = (): JSX.Element => {
           );
         })}
       </Grid>
+      
       {/* Conteúdo */}
       <Grid item md={8} width={'100%'}>
-        <Box component="header" sx={styles.header}>
+        <Grid item md={8}>
+        <Box component="header">
           <Typography component="h1" sx={styles.guideTitle}>
             {guide?.title}
           </Typography>
@@ -87,6 +90,7 @@ export const GuidePage: React.FC<GuidePageProps> = (): JSX.Element => {
             </Box>
           )}
         </Box>
+        </Grid>
 
         {guide?.categories.map((category, index) => {
           return (

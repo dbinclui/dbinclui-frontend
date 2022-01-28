@@ -5,6 +5,7 @@ const indexWrapper: SxProps<Theme> = {
   justifyContent: 'center',
   padding: '2rem',
   minHeight: '4rem',
+  display: { xs: 'none', md: 'block' } 
 };
 
 const buttonWrapper: SxProps<Theme> = {
@@ -18,6 +19,7 @@ const index: SxProps<Theme> = {
   position: 'fixed',
   color: (theme) => theme.palette.text.primary,
   ml: '2rem',
+  display: { xs: 'none', md: 'flex' } 
 };
 
 const indexFirst: SxProps<Theme> = {
@@ -25,11 +27,14 @@ const indexFirst: SxProps<Theme> = {
   color: (theme) => theme.palette.text.primary,
   ml: '4rem',
   fontWeight: 'bold',
+  mb: '2rem',
+  display: { xs: 'none', md: 'flex' } 
 };
 
 const header: SxProps<Theme> = {
   flexDirection: 'column',
-  width: '100%',
+  display: 'flex',
+  justifyContent: 'center',
 };
 
 const guideTitle: SxProps<Theme> = {
@@ -40,13 +45,11 @@ const guideTitle: SxProps<Theme> = {
 
 const guideContent: SxProps<Theme> = {
   fontSize: '1.14rem',
-  width: '70%',
   mb: '3rem',
 };
 
 const digitalContent: SxProps<Theme> = {
   fontSize: '1.14rem',
-  width: '70%',
   mb: '1rem',
 };
 
