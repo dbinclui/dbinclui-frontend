@@ -1,12 +1,16 @@
 import React from 'react';
-import {
-  render,
-  screen,
-} from '@testing-library/react';
+import { render, screen, fireEvent } from '@testing-library/react';
 import '@testing-library/jest-dom';
-import { fireEvent } from '@testing-library/dom';
-import ListDigitalContent from '@pages/list-digital-content/index';
+import '@testing-library/jest-dom/extend-expect';
 
+import ListDigitalContent from './index';
+
+jest.mock('react-router-dom', () => {
+  const useNavigate = jest.fn();
+  return {
+    useNavigate,
+  };
+});
 describe('Página de listagem de conteúdo digital', () => {
   beforeEach(() => {});
 
