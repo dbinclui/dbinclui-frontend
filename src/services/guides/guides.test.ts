@@ -1,5 +1,8 @@
-// import { AxiosInstance } from 'axios';
-import { getGuides, postGuides, getGuideWithCategoriesAndContent } from '@services/guides';
+import {
+  getGuides,
+  postGuides,
+  getGuideWithCategoriesAndContent,
+} from '@services/guides';
 import api from '@services/api';
 
 jest.mock('@services/api');
@@ -42,7 +45,7 @@ describe('Testando o serviço "postGuides"', () => {
   `, async () => {
     const title = 'Test title';
     const content = 'Teste content';
-    const pathExpect = '/guides/register';
+    const pathExpect = '/guides/';
     const resultExpect = true;
     apiMock.post.mockResolvedValue(resultExpect);
     const result = await postGuides({ title, content });

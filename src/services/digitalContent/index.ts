@@ -30,9 +30,7 @@ export interface CardDigitalContentResponse {
 
 export const getCategoriesByGuide = async (id: string) => {
   try {
-    return api.get<{ data: CardCategoryResponse[] }>(
-      `/categories/getByGuide/${id}`,
-    );
+    return api.get<{ data: CardCategoryResponse[] }>(`/categories/guide/${id}`);
   } catch {
     throw new Error('Serviço não disponível');
   }
@@ -52,7 +50,7 @@ export const getDigitalContent = async () => {
 export const postDigitalContent = async (cardBody: FormData) => {
   try {
     return api.post<{ data: CardDigitalContentBody[] }>(
-      `/digital-contents/register`,
+      `/digital-contents/`,
       cardBody,
       {
         headers: {

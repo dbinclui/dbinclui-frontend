@@ -11,7 +11,6 @@ import { act } from 'react-dom/test-utils';
 import { AxiosResponse } from 'axios';
 import { fireEvent } from '@testing-library/dom';
 
-
 jest.mock('./validator');
 jest.mock('@services/categories');
 jest.mock('@services/guides');
@@ -130,11 +129,11 @@ describe('Página de cadastro de categorias', () => {
   });
 });
 
-test('Botão Voltar deve redirecionar para admin', () => {
+test('Botão Voltar deve redirecionar para listar categorias', () => {
   render(<RegisterCategory />);
   const button = screen.getByTestId('back');
 
   fireEvent.click(button);
-  
-  expect(button.getAttribute('href')).toBe('/admin');
+
+  expect(button.getAttribute('href')).toBe('/admin/listar-categorias');
 });
