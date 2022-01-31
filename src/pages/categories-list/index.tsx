@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { DataGrid, GridColDef } from '@mui/x-data-grid';
 import AccessibilityTypography from '@components/AccessibilityTypography';
 import styles from './styles';
-import { Alert, Box, Button, Stack } from '@mui/material';
+import { Box, Button, CircularProgress, Grid } from '@mui/material';
 import { Link } from 'react-router-dom';
 import { CardCategoriesResponse, getCategories } from '@services/categories';
 import DeleteIcon from '@mui/icons-material/Delete';
@@ -15,9 +15,8 @@ export const CategoriesList: React.FC<
 > = (): JSX.Element => {
   const [categories, setCategories] = useState<CardCategoriesResponse[]>([]);
   const [successGetCategories, setSuccessGetCategories] = useState(false);
-  const [errorGetCategories, setErrorGetCategories] = useState(true);
-  const [errorMessageGetCategories, setErrorMessageGetCategories] =
-    useState('');
+  const [errorGetCategories, setErrorGetCategories] = useState(false);
+  const [loading, setLoading] = useState(true);
 
   async function getContentCategories() {
     try {
@@ -25,8 +24,9 @@ export const CategoriesList: React.FC<
       setCategories(response.data.data);
       setSuccessGetCategories(true);
     } catch {
-      setErrorMessageGetCategories('Não foram encontradas as categorias');
       setErrorGetCategories(true);
+    } finally {
+      setLoading(false);
     }
   }
 
@@ -114,53 +114,60 @@ export const CategoriesList: React.FC<
         tabIndex={2}
         aria-label="LISTA DE CATEGORIAS"
       >
-        {successGetCategories && (
-          <DataGrid
-            data-testid="dataGrid"
-            autoHeight
-            getRowId={(row) => row._id}
-            disableExtendRowFullWidth={true}
-            rows={rowData}
-            columns={columns}
-            sx={styles.table}
-            pageSize={10}
-            rowsPerPageOptions={[4]}
-          />
-        )}
-        {errorGetCategories && (
-          <Stack spacing={2} sx={styles.errorBox}>
-            <Alert severity="error">{errorMessageGetCategories}</Alert>
-          </Stack>
-        )}
-        <Box sx={styles.boxButton}>
-          <Button
-            component={Link}
-            to="/admin/cadastrar-categoria"
-            sx={styles.button}
-            variant="contained"
-            type="submit"
-            role="button"
-            area-label="BOTÃO NOVO"
-            tabIndex={16}
-            data-testid="new"
-          >
-            Novo
-          </Button>
+        {loading ? (
+          <Grid container justifyContent={'center'} marginTop={'20px'}>
+            <CircularProgress color="secondary" />
+          </Grid>
+        ) : errorGetCategories ? (
+          <Grid container justifyContent={'center'} marginTop={'30px'}>
+            <AccessibilityTypography variant="h1" className="error">
+              Desculpe, não foi possível carregar a lista de categorias!
+            </AccessibilityTypography>
+          </Grid>
+        ) : (
+          <>
+            <DataGrid
+              data-testid="dataGrid"
+              autoHeight
+              getRowId={(row) => row._id}
+              disableExtendRowFullWidth={true}
+              rows={rowData}
+              columns={columns}
+              sx={styles.table}
+              pageSize={10}
+              rowsPerPageOptions={[4]}
+            />
+            <Box sx={styles.boxButton}>
+              <Button
+                component={Link}
+                to="/admin/cadastrar-categoria"
+                sx={styles.button}
+                variant="contained"
+                type="submit"
+                role="button"
+                area-label="BOTÃO NOVO"
+                tabIndex={16}
+                data-testid="new"
+              >
+                Novo
+              </Button>
 
-          <Button
-            component={Link}
-            to="/admin"
-            sx={styles.button}
-            variant="contained"
-            type="reset"
-            role="button"
-            area-label="BOTÃO VOLTAR"
-            tabIndex={17}
-            data-testid="back"
-          >
-            Voltar
-          </Button>
-        </Box>
+              <Button
+                component={Link}
+                to="/admin"
+                sx={styles.button}
+                variant="contained"
+                type="reset"
+                role="button"
+                area-label="BOTÃO VOLTAR"
+                tabIndex={17}
+                data-testid="back"
+              >
+                Voltar
+              </Button>
+            </Box>
+          </>
+        )}
       </Box>
     </>
   );
