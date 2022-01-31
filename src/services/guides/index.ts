@@ -17,13 +17,13 @@ export interface GuideContent {
   _id?: string;
   title: string;
   content: string;
-  categories: CategoryContent[],
-  digitalContents: CardDigitalContentResponse[],
+  categories: CategoryContent[];
+  digitalContents: CardDigitalContentResponse[];
 }
 
 export const getGuides = async () => {
   try {
-    return api.get<{ data: CardGuidesResponse[] }>(`/guides/list`);
+    return api.get<{ data: CardGuidesResponse[] }>(`/guides/`);
   } catch {
     throw new Error('Serviço não disponível');
   }
@@ -31,7 +31,7 @@ export const getGuides = async () => {
 
 export const postGuides = async (cardBody: CardBodyInterface) => {
   try {
-    return api.post('/guides/register', cardBody);
+    return api.post('/guides/', cardBody);
   } catch {
     throw new Error('Serviço não disponível');
   }
@@ -42,30 +42,23 @@ export const putGuides = async (id: string, cardBody: CardBodyInterface) => {
 
 
   }catch{
-
+    throw new Error('Serviço não disponível');
   }
 };
-  export const getGuideWithCategoriesAndContent = async (id: string) => {
-    try {
-      return api.get<{ data: GuideContent }>(`guides/getGuideWithCategoriesAndContent/${id}`);
-    } catch {
-      throw new Error('Serviço não disponível');
-    }
-  }
 
-  export const updateGuides = async (id: string) => {
-    try {
-      return api.put('/guides/:id');
-    } catch {
-      throw new Error('Serviço não disponível');
-    }
-  };
   
   export const getGuideById = async (id: string) => {
     try {
-      return api.get< { data: CardGuidesResponse }> (`guides/consult/${id}`);
+      return api.get< { data: CardGuidesResponse }> (`guides/${id}`);
     } catch {
       throw new Error('Serviço não disponível');
     }
   };
 
+  export const getGuideWithCategoriesAndContent = async (id: string) => {
+  try{
+    return api.get<{ data: GuideContent }>(`guides/categoriesAndContent/${id}`);
+  } catch {
+    throw new Error('Serviço não disponível');
+  }
+};

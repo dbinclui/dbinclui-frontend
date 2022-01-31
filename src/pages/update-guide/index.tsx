@@ -1,8 +1,8 @@
-import React, { useState, useRef, useEffect, ChangeEventHandler } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import validateInput from './validator';
-import { Button, Box, Grid, InputLabel, InputBase } from '@mui/material';
+import { Button, Box, Grid, InputLabel, InputBase, CircularProgress } from '@mui/material';
 import styles from './styles';
-import CardGuidesResponse, { postGuides, putGuides, getGuideById, updateGuides } from '@services/guides';
+import CardGuidesResponse, { putGuides, getGuideById } from '@services/guides';
 import Notification from '@components/Notification';
 import AccessibilityTypography from '@components/AccessibilityTypography';
 import { useParams } from 'react-router-dom';
@@ -19,29 +19,27 @@ export interface UpdateGuideInterface {
 export const UpdateGuide: React.FC<UpdateGuideProps> = (): JSX.Element => {
   const title = useRef<HTMLInputElement | undefined>();
   const description = useRef<HTMLInputElement | undefined>();
-  // const inputRef = useRef(null);
-  let parametros = useParams();   
-  let id: string = parametros.id!;
-  id = '61f1ad3f3deccc50b44b9e58';
-  //const id = useRef<HTMLInputElement>();
+  const parametros  = useParams();  
+  const id: string = parametros.id!;
   const [error, setError] = useState(false);
   const [success, setSuccess] = useState(false);
   const [errorMessage, setErrorMessage] = useState('');
-  const [cards, setCards] = useState<UpdateGuideInterface>();
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false);
   
 
   async function getGuidesService(id:string) {
+    let data:{data: CardGuidesResponse};
     try {
-      const { data } = await getGuideById(id);
-      setCards(data.data);
-      title.current!.value = data.data.title;
-      description.current!.value = data.data.content;
+      setLoading(true);
+      data = (await getGuideById(id)).data;
       setError(false);
-    } catch (error) {
+    } catch (error:any) {
       setError(true);
+      setErrorMessage(error.message);
     } finally {
       setLoading(false);
+      title.current!.value = data!.data.title;
+      description.current!.value = data!.data.content;
     }
   }
 
@@ -49,38 +47,27 @@ export const UpdateGuide: React.FC<UpdateGuideProps> = (): JSX.Element => {
     getGuidesService(id);
   }, [id]);
 
-  
-//   const editar(({routeParams}) => {
-//     const id = routeParams.UpdateGuideInterface;
-//     Meteor.subscribe('id');
-//     return {
-//         id: id.findOne({id: id}), 
-//     };
-// }, id);
 
   async function handleSubmit(event: React.FormEvent) {
     event.preventDefault();
 
     const cardBody = {
-      title: cards?.title || '',
-      content: cards?.content || '',
+      title: title.current?.value || '',
+      content: description.current?.value || '',
     };
 
 
     try{
-      // await validateInput(cardBody);
-      // await updateGuides('id');
+      await validateInput(cardBody);
       await putGuides(id, cardBody)
       setSuccess(true)
+      console.log(cardBody);
 
-    }catch{
-      //setErrorMessage(error.message);
+    }catch(error:any){
+      setErrorMessage(error.message);
       setError(true);
     }
 
-
-    // title.current!.value = '';
-    // description.current!.value = '';
   }
 
   return (
@@ -91,7 +78,9 @@ export const UpdateGuide: React.FC<UpdateGuideProps> = (): JSX.Element => {
         justifyContent={'center'}
         role="main"
       >
-        <Grid item md={6} component="section">
+        
+        {loading ? (<CircularProgress color="secondary" />) : (
+          <Grid item md={6} component="section">
           <Box sx={styles.header} component="header">
             <AccessibilityTypography sx={styles.headerTitle}>
               ATUALIZAR GUIA
@@ -120,9 +109,7 @@ export const UpdateGuide: React.FC<UpdateGuideProps> = (): JSX.Element => {
               </InputLabel>
               <InputBase
                 inputRef={title}
-                // onChange={(e) => setCards({...cards, title: e.target.value})}
                 type="text"
-                // value={cards?.title}
                 id="titulo"
                 name="titulo"
                 role="input"
@@ -139,8 +126,6 @@ export const UpdateGuide: React.FC<UpdateGuideProps> = (): JSX.Element => {
               </InputLabel>
               <InputBase
                 inputRef={description}
-                // onChange={(e) => setCards({...cards, content: e.target.value})}
-                // value={cards?.content}
                 multiline={true}
                 minRows={5}
                 role="input"
@@ -180,7 +165,8 @@ export const UpdateGuide: React.FC<UpdateGuideProps> = (): JSX.Element => {
               </Grid>
             </Box>
           </Box>
-        </Grid>
+        </Grid>)}
+        
       </Grid>
       {error && (
         <Notification
@@ -196,7 +182,7 @@ export const UpdateGuide: React.FC<UpdateGuideProps> = (): JSX.Element => {
       )}
       {success && (
         <Notification
-          message="Cadastro realizado com sucesso! ✔"
+          message="Atualização realizada com sucesso! ✔"
           variant="success"
           onClose={() => {
             setSuccess(false);
