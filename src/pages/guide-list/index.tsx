@@ -16,19 +16,11 @@ export const GuideList: React.FC<
 > = (): JSX.Element => {
   const [guideList, setGuideList] = useState<CardGuidesResponse[]>([]);
 
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(false);
-
   async function getGuideListService() {
     try {
       const { data } = await getGuides();
       setGuideList(data.data);
-      setError(false);
-    } catch (error) {
-      setError(true);
-    } finally {
-      setLoading(false);
-    }
+    } catch (error) {}
   }
 
   useEffect(() => {
@@ -36,7 +28,6 @@ export const GuideList: React.FC<
   }, []);
 
   const columns: GridColDef[] = [
-    { field: '_id', headerName: 'ID', width: 50, hide: true },
     {
       field: 'guide',
       width: 250,
@@ -54,6 +45,7 @@ export const GuideList: React.FC<
       headerName: 'Editar',
       renderCell: (params) => (
         <Button
+          data-testid="edit"
           href={params.value}
           startIcon={<CreateSharp />}
           sx={{ color: 'text.primary' }}
@@ -107,7 +99,7 @@ export const GuideList: React.FC<
         <Button
           data-testid="new"
           component={Link}
-          to="/admin/cadastrar-conteudo-digital"
+          to="/admin/cadastrar-guia"
           sx={styles.button}
           variant="contained"
           type="submit"
