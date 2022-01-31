@@ -40,7 +40,7 @@ export const CategoriesList: React.FC<
     { field: '_id', headerName: 'ID', width: 300, hide: true },
     {
       field: 'guide',
-      width: 300,
+      width: 250,
       editable: false,
       headerName: 'Guia',
     },
@@ -52,7 +52,7 @@ export const CategoriesList: React.FC<
     },
     {
       field: 'shortDescription',
-      width: 250,
+      width: 300,
       editable: false,
       headerName: 'Descrição',
     },
@@ -89,7 +89,10 @@ export const CategoriesList: React.FC<
       _id: card._id,
       guide: card.guide.title,
       title: card.title,
-      shortDescription: card.shortDescription,
+      shortDescription:
+        card.shortDescription.length >= 30
+          ? card.shortDescription.substring(0, 30) + '...'
+          : card.shortDescription,
       edit: '/admin/atualizar-categoria/' + card._id,
       delete: '/admin/excluir-categoria/' + card._id,
     };
