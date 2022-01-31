@@ -39,9 +39,7 @@ export const postGuides = async (cardBody: CardBodyInterface) => {
 
 export const getGuideWithCategoriesAndContent = async (id: string) => {
   try {
-    return api.get<{ data: GuideContent }>(
-      `guides/getGuideWithCategoriesAndContent/${id}`,
-    );
+    return api.get<{ data: GuideContent }>(`guides/categoriesAndContent/${id}`);
   } catch {
     throw new Error('Serviço não disponível');
   }
