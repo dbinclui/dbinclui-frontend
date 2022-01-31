@@ -9,7 +9,7 @@ export interface Guides {
 }
 
 export interface CategoryContent extends CardCategoriesResponse {
-  digitalContents: CardDigitalContentResponse[]
+  digitalContents: CardDigitalContentResponse[];
 }
 
 export interface CardCategoriesResponse {
@@ -20,23 +20,23 @@ export interface CardCategoriesResponse {
   parentCategory?: CardCategoriesResponse;
 }
 
-export interface CardBodyInterface {  
+export interface CardBodyInterface {
   title: string;
   shortDescription: string;
-  guide: Guides["_id"];
+  guide: Guides['_id'];
 }
 
 export const getCategories = async () => {
   try {
-    return api.get<{ data: CardCategoriesResponse[] }>(`/categories/list`);
+    return api.get<{ data: CardCategoriesResponse[] }>(`/categories/`);
   } catch {
     throw new Error('Serviço não disponível');
   }
 };
 
-export const postCategories= async (cardBody: CardBodyInterface) => {
+export const postCategories = async (cardBody: CardBodyInterface) => {
   try {
-    return api.post('/categories/register', cardBody);
+    return api.post('/categories/', cardBody);
   } catch {
     throw new Error('Serviço não disponível');
   }
