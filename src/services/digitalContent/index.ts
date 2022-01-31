@@ -39,9 +39,8 @@ export const getCategoriesByGuide = async (id: string) => {
 export const getDigitalContent = async () => {
   try {
     return api.get<{ data: CardDigitalContentResponse[] }>(
-      `/digital-contents/list`,
+      `/digital-contents/`,
     );
-    //return api.get<{ data: CardDigitalContentResponse[] }>(`/digital-contents`);
   } catch {
     throw new Error('Serviço não disponível');
   }

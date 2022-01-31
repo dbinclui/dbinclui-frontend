@@ -20,21 +20,13 @@ export const ListDigitalContent: React.FC<
     CardDigitalContentResponse[]
   >([]);
   
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(false);
-
-  async function getDigitalContentsService() {
+   async function getDigitalContentsService() {
     try {
       const { data } = await getDigitalContent();
       setDigitalContents(data.data);
-      setError(false);
-    } catch (error) {
-      setError(true);
-    } finally {
-      setLoading(false);
-    }
+    } catch (error) {}
   }
-
+    
   useEffect(() => {
     getDigitalContentsService();
     
@@ -103,7 +95,7 @@ export const ListDigitalContent: React.FC<
     return {
       _id: card._id,
       guide: card.guide.title,
-      category: card.category,
+      category: card.category?.title,
       shortDescription: card.shortDescription,
       filePaths: card.filePaths[0],
       edit: '/admin/atualizar-conteudo-digital/' + card._id,
