@@ -36,7 +36,7 @@ export const Routers: React.FC<RoutersProps> = (): JSX.Element => {
               element={<RegisterCategory />}
             />
             <Route
-              path="admin/atualizar-categoria"
+              path="admin/atualizar-categoria/:id"
               element={<UpdateCategory />}
             />
             <Route

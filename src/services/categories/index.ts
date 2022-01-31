@@ -28,7 +28,7 @@ export interface CardBodyInterface {
 
 export const getCategories = async () => {
   try {
-    return api.get<{ data: CardCategoriesResponse[] }>(`/categories/list`);
+    return api.get<{ data: CardCategoriesResponse[] }>(`/categories`);
   } catch {
     throw new Error('Serviço não disponível');
   }

@@ -19,7 +19,7 @@ export const CategoriesList: React.FC<
   const [errorMessageGetCategories, setErrorMessageGetCategories] =
     useState('');
 
-  async function getDigitalContentCategories() {
+  async function getContentCategories() {
     try {
       const response = await getCategories();
       setCategories(response.data.data);
@@ -31,7 +31,7 @@ export const CategoriesList: React.FC<
   }
 
   useEffect(() => {
-    getDigitalContentCategories();
+    getContentCategories();
   }, []);
 
   console.log(categories);
@@ -84,6 +84,17 @@ export const CategoriesList: React.FC<
     },
   ];
 
+  const rowData = categories.map((card) => {
+    return {
+      _id: card._id,
+      guide: card.guide.title,
+      title: card.title,
+      shortDescription: card.shortDescription,
+      edit: '/admin/atualizar-categoria/' + card._id,
+      delete: '/admin/excluir-categoria/' + card._id,
+    };
+  });
+
   return (
     <>
       <AccessibilityTypography
@@ -105,7 +116,7 @@ export const CategoriesList: React.FC<
           autoHeight
           getRowId={(row) => row._id}
           disableExtendRowFullWidth={true}
-          rows={categories}
+          rows={rowData}
           columns={columns}
           sx={styles.table}
           pageSize={10}
