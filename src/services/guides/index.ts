@@ -38,7 +38,7 @@ export const postGuides = async (cardBody: CardBodyInterface) => {
 };
 export const putGuides = async (id: string, cardBody: CardBodyInterface) => {
   try {
-    return api.put(`/guides/register/${id}`, cardBody);
+    return api.put(`/guides/${id}`, cardBody);
 
 
   }catch{

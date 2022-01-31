@@ -191,7 +191,7 @@ UpdateCategoryProps
                   type="reset"
                   role="button"
                   data-testid="back"
-                  href="/admin"
+                  href="/admin/listar-categorias"
                 >
                   Voltar
                 </Button>
