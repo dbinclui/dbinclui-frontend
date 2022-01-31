@@ -1,134 +1,135 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { DataGrid, GridRowsProp, GridColDef } from '@mui/x-data-grid';
 import { Button, Box } from '@mui/material';
 import AccessibilityTypography from '@components/AccessibilityTypography';
+import { getGuides } from '@services/guides';
+import CardGuidesResponse from '@services/guides';
+import { CreateSharp } from '@mui/icons-material';
+import DeleteIcon from '@mui/icons-material/Delete';
 import styles from './styles';
 
-export interface GuideListProps {}
+export interface GuideListPropsInterfaceProps {}
 
-const rows: GridRowsProp = [
-  {
-    id: 1,
-    title: 'Guia de Acessibilidade',
-    shortDescription: 'Descrição para o guia de Acessibilidade',
-    edit: 'Editar',
-    delete: 'Excluir',
-  },
-  {
-    id: 2,
-    title: 'Boas Práticas para Acessibilidade',
-    shortDescription:
-      'Descrição para o guia de Boas Práticas para Acessibilidade',
-    edit: 'Editar',
-    delete: 'Excluir',
-  },
-  {
-    id: 3,
-    title: 'Guia de Inclusão Digital',
-    shortDescription: 'Descrição para o guia de Inclusão Digital',
-    edit: 'Editar',
-    delete: 'Excluir',
-  },
-  {
-    id: 4,
-    title: 'Guia de Acessibilidade',
-    shortDescription: 'Descrição para o guia de Acessibilidade',
-    edit: 'Editar',
-    delete: 'Excluir',
-  },
-  {
-    id: 5,
-    title: 'Guia de Acessibilidade',
-    shortDescription: 'Descrição para o guia de Acessibilidade',
-    edit: 'Editar',
-    delete: 'Excluir',
-  },
-  {
-    id: 6,
-    title: 'Guia de Acessibilidade',
-    shortDescription: 'Descrição para o guia de Acessibilidade',
-    edit: 'Editar',
-    delete: 'Excluir',
-  },
-  {
-    id: 7,
-    title: 'Guia de Acessibilidade',
-    shortDescription: 'Descrição para o guia de Acessibilidade',
-    edit: 'Editar',
-    delete: 'Excluir',
-  },
-  {
-    id: 8,
-    title: 'Guia de Acessibilidade',
-    shortDescription: 'Descrição para o guia de Acessibilidade',
-    edit: 'Editar',
-    delete: 'Excluir',
-  },
-  {
-    id: 9,
-    title: 'Guia de Acessibilidade',
-    shortDescription: 'Descrição para o guia de Acessibilidade',
-    edit: 'Editar',
-    delete: 'Excluir',
-  },
-  {
-    id: 10,
-    title: 'Guia de Acessibilidade',
-    shortDescription: 'Descrição para o guia de Acessibilidade',
-    edit: 'Editar',
-    delete: 'Excluir',
-  },
-];
+export const GuideList: React.FC<
+  GuideListPropsInterfaceProps
+> = (): JSX.Element => {
+  const [guideList, setGuideList] = useState<CardGuidesResponse[]>([]);
 
-const columns: GridColDef[] = [
-  { field: 'title', headerName: 'Título', width: 250 },
-  { field: 'shortDescription', headerName: 'Descrição', width: 560 },
-  { field: 'edit', headerName: 'Edição', width: 100 },
-  { field: 'delete', headerName: 'Exclusão', width: 100 },
-];
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(false);
 
-export const GuideList: React.FC<GuideListProps> = (): JSX.Element => {
+  async function getGuideListService() {
+    try {
+      const { data } = await getGuides();
+      setGuideList(data.data);
+      setError(false);
+    } catch (error) {
+      setError(true);
+    } finally {
+      setLoading(false);
+    }
+  }
+
+  useEffect(() => {
+    getGuideListService();
+  }, []);
+
+  const columns: GridColDef[] = [
+    { field: '_id', headerName: 'ID', width: 50, hide: true },
+    {
+      field: 'guide',
+      width: 250,
+      headerName: 'Guia',
+    },
+    {
+      field: 'content',
+      width: 560,
+      headerName: 'Descrição',
+    },
+    {
+      field: 'edit',
+      width: 100,
+      sortable: false,
+      headerName: 'Editar',
+      renderCell: (params) => (
+        <Button
+          href={params.value}
+          startIcon={<CreateSharp />}
+          sx={{ color: 'text.primary' }}
+        ></Button>
+      ),
+    },
+    {
+      field: 'delete',
+      width: 100,
+      sortable: false,
+      headerName: 'Excluir',
+      renderCell: (params) => (
+        <Button
+          href={params.value}
+          startIcon={<DeleteIcon />}
+          sx={{ color: 'text.primary' }}
+        ></Button>
+      ),
+    },
+  ];
+
+  const rowData = guideList.map((card) => {
+    return {
+      _id: card._id,
+      guide: card.title,
+      content: card.content.length > 65 ? (card.content).substring(0, 65) + '...' : card.content,
+      edit: '/admin/atualizar-guia/' + card._id,
+      delete: '/admin/excluir-guia/' + card._id,
+    };
+  });
+
   return (
     <>
-      <AccessibilityTypography sx={styles.listTitle}>
+      <AccessibilityTypography variant="h2" sx={styles.listTitle}>
         LISTAGEM DE GUIAS
       </AccessibilityTypography>
-      <Box style={{ width: '100%' }}>
+      <Box style={{ height: 400, width: '100%' }}>
         <DataGrid
           data-testid="dataGrid"
           autoHeight
+          getRowId={(row) => row._id}
           disableExtendRowFullWidth={true}
-          rows={rows}
+          rows={rowData}
           columns={columns}
           sx={styles.table}
           pageSize={10}
           rowsPerPageOptions={[10]}
         />
-        <Box sx={styles.boxButton}>
-          <Button
-            data-testid="submit"
-            component={Link}
-            to="/admin/cadastrar-guia"
-            sx={styles.button}
-            variant="contained"
-            type="submit"
-            role="button"
-          >
-            Novo
-          </Button>
-          <Button
-            data-testid="back"
-            component={Link}
-            to="/admin"
-            sx={styles.button}
-            variant="contained"
-            type="reset"
-            role="button"
-          >
-            Voltar
-          </Button>
-        </Box>
+      </Box>
+      <Box sx={styles.boxButton}>
+        <Button
+          data-testid="new"
+          component={Link}
+          to="/admin/cadastrar-conteudo-digital"
+          sx={styles.button}
+          variant="contained"
+          type="submit"
+          role="button"
+          area-label="BOTÃO NOVO"
+          tabIndex={16}
+        >
+          Novo
+        </Button>
+        <Button
+          data-testid="back"
+          component={Link}
+          to="/admin"
+          sx={styles.button}
+          variant="contained"
+          type="reset"
+          role="button"
+          area-label="BOTÃO VOLTAR"
+          tabIndex={17}
+        >
+          Voltar
+        </Button>
       </Box>
     </>
   );

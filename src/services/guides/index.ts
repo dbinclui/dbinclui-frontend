@@ -15,7 +15,7 @@ export interface CardBodyInterface {
 
 export interface GuideContent {
   _id?: string;
-  title: string;
+  title: GuideContent;
   content: string;
   categories: CategoryContent[],
   digitalContents: CardDigitalContentResponse[],
