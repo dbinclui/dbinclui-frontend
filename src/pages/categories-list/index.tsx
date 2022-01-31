@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { DataGrid, GridColDef } from '@mui/x-data-grid';
 import AccessibilityTypography from '@components/AccessibilityTypography';
 import styles from './styles';
-import { Box, Button } from '@mui/material';
+import { Alert, Box, Button, Stack } from '@mui/material';
 import { Link } from 'react-router-dom';
 import { CardCategoriesResponse, getCategories } from '@services/categories';
 import DeleteIcon from '@mui/icons-material/Delete';
@@ -25,7 +25,7 @@ export const CategoriesList: React.FC<
       setCategories(response.data.data);
       setSuccessGetCategories(true);
     } catch {
-      setErrorMessageGetCategories('Não foram encontradas as guias');
+      setErrorMessageGetCategories('Não foram encontradas as categorias');
       setErrorGetCategories(true);
     }
   }
@@ -114,46 +114,53 @@ export const CategoriesList: React.FC<
         tabIndex={2}
         aria-label="LISTA DE CATEGORIAS"
       >
-        <DataGrid
-          data-testid="dataGrid"
-          autoHeight
-          getRowId={(row) => row._id}
-          disableExtendRowFullWidth={true}
-          rows={rowData}
-          columns={columns}
-          sx={styles.table}
-          pageSize={10}
-          rowsPerPageOptions={[4]}
-        />
-      </Box>
-      <Box sx={styles.boxButton}>
-        <Button
-          component={Link}
-          to="/admin/cadastrar-categoria"
-          sx={styles.button}
-          variant="contained"
-          type="submit"
-          role="button"
-          area-label="BOTÃO NOVO"
-          tabIndex={16}
-          data-testid="new"
-        >
-          Novo
-        </Button>
+        {successGetCategories && (
+          <DataGrid
+            data-testid="dataGrid"
+            autoHeight
+            getRowId={(row) => row._id}
+            disableExtendRowFullWidth={true}
+            rows={rowData}
+            columns={columns}
+            sx={styles.table}
+            pageSize={10}
+            rowsPerPageOptions={[4]}
+          />
+        )}
+        {errorGetCategories && (
+          <Stack spacing={2} sx={styles.errorBox}>
+            <Alert severity="error">{errorMessageGetCategories}</Alert>
+          </Stack>
+        )}
+        <Box sx={styles.boxButton}>
+          <Button
+            component={Link}
+            to="/admin/cadastrar-categoria"
+            sx={styles.button}
+            variant="contained"
+            type="submit"
+            role="button"
+            area-label="BOTÃO NOVO"
+            tabIndex={16}
+            data-testid="new"
+          >
+            Novo
+          </Button>
 
-        <Button
-          component={Link}
-          to="/admin"
-          sx={styles.button}
-          variant="contained"
-          type="reset"
-          role="button"
-          area-label="BOTÃO VOLTAR"
-          tabIndex={17}
-          data-testid="back"
-        >
-          Voltar
-        </Button>
+          <Button
+            component={Link}
+            to="/admin"
+            sx={styles.button}
+            variant="contained"
+            type="reset"
+            role="button"
+            area-label="BOTÃO VOLTAR"
+            tabIndex={17}
+            data-testid="back"
+          >
+            Voltar
+          </Button>
+        </Box>
       </Box>
     </>
   );

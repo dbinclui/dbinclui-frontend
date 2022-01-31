@@ -61,12 +61,20 @@ const button: SxProps<Theme> = {
   },
 };
 
+const errorBox: SxProps<Theme> = {
+  mt: '40px',
+  width: '50%',
+  ml: 'auto',
+  mr: 'auto',
+};
+
 const styles = {
   listTitle,
   table,
   button,
   buttonTable,
   boxButton,
+  errorBox,
 };
 
 export default styles;
