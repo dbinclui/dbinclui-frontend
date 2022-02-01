@@ -96,7 +96,7 @@ describe('Página de atualização de guias', () => {
     });
   });
 
-  test('Deve chamar a função postGuides quando o botão do submit for clicado', async () => {
+  test('Deve chamar a função putGuides quando o botão do submit for clicado', async () => {
     // eslint-disable-next-line testing-library/no-unnecessary-act
     act(() => {
       render(<UpdateGuide />);
@@ -108,7 +108,7 @@ describe('Página de atualização de guias', () => {
       userEvent.click(botaoSubmit);
     });
     await waitFor(() => {
-      expect(postGuidesMock).toBeCalled();
+      expect(putGuidesMock).toBeCalled();
     });
   });
 
@@ -119,9 +119,9 @@ describe('Página de atualização de guias', () => {
     });
 
     validateInputMock.mockResolvedValue(true as unknown as InputInterface);
-    postGuidesMock.mockResolvedValue(true as unknown as Promise<AxiosResponse>);
+    putGuidesMock.mockResolvedValue(true as unknown as Promise<AxiosResponse>);
     const textoNoBotaoSubmit = 'Atualizar';
-    const NotificationMessage = 'Cadastro realizado com sucesso! ✔';
+    const NotificationMessage = 'Atualização realizada com sucesso! ✔';
     const botaoSubmit = screen.getByText(textoNoBotaoSubmit);
     // eslint-disable-next-line testing-library/no-unnecessary-act
     act(() => {
@@ -144,7 +144,7 @@ describe('Página de atualização de guias', () => {
     validateInputMock.mockImplementation(() => {
       throw throwError;
     });
-    postGuidesMock.mockResolvedValue(true as unknown as Promise<AxiosResponse>);
+    putGuidesMock.mockResolvedValue(true as unknown as Promise<AxiosResponse>);
     const textoNoBotaoSubmit = 'Atualizar';
     const NotificationMessage = errorMessage;
     const botaoSubmit = screen.getByText(textoNoBotaoSubmit);
