@@ -14,7 +14,7 @@ import AccessibilityTypography from '@components/AccessibilityTypography';
 
 import styles from './styles';
 import Notification from '@components/Notification';
-import GuideInterface, { getGuides } from '@services/guides';
+import { GuideInterface, getGuides } from '@services/guides';
 import validateInput from '@pages/update-category/validator';
 import { postCategories } from '@services/categories';
 

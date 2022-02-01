@@ -11,7 +11,7 @@ import SearchIcon from '@mui/icons-material/Search';
 import './style.css';
 import CardHome from '@components/CardHome';
 import AccessibilityTypography from '@components/AccessibilityTypography';
-import GuideInterface, { getGuides } from '@services/guides';
+import { GuideInterface, getGuides } from '@services/guides';
 
 export interface HomeProps {}
 
