@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { DataGrid, GridRowsProp, GridColDef } from '@mui/x-data-grid';
-import { Button, Box } from '@mui/material';
+import { DataGrid, GridColDef } from '@mui/x-data-grid';
+import { Button, Box, CircularProgress, Grid } from '@mui/material';
 import AccessibilityTypography from '@components/AccessibilityTypography';
 import { getGuides } from '@services/guides';
 import CardGuidesResponse from '@services/guides';
@@ -15,12 +15,18 @@ export const GuideList: React.FC<
   GuideListPropsInterfaceProps
 > = (): JSX.Element => {
   const [guideList, setGuideList] = useState<CardGuidesResponse[]>([]);
+  const [errorGetList, setErrorGetList] = useState(false);
+  const [loading, setLoading] = useState(true);
 
   async function getGuideListService() {
     try {
       const { data } = await getGuides();
       setGuideList(data.data);
-    } catch (error) {}
+    } catch {
+      setErrorGetList(true);
+    } finally {
+      setLoading(false);
+    }
   }
 
   useEffect(() => {
@@ -71,7 +77,10 @@ export const GuideList: React.FC<
     return {
       _id: card._id,
       guide: card.title,
-      content: card.content.length > 65 ? (card.content).substring(0, 65) + '...' : card.content,
+      content:
+        card.content.length > 65
+          ? card.content.substring(0, 65) + '...'
+          : card.content,
       edit: '/admin/atualizar-guia/' + card._id,
       delete: '/admin/excluir-guia/' + card._id,
     };
@@ -79,49 +88,73 @@ export const GuideList: React.FC<
 
   return (
     <>
-      <AccessibilityTypography variant="h2" sx={styles.listTitle}>
+      <AccessibilityTypography
+        role="heading"
+        tabIndex={1}
+        aria-label="LISTAGEM DE GUIAS"
+        sx={styles.listTitle}
+      >
         LISTAGEM DE GUIAS
       </AccessibilityTypography>
-      <Box style={{ height: 400, width: '100%' }}>
-        <DataGrid
-          data-testid="dataGrid"
-          autoHeight
-          getRowId={(row) => row._id}
-          disableExtendRowFullWidth={true}
-          rows={rowData}
-          columns={columns}
-          sx={styles.table}
-          pageSize={10}
-          rowsPerPageOptions={[10]}
-        />
-      </Box>
-      <Box sx={styles.boxButton}>
-        <Button
-          data-testid="new"
-          component={Link}
-          to="/admin/cadastrar-guia"
-          sx={styles.button}
-          variant="contained"
-          type="submit"
-          role="button"
-          area-label="BOTÃO NOVO"
-          tabIndex={16}
-        >
-          Novo
-        </Button>
-        <Button
-          data-testid="back"
-          component={Link}
-          to="/admin"
-          sx={styles.button}
-          variant="contained"
-          type="reset"
-          role="button"
-          area-label="BOTÃO VOLTAR"
-          tabIndex={17}
-        >
-          Voltar
-        </Button>
+      <Box
+        style={{ height: 400, width: '100%' }}
+        role="list"
+        tabIndex={2}
+        aria-label="LISTA DE GUIAS"
+      >
+        {loading ? (
+          <Grid container justifyContent={'center'} marginTop={'20px'}>
+            <CircularProgress color="secondary" />
+          </Grid>
+        ) : errorGetList ? (
+          <Grid container justifyContent={'center'} marginTop={'30px'}>
+            <AccessibilityTypography variant="h1" className="error">
+              Desculpe, não foi possível carregar a lista de guias!
+            </AccessibilityTypography>
+          </Grid>
+        ) : (
+          <>
+            <DataGrid
+              data-testid="dataGrid"
+              autoHeight
+              getRowId={(row) => row._id}
+              disableExtendRowFullWidth={true}
+              rows={rowData}
+              columns={columns}
+              sx={styles.table}
+              pageSize={10}
+              rowsPerPageOptions={[10]}
+            />
+            <Box sx={styles.boxButton}>
+              <Button
+                data-testid="new"
+                component={Link}
+                to="/admin/cadastrar-guia"
+                sx={styles.button}
+                variant="contained"
+                type="submit"
+                role="button"
+                aria-label="BOTÃO NOVO"
+                tabIndex={3}
+              >
+                Novo
+              </Button>
+              <Button
+                data-testid="back"
+                component={Link}
+                to="/admin"
+                sx={styles.button}
+                variant="contained"
+                type="reset"
+                role="button"
+                aria-label="BOTÃO VOLTAR"
+                tabIndex={4}
+              >
+                Voltar
+              </Button>
+            </Box>
+          </>
+        )}
       </Box>
     </>
   );
