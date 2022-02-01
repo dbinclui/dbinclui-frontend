@@ -46,7 +46,7 @@ const boxButton: SxProps<Theme> = {
 const button: SxProps<Theme> = {
   'fontWeight': '700',
   'padding': '0.5rem 1.5rem',
-  'margin': '30px 80px 30px -40px',
+  'margin': '30px 150px 30px -100px',
   'textTransform': 'none',
   'fontSize': '1.2rem',
   'border': '2px solid',
