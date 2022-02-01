@@ -230,7 +230,6 @@ export const RegisterDigitalContent: React.FC<
                 defaultValue=""
                 inputRef={category}
                 labelId="categoryLabel"
-                required
                 data-testid="categoryTestId"
                 role="select"
                 aria-labelledby="categoryLabel"
