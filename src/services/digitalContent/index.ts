@@ -1,11 +1,11 @@
 import api from '@services/api';
-import CardGuidesResponse from '@services/guides';
+import GuideInterface from '@services/guides';
 
 export interface CardCategoryResponse {
   _id?: string;
   title: string;
   shortDescription: string;
-  guide: CardGuidesResponse;
+  guide: GuideInterface;
   parentCategory?: CardCategoryResponse;
 }
 

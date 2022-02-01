@@ -2,13 +2,8 @@ import api from '../api';
 import { CardDigitalContentResponse } from '@services/digitalContent';
 import { CategoryContent } from '@services/categories';
 
-export default interface CardGuidesResponse {
+export default interface GuideInterface {
   _id?: string;
-  title: string;
-  content: string;
-}
-
-export interface CardBodyInterface {
   title: string;
   content: string;
 }
@@ -23,13 +18,13 @@ export interface GuideContent {
 
 export const getGuides = async () => {
   try {
-    return api.get<{ data: CardGuidesResponse[] }>(`/guides/`);
+    return api.get<{ data: GuideInterface[] }>(`/guides/`);
   } catch {
     throw new Error('Serviço não disponível');
   }
 };
 
-export const postGuides = async (cardBody: CardBodyInterface) => {
+export const postGuides = async (cardBody: GuideInterface) => {
   try {
     return api.post('/guides/', cardBody);
   } catch {

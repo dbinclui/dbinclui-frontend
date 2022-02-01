@@ -15,7 +15,7 @@ import {
 import styles from './styles';
 import FileUploadRounded from '@mui/icons-material/FileUploadRounded';
 import ClearIcon from '@mui/icons-material/Clear';
-import CardGuidesResponse, { getGuides } from '@services/guides';
+import GuideInterface, { getGuides } from '@services/guides';
 import {
   CardCategoryResponse,
   getCategoriesByGuide,
@@ -37,7 +37,7 @@ export const RegisterDigitalContent: React.FC<
   const fileRef = useRef<HTMLInputElement>(null);
 
   const [files, setFiles] = useState<File[]>([]);
-  const [guides, setGuides] = useState<CardGuidesResponse[]>([]);
+  const [guides, setGuides] = useState<GuideInterface[]>([]);
   const [categories, setCategories] = useState<CardCategoryResponse[]>([]);
   const [error, setError] = useState(false);
   const [success, setSuccess] = useState(false);
