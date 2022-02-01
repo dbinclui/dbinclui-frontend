@@ -50,7 +50,6 @@ export const Routers: React.FC<RoutersProps> = (): JSX.Element => {
               path="admin/listar-conteudo-digital"
               element={<ListDigitalContent />}
             />
-            <Route path="testeGuide" element={<GuidePage />} />
             <Route path="*" element={<Error />} />
           </Route>
         </Routes>
