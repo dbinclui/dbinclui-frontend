@@ -4,16 +4,17 @@ import AccessibilityTypography from '@components/AccessibilityTypography';
 import styles from './styles';
 import { Box, Button, CircularProgress, Grid } from '@mui/material';
 import { Link } from 'react-router-dom';
-import { CardCategoriesResponse, getCategories } from '@services/categories';
+import { CategoryInterface, getCategories } from '@services/categories';
 import DeleteIcon from '@mui/icons-material/Delete';
 import { CreateSharp } from '@mui/icons-material';
+import { GuideInterface } from '@services/guides';
 
 export interface CategoriesListProps {}
 
 export const CategoriesList: React.FC<
   CategoriesListProps
 > = (): JSX.Element => {
-  const [categories, setCategories] = useState<CardCategoriesResponse[]>([]);
+  const [categories, setCategories] = useState<CategoryInterface[]>([]);
   const [successGetCategories, setSuccessGetCategories] = useState(false);
   const [errorGetCategories, setErrorGetCategories] = useState(false);
   const [loading, setLoading] = useState(true);
@@ -84,17 +85,17 @@ export const CategoriesList: React.FC<
     },
   ];
 
-  const rowData = categories.map((card) => {
+  const rowData = categories.map((category) => {
     return {
-      _id: card._id,
-      guide: card.guide.title,
-      title: card.title,
+      _id: category._id,
+      guide: (category.guide as GuideInterface).title,
+      title: category.title,
       shortDescription:
-        card.shortDescription.length >= 30
-          ? card.shortDescription.substring(0, 30) + '...'
-          : card.shortDescription,
-      edit: '/admin/atualizar-categoria/' + card._id,
-      delete: '/admin/excluir-categoria/' + card._id,
+        category.shortDescription.length >= 30
+          ? category.shortDescription.substring(0, 30) + '...'
+          : category.shortDescription,
+      edit: '/admin/atualizar-categoria/' + category._id,
+      delete: '/admin/excluir-categoria/' + category._id,
     };
   });
 
