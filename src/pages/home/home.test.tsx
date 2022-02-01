@@ -1,7 +1,7 @@
 import React from 'react';
 import { act, render, screen } from '@testing-library/react';
 import Home from './index';
-import CardGuidesResponse, { getGuides } from '@services/guides';
+import { GuideInterface, getGuides } from '@services/guides';
 import { AxiosResponse } from 'axios';
 import '@testing-library/jest-dom/extend-expect';
 
@@ -35,7 +35,7 @@ describe('Componente do Home', () => {
       async () =>
         ({
           data: { data: [] },
-        } as unknown as Promise<AxiosResponse<{ data: CardGuidesResponse[] }>>),
+        } as unknown as Promise<AxiosResponse<{ data: GuideInterface[] }>>),
     );
 
     // eslint-disable-next-line testing-library/no-unnecessary-act
@@ -55,7 +55,7 @@ describe('Componente do Home', () => {
       async () =>
         ({
           data: { data: [cardMock, cardMock, cardMock, cardMock] },
-        } as unknown as Promise<AxiosResponse<{ data: CardGuidesResponse[] }>>),
+        } as unknown as Promise<AxiosResponse<{ data: GuideInterface[] }>>),
     );
 
     // eslint-disable-next-line testing-library/no-unnecessary-act

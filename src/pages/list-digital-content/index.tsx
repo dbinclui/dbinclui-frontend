@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { DataGrid, GridColDef } from '@mui/x-data-grid';
-import { Button, Box } from '@mui/material';
+import { Box, Button, CircularProgress, Grid } from '@mui/material';
 import AccessibilityTypography from '@components/AccessibilityTypography';
 import styles from './styles';
 import {
-  CardDigitalContentResponse,
+  DigitalContentInterface,
   getDigitalContent,
 } from '@services/digitalContent';
 import { CreateSharp } from '@mui/icons-material';
@@ -17,14 +17,22 @@ export const ListDigitalContent: React.FC<
   DigitalContentInterfaceProps
 > = (): JSX.Element => {
   const [digitalContents, setDigitalContents] = useState<
-    CardDigitalContentResponse[]
+    DigitalContentInterface[]
   >([]);
-  
+  const [success, setSuccess] = useState(false);
+  const [error, setError] = useState(false);
+  const [loading, setLoading] = useState(true);
+
    async function getDigitalContentsService() {
     try {
       const { data } = await getDigitalContent();
       setDigitalContents(data.data);
-    } catch (error) {}
+      setSuccess(true);
+    } catch {
+      setError(true);
+    } finally {
+      setLoading(false);
+    }
   }
     
   useEffect(() => {
@@ -94,9 +102,9 @@ export const ListDigitalContent: React.FC<
     
     return {
       _id: card._id,
-      guide: card.guide.title,
-      category: card.category?.title,
-      shortDescription: card.shortDescription,
+      guide: card.guide.title.length > 30 ? card.guide.title.substring(0,30)+'...' : card.guide.title,
+      category: card.category?.title.length! > 30 ? card.category?.title.substring(0,30) + '...' : card.category?.title ,
+      shortDescription: card.shortDescription.length > 30 ? card.shortDescription.substring(0,30) + '...' : card.shortDescription,
       filePaths: card.filePaths[0],
       edit: '/admin/atualizar-conteudo-digital/' + card._id,
       delete: '/admin/excluir-conteudo-digital/' + card._id,
@@ -109,6 +117,19 @@ export const ListDigitalContent: React.FC<
       <AccessibilityTypography variant="h2" sx={styles.listTitle}>
         LISTAGEM DE CONTEÚDO DIGITAL
       </AccessibilityTypography>
+
+      {loading ? (
+          <Grid container justifyContent={'center'} marginTop={'20px'}>
+            <CircularProgress color="secondary" />
+          </Grid>
+        ) : error ? (
+          <Grid container justifyContent={'center'} marginTop={'30px'}>
+            <AccessibilityTypography variant="h1" className="error">
+              Desculpe, não foi possível carregar a lista de Conteúdo Digital!
+            </AccessibilityTypography>
+          </Grid>
+        ) : (
+          <>
       <Box style={{ height: 400, width: '100%' }}>
         <DataGrid
           data-testid="dataGrid"
@@ -149,7 +170,10 @@ export const ListDigitalContent: React.FC<
         >
           Voltar
         </Button>
+       
       </Box>
+       </>
+       )}
     </>
   );
 };

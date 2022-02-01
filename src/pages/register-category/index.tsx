@@ -15,7 +15,7 @@ import AccessibilityTypography from '@components/AccessibilityTypography';
 import styles from './styles';
 import Notification from '@components/Notification';
 import validateInput from './validator';
-import CardGuidesResponse, { getGuides } from '@services/guides';
+import { GuideInterface, getGuides } from '@services/guides';
 import { postCategories } from '@services/categories';
 
 export interface RegisterCategoryProps {}
@@ -26,7 +26,7 @@ export const RegisterCategory: React.FC<
   const description = useRef<HTMLInputElement>();
   const guide = useRef<HTMLInputElement>();
 
-  const [guides, setGuides] = useState<CardGuidesResponse[]>([]);
+  const [guides, setGuides] = useState<GuideInterface[]>([]);
   const title = useRef<HTMLInputElement>();
 
   const [error, setError] = useState(false);
