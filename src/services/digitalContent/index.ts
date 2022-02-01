@@ -1,4 +1,4 @@
-import api from '@services/api';
+import api, { handleAxiosError } from '@services/api';
 
 export interface DigitalContentInterface {
   _id?: string;
@@ -20,7 +20,7 @@ export const postDigitalContent = async (cardBody: FormData) => {
         },
       },
     );
-  } catch {
-    throw new Error('Serviço não disponível');
+  } catch (error) {
+    throw handleAxiosError(error);
   }
 };

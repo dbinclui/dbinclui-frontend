@@ -1,4 +1,4 @@
-import api from '../api';
+import api, { handleAxiosError } from '../api';
 import { DigitalContentInterface } from '@services/digitalContent';
 import { CategoryContent } from '@services/categories';
 
@@ -16,23 +16,23 @@ export interface GuideContent extends GuideInterface {
 export const getGuides = async () => {
   try {
     return api.get<{ data: GuideInterface[] }>(`/guides/`);
-  } catch {
-    throw new Error('Serviço não disponível');
+  } catch (error) {
+    throw handleAxiosError(error);
   }
 };
 
 export const postGuides = async (cardBody: GuideInterface) => {
   try {
     return api.post('/guides/', cardBody);
-  } catch {
-    throw new Error('Serviço não disponível');
+  } catch (error) {
+    throw handleAxiosError(error);
   }
 };
 
 export const getGuideWithCategoriesAndContent = async (id: string) => {
   try {
     return api.get<{ data: GuideContent }>(`guides/categoriesAndContent/${id}`);
-  } catch {
-    throw new Error('Serviço não disponível');
+  } catch (error) {
+    throw handleAxiosError(error);
   }
 };
