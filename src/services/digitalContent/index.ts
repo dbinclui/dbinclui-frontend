@@ -6,7 +6,7 @@ export interface DigitalContentInterface {
   category?: string;
   title: string;
   shortDescription: string;
-  filePaths: string[] | File[];
+  filePaths: string[];
 }
 
 export const postDigitalContent = async (cardBody: FormData) => {
