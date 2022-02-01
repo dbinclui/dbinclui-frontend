@@ -14,14 +14,14 @@ import AccessibilityTypography from '@components/AccessibilityTypography';
 
 import styles from './styles';
 import Notification from '@components/Notification';
-import validateInput from './validator';
 import { GuideInterface, getGuides } from '@services/guides';
+import validateInput from '@pages/update-category/validator';
 import { postCategories } from '@services/categories';
 
-export interface RegisterCategoryProps {}
+export interface UpdateCategoryProps {}
 
-export const RegisterCategory: React.FC<
-  RegisterCategoryProps
+export const UpdateCategory: React.FC<
+  UpdateCategoryProps
 > = (): JSX.Element => {
   const description = useRef<HTMLInputElement>();
   const guide = useRef<HTMLInputElement>();
@@ -78,7 +78,7 @@ export const RegisterCategory: React.FC<
       <Grid item md={6} component="section">
         <Box sx={styles.header} component="header">
           <AccessibilityTypography sx={styles.headerTitle}>
-            CADASTRO DE CATEGORIA
+            ATUALIZAR CATEGORIA
           </AccessibilityTypography>
         </Box>
         <Box padding={'1rem 3rem'} sx={styles.content} component="section">
@@ -180,7 +180,7 @@ export const RegisterCategory: React.FC<
                   role="button"
                   data-testid="submit"
                 >
-                  Salvar
+                  Atualizar
                 </Button>
               </Grid>
               <Grid item md={6} sx={styles.buttonWrapper}>
@@ -222,4 +222,4 @@ export const RegisterCategory: React.FC<
   );
 };
 
-export default RegisterCategory;
+export default UpdateCategory;

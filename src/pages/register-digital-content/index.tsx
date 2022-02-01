@@ -15,12 +15,9 @@ import {
 import styles from './styles';
 import FileUploadRounded from '@mui/icons-material/FileUploadRounded';
 import ClearIcon from '@mui/icons-material/Clear';
-import CardGuidesResponse, { getGuides } from '@services/guides';
-import {
-  CardCategoryResponse,
-  getCategoriesByGuide,
-  postDigitalContent,
-} from '@services/digitalContent';
+import { GuideInterface, getGuides } from '@services/guides';
+import { postDigitalContent } from '@services/digitalContent';
+import { CategoryInterface, getCategoriesByGuide } from '@services/categories';
 import validateInput, { InputInterfaceProps } from './validator';
 import Notification from '@components/Notification';
 import AccessibilityTypography from '@components/AccessibilityTypography';
@@ -37,8 +34,8 @@ export const RegisterDigitalContent: React.FC<
   const fileRef = useRef<HTMLInputElement>(null);
 
   const [files, setFiles] = useState<File[]>([]);
-  const [guides, setGuides] = useState<CardGuidesResponse[]>([]);
-  const [categories, setCategories] = useState<CardCategoryResponse[]>([]);
+  const [guides, setGuides] = useState<GuideInterface[]>([]);
+  const [categories, setCategories] = useState<CategoryInterface[]>([]);
   const [error, setError] = useState(false);
   const [success, setSuccess] = useState(false);
   const [errorMessage, setErrorMessage] = useState('');
@@ -47,7 +44,8 @@ export const RegisterDigitalContent: React.FC<
   const [errorMessageGetGuides, setErrorMessageGetGuides] = useState('');
   const [successGetCategories, setSuccessGetCategories] = useState(false);
   const [errorGetCategories, setErrorGetCategories] = useState(true);
-  const [errorMessageGetCategories, setErrorMessageGetCategories] = useState('');
+  const [errorMessageGetCategories, setErrorMessageGetCategories] =
+    useState('');
 
   async function handleSubmit(event: React.FormEvent) {
     event.preventDefault();
@@ -86,7 +84,7 @@ export const RegisterDigitalContent: React.FC<
       setSuccessGetCategories(true);
       setErrorGetCategories(false);
     } catch {
-      setErrorMessageGetCategories('Não foram encontradas as categorias')
+      setErrorMessageGetCategories('Não foram encontradas as categorias');
       setErrorGetCategories(true);
     } finally {
     }
@@ -229,7 +227,6 @@ export const RegisterDigitalContent: React.FC<
                 defaultValue=""
                 inputRef={category}
                 labelId="categoryLabel"
-                required
                 data-testid="categoryTestId"
                 role="select"
                 aria-labelledby="categoryLabel"

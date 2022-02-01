@@ -1,43 +1,26 @@
-import api from '@services/api';
-import CardGuidesResponse from '@services/guides';
+import api, { handleAxiosError } from '@services/api';
 
-export interface CardCategoryResponse {
-  _id?: string;
-  title: string;
-  shortDescription: string;
-  guide: CardGuidesResponse;
-  parentCategory?: CardCategoryResponse;
-}
-
-export interface CardDigitalContentBody {
+export interface DigitalContentInterface {
   _id?: string;
   guide: string;
   category?: string;
   title: string;
   shortDescription: string;
-  filePaths?: File[];
+  filePaths: string[];
 }
-
-export const getCategoriesByGuide = async (id: string) => {
-  try {
-    return api.get<{ data: CardCategoryResponse[] }>(
-      `/categories/getByGuide/${id}`,
-    );
-  } catch {
-    throw new Error('Serviço não disponível');
-  }
-};
 
 export const postDigitalContent = async (cardBody: FormData) => {
   try {
-    return api.post<{ data: CardDigitalContentBody[] }>(
-      `/digital-contents/register`, cardBody, {
+    return api.post<{ data: DigitalContentInterface[] }>(
+      `/digital-contents/`,
+      cardBody,
+      {
         headers: {
-          'Content-Type': 'multipart/form-data'
-        }
-      }
+          'Content-Type': 'multipart/form-data',
+        },
+      },
     );
-  } catch {
-    throw new Error('Serviço não disponível');
+  } catch (error) {
+    throw handleAxiosError(error);
   }
 };
