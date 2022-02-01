@@ -1,7 +1,7 @@
 import React from 'react';
 import { act, render, screen } from '@testing-library/react';
 import Home from './index';
-import GuideInterface, { getGuides } from '@services/guides';
+import { GuideInterface, getGuides } from '@services/guides';
 import { AxiosResponse } from 'axios';
 import '@testing-library/jest-dom/extend-expect';
 
