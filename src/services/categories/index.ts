@@ -1,6 +1,6 @@
 import api from '../api';
 import { GuideInterface } from '@services/guides';
-import { DigitalContentResponse } from '@services/digitalContent';
+import { DigitalContentInterface } from '@services/digitalContent';
 
 export interface CategoryInterface {
   _id?: string;
@@ -10,7 +10,7 @@ export interface CategoryInterface {
 }
 
 export interface CategoryContent extends CategoryInterface {
-  digitalContents: DigitalContentResponse[];
+  digitalContents: DigitalContentInterface[];
 }
 
 export const getCategories = async () => {

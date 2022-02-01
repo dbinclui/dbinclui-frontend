@@ -1,26 +1,17 @@
 import api from '@services/api';
 
-export interface DigitalContentBody {
+export interface DigitalContentInterface {
   _id?: string;
   guide: string;
   category?: string;
   title: string;
   shortDescription: string;
-  filePaths?: File[];
-}
-
-export interface DigitalContentResponse {
-  _id?: string;
-  guide: string;
-  category?: string;
-  title: string;
-  shortDescription: string;
-  filePaths: string[];
+  filePaths: string[] | File[];
 }
 
 export const postDigitalContent = async (cardBody: FormData) => {
   try {
-    return api.post<{ data: DigitalContentBody[] }>(
+    return api.post<{ data: DigitalContentInterface[] }>(
       `/digital-contents/`,
       cardBody,
       {
