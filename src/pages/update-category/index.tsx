@@ -14,19 +14,19 @@ import AccessibilityTypography from '@components/AccessibilityTypography';
 
 import styles from './styles';
 import Notification from '@components/Notification';
-import CardGuidesResponse, { getGuides } from '@services/guides';
+import { GuideInterface, getGuides } from '@services/guides';
 import validateInput from '@pages/update-category/validator';
 import { postCategories } from '@services/categories';
 
 export interface UpdateCategoryProps {}
 
 export const UpdateCategory: React.FC<
-UpdateCategoryProps
+  UpdateCategoryProps
 > = (): JSX.Element => {
   const description = useRef<HTMLInputElement>();
   const guide = useRef<HTMLInputElement>();
 
-  const [guides, setGuides] = useState<CardGuidesResponse[]>([]);
+  const [guides, setGuides] = useState<GuideInterface[]>([]);
   const title = useRef<HTMLInputElement>();
 
   const [error, setError] = useState(false);
@@ -180,7 +180,7 @@ UpdateCategoryProps
                   role="button"
                   data-testid="submit"
                 >
-                  Atualizar 
+                  Atualizar
                 </Button>
               </Grid>
               <Grid item md={6} sx={styles.buttonWrapper}>

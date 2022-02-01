@@ -3,8 +3,7 @@ import { Link } from 'react-router-dom';
 import { DataGrid, GridColDef } from '@mui/x-data-grid';
 import { Button, Box, CircularProgress, Grid } from '@mui/material';
 import AccessibilityTypography from '@components/AccessibilityTypography';
-import { getGuides } from '@services/guides';
-import CardGuidesResponse from '@services/guides';
+import { GuideInterface, getGuides } from '@services/guides';
 import { CreateSharp } from '@mui/icons-material';
 import DeleteIcon from '@mui/icons-material/Delete';
 import styles from './styles';
@@ -14,7 +13,7 @@ export interface GuideListPropsInterfaceProps {}
 export const GuideList: React.FC<
   GuideListPropsInterfaceProps
 > = (): JSX.Element => {
-  const [guideList, setGuideList] = useState<CardGuidesResponse[]>([]);
+  const [guideList, setGuideList] = useState<GuideInterface[]>([]);
   const [errorGetList, setErrorGetList] = useState(false);
   const [loading, setLoading] = useState(true);
 
