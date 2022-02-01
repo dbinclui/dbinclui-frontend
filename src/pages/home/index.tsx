@@ -11,12 +11,12 @@ import SearchIcon from '@mui/icons-material/Search';
 import './style.css';
 import CardHome from '@components/CardHome';
 import AccessibilityTypography from '@components/AccessibilityTypography';
-import CardGuidesResponse, { getGuides } from '@services/guides';
+import { GuideInterface, getGuides } from '@services/guides';
 
 export interface HomeProps {}
 
 export const Home: React.FC<HomeProps> = (): JSX.Element => {
-  const [cards, setCards] = useState<CardGuidesResponse[]>([]);
+  const [cards, setCards] = useState<GuideInterface[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
 

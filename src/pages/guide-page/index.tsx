@@ -37,7 +37,10 @@ export const GuidePage: React.FC<GuidePageProps> = (): JSX.Element => {
   }, [id, guide]);
 
   return loading ? (
-    <Box sx={styles.errorMessage}> <CircularProgress color="secondary"/> </Box>
+    <Box sx={styles.errorMessage}>
+      {' '}
+      <CircularProgress color="secondary" />{' '}
+    </Box>
   ) : !guide ? (
     <Box sx={styles.errorMessage}> Erro na busca do Guia! </Box>
   ) : (
