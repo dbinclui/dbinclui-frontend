@@ -1,40 +1,35 @@
-import { CardDigitalContentResponse } from '@services/digitalContent';
 import api from '../api';
+import { GuideInterface } from '@services/guides';
+import { DigitalContentResponse } from '@services/digitalContent';
 
-export interface Guides {
+export interface CategoryInterface {
   _id?: string;
   title: string;
-  content: string;
-  categories?: CardCategoriesResponse[];
-}
-
-export interface CategoryContent extends CardCategoriesResponse {
-  digitalContents: CardDigitalContentResponse[];
-}
-
-export interface CardCategoriesResponse {
-  _id?: number;
-  title: string;
   shortDescription: string;
-  guide: Guides;
-  parentCategory?: CardCategoriesResponse;
+  guide: GuideInterface | GuideInterface['_id'];
 }
 
-export interface CardBodyInterface {
-  title: string;
-  shortDescription: string;
-  guide: Guides['_id'];
+export interface CategoryContent extends CategoryInterface {
+  digitalContents: DigitalContentResponse[];
 }
 
 export const getCategories = async () => {
   try {
-    return api.get<{ data: CardCategoriesResponse[] }>(`/categories/`);
+    return api.get<{ data: CategoryInterface[] }>(`/categories/`);
   } catch {
     throw new Error('Serviço não disponível');
   }
 };
 
-export const postCategories = async (cardBody: CardBodyInterface) => {
+export const getCategoriesByGuide = async (id: string) => {
+  try {
+    return api.get<{ data: CategoryInterface[] }>(`/categories/guide/${id}`);
+  } catch {
+    throw new Error('Serviço não disponível');
+  }
+};
+
+export const postCategories = async (cardBody: CategoryInterface) => {
   try {
     return api.post('/categories/', cardBody);
   } catch {

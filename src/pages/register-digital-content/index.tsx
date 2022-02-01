@@ -15,12 +15,9 @@ import {
 import styles from './styles';
 import FileUploadRounded from '@mui/icons-material/FileUploadRounded';
 import ClearIcon from '@mui/icons-material/Clear';
-import GuideInterface, { getGuides } from '@services/guides';
-import {
-  CardCategoryResponse,
-  getCategoriesByGuide,
-  postDigitalContent,
-} from '@services/digitalContent';
+import { GuideInterface, getGuides } from '@services/guides';
+import { postDigitalContent } from '@services/digitalContent';
+import { CategoryInterface, getCategoriesByGuide } from '@services/categories';
 import validateInput, { InputInterfaceProps } from './validator';
 import Notification from '@components/Notification';
 import AccessibilityTypography from '@components/AccessibilityTypography';
@@ -38,7 +35,7 @@ export const RegisterDigitalContent: React.FC<
 
   const [files, setFiles] = useState<File[]>([]);
   const [guides, setGuides] = useState<GuideInterface[]>([]);
-  const [categories, setCategories] = useState<CardCategoryResponse[]>([]);
+  const [categories, setCategories] = useState<CategoryInterface[]>([]);
   const [error, setError] = useState(false);
   const [success, setSuccess] = useState(false);
   const [errorMessage, setErrorMessage] = useState('');

@@ -1,8 +1,8 @@
 import api from '../api';
-import { CardDigitalContentResponse } from '@services/digitalContent';
+import { DigitalContentResponse } from '@services/digitalContent';
 import { CategoryContent } from '@services/categories';
 
-export default interface GuideInterface {
+export interface GuideInterface {
   _id?: string;
   title: string;
   content: string;
@@ -13,7 +13,7 @@ export interface GuideContent {
   title: string;
   content: string;
   categories: CategoryContent[];
-  digitalContents: CardDigitalContentResponse[];
+  digitalContents: DigitalContentResponse[];
 }
 
 export const getGuides = async () => {
