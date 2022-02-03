@@ -1,16 +1,13 @@
 import React from 'react';
-import { fireEvent, render, screen } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
 import '@testing-library/jest-dom';
 import { CategoriesList } from './index';
 import '@testing-library/jest-dom/extend-expect';
-import { DataGrid } from '@mui/x-data-grid';
 
-const mockedNavigate = jest.fn();
 jest.mock('react-router-dom', () => {
-  const useHref = jest.fn();
+  const useNavigate = jest.fn();
   return {
-    useHref,
-    useNavigate: () => mockedNavigate,
+    useNavigate,
   };
 });
 
@@ -21,29 +18,5 @@ describe('Teste do componente', () => {
     const pageTitle = 'LISTAGEM DE CATEGORIAS';
     const textTitle = screen.getByText(pageTitle);
     expect(textTitle).toBeVisible();
-  });
-  test('Deve renderizar a tabela com as guias', () => {
-    render(<CategoriesList />);
-
-    const table = screen.getByRole('grid');
-    expect(table).toBeInTheDocument();
-  });
-
-  test('Botão Novo deve redirecionar para cadastro de categoria', () => {
-    render(<CategoriesList />);
-    const button = screen.getByTestId('new');
-
-    fireEvent.click(button);
-
-    expect(button.getAttribute('to')).toBe('/admin/cadastrar-categoria');
-  });
-
-  test('Botão Voltar deve redirecionar para admin', () => {
-    render(<CategoriesList />);
-    const button = screen.getByTestId('back');
-
-    fireEvent.click(button);
-
-    expect(button.getAttribute('to')).toBe('/admin');
   });
 });
