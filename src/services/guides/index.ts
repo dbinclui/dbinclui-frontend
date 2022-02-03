@@ -28,9 +28,27 @@ export const postGuides = async (cardBody: GuideInterface) => {
     throw handleAxiosError(error);
   }
 };
-
-export const getGuideWithCategoriesAndContent = async (id: string) => {
+export const putGuides = async (id: string, cardBody: GuideInterface) => {
   try {
+    return api.put(`/guides/${id}`, cardBody);
+
+
+  }catch{
+    throw new Error('Serviço não disponível');
+  }
+};
+
+  
+  export const getGuideById = async (id: string) => {
+    try {
+      return api.get< { data: GuideInterface }> (`guides/${id}`);
+    } catch {
+      throw new Error('Serviço não disponível');
+    }
+  };
+
+  export const getGuideWithCategoriesAndContent = async (id: string) => {
+  try{
     return api.get<{ data: GuideContent }>(`guides/categoriesAndContent/${id}`);
   } catch (error) {
     throw handleAxiosError(error);
