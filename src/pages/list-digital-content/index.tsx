@@ -23,7 +23,7 @@ export const ListDigitalContent: React.FC<
   const [error, setError] = useState(false);
   const [loading, setLoading] = useState(true);
 
-   async function getDigitalContentsService() {
+  async function getDigitalContentsService() {
     try {
       const { data } = await getDigitalContent();
       setDigitalContents(data.data);
@@ -34,11 +34,10 @@ export const ListDigitalContent: React.FC<
       setLoading(false);
     }
   }
-    
+
   useEffect(() => {
     getDigitalContentsService();
-    
-  },[]);
+  }, []);
 
   const columns: GridColDef[] = [
     { field: '_id', headerName: 'ID', width: 50, hide: true },
@@ -97,19 +96,26 @@ export const ListDigitalContent: React.FC<
       ),
     },
   ];
-  
-   const rowData = digitalContents.map((card) => {
-    
+
+  const rowData = digitalContents.map((card) => {
     return {
       _id: card._id,
-      guide: card.guide.title.length > 30 ? card.guide.title.substring(0,30)+'...' : card.guide.title,
-      category: card.category?.title.length! > 30 ? card.category?.title.substring(0,30) + '...' : card.category?.title ,
-      shortDescription: card.shortDescription.length > 30 ? card.shortDescription.substring(0,30) + '...' : card.shortDescription,
+      guide:
+        card.guide.title.length > 30
+          ? card.guide.title.substring(0, 30) + '...'
+          : card.guide.title,
+      category:
+        card.category?.title.length! > 30
+          ? card.category?.title.substring(0, 30) + '...'
+          : card.category?.title,
+      shortDescription:
+        card.shortDescription.length > 30
+          ? card.shortDescription.substring(0, 30) + '...'
+          : card.shortDescription,
       filePaths: card.filePaths[0],
       edit: '/admin/atualizar-conteudo-digital/' + card._id,
       delete: '/admin/excluir-conteudo-digital/' + card._id,
     };
-
   });
 
   return (
@@ -117,8 +123,8 @@ export const ListDigitalContent: React.FC<
       <AccessibilityTypography variant="h2" sx={styles.listTitle}>
         LISTAGEM DE CONTEÚDO DIGITAL
       </AccessibilityTypography>
-
-      {loading ? (
+      <Box>
+        {loading ? (
           <Grid container justifyContent={'center'} marginTop={'20px'}>
             <CircularProgress color="secondary" />
           </Grid>
@@ -130,50 +136,50 @@ export const ListDigitalContent: React.FC<
           </Grid>
         ) : (
           <>
-      <Box style={{ height: 400, width: '100%' }}>
-        <DataGrid
-          data-testid="dataGrid"
-          autoHeight
-          getRowId={(row) => row._id}
-          disableExtendRowFullWidth={true}
-          rows={rowData}
-          columns={columns}
-          sx={styles.table}
-          pageSize={10}
-          rowsPerPageOptions={[10]}
-        />
+            <Box style={{ height: 400, width: '100%' }}>
+              <DataGrid
+                data-testid="dataGrid"
+                autoHeight
+                getRowId={(row) => row._id}
+                disableExtendRowFullWidth={true}
+                rows={rowData}
+                columns={columns}
+                sx={styles.table}
+                pageSize={10}
+                rowsPerPageOptions={[10]}
+              />
+            </Box>
+            <Box sx={styles.buttonBox}>
+              <Button
+                data-testid="new"
+                component={Link}
+                to="/admin/cadastrar-conteudo-digital"
+                sx={styles.button}
+                variant="contained"
+                type="submit"
+                role="button"
+                area-label="BOTÃO NOVO"
+                tabIndex={16}
+              >
+                Novo
+              </Button>
+              <Button
+                data-testid="back"
+                component={Link}
+                to="/admin"
+                sx={styles.button}
+                variant="contained"
+                type="reset"
+                role="button"
+                area-label="BOTÃO VOLTAR"
+                tabIndex={17}
+              >
+                Voltar
+              </Button>
+            </Box>
+          </>
+        )}
       </Box>
-      <Box sx={styles.buttonBox}>
-        <Button
-          data-testid="new"
-          component={Link}
-          to="/admin/cadastrar-conteudo-digital"
-          sx={styles.button}
-          variant="contained"
-          type="submit"
-          role="button"
-          area-label="BOTÃO NOVO"
-          tabIndex={16}
-        >
-          Novo
-        </Button>
-        <Button
-          data-testid="back"
-          component={Link}
-          to="/admin"
-          sx={styles.button}
-          variant="contained"
-          type="reset"
-          role="button"
-          area-label="BOTÃO VOLTAR"
-          tabIndex={17}
-        >
-          Voltar
-        </Button>
-       
-      </Box>
-       </>
-       )}
     </>
   );
 };
