@@ -1,135 +1,159 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { DataGrid, GridRowsProp, GridColDef } from '@mui/x-data-grid';
-import { Button, Box } from '@mui/material';
+import { DataGrid, GridColDef } from '@mui/x-data-grid';
+import { Button, Box, CircularProgress, Grid } from '@mui/material';
 import AccessibilityTypography from '@components/AccessibilityTypography';
+import { GuideInterface, getGuides } from '@services/guides';
+import { CreateSharp } from '@mui/icons-material';
+import DeleteIcon from '@mui/icons-material/Delete';
 import styles from './styles';
 
-export interface GuideListProps {}
+export interface GuideListPropsInterfaceProps {}
 
+export const GuideList: React.FC<
+  GuideListPropsInterfaceProps
+> = (): JSX.Element => {
+  const [guideList, setGuideList] = useState<GuideInterface[]>([]);
+  const [errorGetList, setErrorGetList] = useState(false);
+  const [loading, setLoading] = useState(true);
 
-const rows: GridRowsProp = [
-  {
-    id: 1,
-    title: 'Guia de Acessibilidade',
-    shortDescription: 'Descrição para o guia de Acessibilidade',
-    edit: 'Editar',
-    delete: 'Excluir',
-  },
-  {
-    id: 2,
-    title: 'Boas Práticas para Acessibilidade',
-    shortDescription:
-      'Descrição para o guia de Boas Práticas para Acessibilidade',
-    edit: 'Editar',
-    delete: 'Excluir',
-  },
-  {
-    id: 3,
-    title: 'Guia de Inclusão Digital',
-    shortDescription: 'Descrição para o guia de Inclusão Digital',
-    edit: 'Editar',
-    delete: 'Excluir',
-  },
-  {
-    id: 4,
-    title: 'Guia de Acessibilidade',
-    shortDescription: 'Descrição para o guia de Acessibilidade',
-    edit: 'Editar',
-    delete: 'Excluir',
-  },
-  {
-    id: 5,
-    title: 'Guia de Acessibilidade',
-    shortDescription: 'Descrição para o guia de Acessibilidade',
-    edit: 'Editar',
-    delete: 'Excluir',
-  },
-  {
-    id: 6,
-    title: 'Guia de Acessibilidade',
-    shortDescription: 'Descrição para o guia de Acessibilidade',
-    edit: 'Editar',
-    delete: 'Excluir',
-  },
-  {
-    id: 7,
-    title: 'Guia de Acessibilidade',
-    shortDescription: 'Descrição para o guia de Acessibilidade',
-    edit: 'Editar',
-    delete: 'Excluir',
-  },
-  {
-    id: 8,
-    title: 'Guia de Acessibilidade',
-    shortDescription: 'Descrição para o guia de Acessibilidade',
-    edit: 'Editar',
-    delete: 'Excluir',
-  },
-  {
-    id: 9,
-    title: 'Guia de Acessibilidade',
-    shortDescription: 'Descrição para o guia de Acessibilidade',
-    edit: 'Editar',
-    delete: 'Excluir',
-  },
-  {
-    id: 10,
-    title: 'Guia de Acessibilidade',
-    shortDescription: 'Descrição para o guia de Acessibilidade',
-    edit: 'Editar',
-    delete: 'Excluir',
-  },
-];
+  async function getGuideListService() {
+    try {
+      const { data } = await getGuides();
+      setGuideList(data.data);
+    } catch {
+      setErrorGetList(true);
+    } finally {
+      setLoading(false);
+    }
+  }
 
-const columns: GridColDef[] = [
-  { field: 'title', headerName: 'Título', width: 250 },
-  { field: 'shortDescription', headerName: 'Descrição', width: 560 },
-  { field: 'edit', headerName: 'Edição', width: 100 },
-  { field: 'delete', headerName: 'Exclusão', width: 100 },
-];
-export const GuideList: React.FC<GuideListProps> = (): JSX.Element => {
+  useEffect(() => {
+    getGuideListService();
+  }, []);
+
+  const columns: GridColDef[] = [
+    {
+      field: 'guide',
+      width: 250,
+      headerName: 'Guia',
+    },
+    {
+      field: 'content',
+      width: 560,
+      headerName: 'Descrição',
+    },
+    {
+      field: 'edit',
+      width: 100,
+      sortable: false,
+      headerName: 'Editar',
+      renderCell: (params) => (
+        <Button
+          data-testid="edit"
+          href={params.value}
+          startIcon={<CreateSharp />}
+          sx={{ color: 'text.primary' }}
+        ></Button>
+      ),
+    },
+    {
+      field: 'delete',
+      width: 100,
+      sortable: false,
+      headerName: 'Excluir',
+      renderCell: (params) => (
+        <Button
+          href={params.value}
+          startIcon={<DeleteIcon />}
+          sx={{ color: 'text.primary' }}
+        ></Button>
+      ),
+    },
+  ];
+
+  const rowData = guideList.map((card) => {
+    return {
+      _id: card._id,
+      guide: card.title,
+      content:
+        card.content.length > 65
+          ? card.content.substring(0, 65) + '...'
+          : card.content,
+      edit: '/admin/atualizar-guia/' + card._id,
+      delete: '/admin/excluir-guia/' + card._id,
+    };
+  });
 
   return (
     <>
-      <AccessibilityTypography sx={styles.listTitle}>
+      <AccessibilityTypography
+        role="heading"
+        tabIndex={1}
+        aria-label="LISTAGEM DE GUIAS"
+        sx={styles.listTitle}
+      >
         LISTAGEM DE GUIAS
       </AccessibilityTypography>
-      <Box style={{ width: '100%' }}>
-        <DataGrid
-          data-testid="dataGrid"
-          autoHeight
-          disableExtendRowFullWidth={true}
-          rows={rows}
-          columns={columns}
-          sx={styles.table}
-          pageSize={10}
-          rowsPerPageOptions={[10]}
-        />
-        <Box sx={styles.boxButton}>
-          <Button
-            data-testid="submit"
-            component={Link}
-            to="/admin/cadastrar-guia"
-            sx={styles.button}
-            variant="contained"
-            type="submit"
-            role="button"
-          >
-            Novo
-          </Button>
-          <Button
-            data-testid="back"
-            component={Link}
-            to="/admin"
-            sx={styles.button}
-            variant="contained"
-            type="reset"
-            role="button"
-          >
-            Voltar
-          </Button>
-        </Box>
+      <Box
+        style={{ height: 400, width: '100%' }}
+        role="list"
+        tabIndex={2}
+        aria-label="LISTA DE GUIAS"
+      >
+        {loading ? (
+          <Grid container justifyContent={'center'} marginTop={'20px'}>
+            <CircularProgress color="secondary" />
+          </Grid>
+        ) : errorGetList ? (
+          <Grid container justifyContent={'center'} marginTop={'30px'}>
+            <AccessibilityTypography variant="h1" className="error">
+              Desculpe, não foi possível carregar a lista de guias!
+            </AccessibilityTypography>
+          </Grid>
+        ) : (
+          <>
+            <DataGrid
+              data-testid="dataGrid"
+              autoHeight
+              getRowId={(row) => row._id}
+              disableExtendRowFullWidth={true}
+              rows={rowData}
+              columns={columns}
+              sx={styles.table}
+              pageSize={10}
+              rowsPerPageOptions={[10]}
+            />
+            <Box sx={styles.boxButton}>
+              <Button
+                data-testid="new"
+                component={Link}
+                to="/admin/cadastrar-guia"
+                sx={styles.button}
+                variant="contained"
+                type="submit"
+                role="button"
+                aria-label="BOTÃO NOVO"
+                tabIndex={3}
+              >
+                Novo
+              </Button>
+              <Button
+                data-testid="back"
+                component={Link}
+                to="/admin"
+                sx={styles.button}
+                variant="contained"
+                type="reset"
+                role="button"
+                aria-label="BOTÃO VOLTAR"
+                tabIndex={4}
+              >
+                Voltar
+              </Button>
+            </Box>
+          </>
+        )}
       </Box>
     </>
   );
