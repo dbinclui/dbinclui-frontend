@@ -18,7 +18,7 @@ describe('Componente de seção de categoria', () => {
       },
     ],
   };
-/*
+  /*
   test('Deve renderizar uma categoria com título, descrição e carrosel de imagens', () => {
     render(<CategorySection index="0" category={mockCategory} />);
 

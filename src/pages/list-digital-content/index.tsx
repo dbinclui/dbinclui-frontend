@@ -19,7 +19,7 @@ export const ListDigitalContent: React.FC<
   const [digitalContents, setDigitalContents] = useState<
     DigitalContentInterface[]
   >([]);
-  const [success, setSuccess] = useState(false);
+
   const [error, setError] = useState(false);
   const [loading, setLoading] = useState(true);
 
@@ -27,7 +27,6 @@ export const ListDigitalContent: React.FC<
     try {
       const { data } = await getDigitalContent();
       setDigitalContents(data.data);
-      setSuccess(true);
     } catch {
       setError(true);
     } finally {

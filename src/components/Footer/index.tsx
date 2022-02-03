@@ -42,7 +42,7 @@ export const Footer: React.FC<FooterProps> = (): JSX.Element => {
         >
           <LinkedInIcon color="secondary" style={{ fontSize: '32px' }} />
         </a>
-        <AccessibilityTypography className="copyright" color="secondary" >
+        <AccessibilityTypography className="copyright" color="secondary">
           © {anoAtual} DBInclui - Todos os direitos reservados
         </AccessibilityTypography>
       </footer>

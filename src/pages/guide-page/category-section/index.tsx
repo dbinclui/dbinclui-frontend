@@ -11,14 +11,18 @@ export interface CategorySectionProps {
 }
 
 export const CategorySection: React.FC<CategorySectionProps> = ({
- index,
- category,
+  index,
+  category,
 }): JSX.Element => {
   return (
     <>
       <Grid item md={8} width={'100%'}>
         <Box component="header">
-          <Typography component="h1" sx={styles.categoryTitle} id={`${category._id}`}>
+          <Typography
+            component="h1"
+            sx={styles.categoryTitle}
+            id={`${category._id}`}
+          >
             {category.title}
           </Typography>
           <AccessibilityTypography component="h2" sx={styles.categoryContent}>

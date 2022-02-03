@@ -8,13 +8,13 @@ import theme from '@styles/theme';
 describe('AccessibilityTools Component', () => {
   const handleClick = () => true;
   it('AccessibilityTools: Botão de acessibilidade deve ser exibido', () => {
-    render(<AccessibilityTools handleClickContrastButton={handleClick}/>);
+    render(<AccessibilityTools handleClickContrastButton={handleClick} />);
     const acessBtn = screen.getByText('Acessibilidade');
     expect(acessBtn).toBeTruthy();
   });
 
   it('AccessibilityTools: O Modal deve ser apresentado quando clicado no widget', () => {
-    render(<AccessibilityTools handleClickContrastButton={handleClick}/>);
+    render(<AccessibilityTools handleClickContrastButton={handleClick} />);
     const acessBtn = screen.getByText('Acessibilidade');
     fireEvent.click(acessBtn);
     const modal = screen.getByRole('presentation');
@@ -22,23 +22,23 @@ describe('AccessibilityTools Component', () => {
   });
 
   it('AccessibilityTools: Botão de Contrastes deve ser exibido', () => {
-    render(<AccessibilityTools handleClickContrastButton={handleClick}/>);
+    render(<AccessibilityTools handleClickContrastButton={handleClick} />);
     const contrastBtn = screen.queryAllByText('Contrastes');
     expect(contrastBtn).toBeTruthy();
   });
-  
+
   it('Exibir a logo default', async () => {
-    render(    
-    <ThemeProvider theme={theme('default')}>
-      <AccessibilityTools handleClickContrastButton={handleClick}/>
-    </ThemeProvider>
+    render(
+      <ThemeProvider theme={theme('default')}>
+        <AccessibilityTools handleClickContrastButton={handleClick} />
+      </ThemeProvider>,
     );
 
-    const button = screen.getByText('Acessibilidade')
-    await fireEvent.click(button)
-  
+    const button = screen.getByText('Acessibilidade');
+    await fireEvent.click(button);
+
     await waitFor(() => {
       screen.getByLabelText('Mudar contraste da tela');
-    }) 
-  })
+    });
+  });
 });

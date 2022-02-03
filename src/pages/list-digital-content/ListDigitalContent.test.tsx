@@ -21,5 +21,4 @@ describe('Página de listagem de conteúdo digital', () => {
     const LabelTitle = screen.getByText(textLabelTitle);
     expect(LabelTitle).toBeVisible();
   });
-  
 });
