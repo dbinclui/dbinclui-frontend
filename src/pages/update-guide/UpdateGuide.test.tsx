@@ -1,18 +1,29 @@
- import React from 'react';
+import React from 'react';
+import RegisterGuide, { UpdateGuide } from './index';
 import { render, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import '@testing-library/jest-dom';
 import validateInput, { InputInterface } from './validator';
-import { putGuides } from '@services/guides';
+import {
+  getGuideById,
+  getGuides,
+  putGuides,
+  postGuides,
+} from '@services/guides';
 import { act } from 'react-dom/test-utils';
 import { AxiosResponse } from 'axios';
 import { fireEvent } from '@testing-library/dom';
-import UpdateGuide from './index';
+import { Update } from '@mui/icons-material';
 
 jest.mock('./validator');
 jest.mock('@services/guides');
+
 const validateInputMock = validateInput as jest.MockedFunction<
   typeof validateInput
+>;
+
+const getGuideByIdMock = getGuideById as jest.MockedFunction<
+  typeof getGuideById
 >;
 const putGuidesMock = putGuides as jest.MockedFunction<typeof putGuides>;
 
@@ -25,16 +36,31 @@ jest.mock('react-router-dom', () => {
   };
 });
 
-describe('Página de atualização de guias', () => {
-  test('Deve mostrar um formulário com as informações dos guias', () => {
+jest.mock('react-router-dom', () => ({
+  ...jest.requireActual('react-router-dom'),
+  useParams: () => ({
+    id: '1',
+  }),
+}));
+
+describe('Página de atualização de guia', () => {
+  const mockGuide = {
+    id: '1',
+    title: 'teste',
+    content: 'teste',
+  };
+
+  beforeEach(() => {
+    getGuideByIdMock.mockResolvedValue({ data: { data: mockGuide } } as any);
+  });
+  test('Deve mostrar um formulário', async () => {
     render(<UpdateGuide />);
 
     const textoLabelTitulo = 'Título:';
     const textoLabelDescricao = 'Descrição:';
 
-    const labelTitulo = screen.getByText(textoLabelTitulo);
-    const labelDescricao = screen.getByText(textoLabelDescricao);
-    //adicionar campos guides
+    const labelTitulo = await screen.findByText(textoLabelTitulo);
+    const labelDescricao = await screen.findByText(textoLabelDescricao);
 
     const input = screen.getByLabelText(textoLabelTitulo, {
       selector: 'input',
@@ -53,28 +79,48 @@ describe('Página de atualização de guias', () => {
     //input
   });
 
-  test('Deve atualizar o valor dos campos de input quando o valor destes mudar', () => {
+  test('Os inputs devem receber o valor dos campos do guia selecionado', async () => {
     render(<UpdateGuide />);
 
     const textoLabelTitulo = 'Título:';
     const textoLabelDescricao = 'Descrição:';
 
-    const input = screen.getByLabelText(textoLabelTitulo, {
+    const input = await screen.findByLabelText(textoLabelTitulo, {
       selector: 'input',
     });
-    const textArea = screen.getByLabelText(textoLabelDescricao, {
+    const textArea = await screen.findByLabelText(textoLabelDescricao, {
       selector: 'textarea',
     });
 
-    const inputText = 'Esse é o texto presente no elemento input';
+    const inputText = 'teste';
+    const textAreaText = 'teste';
+
+    expect(input).toHaveValue(inputText);
+    expect(textArea).toHaveValue(textAreaText);
+  });
+
+  test('Deve atualizar o valor dos campos de input quando o valor destes mudar', async () => {
+    render(<UpdateGuide />);
+
+    const textoLabelTitulo = 'Título:';
+    const textoLabelDescricao = 'Descrição:';
+
+    const input = await screen.findByLabelText(textoLabelTitulo, {
+      selector: 'input',
+    });
+    const textArea = await screen.findByLabelText(textoLabelDescricao, {
+      selector: 'textarea',
+    });
+
+    const inputText = ' Esse é o texto presente no elemento input';
     const textAreaText =
-      'Esse é o texto presente no elemento textarea\n Ele aceita novas linhas';
+      ' Esse é o texto presente no elemento textarea\n Ele aceita novas linhas';
 
     userEvent.type(input, inputText);
     userEvent.type(textArea, textAreaText);
 
-    expect(input).toHaveValue(inputText);
-    expect(textArea).toHaveValue(textAreaText);
+    expect(input).toHaveValue(`teste${inputText}`);
+    expect(textArea).toHaveValue(`teste${textAreaText}`);
   });
 
   test('Deve validar o input quando o botão de submit for clicado', async () => {
@@ -84,9 +130,8 @@ describe('Página de atualização de guias', () => {
     });
 
     const textoBotaoSubmit = 'Atualizar';
-    const botaoSubmit = screen.getByText(textoBotaoSubmit);
+    const botaoSubmit = await screen.findByText(textoBotaoSubmit);
 
-    // eslint-disable-next-line testing-library/no-unnecessary-act
     act(() => {
       userEvent.click(botaoSubmit);
     });
@@ -97,13 +142,13 @@ describe('Página de atualização de guias', () => {
   });
 
   test('Deve chamar a função putGuides quando o botão do submit for clicado', async () => {
-    // eslint-disable-next-line testing-library/no-unnecessary-act
+
     act(() => {
       render(<UpdateGuide />);
     });
     const textoNoBotaoSubmit = 'Atualizar';
-    const botaoSubmit = screen.getByText(textoNoBotaoSubmit);
-    // eslint-disable-next-line testing-library/no-unnecessary-act
+    const botaoSubmit = await screen.findByText(textoNoBotaoSubmit);
+    
     act(() => {
       userEvent.click(botaoSubmit);
     });
@@ -113,7 +158,7 @@ describe('Página de atualização de guias', () => {
   });
 
   test('Deve mostrar na tela o card de notificação de sucesso quando o botão de submit for clicado', async () => {
-    // eslint-disable-next-line testing-library/no-unnecessary-act
+    
     act(() => {
       render(<UpdateGuide />);
     });
@@ -122,8 +167,8 @@ describe('Página de atualização de guias', () => {
     putGuidesMock.mockResolvedValue(true as unknown as Promise<AxiosResponse>);
     const textoNoBotaoSubmit = 'Atualizar';
     const NotificationMessage = 'Atualização realizada com sucesso! ✔';
-    const botaoSubmit = screen.getByText(textoNoBotaoSubmit);
-    // eslint-disable-next-line testing-library/no-unnecessary-act
+    const botaoSubmit = await screen.findByText(textoNoBotaoSubmit);
+    
     act(() => {
       userEvent.click(botaoSubmit);
     });
@@ -147,7 +192,7 @@ describe('Página de atualização de guias', () => {
     putGuidesMock.mockResolvedValue(true as unknown as Promise<AxiosResponse>);
     const textoNoBotaoSubmit = 'Atualizar';
     const NotificationMessage = errorMessage;
-    const botaoSubmit = screen.getByText(textoNoBotaoSubmit);
+    const botaoSubmit = await screen.findByText(textoNoBotaoSubmit);
 
     act(() => {
       userEvent.click(botaoSubmit);
@@ -157,13 +202,14 @@ describe('Página de atualização de guias', () => {
 
     expect(NotificationCard).toBeVisible();
   });
+
+  test('Botão Voltar deve redirecionar para admin', async () => {
+    render(<UpdateGuide />);
+    const button = await screen.findByTestId('back');
+  
+    fireEvent.click(button);
+  
+    expect(button.getAttribute('href')).toBe('/admin');
+  });
 });
 
-test('Botão Voltar deve redirecionar para admin', () => {
-  render(<UpdateGuide />);
-  const button = screen.getByTestId('back');
-
-  fireEvent.click(button);
-
-  expect(button.getAttribute('href')).toBe('/admin');
-});

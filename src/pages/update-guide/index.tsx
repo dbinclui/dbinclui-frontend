@@ -2,7 +2,7 @@ import React, { useState, useRef, useEffect } from 'react';
 import validateInput from './validator';
 import { Button, Box, Grid, InputLabel, InputBase, CircularProgress } from '@mui/material';
 import styles from './styles';
-import CardGuidesResponse, { putGuides, getGuideById } from '@services/guides';
+import { GuideInterface, putGuides, getGuideById } from '@services/guides';
 import Notification from '@components/Notification';
 import AccessibilityTypography from '@components/AccessibilityTypography';
 import { useParams } from 'react-router-dom';
@@ -28,7 +28,7 @@ export const UpdateGuide: React.FC<UpdateGuideProps> = (): JSX.Element => {
   
 
   async function getGuidesService(id:string) {
-    let data:{data: CardGuidesResponse};
+    let data:{data: GuideInterface};
     try {
       setLoading(true);
       data = (await getGuideById(id)).data;

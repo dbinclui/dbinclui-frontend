@@ -28,7 +28,7 @@ export const postGuides = async (cardBody: GuideInterface) => {
     throw handleAxiosError(error);
   }
 };
-export const putGuides = async (id: string, cardBody: CardBodyInterface) => {
+export const putGuides = async (id: string, cardBody: GuideInterface) => {
   try {
     return api.put(`/guides/${id}`, cardBody);
 
@@ -41,7 +41,7 @@ export const putGuides = async (id: string, cardBody: CardBodyInterface) => {
   
   export const getGuideById = async (id: string) => {
     try {
-      return api.get< { data: CardGuidesResponse }> (`guides/${id}`);
+      return api.get< { data: GuideInterface }> (`guides/${id}`);
     } catch {
       throw new Error('Serviço não disponível');
     }
