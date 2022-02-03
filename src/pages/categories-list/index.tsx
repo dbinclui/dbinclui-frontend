@@ -15,6 +15,7 @@ export const CategoriesList: React.FC<
   CategoriesListProps
 > = (): JSX.Element => {
   const [categories, setCategories] = useState<CategoryInterface[]>([]);
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [successGetCategories, setSuccessGetCategories] = useState(false);
   const [errorGetCategories, setErrorGetCategories] = useState(false);
   const [loading, setLoading] = useState(true);
