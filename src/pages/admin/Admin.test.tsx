@@ -18,7 +18,7 @@ describe('Página do Administrador', () => {
   test('Deve mostrar os botões de criação de guias', () => {
     render(<Admin />);
 
-    const buttonRegisterGuideText = 'Cadastrar Guia';
+    const buttonRegisterGuideText = 'Administar Guia';
     const buttonRegisterCategoryText = 'Administrar Categorias';
     const buttonRegisterContentText = 'Administrar Conteúdo Digital';
 
