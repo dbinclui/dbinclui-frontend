@@ -40,7 +40,7 @@ describe('Página do Administrador', () => {
 
     userEvent.click(buttonRegisterGuide);
     expect(mockedNavigate).toBeCalled();
-    expect(mockedNavigate).toBeCalledWith('listar-guia');
+    expect(mockedNavigate).toBeCalledWith('listar-guias');
   });
 
   test('O botão Administrar Categorias deve redirecionar o user para outra página', () => {
