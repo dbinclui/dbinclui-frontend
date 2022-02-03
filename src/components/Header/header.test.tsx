@@ -78,7 +78,7 @@ describe('Componente Header', () => {
   });
 
   it('Exibir a logo default', () => {
-   render(
+    render(
       <ThemeProvider theme={theme('default')}>
         <Header />
       </ThemeProvider>,

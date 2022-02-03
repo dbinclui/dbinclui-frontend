@@ -48,6 +48,17 @@ export const Routers: React.FC<RoutersProps> = (): JSX.Element => {
               path="admin/listar-conteudo-digital"
               element={<ListDigitalContent />}
             />
+
+            <Route
+              path="admin/atualizar-conteudo-digital/:id"
+              //element={<UpdateDigitalContent />}
+            />
+
+            <Route
+              path="admin/excluir-conteudo-digital/:id"
+              // element={<DeleteDigitalContent />}
+            />
+            <Route path="testeGuide" element={<GuidePage />} />
             <Route path="*" element={<Error />} />
           </Route>
         </Routes>
