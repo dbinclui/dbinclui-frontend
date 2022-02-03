@@ -1,19 +1,13 @@
 import React from 'react';
-import RegisterGuide, { UpdateGuide } from './index';
+import { UpdateGuide } from './index';
 import { render, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import '@testing-library/jest-dom';
 import validateInput, { InputInterface } from './validator';
-import {
-  getGuideById,
-  getGuides,
-  putGuides,
-  postGuides,
-} from '@services/guides';
+import { getGuideById, putGuides } from '@services/guides';
 import { act } from 'react-dom/test-utils';
 import { AxiosResponse } from 'axios';
 import { fireEvent } from '@testing-library/dom';
-import { Update } from '@mui/icons-material';
 
 jest.mock('./validator');
 jest.mock('@services/guides');
@@ -142,13 +136,12 @@ describe('Página de atualização de guia', () => {
   });
 
   test('Deve chamar a função putGuides quando o botão do submit for clicado', async () => {
-
     act(() => {
       render(<UpdateGuide />);
     });
     const textoNoBotaoSubmit = 'Atualizar';
     const botaoSubmit = await screen.findByText(textoNoBotaoSubmit);
-    
+
     act(() => {
       userEvent.click(botaoSubmit);
     });
@@ -158,7 +151,6 @@ describe('Página de atualização de guia', () => {
   });
 
   test('Deve mostrar na tela o card de notificação de sucesso quando o botão de submit for clicado', async () => {
-    
     act(() => {
       render(<UpdateGuide />);
     });
@@ -168,7 +160,7 @@ describe('Página de atualização de guia', () => {
     const textoNoBotaoSubmit = 'Atualizar';
     const NotificationMessage = 'Atualização realizada com sucesso! ✔';
     const botaoSubmit = await screen.findByText(textoNoBotaoSubmit);
-    
+
     act(() => {
       userEvent.click(botaoSubmit);
     });
@@ -206,10 +198,9 @@ describe('Página de atualização de guia', () => {
   test('Botão Voltar deve redirecionar para admin', async () => {
     render(<UpdateGuide />);
     const button = await screen.findByTestId('back');
-  
+
     fireEvent.click(button);
-  
+
     expect(button.getAttribute('href')).toBe('/admin');
   });
 });
-
