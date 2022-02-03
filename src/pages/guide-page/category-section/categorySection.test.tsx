@@ -10,8 +10,8 @@ describe('Componente de seção de categoria', () => {
     guide: {} as any,
     digitalContents: [
       {
-        guide: 'idGuia',
-        category: 'idCategoria',
+        guide: {} as any,
+        category: {} as any,
         title: 'Titulo Conteudo Digital',
         shortDescription: 'Descrição Conteudo Digital',
         filePaths: ['arquivo/img.png'],
