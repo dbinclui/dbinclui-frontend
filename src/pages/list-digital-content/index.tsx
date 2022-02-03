@@ -135,7 +135,6 @@ export const ListDigitalContent: React.FC<
           </Grid>
         ) : (
           <>
-            <Box style={{ height: 400, width: '100%' }}>
               <DataGrid
                 data-testid="dataGrid"
                 autoHeight
@@ -147,7 +146,6 @@ export const ListDigitalContent: React.FC<
                 pageSize={10}
                 rowsPerPageOptions={[10]}
               />
-            </Box>
             <Box sx={styles.buttonBox}>
               <Button
                 data-testid="new"
