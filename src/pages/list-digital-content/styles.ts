@@ -35,7 +35,7 @@ const buttonBox: SxProps<Theme> = {
   'display': 'flex',
   'justifyContent': 'center',
   'margin': '0 auto',
-  'marginTop': '70px',
+  'marginTop': '20px',
   '@media (max-width:780px)': {
     justifyContent: 'center',
     margin: '0 auto',
