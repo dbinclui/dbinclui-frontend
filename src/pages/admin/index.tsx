@@ -41,10 +41,10 @@ export const Admin: React.FC<AdminProps> = (): JSX.Element => {
               variant="contained"
               size="large"
               onClick={() => {
-                navigate('cadastrar-guia');
+                navigate('listar-guias');
               }}
             >
-              Cadastrar Guia
+              Administrar Guia
             </Button>
           </Box>
 
@@ -81,29 +81,10 @@ export const Admin: React.FC<AdminProps> = (): JSX.Element => {
               variant="contained"
               size="large"
               onClick={() => {
-                navigate('cadastrar-conteudo-digital');
+                navigate('listar-conteudo-digital');
               }}
             >
-              Cadastro de Conteúdo digital
-            </Button>
-          </Box>
-          <Box sx={{ m: 2, width: '100%' }}>
-            <Button
-              sx={{
-                color: 'text.disabled',
-                backgroundColor: 'secondary.dark',
-                border: '2px solid',
-                borderColor: 'text.disabled',
-                borderRadius: '10px',
-              }}
-              fullWidth
-              variant="contained"
-              size="large"
-              onClick={() => {
-                navigate('listar-guias');
-              }}
-            >
-              LISTAGEM DE GUIAS
+              Administrar Conteúdo Digital
             </Button>
           </Box>
         </Grid>

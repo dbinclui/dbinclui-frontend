@@ -37,7 +37,7 @@ export const UpdateCategory: React.FC<
   const [errorMessageGetGuides, setErrorMessageGetGuides] = useState('');
 
   async function getGuidesService() {
-    try {
+    try { 
       const response = await getGuides();
       setGuides(response.data.data);
       setSuccessGetGuides(true);
@@ -179,6 +179,7 @@ export const UpdateCategory: React.FC<
                   type="submit"
                   role="button"
                   data-testid="submit"
+                  
                 >
                   Atualizar
                 </Button>

@@ -16,6 +16,9 @@ const table: SxProps<Theme> = {
   'border': '2px solid',
   'borderRadius': '20px',
   'borderColor': (theme) => theme.palette.text.primary,
+  '& .MuiDataGrid-cell:focus': {
+    outline: 'inherit',
+  },
   '@media (max-width:780px)': {
     width: '90%',
     fontSize: '18px',
@@ -43,7 +46,7 @@ const boxButton: SxProps<Theme> = {
 const button: SxProps<Theme> = {
   'fontWeight': '700',
   'padding': '0.5rem 1.5rem',
-  'margin': '30px 80px 30px -40px',
+  'margin': '30px 150px 30px -100px',
   'textTransform': 'none',
   'fontSize': '1.2rem',
   'border': '2px solid',
@@ -58,12 +61,20 @@ const button: SxProps<Theme> = {
   },
 };
 
+const errorBox: SxProps<Theme> = {
+  mt: '40px',
+  width: '50%',
+  ml: 'auto',
+  mr: 'auto',
+};
+
 const styles = {
   listTitle,
   table,
   button,
   buttonTable,
   boxButton,
+  errorBox,
 };
 
 export default styles;
