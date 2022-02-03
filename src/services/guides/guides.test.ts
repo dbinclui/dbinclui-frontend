@@ -2,8 +2,13 @@ import {
   getGuides,
   postGuides,
   getGuideWithCategoriesAndContent,
+  putGuides,
 } from '@services/guides';
 import api from '@services/api';
+
+
+
+
 
 jest.mock('@services/api');
 
@@ -69,6 +74,44 @@ describe('Testando o serviço "postGuides"', () => {
     expect(apiMock.post).toThrow(errorMessage);
   });
 });
+
+
+describe('Testando o serviço "putGuides"', () => {
+  beforeEach(() => {
+    apiMock.put.mockClear();
+  });
+
+  it(`Quando ${putGuides.name} é chamado, o resultado deve retornar true
+  `, async () => {
+    const id = ':id';
+    const title = 'Test title';
+    const content = 'Teste content';
+    const pathExpect = '/guides/:id';
+    const resultExpect = true;
+    apiMock.put.mockResolvedValue(resultExpect);
+    const result = await putGuides(id, { title, content });
+    expect(result).toBe(resultExpect);
+    expect(apiMock.put).toBeCalledWith(pathExpect, { title, content });
+  });
+
+  it(`${putGuides.name}: Tratamento de erro quando o serviço não estiver disponível`, async () => {
+    const id = '1';
+    const title = 'Test title';
+    const content = 'Teste content';
+    const errorMessage = 'Serviço não disponível';
+    const throwError = new Error(errorMessage);
+    apiMock.put.mockImplementation(() => {
+      throw throwError;
+    });
+    try {
+      await putGuides(id, { title, content });
+    } catch {}
+    expect(apiMock.put).toBeCalledTimes(1);
+    expect(apiMock.put).toThrow(Error);
+    expect(apiMock.put).toThrow(errorMessage);
+  });
+});
+
 
 describe('Testando o serviço "getGuideWithCategoriesAndContent"', () => {
   beforeEach(() => {
