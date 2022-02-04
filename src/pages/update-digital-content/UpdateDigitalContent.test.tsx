@@ -1,16 +1,26 @@
 import React from 'react';
+import '@testing-library/jest-dom';
 import { render, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import '@testing-library/jest-dom';
-import validateInput, { InputInterfaceProps } from './validator';
+import validateInput from './validator';
+import { getGuides, GuideInterface } from '@services/guides';
 import { postDigitalContent } from '@services/digitalContent';
+import { getCategories } from '@services/categories';
 import { act } from 'react-dom/test-utils';
-import { AxiosResponse } from 'axios';
 import { fireEvent } from '@testing-library/dom';
+import { AxiosResponse } from 'axios';
 import UpdateDigitalContent from './index';
 
 jest.mock('./validator');
+jest.mock('@services/digitalContent');
+jest.mock('@services/categories');
 jest.mock('@services/guides');
+
+const getGuidesServiceMock = getGuides as jest.MockedFunction<typeof getGuides>;
+
+const getCategoryServiceMock = getCategories as jest.MockedFunction<
+  typeof getCategories
+>;
 const validateInputMock = validateInput as jest.MockedFunction<
   typeof validateInput
 >;
@@ -28,60 +38,14 @@ jest.mock('react-router-dom', () => {
 });
 
 describe('Página de atualização de conteúdo digital', () => {
-  test('Deve mostrar um formulário', () => {
-    render(<UpdateDigitalContent />);
-
-    const textoLabelGuia = 'Guia:';
-    const textoLabelCategoria = 'Categoria:';
-    const textoLabelTitulo = 'Título:';
-    const textoLabelDescricao = 'Descrição:';
-
-    const labelGuia = screen.getByText(textoLabelGuia);
-    const labelCategoria = screen.getByText(textoLabelCategoria);
-    const labelTitulo = screen.getByText(textoLabelTitulo);
-    const labelDescricao = screen.getByText(textoLabelDescricao);
-
-    const input = screen.getByLabelText(textoLabelTitulo, {
-      selector: 'input',
-    });
-    const textArea = screen.getByLabelText(textoLabelDescricao, {
-      selector: 'textarea',
-    });
-
-    expect(labelGuia).toBeInTheDocument();
-    expect(labelCategoria).toBeInTheDocument();
-    expect(labelTitulo).toBeVisible();
-    expect(labelDescricao).toBeVisible();
-    expect(input).toBeVisible();
-    expect(textArea).toBeVisible();
-  });
-
-  test('Deve atualizar o valor dos campos de input quando o valor destes mudar', () => {
-    render(<UpdateDigitalContent />);
-
-    const textoLabelTitulo = 'Título:';
-    const textoLabelDescricao = 'Descrição:';
-
-    const input = screen.getByLabelText(textoLabelTitulo, {
-      selector: 'input',
-    });
-    const textArea = screen.getByLabelText(textoLabelDescricao, {
-      selector: 'textarea',
-    });
-
-    const inputText = 'Esse é o texto presente no elemento input';
-    const textAreaText =
-      'Esse é o texto presente no elemento textarea\n Ele aceita novas linhas';
-
-    userEvent.type(input, inputText);
-    userEvent.type(textArea, textAreaText);
-
-    expect(input).toHaveValue(inputText);
-    expect(textArea).toHaveValue(textAreaText);
+  beforeEach(() => {
+    getCategoryServiceMock.mockClear();
+    getGuidesServiceMock.mockClear();
+    postDigitalContentMock.mockClear();
+    validateInputMock.mockClear();
   });
 
   test('Deve validar o input quando o botão de submit for clicado', async () => {
-    // eslint-disable-next-line testing-library/no-unnecessary-act
     act(() => {
       render(<UpdateDigitalContent />);
     });
@@ -89,7 +53,6 @@ describe('Página de atualização de conteúdo digital', () => {
     const textoBotaoSubmit = 'Atualizar';
     const botaoSubmit = screen.getByText(textoBotaoSubmit);
 
-    // eslint-disable-next-line testing-library/no-unnecessary-act
     act(() => {
       userEvent.click(botaoSubmit);
     });
@@ -99,75 +62,70 @@ describe('Página de atualização de conteúdo digital', () => {
     });
   });
 
-  // test('Deve chamar a função postDigitalContent quando o botão do submit for clicado', async () => {
-  //   // eslint-disable-next-line testing-library/no-unnecessary-act
-  //   act(() => {
-  //     render(<UpdateDigitalContent />);
-  //   });
-  //   const textoNoBotaoSubmit = 'Atualizar';
-  //   const botaoSubmit = screen.getByText(textoNoBotaoSubmit);
-  //   // eslint-disable-next-line testing-library/no-unnecessary-act
-  //   act(() => {
-  //     userEvent.click(botaoSubmit);
-  //   });
-  //   await waitFor(() => {
-  //     expect(postDigitalContentMock).toBeCalled();
-  //   });
-  // });
+  test('Deve mostrar na tela o card de notificação de erro quando o botão de submit for clicado', async () => {
+    act(() => {
+      render(<UpdateDigitalContent />);
+    });
 
-  //   test('Deve mostrar na tela o card de notificação de sucesso quando o botão de submit for clicado', async () => {
-  //     // eslint-disable-next-line testing-library/no-unnecessary-act
-  //     act(() => {
-  //       render(<UpdateDigitalContent />);
-  //     });
+    const errorMessage = 'Erro';
+    const throwError = new Error(errorMessage);
 
-  //     validateInputMock.mockResolvedValue(true as unknown as InputInterfaceProps);
-  //     postGuidesMock.mockResolvedValue(true as unknown as Promise<AxiosResponse>);
-  //     const textoNoBotaoSubmit = 'Atualizar';
-  //     const NotificationMessage = 'Atualizado realizado com sucesso! ✔';
-  //     const botaoSubmit = screen.getByText(textoNoBotaoSubmit);
-  //     // eslint-disable-next-line testing-library/no-unnecessary-act
-  //     act(() => {
-  //       userEvent.click(botaoSubmit);
-  //     });
+    validateInputMock.mockImplementation(() => {
+      throw throwError;
+    });
 
-  //     const NotificationCard = await screen.findByText(NotificationMessage);
+    const textoNoBotaoSubmit = 'Atualizar';
+    const NotificationMessage = errorMessage;
+    const botaoSubmit = screen.getByText(textoNoBotaoSubmit);
 
-  //     expect(NotificationCard).toBeVisible();
-  //   });
+    act(() => {
+      userEvent.click(botaoSubmit);
+    });
 
-  //   test('Deve mostrar na tela o card de notificação de erro quando o botão de submit for clicado', async () => {
-  //     act(() => {
-  //       render(<UpdateDigitalContent />);
-  //     });
+    const NotificationCard = await screen.findByText(NotificationMessage);
 
-  //     const errorMessage = 'Erro';
-  //     const throwError = new Error(errorMessage);
+    expect(NotificationCard).toBeVisible();
+    expect(validateInputMock).toBeCalled();
+  });
 
-  //     validateInputMock.mockImplementation(() => {
-  //       throw throwError;
-  //     });
-  //     postGuidesMock.mockResolvedValue(true as unknown as Promise<AxiosResponse>);
-  //     const textoNoBotaoSubmit = 'Atualizar';
-  //     const NotificationMessage = errorMessage;
-  //     const botaoSubmit = screen.getByText(textoNoBotaoSubmit);
+  test('Deve verificar se o arquivo está sendo enviado', async () => {
+    const fileName = 'teste.pdf';
 
-  //     act(() => {
-  //       userEvent.click(botaoSubmit);
-  //     });
-
-  //     const NotificationCard = await screen.findByText(NotificationMessage);
-
-  //     expect(NotificationCard).toBeVisible();
-  //   });
-  // });
-
-  test('Botão Voltar deve redirecionar para admin', () => {
     render(<UpdateDigitalContent />);
-    const button = screen.getByTestId('back');
 
-    fireEvent.click(button);
+    const noFile = screen.getByText('Nenhum arquivo selecionado');
+    expect(noFile).toBeVisible();
 
-    expect(button).toHaveAttribute('to', '/admin');
+    const input = screen.getByTestId('inputFile');
+    fireEvent.change(input, { target: { files: [{ name: fileName }] } });
+
+    const elementFileName = await screen.findByText(fileName);
+    expect(elementFileName).toBeVisible();
+    expect(noFile).not.toBeVisible();
+  });
+
+  test('Deve chamar os guias quando o componente for renderizado', async () => {
+    const dataMockMenuItem = [
+      {
+        _id: 1,
+        title: 'teste 1',
+        content: 'content 2',
+        file: [] as any,
+      },
+    ];
+
+    getGuidesServiceMock.mockResolvedValue({
+      data: {
+        data: dataMockMenuItem,
+      },
+    } as unknown as AxiosResponse<{ data: GuideInterface[] }>);
+
+    act(() => {
+      render(<UpdateDigitalContent />);
+    });
+
+    await waitFor(() => {
+      expect(getGuidesServiceMock).toBeCalled();
+    });
   });
 });
