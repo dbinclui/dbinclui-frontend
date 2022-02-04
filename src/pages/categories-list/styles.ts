@@ -33,20 +33,20 @@ const buttonTable: SxProps<Theme> = {
 };
 const boxButton: SxProps<Theme> = {
   'display': 'flex',
-  'justifyContent': 'flex-end',
-  'margin': '50px',
+  'justifyContent': 'center',
+  'margin': '0 auto',
   'marginTop': '20px',
   '@media (max-width:780px)': {
     justifyContent: 'center',
     margin: '0 auto',
-    marginTop: '20px',
+    marginTop: '40px',
   },
 };
 
 const button: SxProps<Theme> = {
   'fontWeight': '700',
   'padding': '0.5rem 1.5rem',
-  'margin': '30px 150px 30px -100px',
+  'margin': '0 20px',
   'textTransform': 'none',
   'fontSize': '1.2rem',
   'border': '2px solid',
