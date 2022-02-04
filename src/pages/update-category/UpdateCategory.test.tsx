@@ -2,7 +2,6 @@ import React from 'react';
 import '@testing-library/jest-dom';
 import { render, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import '@testing-library/jest-dom';
 import validateInput, { InputInterface } from './validator';
 import { postCategories } from '@services/categories';
 import { GuideInterface, getGuides } from '@services/guides';
@@ -30,6 +29,7 @@ jest.mock('react-router-dom', () => {
     useNavigate: () => mockedNavigate,
   };
 });
+
 describe('Página de cadastro de categorias', () => {
   beforeEach(() => {
     getGuidesServiceMock.mockClear();
