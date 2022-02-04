@@ -9,7 +9,6 @@ import { postCategories } from '@services/categories';
 import { GuideInterface, getGuides } from '@services/guides';
 import { act } from 'react-dom/test-utils';
 import { AxiosResponse } from 'axios';
-import { fireEvent } from '@testing-library/dom';
 
 jest.mock('./validator');
 jest.mock('@services/categories');
@@ -133,7 +132,5 @@ test('Botão Voltar deve redirecionar para listar categorias', () => {
   render(<RegisterCategory />);
   const button = screen.getByTestId('back');
 
-  fireEvent.click(button);
-
-  expect(button.getAttribute('href')).toBe('/admin/listar-categorias');
+  expect(button).toHaveAttribute('to', '/admin/listar-categorias');
 });
