@@ -12,6 +12,7 @@ import {
   Stack,
   Alert,
 } from '@mui/material';
+import { Link } from 'react-router-dom';
 import styles from './styles';
 import FileUploadRounded from '@mui/icons-material/FileUploadRounded';
 import ClearIcon from '@mui/icons-material/Clear';
@@ -309,7 +310,8 @@ export const RegisterDigitalContent: React.FC<
                   type="reset"
                   role="button"
                   data-testid="back"
-                  href="/admin"
+                  component={Link}
+                  to="/admin"
                 >
                   Voltar
                 </Button>
