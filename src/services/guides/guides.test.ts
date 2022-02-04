@@ -3,12 +3,9 @@ import {
   postGuides,
   getGuideWithCategoriesAndContent,
   putGuides,
+  deleteGuide,
 } from '@services/guides';
 import api from '@services/api';
-
-
-
-
 
 jest.mock('@services/api');
 
@@ -75,7 +72,6 @@ describe('Testando o serviço "postGuides"', () => {
   });
 });
 
-
 describe('Testando o serviço "putGuides"', () => {
   beforeEach(() => {
     apiMock.put.mockClear();
@@ -112,7 +108,6 @@ describe('Testando o serviço "putGuides"', () => {
   });
 });
 
-
 describe('Testando o serviço "getGuideWithCategoriesAndContent"', () => {
   beforeEach(() => {
     apiMock.get.mockClear();
@@ -139,5 +134,34 @@ describe('Testando o serviço "getGuideWithCategoriesAndContent"', () => {
     expect(apiMock.get).toBeCalledTimes(1);
     expect(apiMock.get).toThrow(Error);
     expect(apiMock.get).toThrow(errorMessage);
+  });
+});
+
+describe('Testando o serviço "deleteGuide"', () => {
+  beforeEach(() => {
+    apiMock.delete.mockClear();
+  });
+
+  it(`${deleteGuide.name}: Devolvendo conteúdo "deleteGuide"`, async () => {
+    const id = '1';
+    apiMock.delete.mockResolvedValue([]);
+    const result = await deleteGuide(id);
+    expect(apiMock.delete).toBeCalledTimes(1);
+    expect(result).toStrictEqual([]);
+  });
+
+  it(`${deleteGuide.name}: Tratamento de erro quando o serviço não estiver disponível`, async () => {
+    const id = '1';
+    const errorMessage = 'Serviço não disponível';
+    const throwError = new Error(errorMessage);
+    apiMock.delete.mockImplementation(() => {
+      throw throwError;
+    });
+    try {
+      await deleteGuide(id);
+    } catch {}
+    expect(apiMock.delete).toBeCalledTimes(1);
+    expect(apiMock.delete).toThrow(Error);
+    expect(apiMock.delete).toThrow(errorMessage);
   });
 });
