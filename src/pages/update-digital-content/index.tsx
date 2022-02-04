@@ -15,7 +15,8 @@ import {
 import styles from './styles';
 import FileUploadRounded from '@mui/icons-material/FileUploadRounded';
 import ClearIcon from '@mui/icons-material/Clear';
-import { GuideInterface, getGuides, getGuideById, putGuides, putDigitalContent } from '@services/guides';
+import { GuideInterface, getGuides, getGuideById, putGuides } from '@services/guides';
+import { DigitalContentInterface, getDigitalContent, getDigitalContentById, putDigitalContent } from '@services/digitalContent';
 import { postDigitalContent } from '@services/digitalContent';
 import { CategoryInterface, getCategoriesByGuide } from '@services/categories';
 import validateInput, { InputInterfaceProps } from './validator';
@@ -25,13 +26,13 @@ import { useParams } from 'react-router-dom';
 
 export interface UpdateDigitalContentProps {}
 
-export const RegisterDigitalContent: React.FC<
+export const UpdateDigitalContent: React.FC<
   UpdateDigitalContentProps
 > = (): JSX.Element => {
   const guide = useRef<HTMLInputElement>();
   const category = useRef<HTMLInputElement>();
   const title = useRef<HTMLInputElement>();
-  const description = useRef<HTMLInputElement>();
+  const shortDescription = useRef<HTMLInputElement>();
   const fileRef = useRef<HTMLInputElement>(null);
   const parametros = useParams();
   const id: string = parametros.id!;
@@ -49,53 +50,39 @@ export const RegisterDigitalContent: React.FC<
   const [errorGetCategories, setErrorGetCategories] = useState(true);
   const [errorMessageGetCategories, setErrorMessageGetCategories] =
     useState('');
-  const [loading, setLoading] = useState(false)
+  const [loading, setLoading] = useState(false);
 
-    async function getGuidesServiceId(id: string) {
-      let data: { data: GuideInterface };
-      try {
-        setLoading(true);
-        data = (await getGuideById(id)).data;
-
-        setError(false);
-      } catch (error: any) {
-        setError(true);
-        setErrorMessage(error.message);
-      } finally {
-        setLoading(false);
-        title.current!.value = data!.data.title;
-        description.current!.value = data!.data.content;
-      }
+  async function getGuidesService(id: string) {
+    let data: { data: DigitalContentInterface[] };
+    try {
+      setLoading(true);
+      data = (await getDigitalContentById(id)).data;
+      setError(false);
+    } catch (error: any) {
+      setError(true);
+      setErrorMessage(error.message);
+    } finally {
+      setLoading(false);
+      guide.current!.value = data!.data.GuideContent;
+      category.current!.value = data!.data.category;
+      title.current!.value = data!.data.title;
+      shortDescription.current!.value = data!.data.content;
     }
-  
-    useEffect(() => {
-      getGuidesServiceId(id);
-    }, [id]);
+  }
 
-    async function getGuidesService() {
-      try { 
-        const response = await getGuides();
-        setGuides(response.data.data);
-        setSuccessGetGuides(true);
-      } catch {
-        setErrorMessageGetGuides('Não foram encontradas as guias');
-        setErrorGetGuides(true);
-      }
-    }
-  
-    useEffect(() => {
-      getGuidesService();
-    }, []);
+  useEffect(() => {
+    getGuidesService(id);
+  }, [id]);
 
   async function handleSubmit(event: React.FormEvent) {
     event.preventDefault();
 
     const cardBody = {
       title: title.current?.value || '',
-      shortDescription: description.current?.value || '',
+      shortDescription: shortDescription.current?.value || '',
       guide: guide.current?.value || '',
       category: category.current?.value || '',
-    } as { [key: string]: any | undefined };
+    } as { [key: string]: any };
 
     const formData = new FormData();
 
@@ -109,7 +96,7 @@ export const RegisterDigitalContent: React.FC<
 
     try {
       await validateInput({ ...cardBody, file: files } as InputInterfaceProps);
-      await putDigitalContent(id);
+      //await putDigitalContent(id);
       setSuccess(true);
     } catch (error: any) {
       setErrorMessage(error.message);
@@ -153,7 +140,7 @@ export const RegisterDigitalContent: React.FC<
       <Grid item md={6} component="section">
         <Box sx={styles.header} component="header">
           <AccessibilityTypography sx={styles.headerTitle}>
-            CADASTRO DE CONTEÚDO DIGITAL
+            ATUALIZAR CONTEÚDO DIGITAL
           </AccessibilityTypography>
         </Box>
         <Box padding={'1rem 3rem'} sx={styles.content} component="section">
@@ -315,7 +302,7 @@ export const RegisterDigitalContent: React.FC<
               <AccessibilityTypography>Descrição:</AccessibilityTypography>
             </InputLabel>
             <InputBase
-              inputRef={description}
+              inputRef={shortDescription}
               multiline={true}
               minRows={5}
               role="input"
@@ -382,4 +369,4 @@ export const RegisterDigitalContent: React.FC<
   );
 };
 
-export default RegisterDigitalContent;
+export default UpdateDigitalContent;

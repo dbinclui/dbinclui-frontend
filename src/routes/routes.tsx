@@ -14,6 +14,7 @@ import UpdateCategory from '@pages/update-category';
 import UpdateGuide from '@pages/update-guide';
 import CategoriesList from '@pages/categories-list';
 import BotaoAtualizar from '@components/Button';
+import UpdateDigitalContent from '@pages/update-digital-content';
 
 export interface RoutersProps {}
 
@@ -53,7 +54,7 @@ export const Routers: React.FC<RoutersProps> = (): JSX.Element => {
 
             <Route
               path="admin/atualizar-conteudo-digital/:id"
-              //element={<UpdateDigitalContent />}
+              element={<UpdateDigitalContent />}
             />
 
             <Route
