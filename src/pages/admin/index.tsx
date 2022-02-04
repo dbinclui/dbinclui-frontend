@@ -41,10 +41,10 @@ export const Admin: React.FC<AdminProps> = (): JSX.Element => {
               variant="contained"
               size="large"
               onClick={() => {
-                navigate('cadastrar-guia');
+                navigate('listar-guias');
               }}
             >
-              Cadastrar Guia
+              Administrar Guia
             </Button>
           </Box>
 
@@ -61,10 +61,10 @@ export const Admin: React.FC<AdminProps> = (): JSX.Element => {
               variant="contained"
               size="large"
               onClick={() => {
-                navigate('cadastrar-categoria');
+                navigate('listar-categorias');
               }}
             >
-              Cadastro de Categorias
+              Administrar Categorias
             </Button>
           </Box>
 
@@ -81,10 +81,10 @@ export const Admin: React.FC<AdminProps> = (): JSX.Element => {
               variant="contained"
               size="large"
               onClick={() => {
-                navigate('cadastrar-conteudo-digital');
+                navigate('listar-conteudo-digital');
               }}
             >
-              Cadastro de Conteúdo digital
+              Administrar Conteúdo Digital
             </Button>
           </Box>
         </Grid>

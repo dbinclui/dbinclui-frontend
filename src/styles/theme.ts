@@ -40,7 +40,7 @@ const theme = (themeMode: string) => {
       },
     },
     typography: {
-      fontFamily: 'verdana',
+      fontFamily: 'verdana, roboto, sans-serif',
       h1: getTitleStyle('72px'),
       h2: getTitleStyle('32px'),
       h3: getTitleStyle('24px'),

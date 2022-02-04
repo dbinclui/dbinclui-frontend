@@ -1,0 +1,143 @@
+import React, { useEffect, useState } from 'react';
+import { Box, Button, MobileStepper, Paper, Typography } from '@mui/material';
+import SwipeableViews from 'react-swipeable-views';
+import styles from './styles';
+import { KeyboardArrowLeft, KeyboardArrowRight } from '@mui/icons-material';
+import AccessibilityTypography from '@components/AccessibilityTypography';
+
+interface Content {
+  title: string;
+  shortDescription: string;
+  filePaths: string[];
+}
+
+interface ParsedContent {
+  digitalContentIndex: number;
+  filePath: string;
+}
+
+interface ImageCarrousselProps {
+  contents: Content[];
+  width?: string | number;
+  height?: string | number;
+}
+
+export const ImageCarroussel: React.FC<ImageCarrousselProps> = ({
+  contents,
+  width,
+  height,
+}) => {
+  const [arrayOfContents, setArrayOfContents] = useState<ParsedContent[]>([]);
+  const [currentIndex, setCurrentIndex] = useState(0);
+
+  const handleNext = () =>
+    setCurrentIndex((previousValue) => previousValue + 1);
+
+  const handleBack = () =>
+    setCurrentIndex((previousValue) => previousValue - 1);
+
+  const constructArrayOfContents = (contents: Content[]) => {
+    return contents.reduce<ParsedContent[]>(
+      (arrayOfContents, content, index) => {
+        // construct subarray containing all files from this digital content
+        const parsedContents = content.filePaths.map((path) => ({
+          digitalContentIndex: index,
+          filePath: path,
+        }));
+
+        // and add the subarray to the final array
+        return [...arrayOfContents, ...parsedContents];
+      },
+      [],
+    );
+  };
+
+  useEffect(() => {
+    setArrayOfContents(constructArrayOfContents(contents));
+  }, [contents]);
+
+  return (
+    <Box width={width} sx={styles.carrousselBox}>
+      <Paper
+        component="header"
+        square
+        elevation={0}
+        sx={styles.headerContainer}
+      >
+        <Typography sx={styles.title}>
+          {contents[arrayOfContents[currentIndex]?.digitalContentIndex]?.title}
+        </Typography>
+
+        <AccessibilityTypography sx={styles.description}>
+          {
+            contents[arrayOfContents[currentIndex]?.digitalContentIndex]
+              ?.shortDescription
+          }
+        </AccessibilityTypography>
+      </Paper>
+
+      <SwipeableViews index={currentIndex} enableMouseEvents>
+        {arrayOfContents.map((img, index) => {
+          const fileExtension = img.filePath.split('.').pop();
+
+          const mediaType = fileExtension?.match(/png|jpg|jpeg/)
+            ? 'img'
+            : 'video';
+
+          return Math.abs(currentIndex - index) <= 2 ? (
+            <Box key={index} sx={styles.imageWrapper} height={height}>
+              <Box
+                component={mediaType}
+                controls={mediaType === 'video'}
+                sx={styles.image}
+                src={img.filePath}
+                alt={
+                  contents[arrayOfContents[currentIndex]?.digitalContentIndex]
+                    ?.shortDescription
+                }
+                aria-label={
+                  contents[arrayOfContents[currentIndex]?.digitalContentIndex]
+                    ?.shortDescription
+                }
+              />
+            </Box>
+          ) : (
+            <div key={index}></div>
+          );
+        })}
+      </SwipeableViews>
+
+      <MobileStepper
+        variant="dots"
+        sx={styles.stepper}
+        steps={arrayOfContents.length}
+        position="static"
+        activeStep={currentIndex}
+        nextButton={
+          <Button
+            size="small"
+            onClick={handleNext}
+            disabled={currentIndex === arrayOfContents.length - 1}
+            sx={styles.nextButton}
+          >
+            Próximo
+            <KeyboardArrowRight />
+          </Button>
+        }
+        backButton={
+          <Button
+            size="small"
+            onClick={handleBack}
+            disabled={currentIndex === 0}
+            sx={styles.nextButton}
+          >
+            <KeyboardArrowLeft />
+            Anterior
+          </Button>
+        }
+      />
+    </Box>
+  );
+};
+
+export default ImageCarroussel;

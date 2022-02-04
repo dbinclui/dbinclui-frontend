@@ -1,5 +1,4 @@
 import React from 'react';
-import { RegisterCategory } from '@pages/register-category';
 import '@testing-library/jest-dom';
 import { render, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
@@ -10,6 +9,7 @@ import { GuideInterface, getGuides } from '@services/guides';
 import { act } from 'react-dom/test-utils';
 import { AxiosResponse } from 'axios';
 import { fireEvent } from '@testing-library/dom';
+import { UpdateCategory } from '@pages/update-category';
 
 jest.mock('./validator');
 jest.mock('@services/categories');
@@ -53,7 +53,7 @@ describe('Página de cadastro de categorias', () => {
     } as unknown as AxiosResponse<{ data: GuideInterface[] }>);
 
     act(() => {
-      render(<RegisterCategory />);
+      render(<UpdateCategory />);
     });
 
     await waitFor(() => {
@@ -64,14 +64,14 @@ describe('Página de cadastro de categorias', () => {
   test('Deve mostrar na tela o card de notificação de sucesso quando o botão de submit for clicado', async () => {
     // eslint-disable-next-line testing-library/no-unnecessary-act
     act(() => {
-      render(<RegisterCategory />);
+      render(<UpdateCategory />);
     });
 
     validateInputMock.mockResolvedValue(true as unknown as InputInterface);
     postCategoryMock.mockResolvedValue(
       true as unknown as Promise<AxiosResponse>,
     );
-    const textoNoBotaoSubmit = 'Salvar';
+    const textoNoBotaoSubmit = 'Atualizar';
     const NotificationMessage = 'Cadastro realizado com sucesso! ✔';
     const botaoSubmit = screen.getByText(textoNoBotaoSubmit);
     // eslint-disable-next-line testing-library/no-unnecessary-act
@@ -88,7 +88,7 @@ describe('Página de cadastro de categorias', () => {
 
   test('Deve mostrar na tela o card de notificação de erro quando o botão de submit for clicado', async () => {
     act(() => {
-      render(<RegisterCategory />);
+      render(<UpdateCategory />);
     });
 
     const errorMessage = 'Erro';
@@ -98,7 +98,7 @@ describe('Página de cadastro de categorias', () => {
       throw throwError;
     });
 
-    const textoNoBotaoSubmit = 'Salvar';
+    const textoNoBotaoSubmit = 'Atualizar';
     const NotificationMessage = errorMessage;
     const botaoSubmit = screen.getByText(textoNoBotaoSubmit);
 
@@ -118,7 +118,7 @@ describe('Página de cadastro de categorias', () => {
     });
 
     act(() => {
-      render(<RegisterCategory />);
+      render(<UpdateCategory />);
     });
 
     const errorMessage = 'Não foram encontradas as guias';
@@ -130,7 +130,7 @@ describe('Página de cadastro de categorias', () => {
 });
 
 test('Botão Voltar deve redirecionar para listar categorias', () => {
-  render(<RegisterCategory />);
+  render(<UpdateCategory />);
   const button = screen.getByTestId('back');
 
   fireEvent.click(button);
