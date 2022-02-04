@@ -12,6 +12,7 @@ import {
   Stack,
   Alert,
 } from '@mui/material';
+import { Link } from 'react-router-dom';
 import styles from './styles';
 import FileUploadRounded from '@mui/icons-material/FileUploadRounded';
 import ClearIcon from '@mui/icons-material/Clear';
@@ -160,7 +161,7 @@ export const RegisterDigitalContent: React.FC<
                   }
                 }}
               >
-                <ClearIcon />{' '}
+                <ClearIcon />
               </Button>
             </Box>
           ))}
@@ -309,7 +310,8 @@ export const RegisterDigitalContent: React.FC<
                   type="reset"
                   role="button"
                   data-testid="back"
-                  href="/admin"
+                  component={Link}
+                  to="/admin/listar-conteudo-digital"
                 >
                   Voltar
                 </Button>

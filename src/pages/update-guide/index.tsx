@@ -8,6 +8,7 @@ import {
   InputBase,
   CircularProgress,
 } from '@mui/material';
+import { Link } from 'react-router-dom';
 import styles from './styles';
 import { GuideInterface, putGuides, getGuideById } from '@services/guides';
 import Notification from '@components/Notification';
@@ -159,7 +160,8 @@ export const UpdateGuide: React.FC<UpdateGuideProps> = (): JSX.Element => {
                       type="reset"
                       role="button"
                       data-testid="back"
-                      href="/admin"
+                      component={Link}
+                      to="/admin/listar-guias"
                     >
                       Voltar
                     </Button>

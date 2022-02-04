@@ -147,7 +147,7 @@ export const CategoriesList: React.FC<
                 variant="contained"
                 type="submit"
                 role="button"
-                area-label="BOTÃO NOVO"
+                aria-label="BOTÃO NOVO"
                 tabIndex={16}
                 data-testid="new"
               >
@@ -161,7 +161,7 @@ export const CategoriesList: React.FC<
                 variant="contained"
                 type="reset"
                 role="button"
-                area-label="BOTÃO VOLTAR"
+                aria-label="BOTÃO VOLTAR"
                 tabIndex={17}
                 data-testid="back"
               >
