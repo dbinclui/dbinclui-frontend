@@ -162,5 +162,5 @@ test('Botão Voltar deve redirecionar para admin', () => {
   render(<RegisterGuide />);
   const button = screen.getByTestId('back');
 
-  expect(button).toHaveAttribute('to', 'admin/listar-guias');
+  expect(button).toHaveAttribute('to', '/admin/listar-guias');
 });

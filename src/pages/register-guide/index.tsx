@@ -123,7 +123,7 @@ export const RegisterGuide: React.FC<RegisterGuideProps> = (): JSX.Element => {
                     role="button"
                     data-testid="back"
                     component={Link}
-                    to="admin/listar-guias"
+                    to="/admin/listar-guias"
                   >
                     Voltar
                   </Button>
