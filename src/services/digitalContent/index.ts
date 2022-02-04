@@ -40,7 +40,7 @@ export const getDigitalContent = async () => {
 
 export const getDigitalContentById = async (id: string) => {
   try {
-    return api.get< { data: DigitalContentInterface[] }> (`/digital-contents/${id}`);
+    return api.get< { data: DigitalContentInterface }> (`/digital-contents/${id}`);
   } catch {
     throw new Error('Serviço não disponível');
   }

@@ -23,8 +23,17 @@ import validateInput, { InputInterfaceProps } from './validator';
 import Notification from '@components/Notification';
 import AccessibilityTypography from '@components/AccessibilityTypography';
 import { useParams } from 'react-router-dom';
+import { resolveAny } from 'dns';
 
 export interface UpdateDigitalContentProps {}
+
+export interface UpdateDigitalInterface {
+  title?: string | undefined;
+  content?: string | undefined;
+  id?: string | undefined;
+  category: string | undefined;
+  shortDescription: string | undefined;
+}
 
 export const UpdateDigitalContent: React.FC<
   UpdateDigitalContentProps
@@ -50,28 +59,52 @@ export const UpdateDigitalContent: React.FC<
   const [errorGetCategories, setErrorGetCategories] = useState(true);
   const [errorMessageGetCategories, setErrorMessageGetCategories] =
     useState('');
-  const [loading, setLoading] = useState(false);
 
   async function getGuidesService(id: string) {
-    let data: { data: DigitalContentInterface[] };
+    let data: { data: DigitalContentInterface };
     try {
-      setLoading(true);
       data = (await getDigitalContentById(id)).data;
       setError(false);
     } catch (error: any) {
       setError(true);
       setErrorMessage(error.message);
     } finally {
-      setLoading(false);
-      guide.current!.value = data!.data.GuideContent;
-      category.current!.value = data!.data.category;
       title.current!.value = data!.data.title;
-      shortDescription.current!.value = data!.data.content;
+      shortDescription.current!.value = data!.data.shortDescription;
     }
   }
 
+  const getDigitalContentCategories = async (id: string) => {
+    
+    try {
+      const { data } = await getCategoriesByGuide(id);
+      setCategories(data.data);
+      setSuccessGetCategories(true);
+      setErrorGetCategories(false);
+    } catch {
+      setErrorMessageGetCategories('Não foram encontradas as categorias');
+      setErrorGetCategories(true);
+    } finally {
+      
+    }
+  };
+
+  const getDigitalContentGuides = async () => {
+    try {
+      const { data } = await getGuides();
+      setGuides(data.data);
+      setSuccessGetGuides(true);
+    } catch {
+      setErrorMessageGetGuides('Não foram encontradas as guias');
+      setErrorGetGuides(true);
+    } finally {
+    }
+  };
+
   useEffect(() => {
     getGuidesService(id);
+    getDigitalContentCategories(id);
+    getDigitalContentGuides();
   }, [id]);
 
   async function handleSubmit(event: React.FormEvent) {
@@ -96,7 +129,7 @@ export const UpdateDigitalContent: React.FC<
 
     try {
       await validateInput({ ...cardBody, file: files } as InputInterfaceProps);
-      //await putDigitalContent(id);
+      //await putDigitalContent('');
       setSuccess(true);
     } catch (error: any) {
       setErrorMessage(error.message);
@@ -104,30 +137,7 @@ export const UpdateDigitalContent: React.FC<
     }
   }
 
-  const getDigitalContentCategories = async (id: string) => {
-    try {
-      const { data } = await getCategoriesByGuide(id);
-      setCategories(data.data);
-      setSuccessGetCategories(true);
-      setErrorGetCategories(false);
-    } catch {
-      setErrorMessageGetCategories('Não foram encontradas as categorias');
-      setErrorGetCategories(true);
-    } finally {
-    }
-  };
 
-  const getDigitalContentGuides = async () => {
-    try {
-      const { data } = await getGuides();
-      setGuides(data.data);
-      setSuccessGetGuides(true);
-    } catch {
-      setErrorMessageGetGuides('Não foram encontradas as guias');
-      setErrorGetGuides(true);
-    } finally {
-    }
-  };
 
   useEffect(() => {
     getDigitalContentCategories('id');
@@ -209,7 +219,7 @@ export const UpdateDigitalContent: React.FC<
 
             {successGetGuides && (
               <Select
-                defaultValue=""
+                defaultValue={id}
                 inputRef={guide}
                 labelId="guideLabel"
                 required
@@ -251,7 +261,7 @@ export const UpdateDigitalContent: React.FC<
             </InputLabel>
             {successGetCategories && (
               <Select
-                defaultValue=""
+                defaultValue={id}
                 inputRef={category}
                 labelId="categoryLabel"
                 data-testid="categoryTestId"
