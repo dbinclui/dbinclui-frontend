@@ -39,7 +39,6 @@ export const UpdateCategory: React.FC<
   const title = useRef<HTMLInputElement>();
   const guide = useRef<HTMLInputElement | undefined>();
   const shortDescription = useRef<HTMLInputElement | undefined>();
-
   const [error, setError] = useState(false);
   const [success, setSuccess] = useState(false);
   const [errorMessage, setErrorMessage] = useState('');
@@ -75,11 +74,12 @@ export const UpdateCategory: React.FC<
       setLoading(false);
       title.current!.value = data!.data.title;
       shortDescription.current!.value = data!.data.shortDescription;
-      guide.current!.value = data!.data.guide;
+      guide.current!.value = data!.data.guide as string;
     }
   }
 
   useEffect(() => {
+    getGuidesService();
     getCategoriesService(id);
   }, [id]);
 
@@ -88,7 +88,7 @@ export const UpdateCategory: React.FC<
 
     const cardBody = {
       title: title.current?.value || '',
-      shortDescription: description.current?.value || '',
+      shortDescription: shortDescription.current?.value || '',
       guide: guide.current?.value || '',
     };
 
@@ -97,7 +97,7 @@ export const UpdateCategory: React.FC<
       await putCategories(id, cardBody);
       setSuccess(true);
       title.current!.value = '';
-      description.current!.value = '';
+      shortDescription.current!.value = '';
       guide.current!.value = '';
     } catch (error: any) {
       setErrorMessage(error.message);
