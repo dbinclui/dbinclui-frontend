@@ -13,6 +13,7 @@ import GuidePage from '@pages/guide-page';
 import UpdateCategory from '@pages/update-category';
 import UpdateGuide from '@pages/update-guide';
 import CategoriesList from '@pages/categories-list';
+import BotaoAtualizar from '@components/Button';
 
 export interface RoutersProps {}
 
@@ -28,6 +29,7 @@ export const Routers: React.FC<RoutersProps> = (): JSX.Element => {
             <Route path="admin/cadastrar-guia" element={<RegisterGuide />} />
             <Route path="admin/atualizar-guia/:id" element={<UpdateGuide />} />
             <Route path="admin/listar-guias" element={<GuideList />} />
+            <Route path="BotaoAtualizar" element={<BotaoAtualizar />} />
             <Route
               path="admin/listar-categorias"
               element={<CategoriesList />}
