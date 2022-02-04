@@ -7,7 +7,6 @@ import validateInput, { InputInterface } from './validator';
 import { postGuides } from '@services/guides';
 import { act } from 'react-dom/test-utils';
 import { AxiosResponse } from 'axios';
-import { fireEvent } from '@testing-library/dom';
 
 jest.mock('./validator');
 jest.mock('@services/guides');
@@ -163,7 +162,5 @@ test('Botão Voltar deve redirecionar para admin', () => {
   render(<RegisterGuide />);
   const button = screen.getByTestId('back');
 
-  fireEvent.click(button);
-
-  expect(button.getAttribute('href')).toBe('/admin');
+  expect(button).toHaveAttribute('to', '/admin/listar-guias');
 });
