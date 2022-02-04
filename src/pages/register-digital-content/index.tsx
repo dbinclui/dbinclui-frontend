@@ -311,7 +311,7 @@ export const RegisterDigitalContent: React.FC<
                   role="button"
                   data-testid="back"
                   component={Link}
-                  to="/admin"
+                  to="admin/listar-conteudo-digital"
                 >
                   Voltar
                 </Button>

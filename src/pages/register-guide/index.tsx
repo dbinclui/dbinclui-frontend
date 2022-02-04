@@ -1,19 +1,13 @@
 import React, { useState, useRef } from 'react';
 import validateInput from './validator';
+import { Link } from 'react-router-dom';
 import { Button, Box, Grid, InputLabel, InputBase } from '@mui/material';
 import styles from './styles';
 import { postGuides } from '@services/guides';
 import Notification from '@components/Notification';
 import AccessibilityTypography from '@components/AccessibilityTypography';
 
-
-
-export interface RegisterGuideProps {
-  
-}
-
-
-
+export interface RegisterGuideProps {}
 
 export const RegisterGuide: React.FC<RegisterGuideProps> = (): JSX.Element => {
   const title = useRef<HTMLInputElement>();
@@ -128,7 +122,8 @@ export const RegisterGuide: React.FC<RegisterGuideProps> = (): JSX.Element => {
                     type="reset"
                     role="button"
                     data-testid="back"
-                    href="/admin"
+                    component={Link}
+                    to="admin/listar-guias"
                   >
                     Voltar
                   </Button>

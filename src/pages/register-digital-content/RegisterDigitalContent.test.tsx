@@ -297,5 +297,5 @@ test('Botão Voltar deve redirecionar para admin', () => {
   render(<RegisterDigitalContent />);
   const button = screen.getByTestId('back');
 
-  expect(button).toHaveAttribute('to', '/admin');
+  expect(button).toHaveAttribute('to', 'admin/listar-conteudo-digital');
 });
