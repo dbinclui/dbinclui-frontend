@@ -161,7 +161,7 @@ export const RegisterDigitalContent: React.FC<
                   }
                 }}
               >
-                <ClearIcon />{' '}
+                <ClearIcon />
               </Button>
             </Box>
           ))}
