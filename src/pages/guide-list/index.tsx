@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { DataGrid, GridColDef } from '@mui/x-data-grid';
 import { Button, Box, CircularProgress, Grid } from '@mui/material';
 import AccessibilityTypography from '@components/AccessibilityTypography';
-import { GuideInterface, getGuides } from '@services/guides';
+import { GuideInterface, getGuides, deleteGuide } from '@services/guides';
 import { CreateSharp } from '@mui/icons-material';
 import DeleteIcon from '@mui/icons-material/Delete';
 import styles from './styles';
@@ -17,29 +17,6 @@ import Slide from '@mui/material/Slide';
 import { TransitionProps } from '@mui/material/transitions';
 
 export interface GuideListPropsInterfaceProps {}
-
-const Transition = React.forwardRef(function Transition(
-  props: TransitionProps & {
-    children: React.ReactElement<any, any>;
-  },
-  ref: React.Ref<unknown>,
-) {
-  return <Slide direction="up" ref={ref} {...props} />;
-});
-
-export function AlertDialogSlide() {
-  const [open, setOpen] = React.useState(false);
-
-  const handleClickOpen = () => {
-    setOpen(true);
-  };
-
-  const handleClose = () => {
-    setOpen(false);
-  };
-}
-
-
 
 export const GuideList: React.FC<
   GuideListPropsInterfaceProps
@@ -57,6 +34,71 @@ export const GuideList: React.FC<
     } finally {
       setLoading(false);
     }
+  }
+
+  const Transition = React.forwardRef(function Transition(
+    props: TransitionProps & {
+      children: React.ReactElement<any, any>;
+    },
+    ref: React.Ref<unknown>,
+  ) {
+    return <Slide direction="up" ref={ref} {...props} />;
+  });
+
+  const [cards, setCards] = useState<GuideInterface[]>([]);
+  // const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(false);
+
+  async function deleteGuideService() {
+    try {
+      const { data } = await deleteGuide();
+      setCards(data.data);
+      setError(false);
+    } catch (error) {
+      setError(true);
+    } finally {
+      setLoading(false);
+    }
+  }
+
+  useEffect(() => {
+    deleteGuideService();
+  }, []);
+
+  useEffect(() => {
+    getGuideListService();
+  }, []);
+
+  //function AlertDialogSlide() {
+
+  const [open, setOpen] = React.useState(false);
+
+  function handleClickOpen() {
+    /**
+     * buscar dentro da categoria o guia pelo id
+     * se tiver retorno o valor deve ser true.
+     *
+     *
+     * * buscar dentro do conteúdo digital o guia pelo id
+     * se tiver retorno o valor deve ser true.
+     *
+     * Se for true retorna mensagem que não pode ser excluída.
+     *
+     * Se for false retorna mensagem de confirmação.
+     *
+     * Se a confirmação for sim vai executar a função excluir.
+     *
+     * Se for não vai fechar a caixa de diálogo.
+     *
+     *
+     * */
+    deleteGuideService();
+
+    setOpen(true);
+  }
+
+  function handleClose() {
+    setOpen(false);
   }
 
   useEffect(() => {
@@ -95,7 +137,7 @@ export const GuideList: React.FC<
       headerName: 'Excluir',
       renderCell: (params) => (
         <Button
-          href={params.value}
+          onClick={handleClickOpen}
           startIcon={<DeleteIcon />}
           sx={{ color: 'text.primary' }}
         ></Button>
@@ -182,6 +224,52 @@ export const GuideList: React.FC<
               >
                 Voltar
               </Button>
+              {/*  <Button variant="outlined" onClick={handleClickOpen}>
+                Open alert dialog
+              </Button>
+              <Dialog
+                open={open}
+                onClose={handleClose}
+                aria-labelledby="alert-dialog-title"
+                aria-describedby="alert-dialog-description"
+              >
+                <DialogTitle id="alert-dialog-title">
+                  {'Mensagem de erro'}
+                </DialogTitle>
+                <DialogContent>
+                  <DialogContentText id="alert-dialog-description">
+                    Não é possível excluir esse Guia porque existem categorias
+                    ou conteúdo digital associado.
+                  </DialogContentText>
+                </DialogContent>
+                <DialogActions>
+                  <Button onClick={handleClose} autoFocus>
+                    FECHAR
+                  </Button>
+                </DialogActions>
+              </Dialog> */}
+
+              <Dialog
+                open={open}
+                onClose={handleClose}
+                aria-labelledby="alert-dialog-title"
+                aria-describedby="alert-dialog-description"
+              >
+                <DialogTitle id="alert-dialog-title">
+                  {'Mensagem de confirmação'}
+                </DialogTitle>
+                <DialogContent>
+                  <DialogContentText id="alert-dialog-description">
+                    Deseja realmente excluir esse Guia?
+                  </DialogContentText>
+                </DialogContent>
+                <DialogActions>
+                  <Button onClick={handleClose}>SIM</Button>
+                  <Button onClick={handleClose} autoFocus>
+                    NÃO
+                  </Button>
+                </DialogActions>
+              </Dialog>
             </Box>
           </>
         )}

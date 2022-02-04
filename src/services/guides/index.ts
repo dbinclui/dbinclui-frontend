@@ -35,4 +35,16 @@ export const getGuideWithCategoriesAndContent = async (id: string) => {
   } catch (error) {
     throw handleAxiosError(error);
   }
+
+  
+};
+
+export const deleteGuide = async (id: string) => {
+  try {
+    return api.delete<{ data: GuideContent }>(`guides/${id}`);
+  } catch (error) {
+    throw handleAxiosError(error);
+  }
+
+  
 };
