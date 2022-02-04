@@ -29,10 +29,29 @@ export const getCategoriesByGuide = async (id: string) => {
   }
 };
 
+export const getCategoriesById = async (id: string) => {
+  try {
+    return api.get<{ data: CategoryInterface }>(`categories/${id}`);
+  } catch {
+    throw new Error('Serviço não disponível');
+  }
+};
+
 export const postCategories = async (cardBody: CategoryInterface) => {
   try {
     return api.post('/categories/', cardBody);
   } catch (error) {
     throw handleAxiosError(error);
+  }
+};
+
+export const putCategories = async (
+  id: string,
+  cardBody: CategoryInterface,
+) => {
+  try {
+    return api.put(`/categories/${id}`, cardBody);
+  } catch {
+    throw new Error('Serviço não disponível');
   }
 };

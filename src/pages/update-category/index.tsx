@@ -11,23 +11,35 @@ import {
   Stack,
 } from '@mui/material';
 import AccessibilityTypography from '@components/AccessibilityTypography';
+import { useParams } from 'react-router-dom';
 
 import styles from './styles';
 import Notification from '@components/Notification';
 import { GuideInterface, getGuides } from '@services/guides';
 import validateInput from '@pages/update-category/validator';
-import { postCategories } from '@services/categories';
+import {
+  putCategories,
+  getCategoriesById,
+  CategoryInterface,
+} from '@services/categories';
 
 export interface UpdateCategoryProps {}
+
+// export interface UpdateCategoryInterface {
+//   title?: string | undefined;
+//   shortDescription?: string | undefined;
+//   guide?: string | undefined;
+//   id?: string | undefined;
+// }
 
 export const UpdateCategory: React.FC<
   UpdateCategoryProps
 > = (): JSX.Element => {
   const description = useRef<HTMLInputElement>();
-  const guide = useRef<HTMLInputElement>();
-
   const [guides, setGuides] = useState<GuideInterface[]>([]);
   const title = useRef<HTMLInputElement>();
+  const guide = useRef<HTMLInputElement | undefined>();
+  const shortDescription = useRef<HTMLInputElement | undefined>();
 
   const [error, setError] = useState(false);
   const [success, setSuccess] = useState(false);
@@ -35,9 +47,12 @@ export const UpdateCategory: React.FC<
   const [successGetGuides, setSuccessGetGuides] = useState(false);
   const [errorGetGuides, setErrorGetGuides] = useState(false);
   const [errorMessageGetGuides, setErrorMessageGetGuides] = useState('');
+  const [loading, setLoading] = useState(false);
+  const parametros = useParams();
+  const id: string = parametros.id!;
 
   async function getGuidesService() {
-    try { 
+    try {
       const response = await getGuides();
       setGuides(response.data.data);
       setSuccessGetGuides(true);
@@ -47,9 +62,27 @@ export const UpdateCategory: React.FC<
     }
   }
 
+  async function getCategoriesService(id: string) {
+    let data: { data: CategoryInterface };
+    try {
+      setLoading(true);
+      data = (await getCategoriesById(id)).data;
+      setError(false);
+      console.log(data);
+    } catch (error: any) {
+      setError(true);
+      setErrorMessage(error.message);
+    } finally {
+      setLoading(false);
+      title.current!.value = data!.data.title;
+      shortDescription.current!.value = data!.data.shortDescription;
+      guide.current!.value = data!.data.guide;
+    }
+  }
+
   useEffect(() => {
-    getGuidesService();
-  }, []);
+    getCategoriesService(id);
+  }, [id]);
 
   async function handleSubmit(event: React.FormEvent) {
     event.preventDefault();
@@ -62,7 +95,7 @@ export const UpdateCategory: React.FC<
 
     try {
       await validateInput(cardBody);
-      await postCategories(cardBody);
+      await putCategories(id, cardBody);
       setSuccess(true);
       title.current!.value = '';
       description.current!.value = '';
@@ -156,7 +189,7 @@ export const UpdateCategory: React.FC<
               <AccessibilityTypography>Descrição:</AccessibilityTypography>
             </InputLabel>
             <InputBase
-              inputRef={description}
+              inputRef={shortDescription}
               multiline={true}
               minRows={5}
               role="input"
@@ -179,7 +212,6 @@ export const UpdateCategory: React.FC<
                   type="submit"
                   role="button"
                   data-testid="submit"
-                  
                 >
                   Atualizar
                 </Button>
