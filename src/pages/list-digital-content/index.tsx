@@ -135,17 +135,17 @@ export const ListDigitalContent: React.FC<
           </Grid>
         ) : (
           <>
-              <DataGrid
-                data-testid="dataGrid"
-                autoHeight
-                getRowId={(row) => row._id}
-                disableExtendRowFullWidth={true}
-                rows={rowData}
-                columns={columns}
-                sx={styles.table}
-                pageSize={10}
-                rowsPerPageOptions={[10]}
-              />
+            <DataGrid
+              data-testid="dataGrid"
+              autoHeight
+              getRowId={(row) => row._id}
+              disableExtendRowFullWidth={true}
+              rows={rowData}
+              columns={columns}
+              sx={styles.table}
+              pageSize={10}
+              rowsPerPageOptions={[10]}
+            />
             <Box sx={styles.buttonBox}>
               <Button
                 data-testid="new"
@@ -155,7 +155,7 @@ export const ListDigitalContent: React.FC<
                 variant="contained"
                 type="submit"
                 role="button"
-                area-label="BOTÃO NOVO"
+                aria-label="BOTÃO NOVO"
                 tabIndex={16}
               >
                 Novo
@@ -168,7 +168,7 @@ export const ListDigitalContent: React.FC<
                 variant="contained"
                 type="reset"
                 role="button"
-                area-label="BOTÃO VOLTAR"
+                aria-label="BOTÃO VOLTAR"
                 tabIndex={17}
               >
                 Voltar

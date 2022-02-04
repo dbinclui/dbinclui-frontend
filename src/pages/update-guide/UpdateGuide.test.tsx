@@ -7,7 +7,6 @@ import validateInput, { InputInterface } from './validator';
 import { getGuideById, putGuides } from '@services/guides';
 import { act } from 'react-dom/test-utils';
 import { AxiosResponse } from 'axios';
-import { fireEvent } from '@testing-library/dom';
 
 jest.mock('./validator');
 jest.mock('@services/guides');
@@ -23,19 +22,14 @@ const putGuidesMock = putGuides as jest.MockedFunction<typeof putGuides>;
 
 const mockedNavigate = jest.fn();
 jest.mock('react-router-dom', () => {
-  const useHref = jest.fn();
   return {
-    useHref,
+    useHref: jest.fn(),
     useNavigate: () => mockedNavigate,
+    useParams: () => ({
+      id: '1',
+    }),
   };
 });
-
-jest.mock('react-router-dom', () => ({
-  ...jest.requireActual('react-router-dom'),
-  useParams: () => ({
-    id: '1',
-  }),
-}));
 
 describe('Página de atualização de guia', () => {
   const mockGuide = {
@@ -195,12 +189,10 @@ describe('Página de atualização de guia', () => {
     expect(NotificationCard).toBeVisible();
   });
 
-  test('Botão Voltar deve redirecionar para admin', async () => {
+  test('Botão Voltar deve redirecionar para página de listagem', async () => {
     render(<UpdateGuide />);
     const button = await screen.findByTestId('back');
 
-    fireEvent.click(button);
-
-    expect(button.getAttribute('href')).toBe('/admin');
+    expect(button).toHaveAttribute('to', '/admin/listar-guias');
   });
 });
