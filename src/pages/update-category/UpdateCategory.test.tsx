@@ -2,13 +2,11 @@ import React from 'react';
 import '@testing-library/jest-dom';
 import { render, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import '@testing-library/jest-dom';
 import validateInput, { InputInterface } from './validator';
 import { postCategories } from '@services/categories';
 import { GuideInterface, getGuides } from '@services/guides';
 import { act } from 'react-dom/test-utils';
 import { AxiosResponse } from 'axios';
-import { fireEvent } from '@testing-library/dom';
 import { UpdateCategory } from '@pages/update-category';
 
 jest.mock('./validator');
@@ -31,6 +29,7 @@ jest.mock('react-router-dom', () => {
     useNavigate: () => mockedNavigate,
   };
 });
+
 describe('Página de cadastro de categorias', () => {
   beforeEach(() => {
     getGuidesServiceMock.mockClear();
@@ -133,7 +132,5 @@ test('Botão Voltar deve redirecionar para listar categorias', () => {
   render(<UpdateCategory />);
   const button = screen.getByTestId('back');
 
-  fireEvent.click(button);
-
-  expect(button.getAttribute('href')).toBe('/admin/listar-categorias');
+  expect(button).toHaveAttribute('to', '/admin/listar-categorias');
 });
