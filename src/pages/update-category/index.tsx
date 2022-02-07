@@ -11,7 +11,8 @@ import {
   Stack,
 } from '@mui/material';
 import AccessibilityTypography from '@components/AccessibilityTypography';
-import { Link, useParams } from 'react-router-dom';
+import { Link } from 'react-router-dom';
+import { useParams } from 'react-router';
 import styles from './styles';
 import Notification from '@components/Notification';
 import { GuideInterface, getGuides } from '@services/guides';
@@ -24,20 +25,11 @@ import {
 
 export interface UpdateCategoryProps {}
 
-// export interface UpdateCategoryInterface {
-//   title?: string | undefined;
-//   shortDescription?: string | undefined;
-//   guide?: string | undefined;
-//   id?: string | undefined;
-// }
-
 export const UpdateCategory: React.FC<
   UpdateCategoryProps
 > = (): JSX.Element => {
-  const description = useRef<HTMLInputElement>();
   const [guides, setGuides] = useState<GuideInterface[]>([]);
   const title = useRef<HTMLInputElement>();
-  const guide = useRef<HTMLInputElement | undefined>();
   const shortDescription = useRef<HTMLInputElement | undefined>();
   const [error, setError] = useState(false);
   const [success, setSuccess] = useState(false);
@@ -48,6 +40,8 @@ export const UpdateCategory: React.FC<
   const [loading, setLoading] = useState(false);
   const parametros = useParams();
   const id: string = parametros.id!;
+  const [guideText, setGuideText] = useState<string | undefined>('');
+  const [guideId, setGuideId] = useState('');
 
   async function getGuidesService() {
     try {
@@ -66,6 +60,7 @@ export const UpdateCategory: React.FC<
       setLoading(true);
       data = (await getCategoriesById(id)).data;
       setError(false);
+      setGuideText((data!.data?.guide as GuideInterface)?.title);
       console.log(data);
     } catch (error: any) {
       setError(true);
@@ -74,7 +69,7 @@ export const UpdateCategory: React.FC<
       setLoading(false);
       title.current!.value = data!.data.title;
       shortDescription.current!.value = data!.data.shortDescription;
-      guide.current!.value = data!.data.guide as string;
+      setGuideId((data!.data.guide as GuideInterface)?._id!);
     }
   }
 
@@ -89,7 +84,7 @@ export const UpdateCategory: React.FC<
     const cardBody = {
       title: title.current?.value || '',
       shortDescription: shortDescription.current?.value || '',
-      guide: guide.current?.value || '',
+      guide: guideId || '',
     };
 
     try {
@@ -98,7 +93,6 @@ export const UpdateCategory: React.FC<
       setSuccess(true);
       title.current!.value = '';
       shortDescription.current!.value = '';
-      guide.current!.value = '';
     } catch (error: any) {
       setErrorMessage(error.message);
       setError(true);
@@ -133,8 +127,10 @@ export const UpdateCategory: React.FC<
 
             {successGetGuides && (
               <Select
-                defaultValue=""
-                inputRef={guide}
+                value={guideId}
+                onChange={(event) => {
+                  setGuideId(event.target.value);
+                }}
                 labelId="guideLabel"
                 required
                 data-testid="guideTestId"
