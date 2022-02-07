@@ -39,8 +39,8 @@ export interface UpdateDigitalInterface {
 export const UpdateDigitalContent: React.FC<
   UpdateDigitalContentProps
 > = (): JSX.Element => {
-  const guide = useRef<HTMLInputElement>();
-  const category = useRef<HTMLInputElement>();
+  // const guide = useRef<HTMLInputElement>();
+  // const category = useRef<HTMLInputElement>();
   const title = useRef<HTMLInputElement>();
   const shortDescription = useRef<HTMLInputElement>();
   const fileRef = useRef<HTMLInputElement>(null);
@@ -48,6 +48,7 @@ export const UpdateDigitalContent: React.FC<
   const id: string = parametros.id!;
   
   const [guideId, setGuideId] = useState('');
+  const [categoryId, setCategoryId] = useState('');
   const [files, setFiles] = useState<File[]>([]);
   const [guides, setGuides] = useState<GuideInterface[]>([]);
   const [categories, setCategories] = useState<CategoryInterface[]>([]);
@@ -63,6 +64,7 @@ export const UpdateDigitalContent: React.FC<
   const [guideText, setGuideText] = useState<string | undefined>('');
   const [categoryText, setCategoryText] = useState<string | undefined>('');
 
+
   async function getGuidesService(id: string) {
     let data: { data: DigitalContentInterface };
     try {
@@ -70,6 +72,7 @@ export const UpdateDigitalContent: React.FC<
       setError(false);
       setGuideText(data!.data?.guide?.title)
       setCategoryText(data!.data.category?.title)
+      setCategoryId(data.data.category?._id!);
       setGuideId(data.data.guide._id!);
     } catch (error: any) {
       setError(true);
@@ -77,8 +80,8 @@ export const UpdateDigitalContent: React.FC<
     } finally {
       title.current!.value = data!.data.title;
       shortDescription.current!.value = data!.data.shortDescription;
-      guide.current!.value = data!.data.guide.title;
-      category.current!.value = data!.data.category?.title!;
+      // guide.current!.value = data!.data.guide._id!;
+      // category.current!.value = data!.data.category?._id!;
 
     }
   }
@@ -113,9 +116,13 @@ export const UpdateDigitalContent: React.FC<
 
   useEffect(() => {
     getGuidesService(id);
-    if(guideId) getDigitalContentCategories(guideId);
     getDigitalContentGuides();  
-  }, [id, guideId]);
+  }, [id]);
+
+  useEffect(() => {
+    if(guideId) getDigitalContentCategories(guideId);
+  }, [guideId]);
+
 
   async function handleSubmit(event: React.FormEvent) {
     event.preventDefault();
@@ -123,8 +130,8 @@ export const UpdateDigitalContent: React.FC<
     const cardBody = {
       title: title.current?.value || '',
       shortDescription: shortDescription.current?.value || '',
-      guide: guide.current?.value || '',
-      category: category.current?.value || '',
+      guide: guideId || '',
+      category: categoryId || '',
     } as { [key: string]: any };
 
     const formData = new FormData();
@@ -140,7 +147,7 @@ export const UpdateDigitalContent: React.FC<
     try {
       console.log(cardBody);
       await validateInput({ ...cardBody, file: files } as InputInterfaceProps);
-      //await putDigitalContent('');
+      await putDigitalContent(id, formData);
       setSuccess(true);
     } catch (error: any) {
       setErrorMessage(error.message);
@@ -230,7 +237,7 @@ export const UpdateDigitalContent: React.FC<
 
             {successGetGuides && guides.length > 0 && (
               <Select
-                inputRef={guide}
+                
                 labelId="guideLabel"
                 required
                 data-testid="guideTestId"
@@ -239,15 +246,16 @@ export const UpdateDigitalContent: React.FC<
                 name="guide"
                 id="guide"
                 sx={[styles.input, styles.select]}
-                value={guideText}
+                value={guideId}
                 onChange={(event) => {
-                  setGuideText(event.target.value)
+                  setGuideId(event.target.value)
+                  setCategoryId('');
                 }}
               >
                 {guides.map((guides, index) => (
                   <MenuItem
                     key={index}
-                    value={guides.title}
+                    value={guides._id}
                     data-testid="guideItensTestId"
                     role="option"
                     aria-labelledby="itensLabel"
@@ -272,7 +280,7 @@ export const UpdateDigitalContent: React.FC<
             </InputLabel>
             {successGetCategories && (
               <Select
-                inputRef={category}
+              
                 labelId="categoryLabel"
                 data-testid="categoryTestId"
                 role="select"
@@ -280,15 +288,15 @@ export const UpdateDigitalContent: React.FC<
                 name="category"
                 id="category"
                 sx={[styles.input, styles.select]}
-                value={categoryText}
+                value={categoryId}
                 onChange={(event) => {
-                  setCategoryText(event.target.value)
+                  setCategoryId(event.target.value)
                 }}
               >
                 {categories.map((cat, index) => (
                   <MenuItem
                     key={index}
-                    value={cat.title}
+                    value={cat._id}
                     data-testid="categoryItensTestId"
                     role="option"
                     aria-labelledby="itensLabel"
