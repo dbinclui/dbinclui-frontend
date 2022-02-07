@@ -37,6 +37,7 @@ export const GuideList: React.FC<
     try {
       const { data } = await deleteGuide(id);
       setSuccess(true);
+      getGuideListService();
     } catch (error: any) {
       setErrorMessage(error.response.data.message);
       setError(true);
@@ -45,7 +46,7 @@ export const GuideList: React.FC<
 
   useEffect(() => {
     getGuideListService();
-  }, []);
+  }, [guideList]);
 
   const columns: GridColDef[] = [
     {
