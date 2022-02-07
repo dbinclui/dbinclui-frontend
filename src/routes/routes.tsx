@@ -12,6 +12,7 @@ import GuideList from '@pages/guide-list';
 import GuidePage from '@pages/guide-page';
 import UpdateCategory from '@pages/update-category';
 import UpdateGuide from '@pages/update-guide';
+import UpdateDigitalContent from '@pages/update-digital-content';
 import CategoriesList from '@pages/categories-list';
 
 export interface RoutersProps {}
@@ -51,7 +52,7 @@ export const Routers: React.FC<RoutersProps> = (): JSX.Element => {
 
             <Route
               path="admin/atualizar-conteudo-digital/:id"
-              //element={<UpdateDigitalContent />}
+              element={<UpdateDigitalContent />}
             />
 
             <Route
