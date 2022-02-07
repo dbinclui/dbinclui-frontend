@@ -3,11 +3,10 @@ import { Link } from 'react-router-dom';
 import { DataGrid, GridColDef } from '@mui/x-data-grid';
 import { Button, Box, CircularProgress, Grid } from '@mui/material';
 import AccessibilityTypography from '@components/AccessibilityTypography';
-import { GuideInterface, getGuides, deleteGuide } from '@services/guides';
+import { GuideInterface, getGuides } from '@services/guides';
 import { CreateSharp } from '@mui/icons-material';
 import DeleteIcon from '@mui/icons-material/Delete';
 import styles from './styles';
-import Notification from '@components/Notification';
 
 export interface GuideListPropsInterfaceProps {}
 
@@ -18,10 +17,6 @@ export const GuideList: React.FC<
   const [errorGetList, setErrorGetList] = useState(false);
   const [loading, setLoading] = useState(true);
 
-  const [error, setError] = useState(false);
-  const [errorMessage, setErrorMessage] = useState('');
-  const [success, setSuccess] = useState(false);
-
   async function getGuideListService() {
     try {
       const { data } = await getGuides();
@@ -30,16 +25,6 @@ export const GuideList: React.FC<
       setErrorGetList(true);
     } finally {
       setLoading(false);
-    }
-  }
-
-  async function handleDelete(id: string) {
-    try {
-      const { data } = await deleteGuide(id);
-      setSuccess(true);
-    } catch (error: any) {
-      setErrorMessage(error.response.data.message);
-      setError(true);
     }
   }
 
@@ -79,10 +64,7 @@ export const GuideList: React.FC<
       headerName: 'Excluir',
       renderCell: (params) => (
         <Button
-          // href={params.value}
-          onClick={() => {
-            handleDelete(params.value);
-          }}
+          href={params.value}
           startIcon={<DeleteIcon />}
           sx={{ color: 'text.primary' }}
         ></Button>
@@ -99,7 +81,7 @@ export const GuideList: React.FC<
           ? card.content.substring(0, 65) + '...'
           : card.content,
       edit: '/admin/atualizar-guia/' + card._id,
-      delete: card._id,
+      delete: '/admin/excluir-guia/' + card._id,
     };
   });
 
@@ -171,25 +153,6 @@ export const GuideList: React.FC<
               </Button>
             </Box>
           </>
-        )}
-        {error && (
-          <Notification
-            message={`${errorMessage} 🤔`}
-            variant="error"
-            onClose={() => {
-              setError(false);
-              setErrorMessage('');
-            }}
-          />
-        )}
-        {success && (
-          <Notification
-            message="Guia deletada com sucesso! ✔"
-            variant="success"
-            onClose={() => {
-              setSuccess(false);
-            }}
-          />
         )}
       </Box>
     </>
