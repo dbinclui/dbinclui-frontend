@@ -9,41 +9,34 @@ import { Box } from '@mui/material';
 import styles from './styles';
 import AccessibilityTypography from '@components/AccessibilityTypography';
 
-export interface ConfirmationProps {
+export interface InformationProps {
   message: string;
   onClose?: Function;
   title?: string;
-  confirmation: boolean,
-  setConfirmation:Function;
-  setStatus:Function;
-  status: boolean;
 }
 
-export const DialogBoxConfirmation: React.FC<ConfirmationProps> = (props:ConfirmationProps): JSX.Element => {
+export const DialogBoxInformation: React.FC<InformationProps> = ({
+  message,
+  title,
+  onClose,
+}): JSX.Element => {
+  const [information, setInformation] = useState(true);
 
   const handleClose = () => {
-    props.onClose && props.onClose(
-      props.setConfirmation(false),
-      props.setStatus(false)
-    );
-  };
-
-  const handleOk = () => {
-    props.onClose && props.onClose(props.setConfirmation(true),
-    props.setStatus(true));
-
+    setInformation(false);
+    onClose && onClose();
   };
 
   return (
     <Box sx={styles.boxDialog}>
       <Dialog
-        open={props.confirmation}
-       // onClose={handleClose}
+        open={information}
+        onClose={handleClose}
         aria-labelledby="alert-dialog-title"
         aria-describedby="alert-dialog-description"
       >
         <DialogTitle id="alert-dialog-title" sx={styles.listTitle}>
-          {props.title}
+          {title}
         </DialogTitle>
         <DialogContent>
           <DialogContentText
@@ -51,17 +44,14 @@ export const DialogBoxConfirmation: React.FC<ConfirmationProps> = (props:Confirm
             sx={styles.listTitle}
           >
             <AccessibilityTypography role="message" tabIndex={1}>
-              {props.message}
+              {message}
             </AccessibilityTypography>
           </DialogContentText>
         </DialogContent>
         <DialogActions>
           <Box sx={styles.boxButton}>
             <Button sx={styles.button} onClick={handleClose}>
-              Não
-            </Button>
-            <Button sx={styles.button} onClick={handleOk}>
-              Sim
+              Fechar
             </Button>
           </Box>
         </DialogActions>
@@ -70,4 +60,4 @@ export const DialogBoxConfirmation: React.FC<ConfirmationProps> = (props:Confirm
   );
 };
 
-export default DialogBoxConfirmation;
+export default DialogBoxInformation;

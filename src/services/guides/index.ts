@@ -54,3 +54,11 @@ export const putGuides = async (id: string, cardBody: GuideInterface) => {
     throw handleAxiosError(error);
   }
 };
+
+export const deleteGuide = async (id: string) => {
+  try{
+    return api.delete<{ data: GuideContent }>(`guides/${id}`);
+  } catch (error) {
+    throw handleAxiosError(error);
+  }
+};

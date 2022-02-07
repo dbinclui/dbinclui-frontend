@@ -3,10 +3,18 @@ import { Link } from 'react-router-dom';
 import { DataGrid, GridColDef } from '@mui/x-data-grid';
 import { Button, Box, CircularProgress, Grid } from '@mui/material';
 import AccessibilityTypography from '@components/AccessibilityTypography';
-import { GuideInterface, getGuides } from '@services/guides';
+import {
+  deleteGuide,
+  GuideInterface,
+  getGuides,
+  getGuideWithCategoriesAndContent,
+  GuideContent,
+} from '@services/guides';
 import { CreateSharp } from '@mui/icons-material';
 import DeleteIcon from '@mui/icons-material/Delete';
 import styles from './styles';
+import DialogBoxInformation from '@components/DialogBox/DialogBoxInformation';
+import DialogBoxConfirmation from '@components/DialogBox/DialogBoxConfirmation';
 
 export interface GuideListPropsInterfaceProps {}
 
@@ -15,7 +23,14 @@ export const GuideList: React.FC<
 > = (): JSX.Element => {
   const [guideList, setGuideList] = useState<GuideInterface[]>([]);
   const [errorGetList, setErrorGetList] = useState(false);
+
+  const [categoryContent, setCategoryContent] = useState<GuideContent>();
+  const [errorCategoryContent, setErrorCategoryContent] = useState(false);
+
   const [loading, setLoading] = useState(true);
+  const [status, setStatus] = useState(false);
+  const [information, setInformation] = useState(false);
+  const [confirmation, setConfirmation] = useState(false);
 
   async function getGuideListService() {
     try {
@@ -27,6 +42,61 @@ export const GuideList: React.FC<
       setLoading(false);
     }
   }
+
+  async function getGuideWithCategoryAndContentService(id: string) {
+    try {
+      const { data } = await getGuideWithCategoriesAndContent(id);
+      setCategoryContent(data.data);
+    } catch {
+      setErrorCategoryContent(true);
+    } finally {
+      setLoading(false);
+    }
+  }
+
+  async function deleteGuideService(id: string) {
+    try {
+      const { data } = await deleteGuide(id);
+      setCategoryContent(data.data);
+    } catch {
+      setErrorCategoryContent(true);
+    } finally {
+      setLoading(false);
+    }
+  }
+
+  const onDelete = (id: string) => {
+    getGuideWithCategoryAndContentService(id);
+    
+    console.log(id);
+    console.log(categoryContent);
+    console.log('Categoria: ', categoryContent?.categories);
+    console.log('Digital Content: ', categoryContent?.digitalContents);
+
+    console.log('Categoria Tamanho: ', categoryContent?.categories.length);
+    console.log(
+      'Digital Content Tamanho: ',
+      categoryContent?.digitalContents.length,
+    );
+
+    console.log('Categoria Valor: ', categoryContent?.categories.values);
+    console.log(
+      'Digital Content Valor: ',
+      categoryContent?.digitalContents.values,
+    );
+
+    if (
+      categoryContent?.categories.length! > 0 ||
+      categoryContent?.digitalContents.length! > 0
+    ) {
+      setInformation(true);
+    } else {
+      setConfirmation(true);
+      if (status) {
+        deleteGuideService(id);
+      }
+    }
+  };
 
   useEffect(() => {
     getGuideListService();
@@ -64,7 +134,9 @@ export const GuideList: React.FC<
       headerName: 'Excluir',
       renderCell: (params) => (
         <Button
-          href={params.value}
+          onClick={() => {
+            onDelete(params.value);
+          }}
           startIcon={<DeleteIcon />}
           sx={{ color: 'text.primary' }}
         ></Button>
@@ -81,12 +153,37 @@ export const GuideList: React.FC<
           ? card.content.substring(0, 65) + '...'
           : card.content,
       edit: '/admin/atualizar-guia/' + card._id,
-      delete: '/admin/excluir-guia/' + card._id,
+      delete: card._id,
     };
   });
 
   return (
     <>
+      {confirmation && (
+        <Box>
+          <DialogBoxConfirmation
+            message="Deseja realmente excluir este Guia?"
+            title="Mensagem de Confirmação"
+            onClose={() => {
+              setConfirmation(false);
+            }}
+            confirmation={confirmation}
+            setConfirmation={() => setConfirmation(confirmation)}
+            status={status}
+            setStatus={() => setStatus(status)}
+          />
+        </Box>
+      )}
+      {information && (
+        <DialogBoxInformation
+          message="Este Guia não pode ser excluído, pois possui categorias ou conteúdos digitais!!!"
+          title="Mensagem de Informação"
+          onClose={() => {
+            setInformation(false);
+          }}
+        />
+      )}
+
       <AccessibilityTypography
         role="heading"
         tabIndex={1}
