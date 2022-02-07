@@ -36,3 +36,11 @@ export const postCategories = async (cardBody: CategoryInterface) => {
     throw handleAxiosError(error);
   }
 };
+
+export const deleteCategory = async (id: string) => {
+  try {
+    return api.delete<{ data: CategoryInterface }>(`categories/${id}`);
+  } catch (error) {
+    throw handleAxiosError(error);
+  }
+};
