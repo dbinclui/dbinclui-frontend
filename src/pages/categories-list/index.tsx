@@ -4,10 +4,15 @@ import AccessibilityTypography from '@components/AccessibilityTypography';
 import styles from './styles';
 import { Box, Button, CircularProgress, Grid } from '@mui/material';
 import { Link } from 'react-router-dom';
-import { CategoryInterface, getCategories } from '@services/categories';
+import {
+  CategoryInterface,
+  getCategories,
+  deleteCategory,
+} from '@services/categories';
 import DeleteIcon from '@mui/icons-material/Delete';
 import { CreateSharp } from '@mui/icons-material';
 import { GuideInterface } from '@services/guides';
+import Notification from '@components/Notification';
 
 export interface CategoriesListProps {}
 
@@ -15,16 +20,17 @@ export const CategoriesList: React.FC<
   CategoriesListProps
 > = (): JSX.Element => {
   const [categories, setCategories] = useState<CategoryInterface[]>([]);
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const [successGetCategories, setSuccessGetCategories] = useState(false);
   const [errorGetCategories, setErrorGetCategories] = useState(false);
   const [loading, setLoading] = useState(true);
+
+  const [error, setError] = useState(false);
+  const [errorMessage, setErrorMessage] = useState('');
+  const [success, setSuccess] = useState(false);
 
   async function getContentCategories() {
     try {
       const response = await getCategories();
       setCategories(response.data.data);
-      setSuccessGetCategories(true);
     } catch {
       setErrorGetCategories(true);
     } finally {
@@ -32,9 +38,19 @@ export const CategoriesList: React.FC<
     }
   }
 
+  async function handleDelete(id: string) {
+    try {
+      await deleteCategory(id);
+      setSuccess(true);
+    } catch (error: any) {
+      setErrorMessage(error.response.data.message);
+      setError(true);
+    }
+  }
+
   useEffect(() => {
     getContentCategories();
-  }, []);
+  }, [categories]);
 
   console.log(categories);
 
@@ -78,7 +94,9 @@ export const CategoriesList: React.FC<
       headerName: 'Excluir',
       renderCell: (params) => (
         <Button
-          href={params.value}
+          onClick={() => {
+            handleDelete(params.value);
+          }}
           startIcon={<DeleteIcon />}
           sx={{ color: 'text.primary' }}
         ></Button>
@@ -96,7 +114,7 @@ export const CategoriesList: React.FC<
           ? category.shortDescription.substring(0, 30) + '...'
           : category.shortDescription,
       edit: '/admin/atualizar-categoria/' + category._id,
-      delete: '/admin/excluir-categoria/' + category._id,
+      delete: category._id,
     };
   });
 
@@ -169,6 +187,25 @@ export const CategoriesList: React.FC<
               </Button>
             </Box>
           </>
+        )}
+        {error && (
+          <Notification
+            message={`${errorMessage} 🤔`}
+            variant="error"
+            onClose={() => {
+              setError(false);
+              setErrorMessage('');
+            }}
+          />
+        )}
+        {success && (
+          <Notification
+            message="Guia deletada com sucesso! ✔"
+            variant="success"
+            onClose={() => {
+              setSuccess(false);
+            }}
+          />
         )}
       </Box>
     </>
