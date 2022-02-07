@@ -82,6 +82,7 @@ export const DialogBoxConfirmation: React.FC<ConfirmationProps> = ({
             <Button
               variant="contained"
               sx={styles.button}
+              data-testid='sim'
               onClick={() => {
                 handleDelete(id.toString());
               }}
@@ -89,6 +90,7 @@ export const DialogBoxConfirmation: React.FC<ConfirmationProps> = ({
               Sim
             </Button>
             <Button
+              data-testid="nao"
               sx={styles.button}
               variant="contained"
               onClick={handleClose}
