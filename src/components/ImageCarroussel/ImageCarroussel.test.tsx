@@ -10,12 +10,18 @@ describe('Componente de notificação', () => {
     {
       title: 'Conteúdo Digital 1',
       shortDescription: 'Descrição 1',
-      filePaths: ['arquivo1/img.png', 'arquivo1/img.jpg'],
+      filePaths: [
+        { filePath: 'arquivo1/img.png', publicId: 'img.png' },
+        { filePath: 'arquivo1/img.jpg', publicId: 'img.png' },
+      ],
     },
     {
       title: 'Conteúdo Digital 2',
       shortDescription: 'Descrição 2',
-      filePaths: ['arquivo2/video.mp4', 'arquivo2/img.jpeg'],
+      filePaths: [
+        { filePath: 'arquivo2/video.mp4', publicId: 'video.mp4' },
+        { filePath: 'arquivo2/img.jpeg', publicId: 'img.jpeg' },
+      ],
     },
   ];
 
@@ -61,7 +67,7 @@ describe('Componente de notificação', () => {
     expect(mediaDescription).toBeVisible();
 
     expect(media).toBeVisible();
-    expect(media).toHaveAttribute('src', mockDigitalContents[0].filePaths[0]);
+    expect(media).toHaveAttribute('src', mockDigitalContents[0].filePaths[0].filePath);
   });
 
   test('Deve mostrar a próxima mídia quando o botão "Próximo" for clicado', () => {
@@ -81,7 +87,7 @@ describe('Componente de notificação', () => {
     );
 
     expect(media).toBeVisible();
-    expect(media).toHaveAttribute('src', mockDigitalContents[0].filePaths[1]);
+    expect(media).toHaveAttribute('src', mockDigitalContents[0].filePaths[1].filePath);
   });
 
   test('Deve mostrar a mídia anterior quando o botão "Anterior" for clicado', () => {
@@ -105,7 +111,7 @@ describe('Componente de notificação', () => {
     );
 
     expect(media).toBeVisible();
-    expect(media).toHaveAttribute('src', mockDigitalContents[0].filePaths[0]);
+    expect(media).toHaveAttribute('src', mockDigitalContents[0].filePaths[0].filePath);
   });
 
   test('Deve desabilitar o botão "Anterior" quando a primeira mídia está sendo renderizada', () => {
