@@ -11,6 +11,7 @@ import {
   MenuItem,
   Stack,
   Alert,
+  TextField,
 } from '@mui/material';
 import styles from './styles';
 import FileUploadRounded from '@mui/icons-material/FileUploadRounded';
@@ -57,14 +58,17 @@ export const UpdateDigitalContent: React.FC<
   const [errorMessageGetGuides, setErrorMessageGetGuides] = useState('');
   const [successGetCategories, setSuccessGetCategories] = useState(false);
   const [errorGetCategories, setErrorGetCategories] = useState(true);
-  const [errorMessageGetCategories, setErrorMessageGetCategories] =
-    useState('');
+  const [errorMessageGetCategories, setErrorMessageGetCategories] = useState('');
+  const [guideText, setGuideText] = useState<string | undefined>('');
+  const [categoryText, setCategoryText] = useState<string | undefined>('');
 
   async function getGuidesService(id: string) {
     let data: { data: DigitalContentInterface };
     try {
       data = (await getDigitalContentById(id)).data;
       setError(false);
+      setGuideText(data!.data?.guide?.title)
+      setCategoryText(data!.data.category?.title)
     } catch (error: any) {
       setError(true);
       setErrorMessage(error.message);
@@ -217,10 +221,8 @@ export const UpdateDigitalContent: React.FC<
               <AccessibilityTypography>Guia:</AccessibilityTypography>
             </InputLabel>
 
-            {successGetGuides && (
+            {successGetGuides && guides.length > 0 && (
               <Select
-                defaultValue={id}
-                inputRef={guide}
                 labelId="guideLabel"
                 required
                 data-testid="guideTestId"
@@ -229,14 +231,15 @@ export const UpdateDigitalContent: React.FC<
                 name="guide"
                 id="guide"
                 sx={[styles.input, styles.select]}
+                value={guideText}
                 onChange={(event) => {
-                  getDigitalContentCategories(event.target.value);
+                  setGuideText(event.target.value)
                 }}
               >
                 {guides.map((guides, index) => (
                   <MenuItem
                     key={index}
-                    value={guides._id}
+                    value={guides.title}
                     data-testid="guideItensTestId"
                     role="option"
                     aria-labelledby="itensLabel"
@@ -261,8 +264,6 @@ export const UpdateDigitalContent: React.FC<
             </InputLabel>
             {successGetCategories && (
               <Select
-                defaultValue={id}
-                inputRef={category}
                 labelId="categoryLabel"
                 data-testid="categoryTestId"
                 role="select"
@@ -270,6 +271,10 @@ export const UpdateDigitalContent: React.FC<
                 name="category"
                 id="category"
                 sx={[styles.input, styles.select]}
+                value={categoryText}
+                onChange={(event) => {
+                  setCategoryText(event.target.value)
+                }}
               >
                 {categories.map((cat, index) => (
                   <MenuItem
