@@ -65,7 +65,6 @@ export const UpdateGuide: React.FC<UpdateGuideProps> = (): JSX.Element => {
       await validateInput(cardBody);
       await putGuides(id, cardBody);
       setSuccess(true);
-      console.log(cardBody);
     } catch (error: any) {
       setErrorMessage(error.message);
       setError(true);

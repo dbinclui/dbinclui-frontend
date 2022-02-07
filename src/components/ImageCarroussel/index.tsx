@@ -8,7 +8,10 @@ import AccessibilityTypography from '@components/AccessibilityTypography';
 interface Content {
   title: string;
   shortDescription: string;
-  filePaths: string[];
+  filePaths:  {
+    filePath: string;
+    publicId: string;
+  }[];
 }
 
 interface ParsedContent {
@@ -42,7 +45,7 @@ export const ImageCarroussel: React.FC<ImageCarrousselProps> = ({
         // construct subarray containing all files from this digital content
         const parsedContents = content.filePaths.map((path) => ({
           digitalContentIndex: index,
-          filePath: path,
+          filePath: path.filePath,
         }));
 
         // and add the subarray to the final array
