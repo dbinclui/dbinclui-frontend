@@ -111,7 +111,7 @@ export const ListDigitalContent: React.FC<
         card.shortDescription.length > 30
           ? card.shortDescription.substring(0, 30) + '...'
           : card.shortDescription,
-      filePaths: card.filePaths[0],
+      filePaths: card.filePaths[0].filePath,
       edit: '/admin/atualizar-conteudo-digital/' + card._id,
       delete: '/admin/excluir-conteudo-digital/' + card._id,
     };
