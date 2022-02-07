@@ -12,9 +12,10 @@ import GuideList from '@pages/guide-list';
 import GuidePage from '@pages/guide-page';
 import UpdateCategory from '@pages/update-category';
 import UpdateGuide from '@pages/update-guide';
+import UpdateDigitalContent from '@pages/update-digital-content';
 import CategoriesList from '@pages/categories-list';
 import BotaoAtualizar from '@components/Button';
-import UpdateDigitalContent from '@pages/update-digital-content';
+
 
 export interface RoutersProps {}
 

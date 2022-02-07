@@ -46,7 +46,8 @@ export const UpdateDigitalContent: React.FC<
   const fileRef = useRef<HTMLInputElement>(null);
   const parametros = useParams();
   const id: string = parametros.id!;
-
+  
+  const [guideId, setGuideId] = useState('');
   const [files, setFiles] = useState<File[]>([]);
   const [guides, setGuides] = useState<GuideInterface[]>([]);
   const [categories, setCategories] = useState<CategoryInterface[]>([]);
@@ -69,14 +70,19 @@ export const UpdateDigitalContent: React.FC<
       setError(false);
       setGuideText(data!.data?.guide?.title)
       setCategoryText(data!.data.category?.title)
+      setGuideId(data.data.guide._id!);
     } catch (error: any) {
       setError(true);
       setErrorMessage(error.message);
     } finally {
       title.current!.value = data!.data.title;
       shortDescription.current!.value = data!.data.shortDescription;
+      guide.current!.value = data!.data.guide.title;
+      category.current!.value = data!.data.category?.title!;
+
     }
   }
+
 
   const getDigitalContentCategories = async (id: string) => {
     
@@ -107,9 +113,9 @@ export const UpdateDigitalContent: React.FC<
 
   useEffect(() => {
     getGuidesService(id);
-    getDigitalContentCategories(id);
-    getDigitalContentGuides();
-  }, [id]);
+    if(guideId) getDigitalContentCategories(guideId);
+    getDigitalContentGuides();  
+  }, [id, guideId]);
 
   async function handleSubmit(event: React.FormEvent) {
     event.preventDefault();
@@ -132,6 +138,7 @@ export const UpdateDigitalContent: React.FC<
     });
 
     try {
+      console.log(cardBody);
       await validateInput({ ...cardBody, file: files } as InputInterfaceProps);
       //await putDigitalContent('');
       setSuccess(true);
@@ -143,11 +150,11 @@ export const UpdateDigitalContent: React.FC<
 
 
 
-  useEffect(() => {
-    getDigitalContentCategories('id');
-    getDigitalContentGuides();
-    setErrorMessageGetCategories('Escolha o Guia');
-  }, []);
+  // useEffect(() => {
+  //   getDigitalContentCategories(id);
+  //   getDigitalContentGuides();
+  //   setErrorMessageGetCategories('Escolha o Guia');
+  // }, []);
 
   return (
     <Grid container alignItems={'center'} justifyContent={'center'} role="main">
@@ -223,6 +230,7 @@ export const UpdateDigitalContent: React.FC<
 
             {successGetGuides && guides.length > 0 && (
               <Select
+                inputRef={guide}
                 labelId="guideLabel"
                 required
                 data-testid="guideTestId"
@@ -264,6 +272,7 @@ export const UpdateDigitalContent: React.FC<
             </InputLabel>
             {successGetCategories && (
               <Select
+                inputRef={category}
                 labelId="categoryLabel"
                 data-testid="categoryTestId"
                 role="select"
@@ -279,7 +288,7 @@ export const UpdateDigitalContent: React.FC<
                 {categories.map((cat, index) => (
                   <MenuItem
                     key={index}
-                    value={cat._id}
+                    value={cat.title}
                     data-testid="categoryItensTestId"
                     role="option"
                     aria-labelledby="itensLabel"

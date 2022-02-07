@@ -1,4 +1,4 @@
-import validateInput from '@pages/register-digital-content/validator';
+import validateInput from '@pages/update-digital-content/validator';
 
 const mockFiles = Object.create(null);
 describe('Função de validação de dados', () => {
