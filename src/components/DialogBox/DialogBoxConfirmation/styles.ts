@@ -3,7 +3,7 @@ import { Theme, SxProps } from '@mui/material';
 const listTitle: SxProps<Theme> = {
   textAlign: 'center',
   fontWeight: 'bold',
-  color: (theme) => theme.palette.text.disabled,
+  color: (theme) => theme.palette.text.primary,
 };
 
 const button: SxProps<Theme> = {

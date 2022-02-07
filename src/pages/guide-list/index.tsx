@@ -13,7 +13,6 @@ import {
 import { CreateSharp } from '@mui/icons-material';
 import DeleteIcon from '@mui/icons-material/Delete';
 import styles from './styles';
-import DialogBoxInformation from '@components/DialogBox/DialogBoxInformation';
 import DialogBoxConfirmation from '@components/DialogBox/DialogBoxConfirmation';
 
 export interface GuideListPropsInterfaceProps {}
@@ -24,13 +23,9 @@ export const GuideList: React.FC<
   const [guideList, setGuideList] = useState<GuideInterface[]>([]);
   const [errorGetList, setErrorGetList] = useState(false);
 
-  const [categoryContent, setCategoryContent] = useState<GuideContent>();
-  const [errorCategoryContent, setErrorCategoryContent] = useState(false);
-
   const [loading, setLoading] = useState(true);
-  const [status, setStatus] = useState(false);
-  const [information, setInformation] = useState(false);
   const [confirmation, setConfirmation] = useState(false);
+  const [idDelete, setIdDelete] = useState('');
 
   async function getGuideListService() {
     try {
@@ -42,65 +37,9 @@ export const GuideList: React.FC<
       setLoading(false);
     }
   }
-
-  async function getGuideWithCategoryAndContentService(id: string) {
-    try {
-      const { data } = await getGuideWithCategoriesAndContent(id);
-      setCategoryContent(data.data);
-    } catch {
-      setErrorCategoryContent(true);
-    } finally {
-      setLoading(false);
-    }
-  }
-
-  async function deleteGuideService(id: string) {
-    try {
-      const { data } = await deleteGuide(id);
-      setCategoryContent(data.data);
-    } catch {
-      setErrorCategoryContent(true);
-    } finally {
-      setLoading(false);
-    }
-  }
-
-  const onDelete = (id: string) => {
-    getGuideWithCategoryAndContentService(id);
-    
-    console.log(id);
-    console.log(categoryContent);
-    console.log('Categoria: ', categoryContent?.categories);
-    console.log('Digital Content: ', categoryContent?.digitalContents);
-
-    console.log('Categoria Tamanho: ', categoryContent?.categories.length);
-    console.log(
-      'Digital Content Tamanho: ',
-      categoryContent?.digitalContents.length,
-    );
-
-    console.log('Categoria Valor: ', categoryContent?.categories.values);
-    console.log(
-      'Digital Content Valor: ',
-      categoryContent?.digitalContents.values,
-    );
-
-    if (
-      categoryContent?.categories.length! > 0 ||
-      categoryContent?.digitalContents.length! > 0
-    ) {
-      setInformation(true);
-    } else {
-      setConfirmation(true);
-      if (status) {
-        deleteGuideService(id);
-      }
-    }
-  };
-
   useEffect(() => {
     getGuideListService();
-  }, []);
+  }, [guideList]);
 
   const columns: GridColDef[] = [
     {
@@ -135,7 +74,8 @@ export const GuideList: React.FC<
       renderCell: (params) => (
         <Button
           onClick={() => {
-            onDelete(params.value);
+            setIdDelete(params.value);
+            setConfirmation(true);
           }}
           startIcon={<DeleteIcon />}
           sx={{ color: 'text.primary' }}
@@ -160,30 +100,19 @@ export const GuideList: React.FC<
   return (
     <>
       {confirmation && (
+        
         <Box>
           <DialogBoxConfirmation
-            message="Deseja realmente excluir este Guia?"
-            title="Mensagem de Confirmação"
+            type = 'guia'
+            id = {idDelete.toString()}
             onClose={() => {
               setConfirmation(false);
             }}
-            confirmation={confirmation}
-            setConfirmation={() => setConfirmation(confirmation)}
-            status={status}
-            setStatus={() => setStatus(status)}
+            
           />
         </Box>
       )}
-      {information && (
-        <DialogBoxInformation
-          message="Este Guia não pode ser excluído, pois possui categorias ou conteúdos digitais!!!"
-          title="Mensagem de Informação"
-          onClose={() => {
-            setInformation(false);
-          }}
-        />
-      )}
-
+      
       <AccessibilityTypography
         role="heading"
         tabIndex={1}
@@ -248,6 +177,7 @@ export const GuideList: React.FC<
               >
                 Voltar
               </Button>
+              
             </Box>
           </>
         )}

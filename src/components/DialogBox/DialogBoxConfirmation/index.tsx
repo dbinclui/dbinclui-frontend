@@ -8,64 +8,117 @@ import DialogTitle from '@mui/material/DialogTitle';
 import { Box } from '@mui/material';
 import styles from './styles';
 import AccessibilityTypography from '@components/AccessibilityTypography';
+import { deleteGuide } from '@services/guides';
+import Notification from '@components/Notification';
 
 export interface ConfirmationProps {
-  message: string;
+  id: string;
   onClose?: Function;
-  title?: string;
-  confirmation: boolean,
-  setConfirmation:Function;
-  setStatus:Function;
-  status: boolean;
+  type: string;
 }
 
-export const DialogBoxConfirmation: React.FC<ConfirmationProps> = (props:ConfirmationProps): JSX.Element => {
+export const DialogBoxConfirmation: React.FC<ConfirmationProps> = ({
+  id,
+  onClose,
+  type,
+}): JSX.Element => {
+  const [confirmation, setConfirmation] = useState(true);
+  const [error, setError] = useState(false);
+  const [errorMessage, setErrorMessage] = useState('');
+  const [success, setSuccess] = useState(false);
 
   const handleClose = () => {
-    props.onClose && props.onClose(
-      props.setConfirmation(false),
-      props.setStatus(false)
-    );
+    setConfirmation(false);
+    onClose && onClose();
   };
 
-  const handleOk = () => {
-    props.onClose && props.onClose(props.setConfirmation(true),
-    props.setStatus(true));
+  async function handleDelete(idHandle: string) {
+    try {
+      console.log(idHandle);
+      switch (type) {
+        case 'guia':
+          await deleteGuide(idHandle);
+          break;
+        case 'categoria':
+          break;
+        case 'conteudo':
+          break;
 
-  };
+        default:
+          break;
+      }
+      setSuccess(true);
+    } catch (error: any) {
+      setErrorMessage(error.response.data.message);
+      setError(true);
+    }
+  }
 
   return (
     <Box sx={styles.boxDialog}>
       <Dialog
-        open={props.confirmation}
-       // onClose={handleClose}
+        open={confirmation}
+        onClose={handleClose}
         aria-labelledby="alert-dialog-title"
         aria-describedby="alert-dialog-description"
       >
-        <DialogTitle id="alert-dialog-title" sx={styles.listTitle}>
-          {props.title}
-        </DialogTitle>
+        <AccessibilityTypography role="message" tabIndex={1}>
+          <DialogTitle id="alert-dialog-title" sx={styles.listTitle}>
+            {'Mensagem de Exclusão'}
+          </DialogTitle>
+        </AccessibilityTypography>
         <DialogContent>
           <DialogContentText
             id="alert-dialog-description"
             sx={styles.listTitle}
           >
             <AccessibilityTypography role="message" tabIndex={1}>
-              {props.message}
+              {`Deseja excluir este item?`}
             </AccessibilityTypography>
           </DialogContentText>
         </DialogContent>
         <DialogActions>
           <Box sx={styles.boxButton}>
-            <Button sx={styles.button} onClick={handleClose}>
-              Não
-            </Button>
-            <Button sx={styles.button} onClick={handleOk}>
+            <Button
+              variant="contained"
+              sx={styles.button}
+              onClick={() => {
+                handleDelete(id.toString());
+              }}
+            >
               Sim
+            </Button>
+            <Button
+              sx={styles.button}
+              variant="contained"
+              onClick={handleClose}
+            >
+              Não
             </Button>
           </Box>
         </DialogActions>
       </Dialog>
+      {error && (
+        <Notification
+          message={`${errorMessage} 🤔`}
+          variant="error"
+          onClose={() => {
+            setError(false);
+            setErrorMessage('');
+            handleClose();
+          }}
+        />
+      )}
+      {success && (
+        <Notification
+          message="Guia deletada com sucesso! ✔"
+          variant="success"
+          onClose={() => {
+            setSuccess(false);
+            handleClose();
+          }}
+        />
+      )}
     </Box>
   );
 };
