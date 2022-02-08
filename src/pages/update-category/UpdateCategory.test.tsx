@@ -38,6 +38,7 @@ jest.mock('react-router-dom', () => {
 describe('Página para atualizar categorias', () => {
   const mockCategory = {
     id: '1',
+    guide: 'teste',
     title: 'teste',
     content: 'test',
   };
@@ -150,7 +151,7 @@ describe('Página para atualizar categorias', () => {
       true as unknown as Promise<AxiosResponse>,
     );
     const textoNoBotaoSubmit = 'Atualizar';
-    const NotificationMessage = 'Cadastro atualizado com sucesso! ✔';
+    const NotificationMessage = 'Atualização realizada com sucesso! ✔';
     const botaoSubmit = await screen.findByText(textoNoBotaoSubmit);
     // eslint-disable-next-line testing-library/no-unnecessary-act
     act(() => {
