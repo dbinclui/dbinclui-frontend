@@ -55,9 +55,7 @@ export const CategoriesList: React.FC<
 
   useEffect(() => {
     getContentCategories();
-  }, [categories]);
-
-  console.log(categories);
+  }, [success]);
 
   const columns: GridColDef[] = [
     { field: '_id', headerName: 'ID', width: 300, hide: true },
@@ -105,6 +103,7 @@ export const CategoriesList: React.FC<
           }}
           startIcon={<DeleteIcon />}
           sx={{ color: 'text.primary' }}
+          data-testid="excluir"
         ></Button>
       ),
     },
