@@ -1,5 +1,11 @@
 import React from 'react';
-import { render, screen, act, waitFor } from '@testing-library/react';
+import {
+  render,
+  screen,
+  act,
+  waitFor,
+  prettyDOM,
+} from '@testing-library/react';
 import '@testing-library/jest-dom';
 import { CategoriesList } from './index';
 import '@testing-library/jest-dom/extend-expect';
@@ -76,7 +82,8 @@ describe('Teste do componente', () => {
       render(<CategoriesList />);
     });
 
-    const button = await screen.findByTestId('excluir');
+    const button = await screen.findByText('Guia');
+    console.log(prettyDOM(undefined, Infinity));
 
     act(() => {
       userEvent.click(button);
