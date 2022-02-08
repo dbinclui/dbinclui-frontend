@@ -10,7 +10,6 @@ import styles from './styles';
 import AccessibilityTypography from '@components/AccessibilityTypography';
 
 export interface ConfirmationProps {
-  message: string;
   onClose?: Function;
   title?: string;
   confirmation: boolean;
@@ -32,30 +31,41 @@ export const DialogBoxConfirmation: React.FC<ConfirmationProps> = (
     <Box sx={styles.boxDialog}>
       <Dialog
         open={props.confirmation}
-        // onClose={handleClose}
         aria-labelledby="alert-dialog-title"
         aria-describedby="alert-dialog-description"
       >
-        <DialogTitle id="alert-dialog-title" sx={styles.listTitle}>
-          {props.title}
-        </DialogTitle>
+        <AccessibilityTypography role="message" tabIndex={1}>
+          <DialogTitle id="alert-dialog-title" sx={styles.listTitle}>
+            {'Mensagem de Exclusão'}
+          </DialogTitle>
+        </AccessibilityTypography>
         <DialogContent>
           <DialogContentText
             id="alert-dialog-description"
             sx={styles.listTitle}
           >
             <AccessibilityTypography role="message" tabIndex={1}>
-              {props.message}
+              {props.title}
             </AccessibilityTypography>
           </DialogContentText>
         </DialogContent>
         <DialogActions>
           <Box sx={styles.boxButton}>
-            <Button sx={styles.button} onClick={handleClose}>
-              Não
-            </Button>
-            <Button sx={styles.button} onClick={handleOk}>
+            <Button
+              variant="contained"
+              sx={styles.button}
+              data-testid="sim"
+              onClick={handleOk}
+            >
               Sim
+            </Button>
+            <Button
+              data-testid="nao"
+              sx={styles.button}
+              variant="contained"
+              onClick={handleClose}
+            >
+              Não
             </Button>
           </Box>
         </DialogActions>

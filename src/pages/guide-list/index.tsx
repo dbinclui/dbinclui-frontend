@@ -13,7 +13,6 @@ import {
 import { CreateSharp } from '@mui/icons-material';
 import DeleteIcon from '@mui/icons-material/Delete';
 import styles from './styles';
-import DialogBoxInformation from '@components/DialogBox/DialogBoxInformation';
 import DialogBoxConfirmation from '@components/DialogBox/DialogBoxConfirmation';
 import Notification from '@components/Notification';
 
@@ -121,22 +120,12 @@ export const GuideList: React.FC<
       {confirmation && (
         <Box>
           <DialogBoxConfirmation
-            message="Deseja realmente excluir este Guia?"
-            title="Mensagem de Confirmação"
+            title="Deseja excluir esse guia?"
             confirmation={confirmation}
             setConfirmation={setConfirmation}
             onClose={handleDelete}
           />
         </Box>
-      )}
-      {information && (
-        <DialogBoxInformation
-          message="Este Guia não pode ser excluído, pois possui categorias ou conteúdos digitais!!!"
-          title="Mensagem de Informação"
-          onClose={() => {
-            setInformation(false);
-          }}
-        />
       )}
 
       <AccessibilityTypography
