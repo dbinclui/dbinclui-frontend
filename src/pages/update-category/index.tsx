@@ -11,7 +11,7 @@ import {
   Stack,
 } from '@mui/material';
 import AccessibilityTypography from '@components/AccessibilityTypography';
-
+import { Link } from 'react-router-dom';
 import styles from './styles';
 import Notification from '@components/Notification';
 import { GuideInterface, getGuides } from '@services/guides';
@@ -190,7 +190,8 @@ export const UpdateCategory: React.FC<
                   type="reset"
                   role="button"
                   data-testid="back"
-                  href="/admin/listar-categorias"
+                  component={Link}
+                  to="/admin/listar-categorias"
                 >
                   Voltar
                 </Button>

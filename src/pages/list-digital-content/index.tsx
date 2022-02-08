@@ -111,7 +111,7 @@ export const ListDigitalContent: React.FC<
         card.shortDescription.length > 30
           ? card.shortDescription.substring(0, 30) + '...'
           : card.shortDescription,
-      filePaths: card.filePaths[0],
+      filePaths: card.filePaths[0].filePath,
       edit: '/admin/atualizar-conteudo-digital/' + card._id,
       delete: '/admin/excluir-conteudo-digital/' + card._id,
     };
@@ -135,19 +135,17 @@ export const ListDigitalContent: React.FC<
           </Grid>
         ) : (
           <>
-            <Box style={{ height: 400, width: '100%' }}>
-              <DataGrid
-                data-testid="dataGrid"
-                autoHeight
-                getRowId={(row) => row._id}
-                disableExtendRowFullWidth={true}
-                rows={rowData}
-                columns={columns}
-                sx={styles.table}
-                pageSize={10}
-                rowsPerPageOptions={[10]}
-              />
-            </Box>
+            <DataGrid
+              data-testid="dataGrid"
+              autoHeight
+              getRowId={(row) => row._id}
+              disableExtendRowFullWidth={true}
+              rows={rowData}
+              columns={columns}
+              sx={styles.table}
+              pageSize={10}
+              rowsPerPageOptions={[10]}
+            />
             <Box sx={styles.buttonBox}>
               <Button
                 data-testid="new"
@@ -157,7 +155,7 @@ export const ListDigitalContent: React.FC<
                 variant="contained"
                 type="submit"
                 role="button"
-                area-label="BOTÃO NOVO"
+                aria-label="BOTÃO NOVO"
                 tabIndex={16}
               >
                 Novo
@@ -170,7 +168,7 @@ export const ListDigitalContent: React.FC<
                 variant="contained"
                 type="reset"
                 role="button"
-                area-label="BOTÃO VOLTAR"
+                aria-label="BOTÃO VOLTAR"
                 tabIndex={17}
               >
                 Voltar

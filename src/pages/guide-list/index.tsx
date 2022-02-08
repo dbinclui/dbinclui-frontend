@@ -3,18 +3,12 @@ import { Link } from 'react-router-dom';
 import { DataGrid, GridColDef } from '@mui/x-data-grid';
 import { Button, Box, CircularProgress, Grid } from '@mui/material';
 import AccessibilityTypography from '@components/AccessibilityTypography';
-import { GuideInterface, getGuides, deleteGuide } from '@services/guides';
+import { deleteGuide, GuideInterface, getGuides } from '@services/guides';
 import { CreateSharp } from '@mui/icons-material';
 import DeleteIcon from '@mui/icons-material/Delete';
 import styles from './styles';
-//import Button from '@mui/material/Button';
-import Dialog from '@mui/material/Dialog';
-import DialogActions from '@mui/material/DialogActions';
-import DialogContent from '@mui/material/DialogContent';
-import DialogContentText from '@mui/material/DialogContentText';
-import DialogTitle from '@mui/material/DialogTitle';
-import Slide from '@mui/material/Slide';
-import { TransitionProps } from '@mui/material/transitions';
+import DialogBoxConfirmation from '@components/DialogBox/DialogBoxConfirmation';
+import Notification from '@components/Notification';
 
 export interface GuideListPropsInterfaceProps {}
 
@@ -23,7 +17,13 @@ export const GuideList: React.FC<
 > = (): JSX.Element => {
   const [guideList, setGuideList] = useState<GuideInterface[]>([]);
   const [errorGetList, setErrorGetList] = useState(false);
+
   const [loading, setLoading] = useState(true);
+  const [confirmation, setConfirmation] = useState(false);
+  const [id, setId] = useState('');
+  const [error, setError] = useState(false);
+  const [success, setSuccess] = useState(false);
+  const [errorMessage, setErrorMessage] = useState('');
 
   async function getGuideListService() {
     try {
@@ -36,74 +36,21 @@ export const GuideList: React.FC<
     }
   }
 
-  const Transition = React.forwardRef(function Transition(
-    props: TransitionProps & {
-      children: React.ReactElement<any, any>;
-    },
-    ref: React.Ref<unknown>,
-  ) {
-    return <Slide direction="up" ref={ref} {...props} />;
-  });
-
-  const [cards, setCards] = useState<GuideInterface[]>([]);
-  // const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(false);
-
-  async function deleteGuideService() {
-    try {
-      const { data } = await deleteGuide();
-      setCards(data.data);
-      setError(false);
-    } catch (error) {
-      setError(true);
-    } finally {
-      setLoading(false);
+  async function handleDelete(value: boolean) {
+    if (value) {
+      try {
+        await deleteGuide(id);
+        setSuccess(true);
+      } catch (error: any) {
+        setErrorMessage(error.response.data.message);
+        setError(true);
+      }
     }
   }
 
   useEffect(() => {
-    deleteGuideService();
-  }, []);
-
-  useEffect(() => {
     getGuideListService();
-  }, []);
-
-  //function AlertDialogSlide() {
-
-  const [open, setOpen] = React.useState(false);
-
-  function handleClickOpen() {
-    /**
-     * buscar dentro da categoria o guia pelo id
-     * se tiver retorno o valor deve ser true.
-     *
-     *
-     * * buscar dentro do conteúdo digital o guia pelo id
-     * se tiver retorno o valor deve ser true.
-     *
-     * Se for true retorna mensagem que não pode ser excluída.
-     *
-     * Se for false retorna mensagem de confirmação.
-     *
-     * Se a confirmação for sim vai executar a função excluir.
-     *
-     * Se for não vai fechar a caixa de diálogo.
-     *
-     *
-     * */
-    deleteGuideService();
-
-    setOpen(true);
-  }
-
-  function handleClose() {
-    setOpen(false);
-  }
-
-  useEffect(() => {
-    getGuideListService();
-  }, []);
+  }, [success]);
 
   const columns: GridColDef[] = [
     {
@@ -137,7 +84,11 @@ export const GuideList: React.FC<
       headerName: 'Excluir',
       renderCell: (params) => (
         <Button
-          onClick={handleClickOpen}
+         data-testid="delete"
+          onClick={() => {
+            setConfirmation(true);
+            setId(params.value);
+          }}
           startIcon={<DeleteIcon />}
           sx={{ color: 'text.primary' }}
         ></Button>
@@ -154,12 +105,23 @@ export const GuideList: React.FC<
           ? card.content.substring(0, 65) + '...'
           : card.content,
       edit: '/admin/atualizar-guia/' + card._id,
-      delete: '/admin/excluir-guia/' + card._id,
+      delete: card._id,
     };
   });
 
   return (
     <>
+      {confirmation && (
+        <Box>
+          <DialogBoxConfirmation
+            title="Deseja excluir esse guia?"
+            confirmation={confirmation}
+            setConfirmation={setConfirmation}
+            onClose={handleDelete}
+          />
+        </Box>
+      )}
+
       <AccessibilityTypography
         role="heading"
         tabIndex={1}
@@ -211,67 +173,41 @@ export const GuideList: React.FC<
               >
                 Novo
               </Button>
+              <Grid item md={6}>
               <Button
-                data-testid="back"
-                component={Link}
-                to="/admin"
                 sx={styles.button}
                 variant="contained"
                 type="reset"
                 role="button"
+                data-testid="back"
+                component={Link}
+                to="/admin"
                 aria-label="BOTÃO VOLTAR"
-                tabIndex={4}
               >
                 Voltar
               </Button>
-              {/*  <Button variant="outlined" onClick={handleClickOpen}>
-                Open alert dialog
-              </Button>
-              <Dialog
-                open={open}
-                onClose={handleClose}
-                aria-labelledby="alert-dialog-title"
-                aria-describedby="alert-dialog-description"
-              >
-                <DialogTitle id="alert-dialog-title">
-                  {'Mensagem de erro'}
-                </DialogTitle>
-                <DialogContent>
-                  <DialogContentText id="alert-dialog-description">
-                    Não é possível excluir esse Guia porque existem categorias
-                    ou conteúdo digital associado.
-                  </DialogContentText>
-                </DialogContent>
-                <DialogActions>
-                  <Button onClick={handleClose} autoFocus>
-                    FECHAR
-                  </Button>
-                </DialogActions>
-              </Dialog> */}
-
-              <Dialog
-                open={open}
-                onClose={handleClose}
-                aria-labelledby="alert-dialog-title"
-                aria-describedby="alert-dialog-description"
-              >
-                <DialogTitle id="alert-dialog-title">
-                  {'Mensagem de confirmação'}
-                </DialogTitle>
-                <DialogContent>
-                  <DialogContentText id="alert-dialog-description">
-                    Deseja realmente excluir esse Guia?
-                  </DialogContentText>
-                </DialogContent>
-                <DialogActions>
-                  <Button onClick={handleClose}>SIM</Button>
-                  <Button onClick={handleClose} autoFocus>
-                    NÃO
-                  </Button>
-                </DialogActions>
-              </Dialog>
+              </Grid>
             </Box>
           </>
+        )}
+        {error && (
+          <Notification
+            message={`${errorMessage} 🤔`}
+            variant="error"
+            onClose={() => {
+              setError(false);
+              setErrorMessage('');
+            }}
+          />
+        )}
+        {success && (
+          <Notification
+            message="Guia deletada com sucesso! ✔"
+            variant="success"
+            onClose={() => {
+              setSuccess(false);
+            }}
+          />
         )}
       </Box>
     </>

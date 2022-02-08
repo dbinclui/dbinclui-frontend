@@ -1,4 +1,5 @@
 import React, { useRef, useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import {
   Button,
   Box,
@@ -12,21 +13,20 @@ import {
   Stack,
   Alert,
 } from '@mui/material';
-import { Link } from 'react-router-dom';
 import styles from './styles';
 import FileUploadRounded from '@mui/icons-material/FileUploadRounded';
 import ClearIcon from '@mui/icons-material/Clear';
 import { GuideInterface, getGuides } from '@services/guides';
-import { postDigitalContent } from '@services/digitalContent';
 import { CategoryInterface, getCategoriesByGuide } from '@services/categories';
 import validateInput, { InputInterfaceProps } from './validator';
 import Notification from '@components/Notification';
 import AccessibilityTypography from '@components/AccessibilityTypography';
+import { postDigitalContent } from '@services/digitalContent';
 
-export interface RegisterDigitalContentProps {}
+export interface UpdateDigitalContentProps {}
 
-export const RegisterDigitalContent: React.FC<
-  RegisterDigitalContentProps
+export const UpdateDigitalContent: React.FC<
+  UpdateDigitalContentProps
 > = (): JSX.Element => {
   const guide = useRef<HTMLInputElement>();
   const category = useRef<HTMLInputElement>();
@@ -114,7 +114,7 @@ export const RegisterDigitalContent: React.FC<
       <Grid item md={6} component="section">
         <Box sx={styles.header} component="header">
           <AccessibilityTypography sx={styles.headerTitle}>
-            CADASTRO DE CONTEÚDO DIGITAL
+            ATUALIZAR CONTEÚDO DIGITAL
           </AccessibilityTypography>
         </Box>
         <Box padding={'1rem 3rem'} sx={styles.content} component="section">
@@ -161,7 +161,7 @@ export const RegisterDigitalContent: React.FC<
                   }
                 }}
               >
-                <ClearIcon />
+                <ClearIcon />{' '}
               </Button>
             </Box>
           ))}
@@ -300,18 +300,18 @@ export const RegisterDigitalContent: React.FC<
                   role="button"
                   data-testid="submit"
                 >
-                  Salvar
+                  Atualizar
                 </Button>
               </Grid>
               <Grid item md={6} sx={styles.buttonWrapper}>
                 <Button
+                  component={Link}
                   sx={styles.button}
                   variant="contained"
                   type="reset"
                   role="button"
                   data-testid="back"
-                  component={Link}
-                  to="/admin/listar-conteudo-digital"
+                  to="/admin"
                 >
                   Voltar
                 </Button>
@@ -332,16 +332,17 @@ export const RegisterDigitalContent: React.FC<
       )}
       {success && (
         <Notification
-          message="Cadastro realizado com sucesso! ✔"
+          message="Atualização realizada com sucesso! ✔"
           variant="success"
           onClose={() => {
             setSuccess(false);
-            window.location.reload();
           }}
-        />
+        >
+          sucesso
+        </Notification>
       )}
     </Grid>
   );
 };
 
-export default RegisterDigitalContent;
+export default UpdateDigitalContent;

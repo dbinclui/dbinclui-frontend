@@ -1,5 +1,6 @@
 import React, { useState, useRef } from 'react';
 import validateInput from './validator';
+import { Link } from 'react-router-dom';
 import { Button, Box, Grid, InputLabel, InputBase } from '@mui/material';
 import styles from './styles';
 import { postGuides } from '@services/guides';
@@ -121,7 +122,8 @@ export const RegisterGuide: React.FC<RegisterGuideProps> = (): JSX.Element => {
                     type="reset"
                     role="button"
                     data-testid="back"
-                    href="/admin"
+                    component={Link}
+                    to="/admin/listar-guias"
                   >
                     Voltar
                   </Button>

@@ -12,6 +12,7 @@ import GuideList from '@pages/guide-list';
 import GuidePage from '@pages/guide-page';
 import UpdateCategory from '@pages/update-category';
 import UpdateGuide from '@pages/update-guide';
+import UpdateDigitalContent from '@pages/update-digital-content';
 import CategoriesList from '@pages/categories-list';
 
 export interface RoutersProps {}
@@ -26,7 +27,7 @@ export const Routers: React.FC<RoutersProps> = (): JSX.Element => {
             <Route path="guia/:title" element={<GuidePage />} />
             <Route path="admin" element={<Admin />} />
             <Route path="admin/cadastrar-guia" element={<RegisterGuide />} />
-            <Route path="admin/atualizar-guia" element={<UpdateGuide />} />
+            <Route path="admin/atualizar-guia/:id" element={<UpdateGuide />} />
             <Route path="admin/listar-guias" element={<GuideList />} />
             <Route
               path="admin/listar-categorias"
@@ -37,7 +38,7 @@ export const Routers: React.FC<RoutersProps> = (): JSX.Element => {
               element={<RegisterCategory />}
             />
             <Route
-              path="admin/atualizar-categoria"
+              path="admin/atualizar-categoria/:id"
               element={<UpdateCategory />}
             />
             <Route
@@ -51,7 +52,7 @@ export const Routers: React.FC<RoutersProps> = (): JSX.Element => {
 
             <Route
               path="admin/atualizar-conteudo-digital/:id"
-              //element={<UpdateDigitalContent />}
+              element={<UpdateDigitalContent />}
             />
 
             <Route
