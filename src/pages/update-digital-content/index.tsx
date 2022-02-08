@@ -23,7 +23,7 @@ import { CategoryInterface, getCategoriesByGuide } from '@services/categories';
 import validateInput, { InputInterfaceProps } from './validator';
 import Notification from '@components/Notification';
 import AccessibilityTypography from '@components/AccessibilityTypography';
-import { useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import { resolveAny } from 'dns';
 
 export interface UpdateDigitalContentProps {}
@@ -368,7 +368,8 @@ export const UpdateDigitalContent: React.FC<
                   type="reset"
                   role="button"
                   data-testid="back"
-                  href="/admin"
+                  component={Link}
+                  to="/admin/listar-conteudo-digital"
                 >
                   Voltar
                 </Button>
