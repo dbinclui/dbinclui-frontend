@@ -37,9 +37,11 @@ export const UpdateCategory: React.FC<
   const [successGetGuides, setSuccessGetGuides] = useState(false);
   const [errorGetGuides, setErrorGetGuides] = useState(false);
   const [errorMessageGetGuides, setErrorMessageGetGuides] = useState('');
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [loading, setLoading] = useState(false);
   const parametros = useParams();
   const id: string = parametros.id!;
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [guideText, setGuideText] = useState<string | undefined>('');
   const [guideId, setGuideId] = useState('');
 
