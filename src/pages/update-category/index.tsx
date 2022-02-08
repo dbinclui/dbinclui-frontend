@@ -121,7 +121,12 @@ export const UpdateCategory: React.FC<
             flexDirection={'column'}
             display={'flex'}
           >
-            <InputLabel htmlFor="guide" id="guideLabel" sx={styles.labelInput}>
+            <InputLabel
+              htmlFor="guide"
+              id="guideLabel"
+              data-testid="guideLabel"
+              sx={styles.labelInput}
+            >
               <AccessibilityTypography>Guia:</AccessibilityTypography>
             </InputLabel>
 
@@ -240,7 +245,7 @@ export const UpdateCategory: React.FC<
       )}
       {success && (
         <Notification
-          message="Cadastro realizado com sucesso! ✔"
+          message="Cadastro atualizado com sucesso! ✔"
           variant="success"
           onClose={() => {
             setSuccess(false);
