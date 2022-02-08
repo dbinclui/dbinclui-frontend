@@ -56,3 +56,11 @@ export const postDigitalContent = async (cardBody: FormData) => {
     throw handleAxiosError(error);
   }
 };
+
+export const deleteDigitalContent = async (_id: string) => {
+  try {
+    return api.delete<{ data: DigitalContentInterface }>(`digital-contents${_id}`);
+  } catch(error){
+    throw handleAxiosError(error);
+  }
+}
