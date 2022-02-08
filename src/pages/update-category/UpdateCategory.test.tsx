@@ -32,10 +32,9 @@ jest.mock('react-router-dom', () => {
 
 describe('Página de cadastro de categorias', () => {
   beforeEach(() => {
-    getGuidesServiceMock.mockClear();
-    postCategoryMock.mockClear();
-    validateInputMock.mockClear();
+    jest.clearAllMocks();
   });
+
   test('Deve chamar os guias quando o componente for renderizado', async () => {
     const dataMockMenuItem = [
       {
@@ -61,10 +60,7 @@ describe('Página de cadastro de categorias', () => {
   });
 
   test('Deve mostrar na tela o card de notificação de sucesso quando o botão de submit for clicado', async () => {
-    // eslint-disable-next-line testing-library/no-unnecessary-act
-    act(() => {
-      render(<UpdateCategory />);
-    });
+    render(<UpdateCategory />);
 
     validateInputMock.mockResolvedValue(true as unknown as InputInterface);
     postCategoryMock.mockResolvedValue(
@@ -73,10 +69,8 @@ describe('Página de cadastro de categorias', () => {
     const textoNoBotaoSubmit = 'Atualizar';
     const NotificationMessage = 'Cadastro realizado com sucesso! ✔';
     const botaoSubmit = screen.getByText(textoNoBotaoSubmit);
-    // eslint-disable-next-line testing-library/no-unnecessary-act
-    act(() => {
-      userEvent.click(botaoSubmit);
-    });
+
+    userEvent.click(botaoSubmit);
 
     const NotificationCard = await screen.findByText(NotificationMessage);
 
@@ -126,11 +120,71 @@ describe('Página de cadastro de categorias', () => {
     const ErrorMessage = await screen.findByText(errorMessage);
     expect(ErrorMessage).toBeVisible();
   });
-});
 
-test('Botão Voltar deve redirecionar para listar categorias', () => {
-  render(<UpdateCategory />);
-  const button = screen.getByTestId('back');
+  test('Botão Voltar deve redirecionar para listar categorias', () => {
+    render(<UpdateCategory />);
+    const button = screen.getByTestId('back');
 
-  expect(button).toHaveAttribute('to', '/admin/listar-categorias');
+    expect(button).toHaveAttribute('to', '/admin/listar-categorias');
+  });
+
+  test('Deve chamar as funções passadas para a notificação de erro quando esta fechar', async () => {
+    const errorMessage = 'Erro';
+    const throwError = new Error(errorMessage);
+    validateInputMock.mockImplementation(() => {
+      throw throwError;
+    });
+
+    render(<UpdateCategory />);
+
+    const submitButtonText = 'Atualizar';
+    const submitButton = screen.getByText(submitButtonText);
+
+    userEvent.click(submitButton);
+
+    const errorNotification = await screen.findByText(`${errorMessage} 🤔`);
+
+    const closeButtonTitle = 'Fechar';
+    const closeButton = screen.getByTitle(closeButtonTitle);
+    userEvent.click(closeButton);
+
+    expect(errorNotification).not.toBeVisible();
+  });
+
+  test('Deve chamar as funções passadas para a notificação de sucesso quando esta fechar', async () => {
+    const dataMockMenuItem = [
+      {
+        _id: 1,
+        title: 'teste 1',
+        content: 'content 2',
+      },
+    ];
+
+    getGuidesServiceMock.mockResolvedValue({
+      data: {
+        data: dataMockMenuItem,
+      },
+    } as unknown as AxiosResponse<{ data: GuideInterface[] }>);
+
+    render(<UpdateCategory />);
+
+    validateInputMock.mockResolvedValue(true as unknown as InputInterface);
+    postCategoryMock.mockResolvedValue(
+      true as unknown as Promise<AxiosResponse>,
+    );
+
+    const submitButtonText = 'Atualizar';
+    const submitButton = screen.getByText(submitButtonText);
+
+    userEvent.click(submitButton);
+
+    const notificationMessage = 'Cadastro realizado com sucesso! ✔';
+    const successNotification = await screen.findByText(notificationMessage);
+
+    const closeButtonTitle = 'Fechar';
+    const closeButton = await screen.findByTitle(closeButtonTitle);
+    userEvent.click(closeButton);
+
+    expect(successNotification).not.toBeVisible();
+  });
 });
