@@ -15,7 +15,6 @@ import UpdateGuide from '@pages/update-guide';
 import UpdateDigitalContent from '@pages/update-digital-content';
 import CategoriesList from '@pages/categories-list';
 
-
 export interface RoutersProps {}
 
 export const Routers: React.FC<RoutersProps> = (): JSX.Element => {
