@@ -116,6 +116,7 @@ export const UpdateDigitalContent: React.FC<
 
   useEffect(() => {
     getGuidesService(id);
+    getDigitalContentCategories(id);
     getDigitalContentGuides();  
   }, [id]);
 

@@ -5,7 +5,7 @@ import '@testing-library/jest-dom';
 import { fireEvent } from '@testing-library/dom';
 import validateInput, { InputInterfaceProps } from './validator';
 import { getDigitalContentById, postDigitalContent, putDigitalContent } from '@services/digitalContent';
-import { getCategories, getCategoriesByGuide } from '@services/categories';
+import { CategoryInterface, getCategories, getCategoriesByGuide } from '@services/categories';
 import { GuideInterface, getGuides } from '@services/guides';
 import { act } from 'react-dom/test-utils';
 import { AxiosResponse } from 'axios';
@@ -54,7 +54,6 @@ describe('Página de atualização de conteúdo', () => {
   };
 
   beforeEach(() => {
-    //putDigitalContentMock.mockResolvedValue({data: {data: mockDigitalContent}} as any);
     getDigitalContentByIdMock.mockResolvedValue({data: {data: mockDigitalContent}} as any);
   });
 
@@ -82,56 +81,54 @@ describe('Página de atualização de conteúdo', () => {
     });
   });
 
-  // test('Deve chamar as categorias quando o componente for renderizado', async () => {
+  test('Deve chamar as categorias quando o componente for renderizado', async () => {
 
-  //   act(() => {
-  //     render(<RegisterDigitalContent />);
-  //   });
+    const dataMockMenuItem = [
+      {
+        _id: 1,
+        title: 'teste',
+        content: 'content',
+      },
+    ];
 
-  //   const dataMockMenuItem2 = [
-  //     {
-  //       _id: 1,
-  //       title: 'teste 1',
-  //       content: 'content 2',
-  //     },
-  //   ];
+    getCategoryServiceMock.mockResolvedValue({
+      data: {
+        data: dataMockMenuItem,
+      },
+    } as unknown as AxiosResponse<{ data: CategoryInterface[] }>);
 
-  //   getGuidesServiceMock.mockResolvedValue({
-  //     data: {
-  //       data: dataMockMenuItem2,
-  //     },
-  //   } as unknown as AxiosResponse<{ data: CardGuidesResponse[] }>);
+    act(() => {
+      render(<UpdateDigitalContent />);
+    });
 
-  //   const dataMockMenuItem = [
-  //     {
-  //       _id: 1,
-  //       title: 'teste 1',
-  //       shortDescription: 'content 2',
-  //       guide: '1',
-  //     },
-  //   ];
+    await waitFor(() => {
+      expect(getCategoryServiceMock).toBeCalled();
+    });
+  });
 
-  //   const errorMessage = 'Não foram encontradas as categorias';
-  //   const throwError = new Error(errorMessage);
+    
 
-  //   getCategoryServiceMock.mockImplementation(() => {
-  //     throw throwError;
-  //   })
+    // const errorMessage = 'Não foram encontradas as categorias';
+    // const throwError = new Error(errorMessage);
 
-  //   const labelText = 'select';
-  //   const guideSelect = await screen.findAllByRole(labelText);
+    // getCategoryServiceMock.mockImplementation(() => {
+    //   throw throwError;
+    // })
 
-  //   fireEvent.change(guideSelect[0]);
+    // const labelText = 'select';
+    // const guideSelect = await screen.findAllByRole(labelText);
 
-  //   const titleText = 'teste 1';
-  //   const guideSelected = screen.getByText(titleText);
+    // fireEvent.change(guideSelect[0]);
 
-  //   fireEvent.click(guideSelected);
+    // const titleText = 'teste 1';
+    // const guideSelected = screen.getByText(titleText);
 
-  //   await waitFor(() => {
-  //     expect(getCategoryServiceMock).toBeCalled();
-  //   });
-  // });
+    // fireEvent.click(guideSelected);
+
+    // await waitFor(() => {
+    //   expect(getCategoryServiceMock).toBeCalled();
+    // });
+  
 
   test('Deve mostrar um formulário', async () => {
     render(<UpdateDigitalContent />);
@@ -228,7 +225,7 @@ describe('Página de atualização de conteúdo', () => {
     expect(ErrorMessage).toBeVisible();
   });
 
-  test('Deve exibir mensagem de erro ao não encontrar categorias', async  () => {
+  test('Deve exibir mensagem de erro ao não encontrar categorias', async () => {
     getCategoryServiceMock.mockImplementation(() => {
       throw throwError;
     });
@@ -237,16 +234,11 @@ describe('Página de atualização de conteúdo', () => {
       render(<UpdateDigitalContent />);
     });
 
-        // screen.getByLabelText('Não foram encontradas as categorias')
-
-
-    const updateDigitalContent = screen.getByText('Não foram encontradas as categorias');
     const errorMessage = 'Não foram encontradas as categorias';
-    const throwError = new Error(updateDigitalContent);
+    const throwError = new Error(errorMessage);
 
-    const ErrorMessage = screen.getByText(errorMessage);
+    const ErrorMessage = await screen.findByText(errorMessage);
     expect(ErrorMessage).toBeVisible();
-    
   });
 
   test('Deve chamar a função putDigitalContent quando o botão do submit for clicado', async () => {
