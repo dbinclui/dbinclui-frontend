@@ -1,8 +1,10 @@
 import {
+  DigitalContentInterface,
  getCategoriesByGuide,
  getDigitalContent,
  //postDigitalContent,
 } from '@services/digitalContent';
+import { handleAxiosError } from '../api';
 
 import api from '@services/api';
 
@@ -107,3 +109,11 @@ it(`${getCategoriesByGuide.name}: Tratamento de erro quando o serviço não esti
   expect(apiMock.get).toThrow(errorMessage);
 });
 });
+
+export const deleteDigitalContent = async (_id: string) => {
+  try {
+    return api.delete<{ data: DigitalContentInterface }>(`digital-contents${_id}`);
+  } catch(error){
+    throw handleAxiosError(error);
+  }
+}
