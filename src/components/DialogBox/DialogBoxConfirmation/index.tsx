@@ -13,32 +13,26 @@ export interface ConfirmationProps {
   message: string;
   onClose?: Function;
   title?: string;
-  confirmation: boolean,
-  setConfirmation:Function;
-  setStatus:Function;
-  status: boolean;
+  confirmation: boolean;
+  setConfirmation: Function;
 }
 
-export const DialogBoxConfirmation: React.FC<ConfirmationProps> = (props:ConfirmationProps): JSX.Element => {
-
+export const DialogBoxConfirmation: React.FC<ConfirmationProps> = (
+  props: ConfirmationProps,
+): JSX.Element => {
   const handleClose = () => {
-    props.onClose && props.onClose(
-      props.setConfirmation(false),
-      props.setStatus(false)
-    );
+    props.onClose && props.onClose(false, props.setConfirmation(false));
   };
 
   const handleOk = () => {
-    props.onClose && props.onClose(props.setConfirmation(true),
-    props.setStatus(true));
-
+    props.onClose && props.onClose(true, props.setConfirmation(false));
   };
 
   return (
     <Box sx={styles.boxDialog}>
       <Dialog
         open={props.confirmation}
-       // onClose={handleClose}
+        // onClose={handleClose}
         aria-labelledby="alert-dialog-title"
         aria-describedby="alert-dialog-description"
       >

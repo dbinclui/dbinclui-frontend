@@ -15,6 +15,7 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import styles from './styles';
 import DialogBoxInformation from '@components/DialogBox/DialogBoxInformation';
 import DialogBoxConfirmation from '@components/DialogBox/DialogBoxConfirmation';
+import Notification from '@components/Notification';
 
 export interface GuideListPropsInterfaceProps {}
 
@@ -24,13 +25,13 @@ export const GuideList: React.FC<
   const [guideList, setGuideList] = useState<GuideInterface[]>([]);
   const [errorGetList, setErrorGetList] = useState(false);
 
-  const [categoryContent, setCategoryContent] = useState<GuideContent>();
-  const [errorCategoryContent, setErrorCategoryContent] = useState(false);
-
   const [loading, setLoading] = useState(true);
-  const [status, setStatus] = useState(false);
   const [information, setInformation] = useState(false);
   const [confirmation, setConfirmation] = useState(false);
+  const [id, setId] = useState('');
+  const [error, setError] = useState(false);
+  const [success, setSuccess] = useState(false);
+  const [errorMessage, setErrorMessage] = useState('');
 
   async function getGuideListService() {
     try {
@@ -43,64 +44,21 @@ export const GuideList: React.FC<
     }
   }
 
-  async function getGuideWithCategoryAndContentService(id: string) {
-    try {
-      const { data } = await getGuideWithCategoriesAndContent(id);
-      setCategoryContent(data.data);
-    } catch {
-      setErrorCategoryContent(true);
-    } finally {
-      setLoading(false);
-    }
-  }
-
-  async function deleteGuideService(id: string) {
-    try {
-      const { data } = await deleteGuide(id);
-      setCategoryContent(data.data);
-    } catch {
-      setErrorCategoryContent(true);
-    } finally {
-      setLoading(false);
-    }
-  }
-
-  const onDelete = (id: string) => {
-    getGuideWithCategoryAndContentService(id);
-    
-    console.log(id);
-    console.log(categoryContent);
-    console.log('Categoria: ', categoryContent?.categories);
-    console.log('Digital Content: ', categoryContent?.digitalContents);
-
-    console.log('Categoria Tamanho: ', categoryContent?.categories.length);
-    console.log(
-      'Digital Content Tamanho: ',
-      categoryContent?.digitalContents.length,
-    );
-
-    console.log('Categoria Valor: ', categoryContent?.categories.values);
-    console.log(
-      'Digital Content Valor: ',
-      categoryContent?.digitalContents.values,
-    );
-
-    if (
-      categoryContent?.categories.length! > 0 ||
-      categoryContent?.digitalContents.length! > 0
-    ) {
-      setInformation(true);
-    } else {
-      setConfirmation(true);
-      if (status) {
-        deleteGuideService(id);
+  async function handleDelete(value: boolean) {
+    if (value) {
+      try {
+        await deleteGuide(id);
+        setSuccess(true);
+      } catch (error: any) {
+        setErrorMessage(error.response.data.message);
+        setError(true);
       }
     }
-  };
+  }
 
   useEffect(() => {
     getGuideListService();
-  }, []);
+  }, [guideList]);
 
   const columns: GridColDef[] = [
     {
@@ -135,7 +93,8 @@ export const GuideList: React.FC<
       renderCell: (params) => (
         <Button
           onClick={() => {
-            onDelete(params.value);
+            setConfirmation(true);
+            setId(params.value);
           }}
           startIcon={<DeleteIcon />}
           sx={{ color: 'text.primary' }}
@@ -164,13 +123,9 @@ export const GuideList: React.FC<
           <DialogBoxConfirmation
             message="Deseja realmente excluir este Guia?"
             title="Mensagem de Confirmação"
-            onClose={() => {
-              setConfirmation(false);
-            }}
             confirmation={confirmation}
-            setConfirmation={() => setConfirmation(confirmation)}
-            status={status}
-            setStatus={() => setStatus(status)}
+            setConfirmation={setConfirmation}
+            onClose={handleDelete}
           />
         </Box>
       )}
@@ -250,6 +205,25 @@ export const GuideList: React.FC<
               </Button>
             </Box>
           </>
+        )}
+        {error && (
+          <Notification
+            message={`${errorMessage} 🤔`}
+            variant="error"
+            onClose={() => {
+              setError(false);
+              setErrorMessage('');
+            }}
+          />
+        )}
+        {success && (
+          <Notification
+            message="Guia deletada com sucesso! ✔"
+            variant="success"
+            onClose={() => {
+              setSuccess(false);
+            }}
+          />
         )}
       </Box>
     </>
