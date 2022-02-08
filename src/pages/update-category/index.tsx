@@ -247,7 +247,7 @@ export const UpdateCategory: React.FC<
       )}
       {success && (
         <Notification
-          message="Cadastro atualizado com sucesso! ✔"
+          message="Atualização realizada com sucesso! ✔"
           variant="success"
           onClose={() => {
             setSuccess(false);
