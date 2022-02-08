@@ -5,31 +5,45 @@ import { fireEvent } from '@testing-library/dom';
 import '@testing-library/jest-dom';
 import DialogBoxConfirmation from '@components/DialogBox/DialogBoxConfirmation';
 
-// describe('Componente de diálogo de confirmação', () => {
+describe('Componente de diálogo de confirmação', () => {
+  /*test('Deve fechar a notificação quando o botão de nâo for clicado', () => {
+    render(
+      <DialogBoxConfirmation confirmation={true} setConfirmation={() => {}} />,
+    );
 
-//  test('Deve fechar a notificação quando o botão de nâo for clicado', () => {
-//   const message = 'Mensagem de Exclusão';
-//   const message2 = 'Deseja excluir este item?'
-//   render(<DialogBoxConfirmation id='' type=''/>);
+    const button = screen.getByTestId('nao');
+    userEvent.click(button);
+    const dialog = screen.getByTestId('dialog');
+    expect(dialog).not.toBeVisible();
+  });*/
 
-//   const button = screen.getByTestId('nao');
-//   userEvent.click(button);
+  test('Deve chamar a função passada pela propriedade onClose quando a notificação for fechada', () => {
+    const onCloseFunction = jest.fn();
+    render(
+      <DialogBoxConfirmation
+        confirmation={true}
+        setConfirmation={() => {}}
+        onClose={onCloseFunction}
+      />,
+    );
 
-//   const dialogComponent = screen.queryByText(message);
-//   const dialogComponent2 = screen.queryByText(message2);
-//   expect(dialogComponent).not.toBeVisible();
-//   expect(dialogComponent2).not.toBeVisible();
-// });
+    const button = screen.getByTestId('nao');
+    userEvent.click(button);
+    expect(onCloseFunction).toBeCalled();
+  });
 
-// test('Deve chamar a função passada pela propriedade onClose quando a notificação for fechada', () => {
-//   const message = 'Teste de notificação';
-//   const onCloseFunction = jest.fn();
-//   render(
-//    <DialogBoxConfirmation id='' type='' onClose={onCloseFunction}/>
-//   );
+  test('Deve chamar a função passada pela propriedade onClose quando a guia for apagada', () => {
+    const onCloseFunction = jest.fn();
+    render(
+      <DialogBoxConfirmation
+        confirmation={true}
+        setConfirmation={() => {}}
+        onClose={onCloseFunction}
+      />,
+    );
 
-//   const button = screen.getByTestId('nao');
-//   userEvent.click(button);
-//   expect(onCloseFunction).toBeCalled();
-// });
-// });
+    const button = screen.getByTestId('sim');
+    userEvent.click(button);
+    expect(onCloseFunction).toBeCalled();
+  });
+});

@@ -33,6 +33,7 @@ export const DialogBoxConfirmation: React.FC<ConfirmationProps> = (
         open={props.confirmation}
         aria-labelledby="alert-dialog-title"
         aria-describedby="alert-dialog-description"
+        data-testid="dialog"
       >
         <AccessibilityTypography role="message" tabIndex={1}>
           <DialogTitle id="alert-dialog-title" sx={styles.listTitle}>
