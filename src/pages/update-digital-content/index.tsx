@@ -57,8 +57,8 @@ export const UpdateDigitalContent: React.FC<
   const [successGetCategories, setSuccessGetCategories] = useState(false);
   const [errorGetCategories, setErrorGetCategories] = useState(true);
   const [errorMessageGetCategories, setErrorMessageGetCategories] = useState('');
-  const [guideText, setGuideText] = useState<string | undefined>('');
-  const [categoryText, setCategoryText] = useState<string | undefined>('');
+  const [, setGuideText] = useState<string | undefined>('');
+  const [, setCategoryText] = useState<string | undefined>('');
 
 
   async function getGuidesService(id: string) {
@@ -149,6 +149,7 @@ export const UpdateDigitalContent: React.FC<
       setError(true);
     }
   }
+
 
   return (
     <Grid container alignItems={'center'} justifyContent={'center'} role="main">
