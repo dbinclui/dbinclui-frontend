@@ -5,11 +5,14 @@ import { Box, Button, CircularProgress, Grid } from '@mui/material';
 import AccessibilityTypography from '@components/AccessibilityTypography';
 import styles from './styles';
 import {
+  deleteDigitalContent,
   DigitalContentInterface,
   getDigitalContent,
 } from '@services/digitalContent';
 import { CreateSharp } from '@mui/icons-material';
 import DeleteIcon from '@mui/icons-material/Delete';
+import DialogBoxConfirmation from '@components/DialogBox/DialogBoxConfirmation';
+import Notification from '@components/Notification';
 
 export interface DigitalContentInterfaceProps {}
 
@@ -22,6 +25,11 @@ export const ListDigitalContent: React.FC<
 
   const [error, setError] = useState(false);
   const [loading, setLoading] = useState(true);
+  const [errorMessage, setErrorMessage] = useState('');
+  const [success, setSuccess] = useState(false);
+
+  const [confirmation, setConfirmation] = useState(false);
+  const [id, setId] = useState('');
 
   async function getDigitalContentsService() {
     try {
@@ -31,6 +39,18 @@ export const ListDigitalContent: React.FC<
       setError(true);
     } finally {
       setLoading(false);
+    }
+  }
+
+  async function handleDelete(value: boolean) {
+    if (value) {
+      try {
+        await deleteDigitalContent(id);
+        setSuccess(true)
+      } catch(error:any) {
+        setErrorMessage(error.response.data.message)
+        setError(true)
+      }
     }
   }
 
@@ -88,7 +108,10 @@ export const ListDigitalContent: React.FC<
       headerName: 'Excluir',
       renderCell: (params) => (
         <Button
-          href={params.value}
+          onClick={() => {
+            setConfirmation(true);
+            setId(params.value);
+          }}
           startIcon={<DeleteIcon />}
           sx={{ color: 'text.primary' }}
         ></Button>
@@ -113,12 +136,22 @@ export const ListDigitalContent: React.FC<
           : card.shortDescription,
       filePaths: card.filePaths[0].filePath,
       edit: '/admin/atualizar-conteudo-digital/' + card._id,
-      delete: '/admin/excluir-conteudo-digital/' + card._id,
+      delete: card._id,
     };
   });
 
   return (
     <>
+      {confirmation && (
+        <Box>
+          <DialogBoxConfirmation
+            title="Deseja excluir esse conteúdo digital?"
+            confirmation={confirmation}
+            setConfirmation={setConfirmation}
+            onClose={handleDelete}
+          />
+        </Box>
+      )}
       <AccessibilityTypography variant="h2" sx={styles.listTitle}>
         LISTAGEM DE CONTEÚDO DIGITAL
       </AccessibilityTypography>
@@ -175,6 +208,25 @@ export const ListDigitalContent: React.FC<
               </Button>
             </Box>
           </>
+        )}
+        {error && (
+          <Notification
+            message={`${errorMessage} 🤔`}
+            variant="error"
+            onClose={() => {
+              setError(false);
+              setErrorMessage('');
+            }}
+          />
+        )}
+        {success && (
+          <Notification
+            message="Categoria deletada com sucesso! ✔"
+            variant="success"
+            onClose={() => {
+              setSuccess(false);
+            }}
+          />
         )}
       </Box>
     </>

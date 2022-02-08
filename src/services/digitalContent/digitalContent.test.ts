@@ -1,5 +1,4 @@
 import {
-  DigitalContentInterface,
  getCategoriesByGuide,
  getDigitalContent,
  //postDigitalContent,
