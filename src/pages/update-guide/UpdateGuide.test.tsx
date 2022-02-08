@@ -195,4 +195,58 @@ describe('Página de atualização de guia', () => {
 
     expect(button).toHaveAttribute('to', '/admin/listar-guias');
   });
+
+  test('Erro na busca dos guias', async () => {
+    const errorMessage = 'Erro';
+    const throwError = new Error(errorMessage);
+    getGuideByIdMock.mockRejectedValue(throwError);
+
+    render(<UpdateGuide />);
+
+    const NotificationCard = await screen.findByText(errorMessage);
+
+    expect(NotificationCard).toBeVisible();
+  });
+
+  test('Deve fechar a notificação de erro quando o botão de fechar for clicado', async () => {
+    const errorMessage = 'Erro';
+    const throwError = new Error(errorMessage);
+    getGuideByIdMock.mockRejectedValue(throwError);
+
+    render(<UpdateGuide />);
+
+    const closeButtonText = 'Fechar';
+    const closeButton = await screen.findByTitle(closeButtonText);
+
+    const NotificationCard = await screen.findByText(errorMessage);
+
+    userEvent.click(closeButton);
+
+    expect(NotificationCard).not.toBeVisible();
+  });
+
+  test('Deve fechar a notificação de sucesso quando o botão de fechar for clicado', async () => {
+    act(() => {
+      render(<UpdateGuide />);
+    });
+
+    validateInputMock.mockResolvedValue(true as unknown as InputInterface);
+    putGuidesMock.mockResolvedValue(true as unknown as Promise<AxiosResponse>);
+    const textoNoBotaoSubmit = 'Atualizar';
+    const NotificationMessage = 'Atualização realizada com sucesso! ✔';
+    const botaoSubmit = await screen.findByText(textoNoBotaoSubmit);
+
+    act(() => {
+      userEvent.click(botaoSubmit);
+    });
+
+    const NotificationCard = await screen.findByText(NotificationMessage);
+
+    const closeButtonText = 'Fechar';
+    const closeButton = await screen.findByTitle(closeButtonText);
+
+    userEvent.click(closeButton);
+
+    expect(NotificationCard).not.toBeVisible();
+  });
 });
