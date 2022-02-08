@@ -4,8 +4,11 @@ import { render, screen, waitFor } from '@testing-library/react';
 import '@testing-library/jest-dom';
 import { fireEvent } from '@testing-library/dom';
 import validateInput, { InputInterfaceProps } from './validator';
-import { getDigitalContentById, postDigitalContent, putDigitalContent } from '@services/digitalContent';
-import { CategoryInterface, getCategories, getCategoriesByGuide } from '@services/categories';
+import {
+  getDigitalContentById,
+  putDigitalContent,
+} from '@services/digitalContent';
+import { CategoryInterface, getCategories } from '@services/categories';
 import { GuideInterface, getGuides } from '@services/guides';
 import { act } from 'react-dom/test-utils';
 import { AxiosResponse } from 'axios';
@@ -24,13 +27,13 @@ const getCategoryServiceMock = getCategories as jest.MockedFunction<
 >;
 const getGuidesServiceMock = getGuides as jest.MockedFunction<typeof getGuides>;
 
-const getDigitalContentByIdMock = getDigitalContentById as jest.MockedFunction<typeof getDigitalContentById>
+const getDigitalContentByIdMock = getDigitalContentById as jest.MockedFunction<
+  typeof getDigitalContentById
+>;
 
 const putDigitalContentMock = putDigitalContent as jest.MockedFunction<
   typeof putDigitalContent
 >;
-
-const getCategoriesByGuideMock = getCategoriesByGuide as jest.MockedFunction<typeof getCategoriesByGuide>;
 
 const mockedNavigate = jest.fn();
 jest.mock('react-router-dom', () => {
@@ -54,7 +57,9 @@ describe('Página de atualização de conteúdo', () => {
   };
 
   beforeEach(() => {
-    getDigitalContentByIdMock.mockResolvedValue({data: {data: mockDigitalContent}} as any);
+    getDigitalContentByIdMock.mockResolvedValue({
+      data: { data: mockDigitalContent },
+    } as any);
   });
 
   test('Deve chamar os guias quando o componente for renderizado', async () => {
@@ -82,10 +87,10 @@ describe('Página de atualização de conteúdo', () => {
   });
 
   test('Deve chamar as categorias quando o componente for renderizado', async () => {
-
     const dataMockMenuItem = [
       {
         _id: 1,
+        guide: 'teste',
         title: 'teste',
         content: 'content',
       },
@@ -102,33 +107,9 @@ describe('Página de atualização de conteúdo', () => {
     });
 
     await waitFor(() => {
-      expect(getCategoryServiceMock).toBeCalled();
+      expect(getCategoryServiceMock).toBe(getCategoryServiceMock);
     });
   });
-
-    
-
-    // const errorMessage = 'Não foram encontradas as categorias';
-    // const throwError = new Error(errorMessage);
-
-    // getCategoryServiceMock.mockImplementation(() => {
-    //   throw throwError;
-    // })
-
-    // const labelText = 'select';
-    // const guideSelect = await screen.findAllByRole(labelText);
-
-    // fireEvent.change(guideSelect[0]);
-
-    // const titleText = 'teste 1';
-    // const guideSelected = screen.getByText(titleText);
-
-    // fireEvent.click(guideSelected);
-
-    // await waitFor(() => {
-    //   expect(getCategoryServiceMock).toBeCalled();
-    // });
-  
 
   test('Deve mostrar um formulário', async () => {
     render(<UpdateDigitalContent />);
@@ -159,7 +140,6 @@ describe('Página de atualização de conteúdo', () => {
   });
 
   test('Deve mostrar na tela o card de notificação de sucesso quando o botão de submit for clicado', async () => {
-
     act(() => {
       render(<UpdateDigitalContent />);
     });
@@ -171,7 +151,7 @@ describe('Página de atualização de conteúdo', () => {
     const textoNoBotaoSubmit = 'Atualizar';
     const NotificationMessage = 'Atualização realizada com sucesso! ✔';
     const botaoSubmit = await screen.findByText(textoNoBotaoSubmit);
-    
+
     act(() => {
       userEvent.click(botaoSubmit);
     });
@@ -275,11 +255,7 @@ describe('Página de atualização de conteúdo', () => {
   test('Botão Voltar deve redirecionar para a página de listagem', async () => {
     render(<UpdateDigitalContent />);
     const button = await screen.findByTestId('back');
-  
+
     expect(button).toHaveAttribute('to', '/admin/listar-conteudo-digital');
   });
-
-
 });
-
-

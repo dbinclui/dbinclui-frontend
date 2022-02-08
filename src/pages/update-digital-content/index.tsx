@@ -11,20 +11,18 @@ import {
   MenuItem,
   Stack,
   Alert,
-  TextField,
 } from '@mui/material';
 import styles from './styles';
 import FileUploadRounded from '@mui/icons-material/FileUploadRounded';
 import ClearIcon from '@mui/icons-material/Clear';
-import { GuideInterface, getGuides, getGuideById, putGuides } from '@services/guides';
-import { DigitalContentInterface, getDigitalContent, getDigitalContentById, putDigitalContent } from '@services/digitalContent';
-import { postDigitalContent } from '@services/digitalContent';
+import { GuideInterface, getGuides } from '@services/guides';
+import { DigitalContentInterface, getDigitalContentById, putDigitalContent } from '@services/digitalContent';
 import { CategoryInterface, getCategoriesByGuide } from '@services/categories';
 import validateInput, { InputInterfaceProps } from './validator';
 import Notification from '@components/Notification';
 import AccessibilityTypography from '@components/AccessibilityTypography';
 import { Link, useParams } from 'react-router-dom';
-import { resolveAny } from 'dns';
+
 
 export interface UpdateDigitalContentProps {}
 
@@ -39,8 +37,6 @@ export interface UpdateDigitalInterface {
 export const UpdateDigitalContent: React.FC<
   UpdateDigitalContentProps
 > = (): JSX.Element => {
-  // const guide = useRef<HTMLInputElement>();
-  // const category = useRef<HTMLInputElement>();
   const title = useRef<HTMLInputElement>();
   const shortDescription = useRef<HTMLInputElement>();
   const fileRef = useRef<HTMLInputElement>(null);
@@ -80,8 +76,6 @@ export const UpdateDigitalContent: React.FC<
     } finally {
       title.current!.value = data!.data.title;
       shortDescription.current!.value = data!.data.shortDescription;
-      // guide.current!.value = data!.data.guide._id!;
-      // category.current!.value = data!.data.category?._id!;
 
     }
   }
@@ -155,14 +149,6 @@ export const UpdateDigitalContent: React.FC<
       setError(true);
     }
   }
-
-
-
-  // useEffect(() => {
-  //   getDigitalContentCategories(id);
-  //   getDigitalContentGuides();
-  //   setErrorMessageGetCategories('Escolha o Guia');
-  // }, []);
 
   return (
     <Grid container alignItems={'center'} justifyContent={'center'} role="main">
