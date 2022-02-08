@@ -1,12 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import {
-  Container,
-  IconButton,
-  TextField,
-  Paper,
-  Grid,
-  CircularProgress,
-} from '@mui/material';
+import { Container, Grid, CircularProgress } from '@mui/material';
 import './style.css';
 import CardHome from '@components/CardHome';
 import AccessibilityTypography from '@components/AccessibilityTypography';
