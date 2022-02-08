@@ -221,7 +221,7 @@ export const ListDigitalContent: React.FC<
         )}
         {success && (
           <Notification
-            message="Categoria deletada com sucesso! ✔"
+            message="Conteúdo digital deletado com sucesso! ✔"
             variant="success"
             onClose={() => {
               setSuccess(false);
