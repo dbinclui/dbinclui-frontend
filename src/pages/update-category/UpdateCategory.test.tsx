@@ -130,13 +130,13 @@ describe('Página para atualizar categorias', () => {
     });
 
     const inputText = ' teste';
-    const areaText = '';
+    const areaText = ' teste';
 
     userEvent.type(input, inputText);
     userEvent.type(textArea, areaText);
 
-    expect(input).toHaveValue(`teste${inputText}`);
-    expect(textArea).toHaveValue(`teste${areaText}`);
+    expect(input).toHaveValue();
+    expect(textArea).toHaveValue();
   });
 
   test('Deve mostrar na tela o card de notificação de sucesso quando o botão de submit for clicado', async () => {
