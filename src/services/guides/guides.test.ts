@@ -3,12 +3,9 @@ import {
   postGuides,
   getGuideWithCategoriesAndContent,
   putGuides,
+  getGuideById,
 } from '@services/guides';
 import api from '@services/api';
-
-
-
-
 
 jest.mock('@services/api');
 
@@ -75,7 +72,6 @@ describe('Testando o serviço "postGuides"', () => {
   });
 });
 
-
 describe('Testando o serviço "putGuides"', () => {
   beforeEach(() => {
     apiMock.put.mockClear();
@@ -112,13 +108,12 @@ describe('Testando o serviço "putGuides"', () => {
   });
 });
 
-
 describe('Testando o serviço "getGuideWithCategoriesAndContent"', () => {
   beforeEach(() => {
     apiMock.get.mockClear();
   });
 
-  it(`${getGuideWithCategoriesAndContent.name}: Devolvendo conteúdo "getGuides"`, async () => {
+  it(`${getGuideWithCategoriesAndContent.name}: Devolvendo conteúdo "getGuideWithCategoriesAndContent"`, async () => {
     const id = '1';
     apiMock.get.mockResolvedValue([]);
     const result = await getGuideWithCategoriesAndContent(id);
@@ -135,6 +130,35 @@ describe('Testando o serviço "getGuideWithCategoriesAndContent"', () => {
     });
     try {
       await getGuideWithCategoriesAndContent(id);
+    } catch {}
+    expect(apiMock.get).toBeCalledTimes(1);
+    expect(apiMock.get).toThrow(Error);
+    expect(apiMock.get).toThrow(errorMessage);
+  });
+});
+
+describe('Testando o serviço "getGuideById"', () => {
+  beforeEach(() => {
+    apiMock.get.mockClear();
+  });
+
+  it(`${getGuideById.name}: Devolvendo conteúdo getGuideById`, async () => {
+    const id = '1';
+    apiMock.get.mockResolvedValue([]);
+    const result = await getGuideById(id);
+    expect(apiMock.get).toBeCalledTimes(1);
+    expect(result).toStrictEqual([]);
+  });
+
+  it(`${getGuideById.name}: Tratamento de erro quando o serviço não estiver disponível`, async () => {
+    const id = '1';
+    const errorMessage = 'Serviço não disponível';
+    const throwError = new Error(errorMessage);
+    apiMock.get.mockImplementation(() => {
+      throw throwError;
+    });
+    try {
+      await getGuideById(id);
     } catch {}
     expect(apiMock.get).toBeCalledTimes(1);
     expect(apiMock.get).toThrow(Error);
