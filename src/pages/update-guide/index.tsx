@@ -8,6 +8,7 @@ import {
   InputBase,
   CircularProgress,
 } from '@mui/material';
+import { Link } from 'react-router-dom';
 import styles from './styles';
 import { GuideInterface, putGuides, getGuideById } from '@services/guides';
 import Notification from '@components/Notification';
@@ -64,7 +65,6 @@ export const UpdateGuide: React.FC<UpdateGuideProps> = (): JSX.Element => {
       await validateInput(cardBody);
       await putGuides(id, cardBody);
       setSuccess(true);
-      console.log(cardBody);
     } catch (error: any) {
       setErrorMessage(error.message);
       setError(true);
@@ -159,7 +159,8 @@ export const UpdateGuide: React.FC<UpdateGuideProps> = (): JSX.Element => {
                       type="reset"
                       role="button"
                       data-testid="back"
-                      href="/admin"
+                      component={Link}
+                      to="/admin/listar-guias"
                     >
                       Voltar
                     </Button>

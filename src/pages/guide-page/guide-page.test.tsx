@@ -42,7 +42,7 @@ describe('Componente do Home', () => {
             category: {} as any,
             title: 'MockTitleContent',
             shortDescription: 'MockDescriptionContent',
-            filePaths: ['arquivo/img.png'],
+            filePaths: [{ filePath: 'arquivo/img.png', publicId: 'img.png' }],
           },
         ],
       },
@@ -53,7 +53,7 @@ describe('Componente do Home', () => {
         category: {} as any,
         title: 'MockTitleContentNC',
         shortDescription: 'MockDescriptionContentNC',
-        filePaths: ['arquivo/img.png'],
+        filePaths: [{ filePath: 'arquivo/img.png', publicId: 'img.png' }],
       },
     ],
   };
@@ -84,7 +84,7 @@ describe('Componente do Home', () => {
     expect(guideMedia).toBeVisible();
     expect(guideMedia).toHaveAttribute(
       'src',
-      mockGuideWithCategoriesAndContent.digitalContents[0].filePaths[0],
+      mockGuideWithCategoriesAndContent.digitalContents[0].filePaths[0].filePath,
     );
 
     const titleCategory = await screen.findByText(
@@ -106,7 +106,7 @@ describe('Componente do Home', () => {
     expect(categoryMedia).toHaveAttribute(
       'src',
       mockGuideWithCategoriesAndContent.categories[0].digitalContents[0]
-        .filePaths[0],
+        .filePaths[0].filePath,
     );
 
     const index = await screen.findByText('Categorias:');
