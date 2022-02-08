@@ -9,6 +9,7 @@ import {
   getCategories,
   deleteCategory,
 } from '@services/categories';
+import DialogBoxConfirmation from '@components/DialogBox/DialogBoxConfirmation';
 import DeleteIcon from '@mui/icons-material/Delete';
 import { CreateSharp } from '@mui/icons-material';
 import { GuideInterface } from '@services/guides';
@@ -23,14 +24,16 @@ export const CategoriesList: React.FC<
   const [errorGetCategories, setErrorGetCategories] = useState(false);
   const [loading, setLoading] = useState(true);
 
+  const [confirmation, setConfirmation] = useState(false);
+  const [id, setId] = useState('');
   const [error, setError] = useState(false);
-  const [errorMessage, setErrorMessage] = useState('');
   const [success, setSuccess] = useState(false);
+  const [errorMessage, setErrorMessage] = useState('');
 
   async function getContentCategories() {
     try {
-      const response = await getCategories();
-      setCategories(response.data.data);
+      const { data } = await getCategories();
+      setCategories(data.data);
     } catch {
       setErrorGetCategories(true);
     } finally {
@@ -38,13 +41,15 @@ export const CategoriesList: React.FC<
     }
   }
 
-  async function handleDelete(id: string) {
-    try {
-      await deleteCategory(id);
-      setSuccess(true);
-    } catch (error: any) {
-      setErrorMessage(error.response.data.message);
-      setError(true);
+  async function handleDelete(value: boolean) {
+    if (value) {
+      try {
+        await deleteCategory(id);
+        setSuccess(true);
+      } catch (error: any) {
+        setErrorMessage(error.response.data.message);
+        setError(true);
+      }
     }
   }
 
@@ -95,7 +100,8 @@ export const CategoriesList: React.FC<
       renderCell: (params) => (
         <Button
           onClick={() => {
-            handleDelete(params.value);
+            setConfirmation(true);
+            setId(params.value);
           }}
           startIcon={<DeleteIcon />}
           sx={{ color: 'text.primary' }}
@@ -120,6 +126,16 @@ export const CategoriesList: React.FC<
 
   return (
     <>
+      {confirmation && (
+        <Box>
+          <DialogBoxConfirmation
+            title="Deseja excluir essa categoria?"
+            confirmation={confirmation}
+            setConfirmation={setConfirmation}
+            onClose={handleDelete}
+          />
+        </Box>
+      )}
       <AccessibilityTypography
         role="heading"
         tabIndex={1}
@@ -200,7 +216,7 @@ export const CategoriesList: React.FC<
         )}
         {success && (
           <Notification
-            message="Guia deletada com sucesso! ✔"
+            message="Categoria deletada com sucesso! ✔"
             variant="success"
             onClose={() => {
               setSuccess(false);
