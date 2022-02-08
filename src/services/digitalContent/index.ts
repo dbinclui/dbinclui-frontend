@@ -17,7 +17,10 @@ export interface DigitalContentInterface {
   category?: CategoryContent;
   title: string;
   shortDescription: string;
-  filePaths: string[];
+  filePaths:  {
+    filePath: string;
+    publicId: string;
+  }[];
 }
 
 export const getCategoriesByGuide = async (id: string) => {
