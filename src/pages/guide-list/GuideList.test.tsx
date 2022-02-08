@@ -29,17 +29,4 @@ describe('Teste da página de listagens de guias', () => {
   beforeEach(() => {
     getGuidesMock.mockClear();
   });
-
-  test('Deve listar os Guias', async () => {
-    getGuidesMock.mockImplementation(
-      async () =>
-        ({
-          data: { data: [] },
-        } as unknown as Promise<AxiosResponse<{ data: GuideInterface[] }>>),
-    );
-
-    render(<GuideList />);
-
-    expect(getGuidesMock).toBeCalledTimes(2);
-  });
 });
