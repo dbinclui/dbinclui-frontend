@@ -7,7 +7,6 @@ import validateInput, { InputInterfaceProps } from './validator';
 import { postDigitalContent } from '@services/digitalContent';
 import { getCategories } from '@services/categories';
 import { GuideInterface, getGuides } from '@services/guides';
-import { act } from 'react-dom/test-utils';
 import { AxiosResponse } from 'axios';
 import userEvent from '@testing-library/user-event';
 
@@ -59,71 +58,15 @@ describe('Página de cadastro de categorias', () => {
       },
     } as unknown as AxiosResponse<{ data: GuideInterface[] }>);
 
-    act(() => {
-      render(<RegisterDigitalContent />);
-    });
+    render(<RegisterDigitalContent />);
 
     await waitFor(() => {
       expect(getGuidesServiceMock).toBeCalled();
     });
   });
 
-  // test('Deve chamar as categorias quando o componente for renderizado', async () => {
-
-  //   act(() => {
-  //     render(<RegisterDigitalContent />);
-  //   });
-
-  //   const dataMockMenuItem2 = [
-  //     {
-  //       _id: 1,
-  //       title: 'teste 1',
-  //       content: 'content 2',
-  //     },
-  //   ];
-
-  //   getGuidesServiceMock.mockResolvedValue({
-  //     data: {
-  //       data: dataMockMenuItem2,
-  //     },
-  //   } as unknown as AxiosResponse<{ data: CardGuidesResponse[] }>);
-
-  //   const dataMockMenuItem = [
-  //     {
-  //       _id: 1,
-  //       title: 'teste 1',
-  //       shortDescription: 'content 2',
-  //       guide: '1',
-  //     },
-  //   ];
-
-  //   const errorMessage = 'Não foram encontradas as categorias';
-  //   const throwError = new Error(errorMessage);
-
-  //   getCategoryServiceMock.mockImplementation(() => {
-  //     throw throwError;
-  //   })
-
-  //   const labelText = 'select';
-  //   const guideSelect = await screen.findAllByRole(labelText);
-
-  //   fireEvent.change(guideSelect[0]);
-
-  //   const titleText = 'teste 1';
-  //   const guideSelected = screen.getByText(titleText);
-
-  //   fireEvent.click(guideSelected);
-
-  //   await waitFor(() => {
-  //     expect(getCategoryServiceMock).toBeCalled();
-  //   });
-  // });
-
   test('Deve mostrar na tela o card de notificação de sucesso quando o botão de submit for clicado', async () => {
-    // eslint-disable-next-line testing-library/no-unnecessary-act
-    act(() => {
-      render(<RegisterDigitalContent />);
-    });
+    render(<RegisterDigitalContent />);
 
     validateInputMock.mockResolvedValue(true as unknown as InputInterfaceProps);
     postDigitalContentMock.mockResolvedValue(
@@ -132,10 +75,8 @@ describe('Página de cadastro de categorias', () => {
     const textoNoBotaoSubmit = 'Salvar';
     const NotificationMessage = 'Cadastro realizado com sucesso! ✔';
     const botaoSubmit = screen.getByText(textoNoBotaoSubmit);
-    // eslint-disable-next-line testing-library/no-unnecessary-act
-    act(() => {
-      userEvent.click(botaoSubmit);
-    });
+
+    userEvent.click(botaoSubmit);
 
     const NotificationCard = await screen.findByText(NotificationMessage);
 
@@ -145,9 +86,7 @@ describe('Página de cadastro de categorias', () => {
   });
 
   test('Deve mostrar na tela o card de notificação de erro quando o botão de submit for clicado', async () => {
-    act(() => {
-      render(<RegisterDigitalContent />);
-    });
+    render(<RegisterDigitalContent />);
 
     const errorMessage = 'Erro';
     const throwError = new Error(errorMessage);
@@ -160,9 +99,7 @@ describe('Página de cadastro de categorias', () => {
     const NotificationMessage = errorMessage;
     const botaoSubmit = screen.getByText(textoNoBotaoSubmit);
 
-    act(() => {
-      userEvent.click(botaoSubmit);
-    });
+    userEvent.click(botaoSubmit);
 
     const NotificationCard = await screen.findByText(NotificationMessage);
 
@@ -175,9 +112,7 @@ describe('Página de cadastro de categorias', () => {
       throw throwError;
     });
 
-    act(() => {
-      render(<RegisterDigitalContent />);
-    });
+    render(<RegisterDigitalContent />);
 
     const errorMessage = 'Não foram encontradas as guias';
     const throwError = new Error(errorMessage);
@@ -191,9 +126,7 @@ describe('Página de cadastro de categorias', () => {
       throw throwError;
     });
 
-    act(() => {
-      render(<RegisterDigitalContent />);
-    });
+    render(<RegisterDigitalContent />);
 
     const errorMessage = 'Não foram encontradas as categorias';
     const throwError = new Error(errorMessage);
@@ -229,45 +162,6 @@ describe('Página de cadastro de categorias', () => {
     expect(title).toBeVisible();
     expect(textArea).toBeVisible();
   });
-
-  // test('Deve verificar se o ID da label corresponde ao aria-labelledby', () => {
-  //   const dataMockMenuItem = [
-  //     {
-  //       _id: 1,
-  //       title: 'teste 1',
-  //       content: 'content 2',
-  //     },
-  //   ];
-
-  //   act(() => {
-  //     render(<RegisterDigitalContent />);
-
-  //   })
-
-  //   getGuidesServiceMock.mockResolvedValue({
-  //     data: {
-  //       data: dataMockMenuItem,
-  //     },
-  //   } as unknown as AxiosResponse<{ data: CardGuidesResponse[] }>);
-
-  //   const textLabelGuide = 'guideLabel';
-  //   const textLabelCategory = 'categoryLabel';
-  //   const textLabelTitle = 'titleLabel';
-  //   const textLabelDescription = 'descriptionLabel';
-
-  //   const idGuide = screen.getByTestId('guideTestId');
-  //   const idCategory = screen.getByTestId('categoryTestId');
-  //   const idTitle = screen.getByTestId('titleTestId');
-  //   const idDescription = screen.getByTestId('descriptionTestId');
-
-  //   expect(idGuide).toHaveAttribute('aria-labelledby', textLabelGuide);
-  //   expect(idCategory).toHaveAttribute('aria-labelledby', textLabelCategory);
-  //   expect(idTitle).toHaveAttribute('aria-labelledby', textLabelTitle);
-  //   expect(idDescription).toHaveAttribute(
-  //     'aria-labelledby',
-  //     textLabelDescription,
-  //   );
-  // });
 
   test('Deve verificar se o formulário foi enviado', () => {
     render(<RegisterDigitalContent />);
