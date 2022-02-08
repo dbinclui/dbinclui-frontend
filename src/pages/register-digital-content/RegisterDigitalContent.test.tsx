@@ -1,12 +1,12 @@
 import React from 'react';
 import { RegisterDigitalContent } from '@pages/register-digital-content';
-import { getByLabelText, render, screen, waitFor } from '@testing-library/react';
+import { render, screen, waitFor } from '@testing-library/react';
 import '@testing-library/jest-dom';
 import { fireEvent } from '@testing-library/dom';
 import validateInput, { InputInterfaceProps } from './validator';
 import { postDigitalContent } from '@services/digitalContent';
-import { getCategories, CardCategoriesResponse } from '@services/categories';
-import CardGuidesResponse, { getGuides } from '@services/guides';
+import { getCategories } from '@services/categories';
+import { GuideInterface, getGuides } from '@services/guides';
 import { act } from 'react-dom/test-utils';
 import { AxiosResponse } from 'axios';
 import userEvent from '@testing-library/user-event';
@@ -57,7 +57,7 @@ describe('Página de cadastro de categorias', () => {
       data: {
         data: dataMockMenuItem,
       },
-    } as unknown as AxiosResponse<{ data: CardGuidesResponse[] }>);
+    } as unknown as AxiosResponse<{ data: GuideInterface[] }>);
 
     act(() => {
       render(<RegisterDigitalContent />);
@@ -87,8 +87,7 @@ describe('Página de cadastro de categorias', () => {
   //       data: dataMockMenuItem2,
   //     },
   //   } as unknown as AxiosResponse<{ data: CardGuidesResponse[] }>);
-    
-    
+
   //   const dataMockMenuItem = [
   //     {
   //       _id: 1,
@@ -104,7 +103,6 @@ describe('Página de cadastro de categorias', () => {
   //   getCategoryServiceMock.mockImplementation(() => {
   //     throw throwError;
   //   })
-    
 
   //   const labelText = 'select';
   //   const guideSelect = await screen.findAllByRole(labelText);
@@ -115,7 +113,6 @@ describe('Página de cadastro de categorias', () => {
   //   const guideSelected = screen.getByText(titleText);
 
   //   fireEvent.click(guideSelected);
-    
 
   //   await waitFor(() => {
   //     expect(getCategoryServiceMock).toBeCalled();
@@ -241,7 +238,7 @@ describe('Página de cadastro de categorias', () => {
   //       content: 'content 2',
   //     },
   //   ];
-    
+
   //   act(() => {
   //     render(<RegisterDigitalContent />);
 
@@ -300,7 +297,5 @@ test('Botão Voltar deve redirecionar para admin', () => {
   render(<RegisterDigitalContent />);
   const button = screen.getByTestId('back');
 
-  fireEvent.click(button);
-
-  expect(button.getAttribute('href')).toBe('/admin');
+  expect(button).toHaveAttribute('to', '/admin/listar-conteudo-digital');
 });

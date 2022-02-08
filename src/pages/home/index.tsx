@@ -1,32 +1,45 @@
-import React from 'react';
-import { Container, Grid } from '@mui/material';
+import React, { useEffect, useState } from 'react';
+import {
+  Container,
+  IconButton,
+  TextField,
+  Paper,
+  Grid,
+  CircularProgress,
+} from '@mui/material';
 import './style.css';
-import CardHome, { CardHomeProps } from '@components/CardHome';
+import CardHome from '@components/CardHome';
 import AccessibilityTypography from '@components/AccessibilityTypography';
+import { GuideInterface, getGuides } from '@services/guides';
 
 export interface HomeProps {}
 
-export const CardItems: CardHomeProps[] = [
-  {
-    title: 'Tradutor de libras',
-    path: '/tradutor',
-  },
-  {
-    title: 'Guia de acessibilidade',
-    path: '/guia-acessibilidade',
-  },
-  {
-    title: 'Guia da cultura surda',
-    path: '/guia-cultura-surda',
-  },
-];
-
 export const Home: React.FC<HomeProps> = (): JSX.Element => {
+  const [cards, setCards] = useState<GuideInterface[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(false);
+
+  async function getGuidesService() {
+    try {
+      const { data } = await getGuides();
+      setCards(data.data);
+      setError(false);
+    } catch (error) {
+      setError(true);
+    } finally {
+      setLoading(false);
+    }
+  }
+
+  useEffect(() => {
+    getGuidesService();
+  }, []);
+
   return (
     <>
       <Container>
         <Grid container justifyContent={'center'}>
-          <Grid item md={12} pt={'45px'} px={'20px'} justifyContent={'center'}>
+          <Grid item md={12} py={'45px'} px={'20px'} justifyContent={'center'}>
             <Grid maxWidth={'800px'} m="auto">
               <AccessibilityTypography textAlign={'center'}>
                 Bem-vindo ao DB INCLUI, o DB INCLUI é um web app que dissemina a
@@ -40,16 +53,25 @@ export const Home: React.FC<HomeProps> = (): JSX.Element => {
               </AccessibilityTypography>
             </Grid>
           </Grid>
-          <Grid item py={'75px'} md={12}>
+          <Grid item md={12}>
             <Grid container justifyContent={'center'}>
-              {CardItems.map((item, key) => (
-                <CardHome
-                  title={item.title}
-                  path={item.path}
-                  key={key}
-                  tabIndex={key}
-                />
-              ))}
+              {loading ? (
+                <CircularProgress color="secondary" />
+              ) : error ? (
+                <AccessibilityTypography variant="h1" className="error">
+                  Desculpe, ocorreu um erro ao carregar a página!
+                </AccessibilityTypography>
+              ) : (
+                cards.map((item, key) => (
+                  <CardHome
+                    guideId={item._id!}
+                    title={item.title}
+                    path={item.title.toLowerCase().replace(/[- ]+/g, '-')}
+                    key={key}
+                    tabIndex={key}
+                  />
+                ))
+              )}
             </Grid>
           </Grid>
         </Grid>
