@@ -46,10 +46,10 @@ export const ListDigitalContent: React.FC<
     if (value) {
       try {
         await deleteDigitalContent(id);
-        setSuccess(true)
-      } catch(error:any) {
-        setErrorMessage(error.response.data.message)
-        setError(true)
+        setSuccess(true);
+      } catch (error: any) {
+        setErrorMessage(error.response.data.message);
+        setError(true);
       }
     }
   }

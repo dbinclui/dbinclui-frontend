@@ -1,6 +1,7 @@
 import {
  getCategoriesByGuide,
  getDigitalContent,
+ putDigitalContent,
  //postDigitalContent,
 } from '@services/digitalContent';
 
@@ -79,6 +80,10 @@ it(`${postGuides.name}: Tratamento de erro quando o serviço não estiver dispon
 });
 });
  */
+
+
+
+
 describe('Testando o serviço "getCategoriesByGuide"', () => {
 beforeEach(() => {
   apiMock.get.mockClear();

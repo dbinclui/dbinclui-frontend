@@ -36,20 +36,8 @@ export const MenuItems: MenuItemsInterface[] = [
     href: '/sobre',
   },
   {
-    title: 'AJUDA',
-    href: '/ajuda',
-  },
-  {
     title: 'CONTATO',
     href: '/contato',
-  },
-  {
-    title: 'AVALIAR O APP',
-    href: '/avaliar-app',
-  },
-  {
-    title: 'LOGIN',
-    href: '/login',
   },
 ];
 

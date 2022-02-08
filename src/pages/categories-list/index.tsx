@@ -36,8 +36,6 @@ export const CategoriesList: React.FC<
     getContentCategories();
   }, []);
 
-  console.log(categories);
-
   const columns: GridColDef[] = [
     { field: '_id', headerName: 'ID', width: 300, hide: true },
     {

@@ -41,10 +41,34 @@ export const getDigitalContent = async () => {
   }
 };
 
+export const getDigitalContentById = async (id: string) => {
+  try {
+    return api.get< { data: DigitalContentInterface }> (`/digital-contents/${id}`);
+  } catch {
+    throw new Error('Serviço não disponível');
+  }
+};
+
 export const postDigitalContent = async (cardBody: FormData) => {
   try {
     return api.post<{ data: DigitalContentInterface[] }>(
       `/digital-contents/`,
+      cardBody,
+      {
+        headers: {
+          'Content-Type': 'multipart/form-data',
+        },
+      },
+    );
+  } catch (error) {
+    throw handleAxiosError(error);
+  }
+};
+
+export const putDigitalContent  = async (id: string, cardBody: FormData) => {
+  try {
+    return api.put<{ data: DigitalContentInterface[] }>(
+      `/digital-contents/${id}`,
       cardBody,
       {
         headers: {
@@ -64,3 +88,4 @@ export const deleteDigitalContent = async (_id: string) => {
     throw handleAxiosError(error);
   }
 }
+
