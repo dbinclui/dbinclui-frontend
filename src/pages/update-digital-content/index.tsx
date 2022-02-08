@@ -389,7 +389,7 @@ export const UpdateDigitalContent: React.FC<
       )}
       {success && (
         <Notification
-          message="Cadastro realizado com sucesso! ✔"
+          message="Atualização realizada com sucesso! ✔"
           variant="success"
           onClose={() => {
             setSuccess(false);
