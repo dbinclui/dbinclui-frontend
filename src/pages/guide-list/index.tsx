@@ -3,13 +3,7 @@ import { Link } from 'react-router-dom';
 import { DataGrid, GridColDef } from '@mui/x-data-grid';
 import { Button, Box, CircularProgress, Grid } from '@mui/material';
 import AccessibilityTypography from '@components/AccessibilityTypography';
-import {
-  deleteGuide,
-  GuideInterface,
-  getGuides,
-  getGuideWithCategoriesAndContent,
-  GuideContent,
-} from '@services/guides';
+import { deleteGuide, GuideInterface, getGuides } from '@services/guides';
 import { CreateSharp } from '@mui/icons-material';
 import DeleteIcon from '@mui/icons-material/Delete';
 import styles from './styles';
@@ -25,7 +19,6 @@ export const GuideList: React.FC<
   const [errorGetList, setErrorGetList] = useState(false);
 
   const [loading, setLoading] = useState(true);
-  const [information, setInformation] = useState(false);
   const [confirmation, setConfirmation] = useState(false);
   const [id, setId] = useState('');
   const [error, setError] = useState(false);
