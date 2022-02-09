@@ -111,13 +111,6 @@ export const UpdateCategory: React.FC<
           </AccessibilityTypography>
         </Box>
         <Box padding={'1rem 3rem'} sx={styles.content} component="section">
-          <Button
-            variant="contained"
-            sx={styles.buttonDigitalContent}
-            role="button"
-          >
-            Buscar conteúdo digital
-          </Button>
           <Box
             onSubmit={handleSubmit}
             component="form"

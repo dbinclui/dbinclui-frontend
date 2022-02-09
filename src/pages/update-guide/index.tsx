@@ -44,9 +44,9 @@ export const UpdateGuide: React.FC<UpdateGuideProps> = (): JSX.Element => {
       setErrorMessage(error.message);
     } finally {
       setLoading(false);
-      if(data.data) {
+      if (data.data) {
         title.current!.value = data!.data.title;
-      description.current!.value = data!.data.content;
+        description.current!.value = data!.data.content;
       }
     }
   }
@@ -91,13 +91,6 @@ export const UpdateGuide: React.FC<UpdateGuideProps> = (): JSX.Element => {
               </AccessibilityTypography>
             </Box>
             <Box padding={'1rem 3rem'} sx={styles.content} component="section">
-              <Button
-                variant="contained"
-                sx={styles.buttonDigitalContent}
-                role="button"
-              >
-                Buscar conteúdo digital
-              </Button>
               <Box
                 component="form"
                 onSubmit={handleSubmit}

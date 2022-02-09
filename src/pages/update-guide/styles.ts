@@ -25,18 +25,6 @@ const headerTitle: SxProps<Theme> = {
   padding: '2rem 0',
 };
 
-const buttonDigitalContent: SxProps<Theme> = {
-  mr: 0,
-  ml: 'auto',
-  mb: '0.8rem',
-  display: 'block',
-  padding: '0.3rem 1rem',
-  fontWeight: '700',
-  textTransform: 'none',
-  backgroundColor: (theme) => theme.palette.secondary.dark,
-  color: (theme) => theme.palette.text.disabled,
-};
-
 const labelInput: SxProps<Theme> = {
   color: (theme) => theme.palette.secondary.main,
   fontWeight: 'bold',
@@ -73,7 +61,6 @@ const styles = {
   content,
   header,
   headerTitle,
-  buttonDigitalContent,
   labelInput,
   input,
   buttonWrapper,
