@@ -84,7 +84,8 @@ describe('Componente do Home', () => {
     expect(guideMedia).toBeVisible();
     expect(guideMedia).toHaveAttribute(
       'src',
-      mockGuideWithCategoriesAndContent.digitalContents[0].filePaths[0].filePath,
+      mockGuideWithCategoriesAndContent.digitalContents[0].filePaths[0]
+        .filePath,
     );
 
     const titleCategory = await screen.findByText(

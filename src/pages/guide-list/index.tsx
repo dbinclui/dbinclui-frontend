@@ -50,7 +50,7 @@ export const GuideList: React.FC<
 
   useEffect(() => {
     getGuideListService();
-  }, [guideList]);
+  }, [success]);
 
   const columns: GridColDef[] = [
     {
@@ -84,6 +84,7 @@ export const GuideList: React.FC<
       headerName: 'Excluir',
       renderCell: (params) => (
         <Button
+          data-testid="delete"
           onClick={() => {
             setConfirmation(true);
             setId(params.value);
@@ -172,19 +173,20 @@ export const GuideList: React.FC<
               >
                 Novo
               </Button>
-              <Button
-                data-testid="back"
-                component={Link}
-                to="/admin"
-                sx={styles.button}
-                variant="contained"
-                type="reset"
-                role="button"
-                aria-label="BOTÃO VOLTAR"
-                tabIndex={4}
-              >
-                Voltar
-              </Button>
+              <Grid item md={6}>
+                <Button
+                  sx={styles.button}
+                  variant="contained"
+                  type="reset"
+                  role="button"
+                  data-testid="back"
+                  component={Link}
+                  to="/admin"
+                  aria-label="BOTÃO VOLTAR"
+                >
+                  Voltar
+                </Button>
+              </Grid>
             </Box>
           </>
         )}
