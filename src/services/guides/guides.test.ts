@@ -4,6 +4,7 @@ import {
   getGuideWithCategoriesAndContent,
   putGuides,
   getGuideById,
+  deleteGuide,
 } from '@services/guides';
 import api from '@services/api';
 
@@ -79,10 +80,10 @@ describe('Testando o serviço "putGuides"', () => {
 
   it(`Quando ${putGuides.name} é chamado, o resultado deve retornar true
   `, async () => {
-    const id = ':id';
+    const id = '1';
     const title = 'Test title';
     const content = 'Teste content';
-    const pathExpect = '/guides/:id';
+    const pathExpect = `/guides/${id}`;
     const resultExpect = true;
     apiMock.put.mockResolvedValue(resultExpect);
     const result = await putGuides(id, { title, content });
@@ -163,5 +164,38 @@ describe('Testando o serviço "getGuideById"', () => {
     expect(apiMock.get).toBeCalledTimes(1);
     expect(apiMock.get).toThrow(Error);
     expect(apiMock.get).toThrow(errorMessage);
+  });
+});
+
+describe('Testando o serviço "deleteGuide', () => {
+  beforeEach(() => {
+    apiMock.delete.mockClear();
+  });
+
+  it(`Quando ${deleteGuide.name} é chamado, o retorno deve ser true`, async () => {
+    const id = '1';
+    const resultExpect = true;
+    const pathExpect = `guides/${id}`;
+    apiMock.delete.mockResolvedValue(resultExpect);
+
+    const result = await deleteGuide(id);
+
+    expect(result).toStrictEqual(resultExpect);
+    expect(apiMock.delete).toBeCalledWith(pathExpect);
+  });
+
+  it(`${deleteGuide.name}: Tratamento de erro quando o serviço não estiver disponível`, async () => {
+    const id = '1';
+    const errorMessage = 'Serviço não disponível';
+    const throwError = new Error(errorMessage);
+    apiMock.delete.mockImplementation(() => {
+      throw throwError;
+    });
+    try {
+      await deleteGuide(id);
+    } catch {}
+    expect(apiMock.delete).toBeCalledTimes(1);
+    expect(apiMock.delete).toThrow(Error);
+    expect(apiMock.delete).toThrow(errorMessage);
   });
 });

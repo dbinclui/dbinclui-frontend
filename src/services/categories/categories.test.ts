@@ -2,6 +2,8 @@ import {
   getCategories,
   getCategoriesByGuide,
   postCategories,
+  getCategoriesById,
+  putCategories
 } from '@services/categories';
 
 import api from '@services/api';
@@ -105,5 +107,89 @@ describe('Testando o serviço "postCategories"', () => {
     expect(apiMock.post).toBeCalledTimes(1);
     expect(apiMock.post).toThrow(Error);
     expect(apiMock.post).toThrow(errorMessage);
+  });
+});
+
+describe('Testando o serviço "getCategoriesById"', () => {
+  beforeEach(() => {
+    apiMock.get.mockClear();
+  });
+
+  it(`${getCategoriesById.name}: Devolvendo conteúdo "getCategoriesById"`, async () => {
+    const id = '1';
+    const pathExpected = `categories/${id}`
+    apiMock.get.mockResolvedValue([]);
+
+    const result = await getCategoriesById(id);
+
+    expect(apiMock.get).toBeCalledTimes(1);
+    expect(apiMock.get).toBeCalledWith(pathExpected);
+    expect(result).toStrictEqual([]);
+  });
+
+  it(`${getCategoriesById.name}: Tratamento de erro quando o serviço não estiver disponível`, async () => {
+    const id = '1';
+    const pathExpected = `categories/${id}`
+    const errorMessage = 'Serviço não disponível';
+    const throwError = new Error(errorMessage);
+    apiMock.get.mockImplementation(() => {
+      throw throwError;
+    });
+    
+    try {
+      await getCategoriesById(id);
+    } catch {}
+    expect(apiMock.get).toBeCalledTimes(1);
+    expect(apiMock.get).toBeCalledWith(pathExpected);
+    expect(apiMock.get).toThrow(Error);
+    expect(apiMock.get).toThrow(errorMessage);
+  });
+});
+
+describe('Testando o serviço "putCategories"', () => {
+  beforeEach(() => {
+    apiMock.put.mockClear();
+  });
+
+  it(`Quando ${putCategories.name} é chamado, o resultado deve retornar true
+  `, async () => {
+    const id = '1';
+    const putCategoryBody = {
+      title: 'title-teste',
+      shortDescription: 'shortDescription-teste',
+      guide: '1',
+    };
+
+    const pathExpect = `/categories/${id}`;
+    const resultExpect = true;
+    apiMock.put.mockResolvedValue(resultExpect);
+
+    const result = await putCategories(id, putCategoryBody);
+    expect(result).toBe(resultExpect);
+    expect(apiMock.put).toBeCalledWith(pathExpect, putCategoryBody);
+  });
+
+  it(`${putCategories.name}: Tratamento de erro quando o serviço não estiver disponível`, async () => {
+    const id = '1';
+    const putCategoryBody = {
+      title: 'title-teste',
+      shortDescription: 'shortDescription-teste',
+      guide: '1',
+    };
+
+    const pathExpect = `/categories/${id}`;
+    const errorMessage = 'Serviço não disponível';
+    const throwError = new Error(errorMessage);
+    apiMock.put.mockImplementation(() => {
+      throw throwError;
+    });
+
+    try {
+      await putCategories(id, putCategoryBody);
+    } catch {}
+    expect(apiMock.put).toBeCalledTimes(1);
+    expect(apiMock.put).toThrow(Error);
+    expect(apiMock.put).toThrow(errorMessage);
+    expect(apiMock.put).toBeCalledWith(pathExpect, putCategoryBody);
   });
 });

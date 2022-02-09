@@ -43,11 +43,6 @@ describe('Página para atualizar categorias', () => {
     content: 'test',
   };
   beforeEach(() => {
-<<<<<<< HEAD
-    jest.clearAllMocks();
-  });
-
-=======
     getCategoriesByIdMock.mockResolvedValue({
       data: { data: mockCategory },
     } as any);
@@ -78,7 +73,6 @@ describe('Página para atualizar categorias', () => {
     expect(textArea).toBeVisible();
   });
 
->>>>>>> 8cee1fbf6f239063e39a99ee5d394514ecdf9aac
   test('Deve chamar os guias quando o componente for renderizado', async () => {
     const dataMockMenuItem = [
       {
@@ -154,19 +148,12 @@ describe('Página para atualizar categorias', () => {
       true as unknown as Promise<AxiosResponse>,
     );
     const textoNoBotaoSubmit = 'Atualizar';
-<<<<<<< HEAD
-    const NotificationMessage = 'Cadastro realizado com sucesso! ✔';
-    const botaoSubmit = screen.getByText(textoNoBotaoSubmit);
-
-    userEvent.click(botaoSubmit);
-=======
     const NotificationMessage = 'Atualização realizada com sucesso! ✔';
     const botaoSubmit = await screen.findByText(textoNoBotaoSubmit);
     // eslint-disable-next-line testing-library/no-unnecessary-act
     act(() => {
       userEvent.click(botaoSubmit);
     });
->>>>>>> 8cee1fbf6f239063e39a99ee5d394514ecdf9aac
 
     const NotificationCard = await screen.findByText(NotificationMessage);
 
@@ -247,7 +234,6 @@ describe('Página para atualizar categorias', () => {
     const ErrorMessage = await screen.findByText(errorMessage);
     expect(ErrorMessage).toBeVisible();
   });
-<<<<<<< HEAD
 
   test('Botão Voltar deve redirecionar para listar categorias', () => {
     render(<UpdateCategory />);
@@ -259,9 +245,7 @@ describe('Página para atualizar categorias', () => {
   test('Deve chamar as funções passadas para a notificação de erro quando esta fechar', async () => {
     const errorMessage = 'Erro';
     const throwError = new Error(errorMessage);
-    validateInputMock.mockImplementation(() => {
-      throw throwError;
-    });
+    validateInputMock.mockRejectedValue(throwError);
 
     render(<UpdateCategory />);
 
@@ -297,7 +281,7 @@ describe('Página para atualizar categorias', () => {
     render(<UpdateCategory />);
 
     validateInputMock.mockResolvedValue(true as unknown as InputInterface);
-    postCategoryMock.mockResolvedValue(
+    putCategoryMock.mockResolvedValue(
       true as unknown as Promise<AxiosResponse>,
     );
 
@@ -306,21 +290,13 @@ describe('Página para atualizar categorias', () => {
 
     userEvent.click(submitButton);
 
-    const notificationMessage = 'Cadastro realizado com sucesso! ✔';
+    const notificationMessage = 'Atualização realizada com sucesso! ✔';
     const successNotification = await screen.findByText(notificationMessage);
 
-    const closeButtonTitle = 'Fechar';
-    const closeButton = await screen.findByTitle(closeButtonTitle);
+    const closeButtonTitle = 'CloseIcon';
+    const closeButton = await screen.findByTestId(closeButtonTitle);
     userEvent.click(closeButton);
 
     expect(successNotification).not.toBeVisible();
   });
-=======
-  test('Botão Voltar deve redirecionar para listar categorias', () => {
-    render(<UpdateCategory />);
-    const button = screen.getByTestId('back');
-
-    expect(button).toHaveAttribute('to', '/admin/listar-categorias');
-  });
->>>>>>> 8cee1fbf6f239063e39a99ee5d394514ecdf9aac
 });
