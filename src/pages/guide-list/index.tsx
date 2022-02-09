@@ -173,20 +173,19 @@ export const GuideList: React.FC<
               >
                 Novo
               </Button>
-              <Grid item md={6}>
-                <Button
-                  sx={styles.button}
-                  variant="contained"
-                  type="reset"
-                  role="button"
-                  data-testid="back"
-                  component={Link}
-                  to="/admin"
-                  aria-label="BOTÃO VOLTAR"
-                >
-                  Voltar
-                </Button>
-              </Grid>
+
+              <Button
+                sx={styles.button}
+                variant="contained"
+                type="reset"
+                role="button"
+                data-testid="back"
+                component={Link}
+                to="/admin"
+                aria-label="BOTÃO VOLTAR"
+              >
+                Voltar
+              </Button>
             </Box>
           </>
         )}
