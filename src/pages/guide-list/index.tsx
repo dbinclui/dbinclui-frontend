@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { DataGrid, GridColDef } from '@mui/x-data-grid';
+import { DataGrid, GridColDef, ptBR } from '@mui/x-data-grid';
 import { Button, Box, CircularProgress, Grid } from '@mui/material';
 import AccessibilityTypography from '@components/AccessibilityTypography';
 import { deleteGuide, GuideInterface, getGuides } from '@services/guides';
@@ -158,6 +158,7 @@ export const GuideList: React.FC<
               sx={styles.table}
               pageSize={10}
               rowsPerPageOptions={[10]}
+              localeText={ptBR.components.MuiDataGrid.defaultProps.localeText}
             />
             <Box sx={styles.boxButton}>
               <Button
