@@ -4,10 +4,16 @@ import AccessibilityTypography from '@components/AccessibilityTypography';
 import styles from './styles';
 import { Box, Button, CircularProgress, Grid } from '@mui/material';
 import { Link } from 'react-router-dom';
-import { CategoryInterface, getCategories } from '@services/categories';
+import {
+  CategoryInterface,
+  getCategories,
+  deleteCategory,
+} from '@services/categories';
+import DialogBoxConfirmation from '@components/DialogBox/DialogBoxConfirmation';
 import DeleteIcon from '@mui/icons-material/Delete';
 import { CreateSharp } from '@mui/icons-material';
 import { GuideInterface } from '@services/guides';
+import Notification from '@components/Notification';
 
 export interface CategoriesListProps {}
 
@@ -15,16 +21,19 @@ export const CategoriesList: React.FC<
   CategoriesListProps
 > = (): JSX.Element => {
   const [categories, setCategories] = useState<CategoryInterface[]>([]);
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const [successGetCategories, setSuccessGetCategories] = useState(false);
   const [errorGetCategories, setErrorGetCategories] = useState(false);
   const [loading, setLoading] = useState(true);
 
+  const [confirmation, setConfirmation] = useState(false);
+  const [id, setId] = useState('');
+  const [error, setError] = useState(false);
+  const [success, setSuccess] = useState(false);
+  const [errorMessage, setErrorMessage] = useState('');
+
   async function getContentCategories() {
     try {
-      const response = await getCategories();
-      setCategories(response.data.data);
-      setSuccessGetCategories(true);
+      const { data } = await getCategories();
+      setCategories(data.data);
     } catch {
       setErrorGetCategories(true);
     } finally {
@@ -32,11 +41,21 @@ export const CategoriesList: React.FC<
     }
   }
 
+  async function handleDelete(value: boolean) {
+    if (value) {
+      try {
+        await deleteCategory(id);
+        setSuccess(true);
+      } catch (error: any) {
+        setErrorMessage(error.response.data.message);
+        setError(true);
+      }
+    }
+  }
+
   useEffect(() => {
     getContentCategories();
-  }, []);
-
-  console.log(categories);
+  }, [success]);
 
   const columns: GridColDef[] = [
     { field: '_id', headerName: 'ID', width: 300, hide: true },
@@ -78,9 +97,13 @@ export const CategoriesList: React.FC<
       headerName: 'Excluir',
       renderCell: (params) => (
         <Button
-          href={params.value}
+          onClick={() => {
+            setConfirmation(true);
+            setId(params.value);
+          }}
           startIcon={<DeleteIcon />}
           sx={{ color: 'text.primary' }}
+          data-testid="excluir"
         ></Button>
       ),
     },
@@ -96,12 +119,22 @@ export const CategoriesList: React.FC<
           ? category.shortDescription.substring(0, 30) + '...'
           : category.shortDescription,
       edit: '/admin/atualizar-categoria/' + category._id,
-      delete: '/admin/excluir-categoria/' + category._id,
+      delete: category._id,
     };
   });
 
   return (
     <>
+      {confirmation && (
+        <Box>
+          <DialogBoxConfirmation
+            title="Deseja excluir essa categoria?"
+            confirmation={confirmation}
+            setConfirmation={setConfirmation}
+            onClose={handleDelete}
+          />
+        </Box>
+      )}
       <AccessibilityTypography
         role="heading"
         tabIndex={1}
@@ -169,6 +202,25 @@ export const CategoriesList: React.FC<
               </Button>
             </Box>
           </>
+        )}
+        {error && (
+          <Notification
+            message={`${errorMessage} 🤔`}
+            variant="error"
+            onClose={() => {
+              setError(false);
+              setErrorMessage('');
+            }}
+          />
+        )}
+        {success && (
+          <Notification
+            message="Categoria deletada com sucesso! ✔"
+            variant="success"
+            onClose={() => {
+              setSuccess(false);
+            }}
+          />
         )}
       </Box>
     </>

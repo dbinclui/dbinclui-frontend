@@ -36,13 +36,13 @@ export const putGuides = async (id: string, cardBody: GuideInterface) => {
   }
 };
 
-export const getGuideById = async (id: string) => {
-  try {
-    return api.get<{ data: GuideInterface }>(`guides/${id}`);
-  } catch {
-    throw new Error('Serviço não disponível');
-  }
-};
+  export const getGuideById = async (id: string) => {
+    try {
+      return api.get< { data: GuideInterface }> (`guides/${id}`);
+    } catch {
+      throw new Error('Serviço não disponível');
+    }
+  };
 
 export const getGuideWithCategoriesAndContent = async (id: string) => {
   try {

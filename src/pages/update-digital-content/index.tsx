@@ -1,5 +1,4 @@
 import React, { useRef, useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
 import {
   Button,
   Box,
@@ -17,23 +16,35 @@ import styles from './styles';
 import FileUploadRounded from '@mui/icons-material/FileUploadRounded';
 import ClearIcon from '@mui/icons-material/Clear';
 import { GuideInterface, getGuides } from '@services/guides';
+import { DigitalContentInterface, getDigitalContentById, putDigitalContent } from '@services/digitalContent';
 import { CategoryInterface, getCategoriesByGuide } from '@services/categories';
 import validateInput, { InputInterfaceProps } from './validator';
 import Notification from '@components/Notification';
 import AccessibilityTypography from '@components/AccessibilityTypography';
-import { postDigitalContent } from '@services/digitalContent';
+import { Link, useParams } from 'react-router-dom';
+
 
 export interface UpdateDigitalContentProps {}
+
+export interface UpdateDigitalInterface {
+  title?: string | undefined;
+  content?: string | undefined;
+  id?: string | undefined;
+  category: string | undefined;
+  shortDescription: string | undefined;
+}
 
 export const UpdateDigitalContent: React.FC<
   UpdateDigitalContentProps
 > = (): JSX.Element => {
-  const guide = useRef<HTMLInputElement>();
-  const category = useRef<HTMLInputElement>();
   const title = useRef<HTMLInputElement>();
-  const description = useRef<HTMLInputElement>();
+  const shortDescription = useRef<HTMLInputElement>();
   const fileRef = useRef<HTMLInputElement>(null);
-
+  const parametros = useParams();
+  const id: string = parametros.id!;
+  
+  const [guideId, setGuideId] = useState('');
+  const [categoryId, setCategoryId] = useState('');
   const [files, setFiles] = useState<File[]>([]);
   const [guides, setGuides] = useState<GuideInterface[]>([]);
   const [categories, setCategories] = useState<CategoryInterface[]>([]);
@@ -45,40 +56,33 @@ export const UpdateDigitalContent: React.FC<
   const [errorMessageGetGuides, setErrorMessageGetGuides] = useState('');
   const [successGetCategories, setSuccessGetCategories] = useState(false);
   const [errorGetCategories, setErrorGetCategories] = useState(true);
-  const [errorMessageGetCategories, setErrorMessageGetCategories] =
-    useState('');
+  const [errorMessageGetCategories, setErrorMessageGetCategories] = useState('');
+  const [, setGuideText] = useState<string | undefined>('');
+  const [, setCategoryText] = useState<string | undefined>('');
 
-  async function handleSubmit(event: React.FormEvent) {
-    event.preventDefault();
 
-    const cardBody = {
-      title: title.current?.value || '',
-      shortDescription: description.current?.value || '',
-      guide: guide.current?.value || '',
-      category: category.current?.value || '',
-    } as { [key: string]: any };
-
-    const formData = new FormData();
-
-    Object.keys(cardBody).forEach((key) => {
-      formData.append(key, cardBody[key]);
-    });
-
-    files.forEach((file) => {
-      formData.append('files', file);
-    });
-
+  async function getGuidesService(id: string) {
+    let data: { data: DigitalContentInterface };
     try {
-      await validateInput({ ...cardBody, file: files } as InputInterfaceProps);
-      await postDigitalContent(formData);
-      setSuccess(true);
+      data = (await getDigitalContentById(id)).data;
+      setError(false);
+      setGuideText(data!.data?.guide?.title)
+      setCategoryText(data!.data.category?.title)
+      setCategoryId(data.data.category?._id!);
+      setGuideId(data.data.guide._id!);
     } catch (error: any) {
-      setErrorMessage(error.message);
       setError(true);
+      setErrorMessage(error.message);
+    } finally {
+      title.current!.value = data!.data.title;
+      shortDescription.current!.value = data!.data.shortDescription;
+
     }
   }
 
+
   const getDigitalContentCategories = async (id: string) => {
+    
     try {
       const { data } = await getCategoriesByGuide(id);
       setCategories(data.data);
@@ -88,6 +92,7 @@ export const UpdateDigitalContent: React.FC<
       setErrorMessageGetCategories('Não foram encontradas as categorias');
       setErrorGetCategories(true);
     } finally {
+      
     }
   };
 
@@ -104,10 +109,47 @@ export const UpdateDigitalContent: React.FC<
   };
 
   useEffect(() => {
-    getDigitalContentCategories('id');
-    getDigitalContentGuides();
-    setErrorMessageGetCategories('Escolha o Guia');
-  }, []);
+    getGuidesService(id);
+    getDigitalContentCategories(id);
+    getDigitalContentGuides();  
+  }, [id]);
+
+  useEffect(() => {
+    if(guideId) getDigitalContentCategories(guideId);
+  }, [guideId]);
+
+
+  async function handleSubmit(event: React.FormEvent) {
+    event.preventDefault();
+
+    const cardBody = {
+      title: title.current?.value || '',
+      shortDescription: shortDescription.current?.value || '',
+      guide: guideId || '',
+      category: categoryId || '',
+    } as { [key: string]: any };
+
+    const formData = new FormData();
+
+    Object.keys(cardBody).forEach((key) => {
+      formData.append(key, cardBody[key]);
+    });
+
+    files.forEach((file) => {
+      formData.append('files', file);
+    });
+
+    try {
+      console.log(cardBody);
+      await validateInput({ ...cardBody, file: files } as InputInterfaceProps);
+      await putDigitalContent(id, formData);
+      setSuccess(true);
+    } catch (error: any) {
+      setErrorMessage(error.message);
+      setError(true);
+    }
+  }
+
 
   return (
     <Grid container alignItems={'center'} justifyContent={'center'} role="main">
@@ -181,10 +223,9 @@ export const UpdateDigitalContent: React.FC<
               <AccessibilityTypography>Guia:</AccessibilityTypography>
             </InputLabel>
 
-            {successGetGuides && (
+            {successGetGuides && guides.length > 0 && (
               <Select
-                defaultValue=""
-                inputRef={guide}
+                
                 labelId="guideLabel"
                 required
                 data-testid="guideTestId"
@@ -193,8 +234,10 @@ export const UpdateDigitalContent: React.FC<
                 name="guide"
                 id="guide"
                 sx={[styles.input, styles.select]}
+                value={guideId}
                 onChange={(event) => {
-                  getDigitalContentCategories(event.target.value);
+                  setGuideId(event.target.value)
+                  setCategoryId('');
                 }}
               >
                 {guides.map((guides, index) => (
@@ -225,8 +268,7 @@ export const UpdateDigitalContent: React.FC<
             </InputLabel>
             {successGetCategories && (
               <Select
-                defaultValue=""
-                inputRef={category}
+              
                 labelId="categoryLabel"
                 data-testid="categoryTestId"
                 role="select"
@@ -234,6 +276,10 @@ export const UpdateDigitalContent: React.FC<
                 name="category"
                 id="category"
                 sx={[styles.input, styles.select]}
+                value={categoryId}
+                onChange={(event) => {
+                  setCategoryId(event.target.value)
+                }}
               >
                 {categories.map((cat, index) => (
                   <MenuItem
@@ -276,7 +322,7 @@ export const UpdateDigitalContent: React.FC<
               <AccessibilityTypography>Descrição:</AccessibilityTypography>
             </InputLabel>
             <InputBase
-              inputRef={description}
+              inputRef={shortDescription}
               multiline={true}
               minRows={5}
               role="input"
@@ -305,13 +351,13 @@ export const UpdateDigitalContent: React.FC<
               </Grid>
               <Grid item md={6} sx={styles.buttonWrapper}>
                 <Button
-                  component={Link}
                   sx={styles.button}
                   variant="contained"
                   type="reset"
                   role="button"
                   data-testid="back"
-                  to="/admin"
+                  component={Link}
+                  to="/admin/listar-conteudo-digital"
                 >
                   Voltar
                 </Button>
@@ -336,10 +382,9 @@ export const UpdateDigitalContent: React.FC<
           variant="success"
           onClose={() => {
             setSuccess(false);
+            window.location.reload();
           }}
-        >
-          sucesso
-        </Notification>
+        />
       )}
     </Grid>
   );

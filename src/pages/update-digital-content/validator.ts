@@ -19,8 +19,8 @@ async function validateInput(
       .required('O título é obrigatório'),
     shortDescription: yup.string().required('A descrição é obrigatória'),
     file: yup
-      .mixed()
-      .required('O arquivo é obrigatório'),
+    .mixed()
+    .required('O arquivo é obrigatório'),
   });
 
   return await schema.validate(data);
