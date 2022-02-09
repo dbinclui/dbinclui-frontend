@@ -265,6 +265,40 @@ describe('Página de cadastro de categorias', () => {
     fireEvent.click(button);
   });
 
+  test('Deve verificar se o arquivo é excluido quando o botão de exclusão for clicado', async () => {
+    const mockFileNames = ['teste.jpg', 'teste.png'];
+
+    render(<RegisterDigitalContent />);
+
+    // add files
+    const input = screen.getByTestId('inputFile');
+    fireEvent.change(input, {
+      target: {
+        files: mockFileNames.map((fileName) => ({
+          name: fileName,
+        })),
+      },
+    });
+
+    const removeButtonLabel = 'Remover arquivo teste.jpg';
+    const removeButton = screen.getByLabelText(removeButtonLabel);
+
+    // check if both files are rendered before deletion
+    const elementsFileName = mockFileNames.map((fileName) =>
+      screen.getByText(fileName),
+    );
+    elementsFileName.forEach((element) => {
+      expect(element).toBeVisible();
+    });
+
+    userEvent.click(removeButton);
+
+    // here teste.jpg (the removed file) is the second one because for some reason,
+    // when we add the files with fireEvent they are added in reverse order 🤷
+    expect(elementsFileName[0]).toBeVisible();
+    expect(elementsFileName[1]).not.toBeVisible();
+  });
+
   test('Botão Voltar deve redirecionar para admin', () => {
     render(<RegisterDigitalContent />);
     const button = screen.getByTestId('back');
