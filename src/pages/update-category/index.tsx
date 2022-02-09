@@ -95,6 +95,7 @@ export const UpdateCategory: React.FC<
       setSuccess(true);
       title.current!.value = '';
       shortDescription.current!.value = '';
+      setGuideId('');
     } catch (error: any) {
       setErrorMessage(error.message);
       setError(true);

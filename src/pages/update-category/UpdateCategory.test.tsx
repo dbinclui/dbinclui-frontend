@@ -8,7 +8,6 @@ import { GuideInterface, getGuides } from '@services/guides';
 import { act } from 'react-dom/test-utils';
 import { AxiosResponse } from 'axios';
 import { UpdateCategory } from '@pages/update-category';
-import { useParams } from 'react-router';
 
 jest.mock('./validator');
 jest.mock('@services/categories');
