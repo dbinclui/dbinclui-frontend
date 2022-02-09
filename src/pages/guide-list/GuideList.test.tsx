@@ -24,26 +24,12 @@ jest.mock('react-router-dom', () => {
 });
 describe('Teste da página de listagem de guias', () => {
 
-  const setState = jest.fn();
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    const useStateMock: any = (initState: any) => [initState, setState];
-
   afterEach(() => {
       jest.clearAllMocks();
   });
 
   beforeEach(() => {
     getGuidesMock.mockClear();
-  });
-
-  test('Deve validar o input quando o botão de submit for clicado', async () => {
-    // eslint-disable-next-line testing-library/no-unnecessary-act
-    render(<GuideList />);
-    const textoBotaoSubmit = 'Voltar';
-    const botaoSubmit = await screen.findByText(textoBotaoSubmit);
-    userEvent.click(botaoSubmit);
-    expect(botaoSubmit).toHaveAttribute('to', '/admin');
-   
   });
  
   test('Deve listar os Guias', async () => {
@@ -66,16 +52,6 @@ describe('Teste da página de listagem de guias', () => {
     const title = screen.getByText('LISTAGEM DE GUIAS');
     expect(title).toBeInTheDocument();
   });
-
-  test('Deve chamar a função passada no botão novo', () => {
-    render(
-      <GuideList
-      />,
-    );
-    const callback = jest.fn();
-    expect(callback).toBeCalled();
-  });
-
   
 });
 
