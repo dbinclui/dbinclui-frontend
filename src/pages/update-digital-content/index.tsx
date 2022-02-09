@@ -16,13 +16,16 @@ import styles from './styles';
 import FileUploadRounded from '@mui/icons-material/FileUploadRounded';
 import ClearIcon from '@mui/icons-material/Clear';
 import { GuideInterface, getGuides } from '@services/guides';
-import { DigitalContentInterface, getDigitalContentById, putDigitalContent } from '@services/digitalContent';
+import {
+  DigitalContentInterface,
+  getDigitalContentById,
+  putDigitalContent,
+} from '@services/digitalContent';
 import { CategoryInterface, getCategoriesByGuide } from '@services/categories';
 import validateInput, { InputInterfaceProps } from './validator';
 import Notification from '@components/Notification';
 import AccessibilityTypography from '@components/AccessibilityTypography';
 import { Link, useParams } from 'react-router-dom';
-
 
 export interface UpdateDigitalContentProps {}
 
@@ -42,7 +45,7 @@ export const UpdateDigitalContent: React.FC<
   const fileRef = useRef<HTMLInputElement>(null);
   const parametros = useParams();
   const id: string = parametros.id!;
-  
+
   const [guideId, setGuideId] = useState('');
   const [categoryId, setCategoryId] = useState('');
   const [files, setFiles] = useState<File[]>([]);
@@ -56,18 +59,18 @@ export const UpdateDigitalContent: React.FC<
   const [errorMessageGetGuides, setErrorMessageGetGuides] = useState('');
   const [successGetCategories, setSuccessGetCategories] = useState(false);
   const [errorGetCategories, setErrorGetCategories] = useState(true);
-  const [errorMessageGetCategories, setErrorMessageGetCategories] = useState('');
+  const [errorMessageGetCategories, setErrorMessageGetCategories] =
+    useState('');
   const [, setGuideText] = useState<string | undefined>('');
   const [, setCategoryText] = useState<string | undefined>('');
-
 
   async function getGuidesService(id: string) {
     let data: { data: DigitalContentInterface };
     try {
       data = (await getDigitalContentById(id)).data;
       setError(false);
-      setGuideText(data!.data?.guide?.title)
-      setCategoryText(data!.data.category?.title)
+      setGuideText(data!.data?.guide?.title);
+      setCategoryText(data!.data.category?.title);
       setCategoryId(data.data.category?._id!);
       setGuideId(data.data.guide._id!);
     } catch (error: any) {
@@ -76,13 +79,10 @@ export const UpdateDigitalContent: React.FC<
     } finally {
       title.current!.value = data!.data.title;
       shortDescription.current!.value = data!.data.shortDescription;
-
     }
   }
 
-
   const getDigitalContentCategories = async (id: string) => {
-    
     try {
       const { data } = await getCategoriesByGuide(id);
       setCategories(data.data);
@@ -92,7 +92,6 @@ export const UpdateDigitalContent: React.FC<
       setErrorMessageGetCategories('Não foram encontradas as categorias');
       setErrorGetCategories(true);
     } finally {
-      
     }
   };
 
@@ -111,13 +110,12 @@ export const UpdateDigitalContent: React.FC<
   useEffect(() => {
     getGuidesService(id);
     getDigitalContentCategories(id);
-    getDigitalContentGuides();  
+    getDigitalContentGuides();
   }, [id]);
 
   useEffect(() => {
-    if(guideId) getDigitalContentCategories(guideId);
+    if (guideId) getDigitalContentCategories(guideId);
   }, [guideId]);
-
 
   async function handleSubmit(event: React.FormEvent) {
     event.preventDefault();
@@ -149,7 +147,6 @@ export const UpdateDigitalContent: React.FC<
       setError(true);
     }
   }
-
 
   return (
     <Grid container alignItems={'center'} justifyContent={'center'} role="main">
@@ -225,7 +222,6 @@ export const UpdateDigitalContent: React.FC<
 
             {successGetGuides && guides.length > 0 && (
               <Select
-                
                 labelId="guideLabel"
                 required
                 data-testid="guideTestId"
@@ -236,7 +232,7 @@ export const UpdateDigitalContent: React.FC<
                 sx={[styles.input, styles.select]}
                 value={guideId}
                 onChange={(event) => {
-                  setGuideId(event.target.value)
+                  setGuideId(event.target.value);
                   setCategoryId('');
                 }}
               >
@@ -268,7 +264,6 @@ export const UpdateDigitalContent: React.FC<
             </InputLabel>
             {successGetCategories && (
               <Select
-              
                 labelId="categoryLabel"
                 data-testid="categoryTestId"
                 role="select"
@@ -278,7 +273,7 @@ export const UpdateDigitalContent: React.FC<
                 sx={[styles.input, styles.select]}
                 value={categoryId}
                 onChange={(event) => {
-                  setCategoryId(event.target.value)
+                  setCategoryId(event.target.value);
                 }}
               >
                 {categories.map((cat, index) => (
