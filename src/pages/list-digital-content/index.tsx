@@ -56,7 +56,7 @@ export const ListDigitalContent: React.FC<
 
   useEffect(() => {
     getDigitalContentsService();
-  }, []);
+  }, [success]);
 
   const columns: GridColDef[] = [
     { field: '_id', headerName: 'ID', width: 50, hide: true },
