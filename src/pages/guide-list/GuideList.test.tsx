@@ -1,14 +1,9 @@
 import React from 'react';
-import { act, render, screen, waitFor } from '@testing-library/react';
-import '@testing-library/jest-dom';
-import '@testing-library/jest-dom/extend-expect';
-import 'react-router-dom';
+import { act, render, screen } from '@testing-library/react';
 import GuideList from './index';
 import { GuideInterface, getGuides } from '@services/guides';
 import { AxiosResponse } from 'axios';
 import '@testing-library/jest-dom';
-import userEvent from '@testing-library/user-event';
-
 
 jest.mock('@services/guides');
 
@@ -23,15 +18,10 @@ jest.mock('react-router-dom', () => {
   };
 });
 describe('Teste da página de listagem de guias', () => {
-
-  afterEach(() => {
-      jest.clearAllMocks();
-  });
-
   beforeEach(() => {
-    getGuidesMock.mockClear();
+    jest.clearAllMocks();
   });
- 
+
   test('Deve listar os Guias', async () => {
     getGuidesMock.mockImplementation(
       async () =>
@@ -48,10 +38,7 @@ describe('Teste da página de listagem de guias', () => {
   });
   test('Deve ler o título da página', () => {
     render(<GuideList />);
-
     const title = screen.getByText('LISTAGEM DE GUIAS');
     expect(title).toBeInTheDocument();
   });
-  
 });
-

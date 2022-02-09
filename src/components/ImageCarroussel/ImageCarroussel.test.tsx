@@ -67,7 +67,10 @@ describe('Componente de notificação', () => {
     expect(mediaDescription).toBeVisible();
 
     expect(media).toBeVisible();
-    expect(media).toHaveAttribute('src', mockDigitalContents[0].filePaths[0].filePath);
+    expect(media).toHaveAttribute(
+      'src',
+      mockDigitalContents[0].filePaths[0].filePath,
+    );
   });
 
   test('Deve mostrar a próxima mídia quando o botão "Próximo" for clicado', () => {
@@ -87,7 +90,10 @@ describe('Componente de notificação', () => {
     );
 
     expect(media).toBeVisible();
-    expect(media).toHaveAttribute('src', mockDigitalContents[0].filePaths[1].filePath);
+    expect(media).toHaveAttribute(
+      'src',
+      mockDigitalContents[0].filePaths[1].filePath,
+    );
   });
 
   test('Deve mostrar a mídia anterior quando o botão "Anterior" for clicado', () => {
@@ -111,7 +117,10 @@ describe('Componente de notificação', () => {
     );
 
     expect(media).toBeVisible();
-    expect(media).toHaveAttribute('src', mockDigitalContents[0].filePaths[0].filePath);
+    expect(media).toHaveAttribute(
+      'src',
+      mockDigitalContents[0].filePaths[0].filePath,
+    );
   });
 
   test('Deve desabilitar o botão "Anterior" quando a primeira mídia está sendo renderizada', () => {
