@@ -1,9 +1,15 @@
 import React from 'react';
-import { render, screen } from '@testing-library/react';
+import { render, screen, act } from '@testing-library/react';
 import '@testing-library/jest-dom';
+import { ListDigitalContent } from './index';
 import '@testing-library/jest-dom/extend-expect';
+import {
+  DigitalContentInterface,
+  getDigitalContent,
+} from '@services/digitalContent';
+import { AxiosResponse } from 'axios';
 
-import ListDigitalContent from './index';
+jest.mock('@services/digitalContent');
 
 jest.mock('react-router-dom', () => {
   const useNavigate = jest.fn();
@@ -11,14 +17,38 @@ jest.mock('react-router-dom', () => {
     useNavigate,
   };
 });
-describe('Página de listagem de conteúdo digital', () => {
-  beforeEach(() => {});
 
-  test('Deve ter o título da página', () => {
+const getDigitalContentMock = getDigitalContent as jest.MockedFunction<
+  typeof getDigitalContent
+>;
+
+describe('Teste do componente', () => {
+  test('Deve exibir o título da página', () => {
     render(<ListDigitalContent />);
 
-    const textLabelTitle = 'LISTAGEM DE CONTEÚDO DIGITAL';
-    const LabelTitle = screen.getByText(textLabelTitle);
-    expect(LabelTitle).toBeVisible();
+    const pageTitle = 'LISTAGEM DE CONTEÚDO DIGITAL';
+    const textTitle = screen.getByText(pageTitle);
+    expect(textTitle).toBeVisible();
+  });
+
+  beforeEach(() => {
+    getDigitalContentMock.mockClear();
+  });
+
+  test('Deve listar os conteúdos digitais', async () => {
+    getDigitalContentMock.mockImplementation(
+      async () =>
+        ({
+          data: { data: [] },
+        } as unknown as Promise<
+          AxiosResponse<{ data: DigitalContentInterface[] }>
+        >),
+    );
+
+    await act(async () => {
+      render(<ListDigitalContent />);
+    });
+
+    expect(getDigitalContentMock).toBeCalledTimes(1);
   });
 });
