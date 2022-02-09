@@ -112,3 +112,5 @@ it(`${getCategoriesByGuide.name}: Tratamento de erro quando o serviço não esti
   expect(apiMock.get).toThrow(errorMessage);
 });
 });
+
+
