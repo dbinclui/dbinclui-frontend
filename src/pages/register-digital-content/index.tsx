@@ -87,7 +87,6 @@ export const RegisterDigitalContent: React.FC<
     } catch {
       setErrorMessageGetCategories('Não foram encontradas as categorias');
       setErrorGetCategories(true);
-    } finally {
     }
   };
 
@@ -99,13 +98,12 @@ export const RegisterDigitalContent: React.FC<
     } catch {
       setErrorMessageGetGuides('Não foram encontradas as guias');
       setErrorGetGuides(true);
-    } finally {
     }
   };
 
   useEffect(() => {
-    getDigitalContentCategories('id');
     getDigitalContentGuides();
+    setErrorGetCategories(true);
     setErrorMessageGetCategories('Escolha o Guia');
   }, []);
 

@@ -5,7 +5,7 @@ import '@testing-library/jest-dom';
 import { fireEvent } from '@testing-library/dom';
 import validateInput, { InputInterfaceProps } from './validator';
 import { postDigitalContent } from '@services/digitalContent';
-import { getCategories } from '@services/categories';
+import { CategoryInterface, getCategoriesByGuide } from '@services/categories';
 import { GuideInterface, getGuides } from '@services/guides';
 import { AxiosResponse } from 'axios';
 import userEvent from '@testing-library/user-event';
@@ -18,10 +18,10 @@ jest.mock('@services/guides');
 const validateInputMock = validateInput as jest.MockedFunction<
   typeof validateInput
 >;
-const getCategoryServiceMock = getCategories as jest.MockedFunction<
-  typeof getCategories
+const getCategoriesByGuideMock = getCategoriesByGuide as jest.MockedFunction<
+  typeof getCategoriesByGuide
 >;
-const getGuidesServiceMock = getGuides as jest.MockedFunction<typeof getGuides>;
+const getGuidesMock = getGuides as jest.MockedFunction<typeof getGuides>;
 const postDigitalContentMock = postDigitalContent as jest.MockedFunction<
   typeof postDigitalContent
 >;
@@ -37,10 +37,7 @@ jest.mock('react-router-dom', () => {
 
 describe('Página de cadastro de categorias', () => {
   beforeEach(() => {
-    getCategoryServiceMock.mockClear();
-    getGuidesServiceMock.mockClear();
-    postDigitalContentMock.mockClear();
-    validateInputMock.mockClear();
+    jest.clearAllMocks();
   });
 
   test('Deve chamar os guias quando o componente for renderizado', async () => {
@@ -52,7 +49,7 @@ describe('Página de cadastro de categorias', () => {
       },
     ];
 
-    getGuidesServiceMock.mockResolvedValue({
+    getGuidesMock.mockResolvedValue({
       data: {
         data: dataMockMenuItem,
       },
@@ -61,8 +58,64 @@ describe('Página de cadastro de categorias', () => {
     render(<RegisterDigitalContent />);
 
     await waitFor(() => {
-      expect(getGuidesServiceMock).toBeCalled();
+      expect(getGuidesMock).toBeCalled();
     });
+  });
+
+  test('Deve chamar e mostrar as categorias quando um guia for selecionado', async () => {
+    const mockGuides = [
+      {
+        _id: 1,
+        title: 'teste 1',
+        content: 'content 2',
+      },
+    ];
+
+    getGuidesMock.mockResolvedValue({
+      data: {
+        data: mockGuides,
+      },
+    } as unknown as AxiosResponse<{ data: GuideInterface[] }>);
+
+    const mockCategories = [
+      {
+        _id: '1',
+        title: 'categoria 1',
+        shortDescription: 'categoria descrição 1',
+        guide: {} as any,
+      },
+    ];
+
+    getCategoriesByGuideMock.mockResolvedValue({
+      data: {
+        data: mockCategories,
+      },
+    } as unknown as AxiosResponse<{ data: CategoryInterface[] }>);
+
+    render(<RegisterDigitalContent />);
+
+    // show guides dropdown
+    const guideSelectLabel = 'Guia:';
+    const guideSelect = await screen.findByLabelText(guideSelectLabel, {
+      selector: '#guide',
+    });
+    userEvent.click(guideSelect);
+
+    // select a guide
+    const guideItem = await screen.findByText(mockGuides[0].title);
+    userEvent.click(guideItem);
+
+    expect(getCategoriesByGuideMock).toBeCalledWith(mockGuides[0]._id);
+
+    // show categories dropdown
+    const categorySelectLabel = 'Categoria:';
+    const categorySelect = await screen.findByLabelText(categorySelectLabel, {
+      selector: '#category',
+    });
+    userEvent.click(categorySelect);
+
+    const categoryItem = await screen.findByText(mockCategories[0].title);
+    expect(categoryItem).toBeVisible();
   });
 
   test('Deve mostrar na tela o card de notificação de sucesso quando o botão de submit for clicado', async () => {
@@ -108,30 +161,53 @@ describe('Página de cadastro de categorias', () => {
   });
 
   test('Deve exibir mensagem de erro ao não encontrar guias', async () => {
-    getGuidesServiceMock.mockImplementation(() => {
+    const errorMessage = 'Não foram encontradas as guias';
+    const throwError = new Error(errorMessage);
+    getGuidesMock.mockImplementation(() => {
       throw throwError;
     });
 
     render(<RegisterDigitalContent />);
-
-    const errorMessage = 'Não foram encontradas as guias';
-    const throwError = new Error(errorMessage);
 
     const ErrorMessage = await screen.findByText(errorMessage);
     expect(ErrorMessage).toBeVisible();
   });
 
   test('Deve exibir mensagem de erro ao não encontrar categorias', async () => {
-    getCategoryServiceMock.mockImplementation(() => {
+    const mockGuide = [
+      {
+        _id: 1,
+        title: 'teste 1',
+        content: 'content 2',
+      },
+    ];
+
+    getGuidesMock.mockResolvedValue({
+      data: {
+        data: mockGuide,
+      },
+    } as unknown as AxiosResponse<{ data: GuideInterface[] }>);
+
+    const errorMessageText = 'Não foram encontradas as categorias';
+    const throwError = new Error(errorMessageText);
+    getCategoriesByGuideMock.mockImplementation(() => {
       throw throwError;
     });
 
     render(<RegisterDigitalContent />);
 
-    const errorMessage = 'Não foram encontradas as categorias';
-    const throwError = new Error(errorMessage);
+    // show dropdown
+    const guideSelectLabel = 'Guia:';
+    const guideSelect = await screen.findByLabelText(guideSelectLabel, {
+      selector: '#guide',
+    });
+    userEvent.click(guideSelect);
 
-    const ErrorMessage = await screen.findByText(errorMessage);
+    // select a guide
+    const guideItem = await screen.findByText(mockGuide[0].title);
+    userEvent.click(guideItem);
+
+    const ErrorMessage = await screen.findByText(errorMessageText);
     expect(ErrorMessage).toBeVisible();
   });
 
@@ -184,12 +260,15 @@ describe('Página de cadastro de categorias', () => {
     const elementFileName = await screen.findByText(fileName);
     expect(elementFileName).toBeVisible();
     expect(noFile).not.toBeVisible();
+
+    const button = screen.getByTestId('submit');
+    fireEvent.click(button);
   });
-});
 
-test('Botão Voltar deve redirecionar para admin', () => {
-  render(<RegisterDigitalContent />);
-  const button = screen.getByTestId('back');
+  test('Botão Voltar deve redirecionar para admin', () => {
+    render(<RegisterDigitalContent />);
+    const button = screen.getByTestId('back');
 
-  expect(button).toHaveAttribute('to', '/admin/listar-conteudo-digital');
+    expect(button).toHaveAttribute('to', '/admin/listar-conteudo-digital');
+  });
 });
