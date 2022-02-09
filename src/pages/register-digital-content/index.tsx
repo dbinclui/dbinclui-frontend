@@ -87,7 +87,6 @@ export const RegisterDigitalContent: React.FC<
     } catch {
       setErrorMessageGetCategories('Não foram encontradas as categorias');
       setErrorGetCategories(true);
-    } finally {
     }
   };
 
@@ -99,13 +98,12 @@ export const RegisterDigitalContent: React.FC<
     } catch {
       setErrorMessageGetGuides('Não foram encontradas as guias');
       setErrorGetGuides(true);
-    } finally {
     }
   };
 
   useEffect(() => {
-    getDigitalContentCategories('id');
     getDigitalContentGuides();
+    setErrorGetCategories(true);
     setErrorMessageGetCategories('Escolha o Guia');
   }, []);
 
@@ -149,6 +147,7 @@ export const RegisterDigitalContent: React.FC<
               <Typography sx={styles.fileName}>{file.name}</Typography>
               <Button
                 sx={styles.clearButton}
+                aria-label={`Remover arquivo ${file.name}`}
                 onClick={() => {
                   const newFiles = files.filter((file2, index2) => {
                     return index2 !== index;
