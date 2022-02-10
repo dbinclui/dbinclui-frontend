@@ -8,7 +8,7 @@ import AccessibilityTypography from '@components/AccessibilityTypography';
 interface Content {
   title: string;
   shortDescription: string;
-  filePaths:  {
+  filePaths: {
     filePath: string;
     publicId: string;
   }[];
