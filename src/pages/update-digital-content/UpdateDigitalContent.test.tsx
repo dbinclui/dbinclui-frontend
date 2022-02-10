@@ -90,7 +90,7 @@ describe('Página de atualização de conteúdo', () => {
     const dataMockMenuItem = [
       {
         _id: 1,
-        guide: 'teste',
+        guide: '1',
         title: 'teste',
         content: 'content',
       },
@@ -258,4 +258,5 @@ describe('Página de atualização de conteúdo', () => {
 
     expect(button).toHaveAttribute('to', '/admin/listar-conteudo-digital');
   });
+
 });

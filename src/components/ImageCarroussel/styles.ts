@@ -5,7 +5,6 @@ const carrousselBox: SxProps<Theme> = {
   borderRadius: '15px',
 };
 
-
 const headerContainer: SxProps<Theme> = {
   display: 'flex',
   flexDirection: 'column',
@@ -35,6 +34,7 @@ const description: SxProps<Theme> = {
   fontWeight: 400,
   textAlign: 'center',
   m: '1rem',
+  whiteSpace: 'pre-wrap',
 };
 
 const imageWrapper: SxProps<Theme> = {
@@ -85,7 +85,7 @@ const styles = {
   image,
   stepper,
   nextButton,
-  carrousselBox
+  carrousselBox,
 };
 
 export default styles;

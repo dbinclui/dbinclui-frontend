@@ -49,25 +49,27 @@ export const GuidePage: React.FC<GuidePageProps> = (): JSX.Element => {
       <AccessibilityTypography sx={styles.indexFirst}>
         Categorias:
       </AccessibilityTypography>
-      <Grid item md={4} sx={styles.indexWrapper}>
-        {guide?.categories.map((category, index) => {
-          return (
-            <Grid item md={4} sx={styles.buttonWrapper} key={category._id}>
-              <Link
-                component="aside"
-                sx={styles.index}
-                onClick={() => {
-                  const scrollTo = document.getElementById(`${category._id}`);
-                  scrollTo?.scrollIntoView();
-                }}
-              >
-                <AccessibilityTypography data-testid="IndexTitleTest">
-                  {`•  ${category.title}`}
-                </AccessibilityTypography>
-              </Link>
-            </Grid>
-          );
-        })}
+      <Grid item md={4}>
+        <Box sx={styles.indexWrapper}>
+          {guide?.categories.map((category, index) => {
+            return (
+              <Grid item sx={styles.buttonWrapper} key={category._id}>
+                <Link
+                  component="aside"
+                  sx={styles.index}
+                  onClick={() => {
+                    const scrollTo = document.getElementById(`${category._id}`);
+                    scrollTo?.scrollIntoView();
+                  }}
+                >
+                  <AccessibilityTypography data-testid="IndexTitleTest">
+                    {`•  ${category.title}`}
+                  </AccessibilityTypography>
+                </Link>
+              </Grid>
+            );
+          })}
+        </Box>
       </Grid>
 
       {/* Conteúdo */}

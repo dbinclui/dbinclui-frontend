@@ -34,7 +34,7 @@ export const UpdateGuide: React.FC<UpdateGuideProps> = (): JSX.Element => {
   const [loading, setLoading] = useState(false);
 
   async function getGuidesService(id: string) {
-    let data: { data: GuideInterface };
+    let data: { data: GuideInterface } = {} as { data: GuideInterface };
     try {
       setLoading(true);
       data = (await getGuideById(id)).data;
@@ -44,8 +44,10 @@ export const UpdateGuide: React.FC<UpdateGuideProps> = (): JSX.Element => {
       setErrorMessage(error.message);
     } finally {
       setLoading(false);
-      title.current!.value = data!.data.title;
-      description.current!.value = data!.data.content;
+      if (data.data) {
+        title.current!.value = data!.data.title;
+        description.current!.value = data!.data.content;
+      }
     }
   }
 
@@ -89,13 +91,6 @@ export const UpdateGuide: React.FC<UpdateGuideProps> = (): JSX.Element => {
               </AccessibilityTypography>
             </Box>
             <Box padding={'1rem 3rem'} sx={styles.content} component="section">
-              <Button
-                variant="contained"
-                sx={styles.buttonDigitalContent}
-                role="button"
-              >
-                Buscar conteúdo digital
-              </Button>
               <Box
                 component="form"
                 onSubmit={handleSubmit}

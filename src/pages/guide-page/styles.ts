@@ -3,23 +3,26 @@ import { Theme, SxProps } from '@mui/material';
 const indexWrapper: SxProps<Theme> = {
   alignItems: 'center',
   justifyContent: 'center',
+  position: 'fixed',
   padding: '2rem',
   minHeight: '4rem',
-  display: { xs: 'none', md: 'block' } 
+  width: 'inherit',
+  maxWidth: 'inherit',
+  display: { xs: 'none', md: 'block' },
 };
 
 const buttonWrapper: SxProps<Theme> = {
   alignItems: 'center',
   justifyContent: 'center',
-  minHeight: '2rem',
+  height: 'fit-content',
+  padding: '0.1rem 0',
 };
 
 const index: SxProps<Theme> = {
   cursor: 'pointer',
-  position: 'fixed',
   color: (theme) => theme.palette.text.primary,
   ml: '2rem',
-  display: { xs: 'none', md: 'flex' } 
+  display: { xs: 'none', md: 'flex' },
 };
 
 const indexFirst: SxProps<Theme> = {
@@ -28,7 +31,7 @@ const indexFirst: SxProps<Theme> = {
   ml: '4rem',
   fontWeight: 'bold',
   mb: '2rem',
-  display: { xs: 'none', md: 'flex' } 
+  display: { xs: 'none', md: 'flex' },
 };
 
 const header: SxProps<Theme> = {
@@ -41,11 +44,13 @@ const guideTitle: SxProps<Theme> = {
   fontSize: '2rem',
   fontWeight: 'bold',
   mb: '1rem',
+  whiteSpace: 'pre-wrap',
 };
 
 const guideContent: SxProps<Theme> = {
   fontSize: '1.14rem',
   mb: '3rem',
+  whiteSpace: 'pre-wrap',
 };
 
 const digitalContent: SxProps<Theme> = {
@@ -61,7 +66,7 @@ const errorMessage: SxProps<Theme> = {
   justifyContent: 'center',
   alignItems: 'center',
   fontWeight: 'bold',
-  fontSize: '3rem'
+  fontSize: '3rem',
 };
 
 const styles = {
@@ -73,7 +78,7 @@ const styles = {
   digitalContent,
   buttonWrapper,
   indexFirst,
-  errorMessage
+  errorMessage,
 };
 
 export default styles;

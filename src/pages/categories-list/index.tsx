@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { DataGrid, GridColDef } from '@mui/x-data-grid';
+import { DataGrid, GridColDef, ptBR } from '@mui/x-data-grid';
 import AccessibilityTypography from '@components/AccessibilityTypography';
 import styles from './styles';
 import { Box, Button, CircularProgress, Grid } from '@mui/material';
@@ -171,6 +171,7 @@ export const CategoriesList: React.FC<
               sx={styles.table}
               pageSize={10}
               rowsPerPageOptions={[4]}
+              localeText={ptBR.components.MuiDataGrid.defaultProps.localeText}
             />
             <Box sx={styles.boxButton}>
               <Button
