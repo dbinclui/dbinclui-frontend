@@ -23,7 +23,7 @@ export const CardHome: React.FC<CardHomeProps> = ({
     lg={3}
     component={Link}
     to={`guia/${path}`}
-    state={{id: guideId}}
+    state={{ id: guideId }}
     data-testid={'cardHome'}
     style={{ textDecoration: 'none', color: 'inherit' }}
   >

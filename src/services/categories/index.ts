@@ -1,42 +1,63 @@
-import { CardDigitalContentResponse } from '@services/digitalContent';
-import api from '../api';
+import api, { handleAxiosError } from '../api';
+import { GuideInterface } from '@services/guides';
+import { DigitalContentInterface } from '@services/digitalContent';
 
-export interface Guides {
+export interface CategoryInterface {
   _id?: string;
   title: string;
-  content: string;
-  categories?: CardCategoriesResponse[];
-}
-
-export interface CategoryContent extends CardCategoriesResponse {
-  digitalContents: CardDigitalContentResponse[]
-}
-
-export interface CardCategoriesResponse {
-  _id?: number;
-  title: string;
   shortDescription: string;
-  guide: Guides;
-  parentCategory?: CardCategoriesResponse;
+  guide: GuideInterface | GuideInterface['_id'];
 }
 
-export interface CardBodyInterface {  
-  title: string;
-  shortDescription: string;
-  guide: Guides["_id"];
+export interface CategoryContent extends CategoryInterface {
+  digitalContents: DigitalContentInterface[];
 }
 
 export const getCategories = async () => {
   try {
-    return api.get<{ data: CardCategoriesResponse[] }>(`/categories/list`);
+    return api.get<{ data: CategoryInterface[] }>(`/categories/`);
+  } catch (error) {
+    throw handleAxiosError(error);
+  }
+};
+
+export const getCategoriesByGuide = async (id: string) => {
+  try {
+    return api.get<{ data: CategoryInterface[] }>(`/categories/guide/${id}`);
+  } catch (error) {
+    throw handleAxiosError(error);
+  }
+};
+
+export const getCategoriesById = async (id: string) => {
+  try {
+    return api.get<{ data: CategoryInterface }>(`categories/${id}`);
   } catch {
     throw new Error('Serviço não disponível');
   }
 };
 
-export const postCategories= async (cardBody: CardBodyInterface) => {
+export const postCategories = async (cardBody: CategoryInterface) => {
   try {
-    return api.post('/categories/register', cardBody);
+    return api.post('/categories/', cardBody);
+  } catch (error) {
+    throw handleAxiosError(error);
+  }
+};
+
+export const deleteCategory = async (id: string) => {
+  try {
+    return api.delete<{ data: CategoryInterface }>(`categories/${id}`);
+  } catch (error) {
+    throw handleAxiosError(error);
+  }
+};
+export const putCategories = async (
+  id: string,
+  cardBody: CategoryInterface,
+) => {
+  try {
+    return api.put(`/categories/${id}`, cardBody);
   } catch {
     throw new Error('Serviço não disponível');
   }

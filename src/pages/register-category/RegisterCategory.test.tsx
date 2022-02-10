@@ -6,11 +6,9 @@ import userEvent from '@testing-library/user-event';
 import '@testing-library/jest-dom';
 import validateInput, { InputInterface } from './validator';
 import { postCategories } from '@services/categories';
-import CardGuidesResponse, { getGuides } from '@services/guides';
+import { GuideInterface, getGuides } from '@services/guides';
 import { act } from 'react-dom/test-utils';
 import { AxiosResponse } from 'axios';
-import { fireEvent } from '@testing-library/dom';
-
 
 jest.mock('./validator');
 jest.mock('@services/categories');
@@ -51,7 +49,7 @@ describe('Página de cadastro de categorias', () => {
       data: {
         data: dataMockMenuItem,
       },
-    } as unknown as AxiosResponse<{ data: CardGuidesResponse[] }>);
+    } as unknown as AxiosResponse<{ data: GuideInterface[] }>);
 
     act(() => {
       render(<RegisterCategory />);
@@ -130,11 +128,9 @@ describe('Página de cadastro de categorias', () => {
   });
 });
 
-test('Botão Voltar deve redirecionar para admin', () => {
+test('Botão Voltar deve redirecionar para listar categorias', () => {
   render(<RegisterCategory />);
   const button = screen.getByTestId('back');
 
-  fireEvent.click(button);
-  
-  expect(button.getAttribute('href')).toBe('/admin');
+  expect(button).toHaveAttribute('to', '/admin/listar-categorias');
 });

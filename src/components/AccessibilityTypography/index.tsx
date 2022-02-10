@@ -5,6 +5,7 @@ import { getFontSize, getDefaultFontSize } from './utils';
 
 export interface AccessibilityTypographyProps extends TypographyProps {
   className?: string;
+  component?: React.ElementType;
 }
 
 export const AccessibilityTypography: React.FC<
@@ -20,6 +21,7 @@ export const AccessibilityTypography: React.FC<
 
   return (
     <Typography
+      component={props.component}
       {...props}
       sx={{
         ...props.sx,

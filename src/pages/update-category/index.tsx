@@ -11,30 +11,39 @@ import {
   Stack,
 } from '@mui/material';
 import AccessibilityTypography from '@components/AccessibilityTypography';
-
+import { Link } from 'react-router-dom';
+import { useParams } from 'react-router';
 import styles from './styles';
 import Notification from '@components/Notification';
-import CardGuidesResponse, { getGuides } from '@services/guides';
+import { GuideInterface, getGuides } from '@services/guides';
 import validateInput from '@pages/update-category/validator';
-import { postCategories } from '@services/categories';
+import {
+  putCategories,
+  getCategoriesById,
+  CategoryInterface,
+} from '@services/categories';
 
 export interface UpdateCategoryProps {}
 
 export const UpdateCategory: React.FC<
-UpdateCategoryProps
+  UpdateCategoryProps
 > = (): JSX.Element => {
-  const description = useRef<HTMLInputElement>();
-  const guide = useRef<HTMLInputElement>();
-
-  const [guides, setGuides] = useState<CardGuidesResponse[]>([]);
+  const [guides, setGuides] = useState<GuideInterface[]>([]);
   const title = useRef<HTMLInputElement>();
-
+  const shortDescription = useRef<HTMLInputElement | undefined>();
   const [error, setError] = useState(false);
   const [success, setSuccess] = useState(false);
   const [errorMessage, setErrorMessage] = useState('');
   const [successGetGuides, setSuccessGetGuides] = useState(false);
   const [errorGetGuides, setErrorGetGuides] = useState(false);
   const [errorMessageGetGuides, setErrorMessageGetGuides] = useState('');
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const [loading, setLoading] = useState(false);
+  const parametros = useParams();
+  const id: string = parametros.id!;
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const [guideText, setGuideText] = useState<string | undefined>('');
+  const [guideId, setGuideId] = useState('');
 
   async function getGuidesService() {
     try {
@@ -47,26 +56,45 @@ UpdateCategoryProps
     }
   }
 
+  async function getCategoriesService(id: string) {
+    let data: { data: CategoryInterface };
+    try {
+      setLoading(true);
+      data = (await getCategoriesById(id)).data;
+      setError(false);
+      setGuideText((data!.data?.guide as GuideInterface)?.title);
+      console.log(data);
+    } catch (error: any) {
+      setError(true);
+      setErrorMessage(error.message);
+    } finally {
+      setLoading(false);
+      title.current!.value = data!.data.title;
+      shortDescription.current!.value = data!.data.shortDescription;
+      setGuideId((data!.data.guide as GuideInterface)?._id!);
+    }
+  }
+
   useEffect(() => {
     getGuidesService();
-  }, []);
+    getCategoriesService(id);
+  }, [id]);
 
   async function handleSubmit(event: React.FormEvent) {
     event.preventDefault();
 
     const cardBody = {
       title: title.current?.value || '',
-      shortDescription: description.current?.value || '',
-      guide: guide.current?.value || '',
+      shortDescription: shortDescription.current?.value || '',
+      guide: guideId || '',
     };
 
     try {
       await validateInput(cardBody);
-      await postCategories(cardBody);
+      await putCategories(id, cardBody);
       setSuccess(true);
       title.current!.value = '';
-      description.current!.value = '';
-      guide.current!.value = '';
+      shortDescription.current!.value = '';
     } catch (error: any) {
       setErrorMessage(error.message);
       setError(true);
@@ -95,14 +123,21 @@ UpdateCategoryProps
             flexDirection={'column'}
             display={'flex'}
           >
-            <InputLabel htmlFor="guide" id="guideLabel" sx={styles.labelInput}>
+            <InputLabel
+              htmlFor="guide"
+              id="guideLabel"
+              data-testid="guideLabel"
+              sx={styles.labelInput}
+            >
               <AccessibilityTypography>Guia:</AccessibilityTypography>
             </InputLabel>
 
             {successGetGuides && (
               <Select
-                defaultValue=""
-                inputRef={guide}
+                value={guideId}
+                onChange={(event) => {
+                  setGuideId(event.target.value);
+                }}
                 labelId="guideLabel"
                 required
                 data-testid="guideTestId"
@@ -156,7 +191,7 @@ UpdateCategoryProps
               <AccessibilityTypography>Descrição:</AccessibilityTypography>
             </InputLabel>
             <InputBase
-              inputRef={description}
+              inputRef={shortDescription}
               multiline={true}
               minRows={5}
               role="input"
@@ -180,7 +215,7 @@ UpdateCategoryProps
                   role="button"
                   data-testid="submit"
                 >
-                  Atualizar 
+                  Atualizar
                 </Button>
               </Grid>
               <Grid item md={6} sx={styles.buttonWrapper}>
@@ -190,7 +225,8 @@ UpdateCategoryProps
                   type="reset"
                   role="button"
                   data-testid="back"
-                  href="/admin"
+                  component={Link}
+                  to="/admin/listar-categorias"
                 >
                   Voltar
                 </Button>
@@ -211,7 +247,7 @@ UpdateCategoryProps
       )}
       {success && (
         <Notification
-          message="Cadastro realizado com sucesso! ✔"
+          message="Atualização realizada com sucesso! ✔"
           variant="success"
           onClose={() => {
             setSuccess(false);
