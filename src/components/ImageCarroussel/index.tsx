@@ -111,7 +111,7 @@ export const ImageCarroussel: React.FC<ImageCarrousselProps> = ({
       </SwipeableViews>
 
       <MobileStepper
-        variant="dots"
+        variant="text"
         sx={styles.stepper}
         steps={arrayOfContents.length}
         position="static"
