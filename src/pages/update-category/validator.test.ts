@@ -1,4 +1,4 @@
-import validateInput from '@pages/register-category/validator';
+import validateInput from '@pages/update-category/validator';
 
 describe('Função de validação de dados de categoria', () => {
   test('Deve validar corretamente os dados sem erros', async () => {

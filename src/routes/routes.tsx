@@ -12,6 +12,7 @@ import GuideList from '@pages/guide-list';
 import GuidePage from '@pages/guide-page';
 import UpdateCategory from '@pages/update-category';
 import UpdateGuide from '@pages/update-guide';
+import About from '@pages/about';
 import UpdateDigitalContent from '@pages/update-digital-content';
 import CategoriesList from '@pages/categories-list';
 
@@ -24,6 +25,7 @@ export const Routers: React.FC<RoutersProps> = (): JSX.Element => {
         <Routes>
           <Route path="/" element={<Layout />}>
             <Route index element={<Home />} />
+            <Route path="sobre" element={<About />} />
             <Route path="guia/:title" element={<GuidePage />} />
             <Route path="admin" element={<Admin />} />
             <Route path="admin/cadastrar-guia" element={<RegisterGuide />} />

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { DataGrid, GridColDef } from '@mui/x-data-grid';
+import { DataGrid, GridColDef, ptBR } from '@mui/x-data-grid';
 import { Box, Button, CircularProgress, Grid } from '@mui/material';
 import AccessibilityTypography from '@components/AccessibilityTypography';
 import styles from './styles';
@@ -178,6 +178,7 @@ export const ListDigitalContent: React.FC<
               sx={styles.table}
               pageSize={10}
               rowsPerPageOptions={[10]}
+              localeText={ptBR.components.MuiDataGrid.defaultProps.localeText}
             />
             <Box sx={styles.buttonBox}>
               <Button

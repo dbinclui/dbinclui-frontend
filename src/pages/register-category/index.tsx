@@ -24,8 +24,7 @@ export const RegisterCategory: React.FC<
   RegisterCategoryProps
 > = (): JSX.Element => {
   const description = useRef<HTMLInputElement>();
-  const guide = useRef<HTMLInputElement>();
-
+  const [guide, setGuide] = useState('');
   const [guides, setGuides] = useState<GuideInterface[]>([]);
   const title = useRef<HTMLInputElement>();
 
@@ -57,7 +56,7 @@ export const RegisterCategory: React.FC<
     const cardBody = {
       title: title.current?.value || '',
       shortDescription: description.current?.value || '',
-      guide: guide.current?.value || '',
+      guide: guide || '',
     };
 
     try {
@@ -66,7 +65,7 @@ export const RegisterCategory: React.FC<
       setSuccess(true);
       title.current!.value = '';
       description.current!.value = '';
-      guide.current!.value = '';
+      setGuide('');
     } catch (error: any) {
       setErrorMessage(error.message);
       setError(true);
@@ -82,35 +81,31 @@ export const RegisterCategory: React.FC<
           </AccessibilityTypography>
         </Box>
         <Box padding={'1rem 3rem'} sx={styles.content} component="section">
-          <Button
-            variant="contained"
-            sx={styles.buttonDigitalContent}
-            role="button"
-          >
-            Buscar conteúdo digital
-          </Button>
           <Box
             onSubmit={handleSubmit}
             component="form"
             flexDirection={'column'}
             display={'flex'}
+            id="boxForm"
           >
             <InputLabel htmlFor="guide" id="guideLabel" sx={styles.labelInput}>
               <AccessibilityTypography>Guia:</AccessibilityTypography>
             </InputLabel>
-
             {successGetGuides && (
               <Select
                 defaultValue=""
-                inputRef={guide}
                 labelId="guideLabel"
                 required
+                value={guide}
                 data-testid="guideTestId"
                 role="select"
                 aria-labelledby="guideLabel"
                 name="guide"
                 id="guide"
                 sx={[styles.input, styles.select]}
+                onChange={(event) => {
+                  setGuide(event.target.value);
+                }}
               >
                 {guides.map((guide, index) => (
                   <MenuItem

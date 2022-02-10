@@ -28,8 +28,8 @@ export interface RegisterDigitalContentProps {}
 export const RegisterDigitalContent: React.FC<
   RegisterDigitalContentProps
 > = (): JSX.Element => {
-  const guide = useRef<HTMLInputElement>();
-  const category = useRef<HTMLInputElement>();
+  const [guide, setGuide] = useState('');
+  const [category, setCategory] = useState('');
   const title = useRef<HTMLInputElement>();
   const description = useRef<HTMLInputElement>();
   const fileRef = useRef<HTMLInputElement>(null);
@@ -54,8 +54,8 @@ export const RegisterDigitalContent: React.FC<
     const cardBody = {
       title: title.current?.value || '',
       shortDescription: description.current?.value || '',
-      guide: guide.current?.value || '',
-      category: category.current?.value || '',
+      guide: guide || '',
+      category: category || '',
     } as { [key: string]: any };
 
     const formData = new FormData();
@@ -72,6 +72,15 @@ export const RegisterDigitalContent: React.FC<
       await validateInput({ ...cardBody, file: files } as InputInterfaceProps);
       await postDigitalContent(formData);
       setSuccess(true);
+      title.current!.value = '';
+      description.current!.value = '';
+      fileRef.current!.value = '';
+      setGuide('');
+      setCategory('');
+      setFiles([]);
+      setCategories([]);
+      setSuccessGetCategories(false);
+      setErrorGetCategories(true);
     } catch (error: any) {
       setErrorMessage(error.message);
       setError(true);
@@ -87,7 +96,6 @@ export const RegisterDigitalContent: React.FC<
     } catch {
       setErrorMessageGetCategories('Não foram encontradas as categorias');
       setErrorGetCategories(true);
-    } finally {
     }
   };
 
@@ -99,13 +107,12 @@ export const RegisterDigitalContent: React.FC<
     } catch {
       setErrorMessageGetGuides('Não foram encontradas as guias');
       setErrorGetGuides(true);
-    } finally {
     }
   };
 
   useEffect(() => {
-    getDigitalContentCategories('id');
     getDigitalContentGuides();
+    setErrorGetCategories(true);
     setErrorMessageGetCategories('Escolha o Guia');
   }, []);
 
@@ -149,6 +156,7 @@ export const RegisterDigitalContent: React.FC<
               <Typography sx={styles.fileName}>{file.name}</Typography>
               <Button
                 sx={styles.clearButton}
+                aria-label={`Remover arquivo ${file.name}`}
                 onClick={() => {
                   const newFiles = files.filter((file2, index2) => {
                     return index2 !== index;
@@ -184,7 +192,7 @@ export const RegisterDigitalContent: React.FC<
             {successGetGuides && (
               <Select
                 defaultValue=""
-                inputRef={guide}
+                value={guide}
                 labelId="guideLabel"
                 required
                 data-testid="guideTestId"
@@ -195,6 +203,7 @@ export const RegisterDigitalContent: React.FC<
                 sx={[styles.input, styles.select]}
                 onChange={(event) => {
                   getDigitalContentCategories(event.target.value);
+                  setGuide(event.target.value);
                 }}
               >
                 {guides.map((guides, index) => (
@@ -226,7 +235,7 @@ export const RegisterDigitalContent: React.FC<
             {successGetCategories && (
               <Select
                 defaultValue=""
-                inputRef={category}
+                value={category}
                 labelId="categoryLabel"
                 data-testid="categoryTestId"
                 role="select"
@@ -234,6 +243,9 @@ export const RegisterDigitalContent: React.FC<
                 name="category"
                 id="category"
                 sx={[styles.input, styles.select]}
+                onChange={(event) => {
+                  setCategory(event.target.value);
+                }}
               >
                 {categories.map((cat, index) => (
                   <MenuItem
@@ -336,7 +348,6 @@ export const RegisterDigitalContent: React.FC<
           variant="success"
           onClose={() => {
             setSuccess(false);
-            window.location.reload();
           }}
         />
       )}
