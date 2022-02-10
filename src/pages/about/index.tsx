@@ -11,7 +11,7 @@ export const About: React.FC<AboutProps> = (): JSX.Element => {
       <main className="about">
         <Outlet />
         <AccessibilityTypography padding={'10rem 3rem'} textAlign={'center'}>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed sed
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed sed
           gravida nibh, ullamcorper rhoncus nibh. Lorem ipsum dolor sit amet,
           consectetur adipiscing elit. Vivamus nunc elit, vehicula eget dolor
           nec, euismod dignissim libero. Quisque eget efficitur lorem. Ut at
