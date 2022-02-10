@@ -3,20 +3,23 @@ import { Theme, SxProps } from '@mui/material';
 const indexWrapper: SxProps<Theme> = {
   alignItems: 'center',
   justifyContent: 'center',
+  position: 'fixed',
   padding: '2rem',
   minHeight: '4rem',
+  width: 'inherit',
+  maxWidth: 'inherit',
   display: { xs: 'none', md: 'block' },
 };
 
 const buttonWrapper: SxProps<Theme> = {
   alignItems: 'center',
   justifyContent: 'center',
-  minHeight: '2rem',
+  height: 'fit-content',
+  padding: '0.1rem 0',
 };
 
 const index: SxProps<Theme> = {
   cursor: 'pointer',
-  position: 'fixed',
   color: (theme) => theme.palette.text.primary,
   ml: '2rem',
   display: { xs: 'none', md: 'flex' },
